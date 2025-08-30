@@ -40,6 +40,7 @@ def shop_phase():
     """
     Handles the Arena shop phase which is detected upon level up
     """
+    logging.info("Running shop phase...")
     # Click screen center in case of augment card
     click_percent(SCREEN_CENTER[0], SCREEN_CENTER[1])
 
@@ -56,7 +57,7 @@ def combat_phase():
     - Finds enemy champion location and attacks w/ spells and items
     - If no enemy found, find and move toward ally
     """
-
+    logging.info("Running combat phase...")
     center_camera_key = _keybinds.get("center_camera")
     keyboard.press(center_camera_key)
     time.sleep(0.1)
@@ -120,6 +121,7 @@ def run_game_loop(stop_event):
     while not stop_event.is_set():
         logging.info("Running game loop...")
         if _latest_game_data['data']:
+            logging.info("Game data is available.")
             # Shop phase
             current_level = _latest_game_data['data']["activePlayer"].get("level")
             if current_level is not None and current_level > prev_level:
@@ -139,8 +141,6 @@ def run_game_loop(stop_event):
                 if exit_box:
                     x, y, w, h = exit_box
                     click_percent(x, y)
-        else:
-            logging.warning("No game data available.")
 
         combat_phase()
 

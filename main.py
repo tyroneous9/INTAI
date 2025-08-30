@@ -210,6 +210,7 @@ def run_game_loop(stop_event):
     """
     selected_game_mode = get_selected_game_mode()
     mode_info = SUPPORTED_MODES.get(selected_game_mode)
+    logging.info(f"Starting bot for mode: {mode_info.get('module')}")
     module_name = mode_info.get("module")
     try:
         module = importlib.import_module(module_name)

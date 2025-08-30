@@ -149,9 +149,9 @@ def listen_for_exit_key():
     """
     Listens for the END key and exits the program immediately.
     """
-    logging.info("Press END key to exit anytime.")
-    keyboard.wait("end")
-    logging.info("END key pressed. Exiting program...")
+    logging.info("Press DELETE key to exit anytime.")
+    keyboard.wait("delete")
+    logging.info("DELETE key pressed. Exiting program...")
     os._exit(0)
 
 

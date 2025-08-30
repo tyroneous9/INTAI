@@ -22,9 +22,9 @@ SUPPORTED_MODES = {
         "module": "core.run_aram",
         "queue_id": 450
     },
-    "swiftplay": {
-        "module": "core.run_swiftplay",
-        "queue_id": 490
+    "test": {
+        "module": "core.run_test",
+        "queue_id": -1
     },
     # Add more modes as needed
 }

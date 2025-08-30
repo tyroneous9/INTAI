@@ -1,0 +1,2 @@
+1. add module in constants.py
+2. add module in build.bat
