@@ -97,7 +97,7 @@ def combat_phase():
     else:
         # Move to ally
         move_to_ally(1)
-        sleep_random(0, 0.3)
+        sleep_random(0.1, 0.3)
 
 # ===========================
 # Main Bot Loop

@@ -1,0 +1,633 @@
+2025-08-30 18:39:19 [INFO] Press DELETE key to exit anytime.
+2025-08-30 18:39:20 [INFO] Running tests...
+2025-08-30 18:39:20 [INFO] Running tests...
+2025-08-30 18:39:22 [INFO] nal
+
+°
+
+P& League-Scripts-2
+
+| By
+
+oO
+
+a
+
+o
+
+x
+
+Me-u
+
+INTAI Menu
+
+SS build.bat M
+
+ae
+
+CHAT
+
+TERMINAL
+
+RUN AND DEBUG
+
+[i python
+
+~-Bu
+
+ta
+
+ea
+
+x
+
+u
+
+ general_utils.py M
+
+Dy %
+
+- |
+
+Curr
+
+n_script
+
+game_loop(stop_even
+
+=
+
+19)
+
+axe
+
+wey
+
+—
+
+W158
+
+SE.
+
+—
+
+Microsoft Windows [Version 10.0.26100.5074]
+
+hasattr(module, “main"):
+
+(c) Microsoft Corporation. All rights reserved.
+
+1¢
+
+ne
+
+module.main()
+
+ao
+
+wom
+
+le:
+
+C:\Users\Wesley\Documents\GitHub\League-Scripts-2>C:\U
+
+IGE
+
+tt aC
+
+logging.error(f"No entry point found for ‘{selected_game_mode}'
+
+Saran
+
+sers\Wes]ley\AppData\Local \Programs\Python\Python311\py
+
+thon.exe c:/Users/wesley/Documents/GitHub/League-Scrip
+
+ie
+
+ts-2/main.py
+
+2025-88-38 18:38:45 [INFO] Press DELETE key to exit an
+
+script(testing-False):
+
+ytime.
+
+esting:
+
+logging.info("Running tests...")
+
+me
+
+C:\Users\Wesley\Documents\GitHub\League-Scripts-2>C:\U
+
+# game_end_event.clear()
+
+Bean,
+
+sers\Wes]ley\AppData\Local \Programs\Python\Python311\py
+
+# run_game_loop(game_end_event)
+
+thon.exe c:/Users/wesley/Documents/GitHub/League-Scrip
+
+extract_screen_text()
+
+unicharsel_extractor.
+
+mi
+
+ts-2/main.py
+
+234
+
+else:
+
+2025-88-38 18:39:19 [INFO] Press DELETE key to exit an
+
+= unicharset_extractor.exe
+
+235
+
+lien
+
+<> unicharset.5.html
+
+logging.info("Starting Script. waiting for client..
+
+ytime.
+
+236
+
+connector. start()
+
+= winpathexe
+
+237
+
+238
+
+«> wordlist2dawg.1.html
+
+wordlist2dawg.exe
+
+239
+
+=
+
+240
+
+alib1.dll
+
+Main Entry Point
+
+241
+
+# =
+
+> tests
+
+242
+
+© utils
+
+243
+
+”
+
+> _pycache__
+
+244
+
+if _name__ ==
+
+main’
+
+zs
+
+® _init_py
+
+245
+
+246
+
+® config_utilspy
+
+Main entry point for the League Bot Launcher.
+
+247
+
+Handles menu navigation and starts the connector.
+
+® game_utils.py
+
+248
+
+® general_utils.py
+
+249
+
+disable_insecure_request_warning()
+
+© gitattributes
+
+250
+
+enable_logging()
+
+build.bat
+
+251
+
+threading. Thread(target=listen_for_exit_key, daemon=True).start()
+
+INTALspec
+
+252
+
+show_menu(run_script) # Launch the GUI menu and pass the connector
+
+© mainpy
+
+253
+
+| ®
+
+254
+
+3
+
+255
+
+> TIMELINE
+
+ace
+
+—
+
+a
+
+A
+
+ENG
+
+ey
+
+6:39PM
+
+GED F 0
+
+|
+
+Bys0/2025
+
+2025-08-30 18:39:44 [INFO] Press DELETE key to exit anytime.
+2025-08-30 18:39:45 [INFO] Running tests...
+2025-08-30 18:39:45 [INFO] Running tests...
+2025-08-30 18:39:46 [INFO] ——
+
+—
+
+~
+
+°
+
+-
+
+——
+
+File
+
+Edit
+
+Selection
+
+View
+
+Go
+
+Run
+
+Terminal
+
+.
+
+€>
+
+I
+
+P& League-Scripts-2
+
+| By
+
+oO
+
+a
+
+o
+
+x
+
+BS)
+
+EXPLORER
+
+ae
+
+SS build.bat M
+
+ae
+
+CHAT
+
+TERMINAL
+
+RUN AND DEBUG
+
+[i python
+
+~-Bu
+
+ta
+
+ea
+
+x
+
+® main.py MX
+
+ general_utils.py M
+
+Dy %
+
+- |
+
+fs
+
+> OPEN EDITORS
+
+® main.py > @ run script
+
+\ LEAGUI
+
+oo
+
+stop_event)
+
+axe
+
+wey
+
+—
+
+SE.
+
+—
+
+1°
+
+™ tess
+
+INTAI Menu
+
+odule
+
+"main"):
+
+sel
+
+254
+
+n()
+
+ao
+
+wom
+
+°
+
+shq
+
+Curr
+
+shq
+
+ror(f"No entry point found for ‘{selected_game_mode}'
+
+Saran
+
+ed
+
+255
+
+°
+
+tes
+
+IGE
+
+ting=False)
+
+tes
+
+> TIMELINE
+
+IGE
+
+tt aC
+
+°
+
+te
+
+fo("Running tests...")
+
+me
+
+ace
+
+Rw
+
+H_event.clear()
+
+Bean,
+
+°
+
+uni
+
+loop (game_end_event)
+
+reen_text()
+
+th
+
+os]
+
+°
+
+uni
+
+fo("Tests completed.")
+
+uni
+
+lien
+
+°
+
+uni
+
+fo("Starting Script. Waiting for client..
+
+wil
+
+start()
+
+°
+
+238
+
+ENG
+
+wordlist2dawg.1.html
+
+wordlist2dawg.exe
+
+239
+
+240
+
+# =
+
+ey
+
+alib1.dll
+
+241
+
+# Main Entry Point
+
+> tests
+
+6:39PM
+
+242
+
+# =
+
+© utils
+
+243
+
+GED F 8
+
+> _pycache__
+
+244
+
+”
+
+”
+
+® _init_py
+
+245
+
+if
+
+name__
+
+main_“:
+
+|
+
+246
+
+® config_utilspy
+
+247
+
+Main entry point for the League Bot Launcher.
+
+® game_utils.py
+
+Bys@/2625
+
+248
+
+Handles menu navigation and starts the connector.
+
+® general_utils.py
+
+249
+
+.
+
+© gitattributes
+
+250
+
+disable_insecure_request_warning()
+
+C:\Users\Wesley\Documents\GitHub\League-Scripts-2>C:\U
+
+build.bat
+
+251
+
+enable_logging()
+
+sers\Wes]ley\AppData\Local \Programs\Python\Python311\py
+
+INTALspec
+
+252
+
+thon.exe c:/Users/wesley/Documents/GitHub/League-Scrip
+
+@
+
+threading. Thread(target=listen_for_exit_key, daemon=True).start()
+
+© mainpy
+
+253
+
+show_menu(run_script) # Launch the GUI menu and pass the connector
+
+ts-2/main.py
+
+2025-88-38 18:39:44 [INFO] Press DELETE key to exit an
+
+[i preprocessed_image,jpg
+
+254
+
+3
+
+255
+
+ytime.
+
+ace
+
+> TIMELINE
+
+a
+
+A
+
+ENG
+
+ey
+
+6:39PM
+
+GED F 0
+
+|
+
+Bys0/2025
+
+2025-08-30 18:39:46 [INFO] Tests completed.

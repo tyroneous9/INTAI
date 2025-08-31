@@ -4,7 +4,9 @@ REM Build INTAI.exe
 pyinstaller --icon=assets/app_icon.ico --name INTAI main.py ^
   --add-data "config/config.json;config" ^
   --add-data "config/config_default.json;config" ^
-  --hidden-import=core.run_arena
+  --add-data "tesseract/tesseract.exe;tesseract" ^
+  --add-data "tesseract/tessdata;tesseract/tessdata" ^
+  --hidden-import=core.run_arena ^
   --hidden-import=core.run_test
 
 echo Build complete. Check the dist folder for INTAI.exe.

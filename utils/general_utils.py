@@ -14,9 +14,9 @@ from core.constants import (
     DEFAULT_API_TIMEOUT, LIVE_CLIENT_URL, TESSERACT_PATH,
     DATA_DRAGON_VERSIONS_URL, DATA_DRAGON_DEFAULT_LOCALE
 )
-import pytesseract
 from PIL import Image
-
+import pytesseract
+pytesseract.pytesseract.tesseract_cmd = TESSERACT_PATH
 # ===========================
 # API Utilities
 # ===========================
@@ -180,7 +180,6 @@ def extract_screen_text():
     Returns:
         str: Extracted text.
     """
-    pytesseract.pytesseract.tesseract_cmd = TESSERACT_PATH
     img = get_screenshot()
 
     # preprocessing
@@ -200,7 +199,6 @@ def extract_text_with_locations():
     Returns:
         dict: line_num -> list of {'text', 'box'}
     """
-    pytesseract.pytesseract.tesseract_cmd = TESSERACT_PATH
     img = get_screenshot()
 
     # preprocessing

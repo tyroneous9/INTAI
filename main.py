@@ -17,7 +17,7 @@ from core.constants import (
     GAMEFLOW_PHASES,
     CHAMP_SELECT_SUBPHASES
 )
-from utils.general_utils import listen_for_exit_key, enable_logging, get_champions_map, wait_for_window
+from utils.general_utils import extract_screen_text, listen_for_exit_key, enable_logging, get_champions_map, wait_for_window
 from lcu_driver import Connector
 from core.menu import show_menu  
 
@@ -227,11 +227,11 @@ def run_game_loop(stop_event):
 
 def run_script(testing=False):
     if testing:
-        # test logic here
         logging.info("Running tests...")
-        game_end_event.clear()
-        run_game_loop(game_end_event)
-
+        # game_end_event.clear()
+        # run_game_loop(game_end_event)
+        extract_screen_text()
+        logging.info("Tests completed.")
     else:
         logging.info("Starting Script. Waiting for client...")
         connector.start()

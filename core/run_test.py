@@ -11,7 +11,7 @@ from core.constants import (
     HEALTH_TICK_COLOR, ENEMY_HEALTH_BAR_COLOR, SCREEN_CENTER
 )
 from utils.config_utils import load_settings
-from utils.general_utils import click_percent, poll_live_client_data
+from utils.general_utils import click_percent, extract_screen_text, poll_live_client_data
 from utils.game_utils import (
     get_distance,
     move_random_offset,
@@ -113,7 +113,8 @@ def run_game_loop(stop_event):
     """
 
     logging.info("Keybinds: %s", _keybinds)
-
+    extract_screen_text()
+    logging.info("OCR test complete.")
     # Game initialization
     polling_thread = threading.Thread(target=poll_live_client_data, args=(_latest_game_data, stop_event), daemon=True)
     polling_thread.start()
@@ -124,7 +125,8 @@ def run_game_loop(stop_event):
         logging.info("Running game loop...")
 
         if _latest_game_data['data']:
-            logging.info("Game data is available.")
+            logging.info("Game data test successful. Now exiting...")
+            break
         time.sleep(1)
  
 # For testing purposes

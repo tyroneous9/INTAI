@@ -109,10 +109,14 @@ def buy_recommended_items():
     x, y = shop_location[:2]
 
     # Buy recommended item
-    click_percent(x, y, 0, -60, "left")
+    click_percent(x, y, 0, -62, "left")
+    time.sleep(0.5)
     click_percent(x, y, 15, -25, "right")
+    time.sleep(0.5)
     click_percent(x, y, 15, -25, "right")
+    time.sleep(0.5)
     click_percent(x, y, 15, -25, "right")
+    time.sleep(0.5)
 
     # Close shop
     keyboard.send(_keybinds.get("shop"))

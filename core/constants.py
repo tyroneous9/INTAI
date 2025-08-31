@@ -3,6 +3,7 @@
 # ==========================================================
 
 import win32api
+import os
 
 import core
 
@@ -92,8 +93,8 @@ SCREEN_CENTER = (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)
 # OCR Configuration
 # ===========================
 
-# Tesseract OCR executable path
-TESSERACT_PATH = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
+# Tesseract OCR executable path (relative to project root)
+TESSERACT_PATH = os.path.join(os.path.dirname(__file__), "..", "tesseract", "tesseract.exe")
 
 
 
