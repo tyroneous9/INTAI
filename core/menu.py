@@ -81,8 +81,14 @@ def show_menu(run_script_callback):
 
         champions_map = get_champions_map()
         champ_names = sorted(champions_map.keys())
+
+        # Add "None" option at the top
+        champ_names = ["None"] + champ_names
+
         champ_var = tk.StringVar(
-            value=preferred_champion if preferred_champion in champ_names else (champ_names[0] if champ_names else "")
+            value="None" if preferred_champion == "" else (
+                preferred_champion if preferred_champion in champ_names else (champ_names[0] if champ_names else "None")
+            )
         )
 
         # Clear previous widgets in settings_frame
@@ -168,7 +174,11 @@ def show_menu(run_script_callback):
         def on_champ_select(event):
             selection = champ_listbox.curselection()
             if selection:
-                champ_var.set(champ_listbox.get(selection[0]))
+                selected = champ_listbox.get(selection[0])
+                if selected == "None":
+                    champ_var.set("None")
+                else:
+                    champ_var.set(selected)
 
         champ_listbox.bind("<<ListboxSelect>>", on_champ_select)
 
@@ -177,7 +187,8 @@ def show_menu(run_script_callback):
                 keybinds[key] = vars[key].get().strip()
             config["Keybinds"] = keybinds
             config.setdefault("General", {})
-            config["General"]["preferred_champion"] = champ_var.get()
+            # Save as empty string if "None" is selected
+            config["General"]["preferred_champion"] = "" if champ_var.get() == "None" else champ_var.get()
             save_config(config)
             show_frame(menu_frame)
 

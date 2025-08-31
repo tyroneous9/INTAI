@@ -136,11 +136,12 @@ def move_to_ally(ally_number=1):
     }
     ally_key = ally_keys.get(ally_number)
     keyboard.send(ally_key)
+    time.sleep(0.1)
     # Move randomly near ally
     offset_x = random.randint(-15, 15)  # percent offset
     offset_y = random.randint(-15, 15)  # percent offset
     click_percent(SCREEN_CENTER[0], SCREEN_CENTER[1], offset_x, offset_y, "right")
-
+    time.sleep(0.1)
 
 def retreat_to_ally():
     """

@@ -5,8 +5,6 @@
 import win32api
 import os
 
-import core
-
 
 # ===========================
 # League General
