@@ -181,13 +181,10 @@ def extract_screen_text():
         str: Extracted text.
     """
     img = get_screenshot()
-
-    # preprocessing
-    img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    _, img_thresh = cv2.threshold(img_gray, 70, 255, cv2.THRESH_BINARY)
-    pil_img = Image.fromarray(img_thresh)
-    cv2.imwrite("preprocessed_image.jpg", img_thresh) 
-
+    img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    _, img = cv2.threshold(img, 70, 255, cv2.THRESH_BINARY)
+    cv2.imwrite("preprocessed_image.jpg", img)  
+    pil_img = Image.fromarray(img)
     text = pytesseract.image_to_string(pil_img, config='--psm 11')
     logging.info(text)
     return text
@@ -200,13 +197,11 @@ def extract_text_with_locations():
         dict: line_num -> list of {'text', 'box'}
     """
     img = get_screenshot()
-
-    # preprocessing
-    img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    _, img_thresh = cv2.threshold(img_gray, 70, 255, cv2.THRESH_BINARY)
-    pil_img = Image.fromarray(img_thresh)
-    # cv2.imwrite("preprocessed_image.jpg", img_thresh)
-
+    img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    _, img = cv2.threshold(img, 70, 255, cv2.THRESH_BINARY)
+    # cv2.imwrite("preprocessed_image.jpg", img)  
+    pil_img = Image.fromarray(img)
+    text = pytesseract.image_to_string(pil_img, config='--psm 11')
     data = pytesseract.image_to_data(pil_img, config='--psm 11', output_type=pytesseract.Output.DICT)
 
     text_locations = []

@@ -1,0 +1,28 @@
+2025-09-02 18:06:04 [INFO] Press DELETE key to exit anytime.
+2025-09-02 18:06:06 [INFO] Starting Script. Waiting for client...
+2025-09-02 18:06:06 [INFO] Connected to League client.
+2025-09-02 18:06:07 [INFO] [EVENT] Starting queue.
+2025-09-02 18:06:08 [INFO] Owned champion IDs: []
+2025-09-02 18:06:08 [INFO] Allowed champion IDs: []
+2025-09-02 18:06:08 [INFO] Pickable champion IDs (allowed ∩ owned): []
+2025-09-02 18:06:10 [ERROR] Task exception was never retrieved
+future: <Task finished name='Task-7' coro=<on_champ_select_session() done, defined at c:\Users\Wesley\Documents\GitHub\League-Scripts-2\main.py:126> exception=IndexError('Cannot choose from an empty sequence')>
+Traceback (most recent call last):
+  File "c:\Users\Wesley\Documents\GitHub\League-Scripts-2\main.py", line 197, in on_champ_select_session
+    champ_id = random.choice(pickable_champ_ids)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\random.py", line 373, in choice
+    raise IndexError('Cannot choose from an empty sequence')
+IndexError: Cannot choose from an empty sequence
+2025-09-02 18:06:14 [INFO] Event loop interrupted by keyboard
+2025-09-02 18:06:14 [ERROR] Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x000001DF9710D490>
+2025-09-02 18:06:14 [ERROR] Unclosed connector
+connections: ['deque([(<aiohttp.client_proto.ResponseHandler object at 0x000001DFFED09010>, 789.203)])']
+connector: <aiohttp.connector.TCPConnector object at 0x000001DF9710D310>
+2025-09-02 18:06:14 [ERROR] Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x000001DFFEC25ED0>
+2025-09-02 18:06:28 [INFO] Press DELETE key to exit anytime.
+2025-09-02 18:06:29 [INFO] Starting Script. Waiting for client...
+2025-09-02 18:06:30 [INFO] Connected to League client.
+2025-09-02 18:06:31 [INFO] [EVENT] Starting queue.

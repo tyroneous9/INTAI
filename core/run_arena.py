@@ -10,9 +10,11 @@ import logging
 from core.constants import (
     HEALTH_TICK_COLOR, ENEMY_HEALTH_BAR_COLOR, SCREEN_CENTER
 )
+from run_aram import attack_enemy
 from utils.config_utils import load_settings
 from utils.general_utils import click_on_cursor, click_percent, poll_live_client_data, find_text_location
 from utils.game_utils import (
+    find_enemy_location,
     get_distance,
     move_random_offset,
     move_to_ally,
@@ -33,7 +35,7 @@ _latest_game_data = {'data': None}
 
 
 # ===========================
-# Arena Phase Functions
+# Phase Functions
 # ===========================
 
 def shop_phase():
@@ -62,7 +64,7 @@ def combat_phase():
     time.sleep(0.1)
     keyboard.release(center_camera_key)
 
-    enemy_location = find_champion_location(ENEMY_HEALTH_BAR_COLOR, HEALTH_TICK_COLOR)
+    enemy_location = find_enemy_location()
     if enemy_location:
         # Move to enemy
         click_percent(enemy_location[0], enemy_location[1], 0, 0, "right")
@@ -70,19 +72,8 @@ def combat_phase():
         # When within combat distance
         distance_to_enemy = get_distance(SCREEN_CENTER, enemy_location)
         if distance_to_enemy < 600:
-            keyboard.send(_keybinds.get("spell_4"))
-            keyboard.send(_keybinds.get("spell_1"))
-            keyboard.send(_keybinds.get("spell_2"))
-            keyboard.send(_keybinds.get("spell_3"))
-            keyboard.send(_keybinds.get("item_1"))
-            keyboard.send(_keybinds.get("item_2"))
-            keyboard.send(_keybinds.get("item_3"))
-            keyboard.send(_keybinds.get("item_4"))
-            keyboard.send(_keybinds.get("item_5"))
-            keyboard.send(_keybinds.get("item_6"))
-            sleep_random(0.1, 0.3)
-            move_random_offset(*enemy_location, 15)
-            sleep_random(0.1, 0.3)
+            attack_enemy()
+            
             # Self preservation
             if _latest_game_data['data']:
                 current_hp = _latest_game_data['data']["activePlayer"].get("championStats", {}).get("currentHealth")
@@ -119,11 +110,10 @@ def run_game_loop(stop_event):
 
     while not stop_event.is_set():
         if _latest_game_data['data']:
-            logging.info("Game data is available.")
             # Shop phase
             current_level = _latest_game_data['data']["activePlayer"].get("level")
             if current_level is not None and current_level > prev_level:
-                time.sleep(3)
+                time.sleep(4)
                 for _ in range(current_level - prev_level):
                     shop_phase()
                 prev_level = current_level
@@ -131,16 +121,21 @@ def run_game_loop(stop_event):
             # Exit game
             current_hp = _latest_game_data['data']["activePlayer"].get("championStats", {}).get("currentHealth")
             if current_hp == 0:
-                logging.info("Player is dead (currentHealth == 0) .")
+                logging.info("Player is dead, looking for exit button.")
                 # OCR for "Exit" button and click it
                 exit_box = find_text_location("EXITNOW")
                 if not exit_box: 
                     exit_box = find_text_location("EXIT")
+                if not exit_box:
+                    exit_box = find_text_location("EXT")
                 if exit_box:
                     x, y, w, h = exit_box
                     click_percent(x, y)
 
         combat_phase()
+
+        # Small delay to allow thread switching
+        time.sleep(0.01)
 
 # For testing purposes
 # python -m core.run_arena

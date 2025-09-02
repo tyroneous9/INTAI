@@ -1,0 +1,16 @@
+2025-09-02 10:46:19 [INFO] Press DELETE key to exit anytime.
+2025-09-02 10:46:20 [INFO] Starting Script. Waiting for client...
+2025-09-02 10:46:20 [INFO] Connected to League client.
+2025-09-02 10:46:22 [INFO] [EVENT] Starting queue.
+2025-09-02 10:46:22 [WARNING] Champ select data not ready.
+2025-09-02 10:46:26 [WARNING] Champ select data not ready.
+2025-09-02 10:46:28 [WARNING] Champ select data not ready.
+2025-09-02 10:46:29 [WARNING] Champ select data not ready.
+2025-09-02 10:46:31 [INFO] Event loop interrupted by keyboard
+2025-09-02 10:46:31 [ERROR] Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x000001AA72ACB990>
+2025-09-02 10:46:31 [ERROR] Unclosed connector
+connections: ['deque([(<aiohttp.client_proto.ResponseHandler object at 0x000001AA72A16C10>, 3667.796)])']
+connector: <aiohttp.connector.TCPConnector object at 0x000001AA72ACBA10>
+2025-09-02 10:46:31 [ERROR] Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x000001AA72A0E4D0>

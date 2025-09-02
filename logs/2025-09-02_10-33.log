@@ -1,0 +1,36 @@
+2025-09-02 10:33:01 [INFO] Press DELETE key to exit anytime.
+2025-09-02 10:33:03 [INFO] Starting Script. Waiting for client...
+2025-09-02 10:33:03 [INFO] Connected to League client.
+2025-09-02 10:33:04 [INFO] [EVENT] Starting queue.
+2025-09-02 10:33:05 [INFO] Allowed champion IDs: []
+2025-09-02 10:33:05 [INFO] Owned champion IDs: []
+2025-09-02 10:33:07 [ERROR] Task exception was never retrieved
+future: <Task finished name='Task-7' coro=<on_champ_select_session() done, defined at c:\Users\Wesley\Documents\GitHub\League-Scripts-2\main.py:126> exception=IndexError('Cannot choose from an empty sequence')>
+Traceback (most recent call last):
+  File "c:\Users\Wesley\Documents\GitHub\League-Scripts-2\main.py", line 177, in on_champ_select_session
+    champ_id = random.choice(pickable_champ_ids)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\random.py", line 373, in choice
+    raise IndexError('Cannot choose from an empty sequence')
+IndexError: Cannot choose from an empty sequence
+2025-09-02 10:33:11 [INFO] [EVENT] Starting queue.
+2025-09-02 10:33:12 [INFO] Allowed champion IDs: []
+2025-09-02 10:33:12 [INFO] Owned champion IDs: []
+2025-09-02 10:33:13 [INFO] Accepted ready check.
+2025-09-02 10:33:14 [ERROR] Task exception was never retrieved
+future: <Task finished name='Task-13' coro=<on_champ_select_session() done, defined at c:\Users\Wesley\Documents\GitHub\League-Scripts-2\main.py:126> exception=IndexError('Cannot choose from an empty sequence')>
+Traceback (most recent call last):
+  File "c:\Users\Wesley\Documents\GitHub\League-Scripts-2\main.py", line 177, in on_champ_select_session
+    champ_id = random.choice(pickable_champ_ids)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\random.py", line 373, in choice
+    raise IndexError('Cannot choose from an empty sequence')
+IndexError: Cannot choose from an empty sequence
+2025-09-02 10:33:26 [INFO] Event loop interrupted by keyboard
+2025-09-02 10:33:26 [ERROR] Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x000001987F8A66D0>
+2025-09-02 10:33:26 [ERROR] Unclosed connector
+connections: ['deque([(<aiohttp.client_proto.ResponseHandler object at 0x000001987F7F6BA0>, 2878.796)])']
+connector: <aiohttp.connector.TCPConnector object at 0x000001987F8A6690>
+2025-09-02 10:33:26 [ERROR] Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x000001987EDCFF50>

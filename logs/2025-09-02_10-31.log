@@ -1,0 +1,33 @@
+2025-09-02 10:31:39 [INFO] Press DELETE key to exit anytime.
+2025-09-02 10:31:43 [INFO] Starting Script. Waiting for client...
+2025-09-02 10:31:43 [INFO] Connected to League client.
+2025-09-02 10:31:45 [INFO] [EVENT] Starting queue.
+2025-09-02 10:31:46 [INFO] Accepted ready check.
+2025-09-02 10:31:47 [ERROR] Task exception was never retrieved
+future: <Task finished name='Task-8' coro=<on_champ_select_session() done, defined at c:\Users\Wesley\Documents\GitHub\League-Scripts-2\main.py:126> exception=IndexError('Cannot choose from an empty sequence')>
+Traceback (most recent call last):
+  File "c:\Users\Wesley\Documents\GitHub\League-Scripts-2\main.py", line 174, in on_champ_select_session
+    champ_id = random.choice(pickable_champ_ids)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\random.py", line 373, in choice
+    raise IndexError('Cannot choose from an empty sequence')
+IndexError: Cannot choose from an empty sequence
+2025-09-02 10:32:02 [INFO] [EVENT] Starting queue.
+2025-09-02 10:32:04 [INFO] Accepted ready check.
+2025-09-02 10:32:05 [ERROR] Task exception was never retrieved
+future: <Task finished name='Task-13' coro=<on_champ_select_session() done, defined at c:\Users\Wesley\Documents\GitHub\League-Scripts-2\main.py:126> exception=IndexError('Cannot choose from an empty sequence')>
+Traceback (most recent call last):
+  File "c:\Users\Wesley\Documents\GitHub\League-Scripts-2\main.py", line 174, in on_champ_select_session
+    champ_id = random.choice(pickable_champ_ids)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\random.py", line 373, in choice
+    raise IndexError('Cannot choose from an empty sequence')
+IndexError: Cannot choose from an empty sequence
+2025-09-02 10:32:07 [INFO] Event loop interrupted by keyboard
+2025-09-02 10:32:07 [ERROR] Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x000001B80CB05050>
+2025-09-02 10:32:07 [ERROR] Unclosed connector
+connections: ['deque([(<aiohttp.client_proto.ResponseHandler object at 0x000001B80CABDE10>, 2810.14)])']
+connector: <aiohttp.connector.TCPConnector object at 0x000001B80CB04550>
+2025-09-02 10:32:07 [ERROR] Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x000001B80C53E7D0>

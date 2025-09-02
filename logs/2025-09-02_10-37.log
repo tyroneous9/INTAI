@@ -1,0 +1,34 @@
+2025-09-02 10:37:03 [INFO] Press DELETE key to exit anytime.
+2025-09-02 10:37:04 [INFO] Starting Script. Waiting for client...
+2025-09-02 10:37:05 [INFO] Connected to League client.
+2025-09-02 10:37:10 [INFO] Inventory raw data: {'errorCode': 'RESOURCE_NOT_FOUND', 'httpStatus': 404, 'message': 'Invalid URI format'} (type: <class 'dict'>)
+2025-09-02 10:37:10 [ERROR] Task exception was never retrieved
+future: <Task finished name='Task-6' coro=<on_champ_select_session() done, defined at c:\Users\Wesley\Documents\GitHub\League-Scripts-2\main.py:126> exception=AttributeError("'str' object has no attribute 'get'")>
+Traceback (most recent call last):
+  File "c:\Users\Wesley\Documents\GitHub\League-Scripts-2\main.py", line 152, in on_champ_select_session
+    owned_champ_ids = [champ['id'] for champ in inventory_data if champ.get('owned', False)]
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\Wesley\Documents\GitHub\League-Scripts-2\main.py", line 152, in <listcomp>
+    owned_champ_ids = [champ['id'] for champ in inventory_data if champ.get('owned', False)]
+                                                                  ^^^^^^^^^
+AttributeError: 'str' object has no attribute 'get'
+2025-09-02 10:37:24 [INFO] [EVENT] Starting queue.
+2025-09-02 10:37:25 [INFO] Inventory raw data: {'errorCode': 'RESOURCE_NOT_FOUND', 'httpStatus': 404, 'message': 'Invalid URI format'} (type: <class 'dict'>)
+2025-09-02 10:37:25 [ERROR] Task exception was never retrieved
+future: <Task finished name='Task-9' coro=<on_champ_select_session() done, defined at c:\Users\Wesley\Documents\GitHub\League-Scripts-2\main.py:126> exception=AttributeError("'str' object has no attribute 'get'")>
+Traceback (most recent call last):
+  File "c:\Users\Wesley\Documents\GitHub\League-Scripts-2\main.py", line 152, in on_champ_select_session
+    owned_champ_ids = [champ['id'] for champ in inventory_data if champ.get('owned', False)]
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\Wesley\Documents\GitHub\League-Scripts-2\main.py", line 152, in <listcomp>
+    owned_champ_ids = [champ['id'] for champ in inventory_data if champ.get('owned', False)]
+                                                                  ^^^^^^^^^
+AttributeError: 'str' object has no attribute 'get'
+2025-09-02 10:37:27 [INFO] Event loop interrupted by keyboard
+2025-09-02 10:37:27 [ERROR] Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x000002787FDEB650>
+2025-09-02 10:37:27 [ERROR] Unclosed connector
+connections: ['deque([(<aiohttp.client_proto.ResponseHandler object at 0x000002787FD36C10>, 3131.125)])']
+connector: <aiohttp.connector.TCPConnector object at 0x000002787FDEB6D0>
+2025-09-02 10:37:27 [ERROR] Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x000002787F237CD0>

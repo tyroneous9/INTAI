@@ -9,7 +9,7 @@ from utils.config_utils import (
 from utils.general_utils import get_champions_map
 from core.constants import SUPPORTED_MODES
 
-def show_menu(run_script_callback):
+def show_menu(run_script_callback, run_tests_callback):
     root = tk.Tk()
     root.title("INTAI Menu")
     root.geometry("500x400")
@@ -30,13 +30,13 @@ def show_menu(run_script_callback):
     # --- MENU PAGE ---
     def run_script():
         root.destroy()
-        run_script_callback(testing=False)
+        run_script_callback()
         
 
     def run_tests():
         root.destroy()
         logging.info("Running tests...")
-        run_script_callback(testing=True)
+        run_tests_callback()
 
     def change_gamemode():
         # Clear previous widgets in gamemode_frame

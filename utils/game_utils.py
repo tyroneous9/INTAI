@@ -3,7 +3,7 @@ import time
 import numpy as np
 import cv2
 import logging
-from core.constants import SCREEN_CENTER
+from core.constants import ALLY_HEALTH_BAR_COLOR, ENEMY_HEALTH_BAR_COLOR, HEALTH_TICK_COLOR, SCREEN_CENTER
 import random
 from utils.config_utils import load_settings
 from utils.general_utils import click_percent, find_text_location, get_screenshot
@@ -50,6 +50,24 @@ def find_champion_location(health_bar_bgr, health_tick_bgr, tolerance=2):
     return None
 
 
+def find_ally_location():
+    """
+    Finds the location of an ally champion by searching for ally health bar and tick colors.
+    Returns:
+        tuple or None: (x, y) location if found, else None.
+    """
+    return find_champion_location(ALLY_HEALTH_BAR_COLOR, HEALTH_TICK_COLOR)
+
+
+def find_enemy_location():
+    """
+    Finds the location of an enemy champion by searching for enemy health bar and tick colors.
+    Returns:
+        tuple or None: (x, y) location if found, else None.
+    """
+    return find_champion_location(ENEMY_HEALTH_BAR_COLOR, HEALTH_TICK_COLOR)
+
+
 # ===========================
 # Game Control Utilities
 # ===========================
@@ -65,6 +83,39 @@ def sleep_random(min_seconds, max_seconds):
     """
     duration = random.uniform(min_seconds, max_seconds)
     time.sleep(duration)
+
+
+def get_distance(coord1, coord2):
+    """
+    Calculates the Euclidean distance between two (x, y) coordinates.
+    Args:
+        coord1 (tuple): (x1, y1)
+        coord2 (tuple): (x2, y2)
+    Returns:
+        float: Distance between the two points.
+    """
+    x1, y1 = coord1
+    x2, y2 = coord2
+    return ((x2 - x1) ** 2 + (y2 - y1) ** 2) ** 0.5
+
+
+# ===========================
+# Game Control Core
+# ===========================
+
+
+def move_random_offset(x, y, max_offset=15):
+    """
+    Moves a random distance offset from the given (x, y) location using percent-based relative click.
+    Args:
+        x (int): X coordinate of the base location.
+        y (int): Y coordinate of the base location.
+        max_offset (int): Maximum percent screen distance in any direction.
+    """
+    offset_x = random.randint(-max_offset, max_offset)  # percent offset
+    offset_y = random.randint(-max_offset, max_offset)  # percent offset
+    click_percent(x, y, offset_x, offset_y, "right")
+
 
 def level_up_abilities(order=("R", "Q", "W", "E")):
     """
@@ -104,6 +155,7 @@ def buy_recommended_items():
         shop_location = find_text_location("SELL")
         if not shop_location:
             logging.warning("Shop location could not be found after opening shop.")
+            keyboard.send(_keybinds.get("shop"))
             return
 
     x, y = shop_location[:2]
@@ -136,20 +188,20 @@ def move_to_ally(ally_number=1):
     }
     ally_key = ally_keys.get(ally_number)
     keyboard.send(ally_key)
-    time.sleep(0.1)
+    time.sleep(0.3)
     # Move randomly near ally
     offset_x = random.randint(-15, 15)  # percent offset
     offset_y = random.randint(-15, 15)  # percent offset
     click_percent(SCREEN_CENTER[0], SCREEN_CENTER[1], offset_x, offset_y, "right")
     time.sleep(0.1)
 
-def retreat_to_ally():
+def retreat_to_ally(ally_number=1):
     """
     Moves the player to the specified ally position and randomly presses summoner spell keys.
     Sometimes presses only one, both, or none for added randomness.
     """
     # Move to ally position
-    move_to_ally()
+    move_to_ally(ally_number)
     time.sleep(0.1)
 
     # Randomly use summoner spells
@@ -166,34 +218,32 @@ def retreat_to_ally():
         if sum_2_key:
             keyboard.send(sum_2_key)
             time.sleep(0.1)
-    move_to_ally()
+    move_to_ally(ally_number)
 
 
-def move_random_offset(x, y, max_offset=15):
+def attack_enemy():
     """
-    Moves a random distance offset from the given (x, y) location using percent-based relative click.
-    Args:
-        x (int): X coordinate of the base location.
-        y (int): Y coordinate of the base location.
-        max_offset (int): Maximum percent screen distance in any direction.
+    Attacks the enemy by casting spells and using items.
+    Searches for enemy location before each spell.
     """
-    offset_x = random.randint(-max_offset, max_offset)  # percent offset
-    offset_y = random.randint(-max_offset, max_offset)  # percent offset
-    click_percent(x, y, offset_x, offset_y, "right")
+    _keybinds, _ = load_settings()
 
+    # For each spell, search for enemy location before sending
+    for spell_key in ["spell_4", "spell_1", "spell_2", "spell_3"]:
+        enemy_location = find_enemy_location()
+        if enemy_location:
+            click_percent(enemy_location[0], enemy_location[1], 0, 0, "right")
+            keyboard.send(_keybinds.get(spell_key))
+            time.sleep(0.3)  # Delay to prevent spamming
 
-def get_distance(coord1, coord2):
-    """
-    Calculates the Euclidean distance between two (x, y) coordinates.
-    Args:
-        coord1 (tuple): (x1, y1)
-        coord2 (tuple): (x2, y2)
-    Returns:
-        float: Distance between the two points.
-    """
-    x1, y1 = coord1
-    x2, y2 = coord2
-    return ((x2 - x1) ** 2 + (y2 - y1) ** 2) ** 0.5
+    # Send all item keys at once (no location search)
+    for item_key in ["item_1", "item_2", "item_3", "item_4", "item_5", "item_6"]:
+        keyboard.send(_keybinds.get(item_key))
+
+    # Dodging
+    sleep_random(0.1, 0.3)
+    move_random_offset(*SCREEN_CENTER, 15)
+    sleep_random(0.1, 0.3)
 
 
 
