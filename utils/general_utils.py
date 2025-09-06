@@ -1,5 +1,6 @@
 import datetime
 import os
+import psutil
 import requests
 import win32gui
 import win32api
@@ -10,6 +11,7 @@ import mss
 import numpy as np
 import cv2
 import logging
+import win32process
 from core.constants import (
     DEFAULT_API_TIMEOUT, LIVE_CLIENT_URL, TESSERACT_PATH,
     DATA_DRAGON_VERSIONS_URL, DATA_DRAGON_DEFAULT_LOCALE
@@ -33,10 +35,12 @@ def fetch_live_client_data():
         if res.status_code == 200:
             return res.json()
         else:
-            print("[ERROR] Game data request succeeded, but no data available.")
+            print("[INFO] No game data available yet.")
+            time.sleep(5)
             return None
     except Exception as e:
         print(f"[ERROR] Game data request failed.")
+        time.sleep(5)
         return None
 
 
@@ -78,14 +82,14 @@ def fetch_data_dragon_data(endpoint, version=None, locale=DATA_DRAGON_DEFAULT_LO
 
 def get_champions_map():
     """
-    Fetches champion data from Riot Data Dragon and returns a {name: id} mapping.
+    Fetches champion data from Riot Data Dragon and returns a {id: name} mapping.
     Returns:
-        dict: {champion_name: champion_id}
+        dict: {champion_id: champion_name}
     """
     data = fetch_data_dragon_data("champion")
     champions_map = {}
     for champ in data.get("data", {}).values():
-        champions_map[champ["name"]] = int(champ["key"])
+        champions_map[int(champ["key"])] = champ["name"]
     return champions_map
 
 
@@ -155,8 +159,48 @@ def listen_for_exit_key():
     os._exit(0)
 
 
+def test_mkb():
+    """
+    Thoroughly tests mouse and keyboard commands.
+    - Moves mouse to several screen locations.
+    - Performs left and right clicks.
+    - Types text using keyboard.
+    - Sends key presses and combinations.
+    """
+    import time
+
+    logging.info("Testing mouse movement and clicks...")
+    # Move mouse to four corners and center of the screen
+    screen_width = win32api.GetSystemMetrics(0)
+    screen_height = win32api.GetSystemMetrics(1)
+    test_points = [
+        (0, 0),  # Top-left
+        (screen_width - 1, 0),  # Top-right
+        (0, screen_height - 1),  # Bottom-left
+        (screen_width - 1, screen_height - 1),  # Bottom-right
+        (screen_width // 2, screen_height // 2),  # Center
+    ]
+    for x, y in test_points:
+        win32api.SetCursorPos((x, y))
+        time.sleep(0.5)
+        win32api.mouse_event(win32con.MOUSEEVENTF_LEFTDOWN, x, y, 0, 0)
+        win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP, x, y, 0, 0)
+        win32api.mouse_event(win32con.MOUSEEVENTF_RIGHTDOWN, x, y, 0, 0)
+        win32api.mouse_event(win32con.MOUSEEVENTF_RIGHTUP, x, y, 0, 0)
+        logging.info(f"Clicked at ({x}, {y})")
+
+    time.sleep(0.5)
+    # Send some key presses
+    for key in ["q", "w", "e", "r"]:
+        keyboard.send(key)
+        time.sleep(0.2)
+    logging.info("Character keys sent: q, w, e, r")
+
+    logging.info("Mouse/keyboard test completed.")
+
+
 # ===========================
-# Screen Data
+# Screen Utilities
 # ===========================
 
 def get_screenshot():
@@ -240,6 +284,25 @@ def find_text_location(target_text):
     return None
 
 
+def find_text_location_retry(target_text, max_attempts=5, delay=0.2):
+    """
+    Tries to find the location of the specified text on the screen using OCR, retrying up to max_attempts.
+    Args:
+        target_text (str): Text to search for.
+        max_attempts (int): Number of attempts before giving up.
+        delay (float): Delay in seconds between attempts.
+    Returns:
+        tuple or None: (x, y, w, h) if found, else None.
+    """
+    for attempt in range(max_attempts):
+        location = find_text_location(target_text)
+        if location:
+            return location
+        time.sleep(delay)
+    logging.info(f"OCR: Text '{target_text}' not found on screen after {max_attempts} attempts.")
+    return None
+
+
 def enable_logging(log_file=None, level=logging.INFO):
     # Remove all handlers associated with the root logger object
     for handler in logging.root.handlers[:]:
@@ -269,12 +332,15 @@ def bring_window_to_front(window_title):
         window_title (str): The title of the window.
     """
     hwnd = win32gui.FindWindow(None, window_title)
-    if hwnd:
-        win32gui.ShowWindow(hwnd, win32con.SW_RESTORE)
-        time.sleep(0.1)
+    if not hwnd:
+        logging.error(f"Window with title '{window_title}' not found.")
+        return
+    win32gui.ShowWindow(hwnd, win32con.SW_RESTORE)
+    time.sleep(0.1)
+    try:
         win32gui.SetForegroundWindow(hwnd)
-    else:
-        logging.warning(f"Window with title '{window_title}' not found.")
+    except Exception as e:
+        logging.error(f"SetForegroundWindow failed for '{window_title}' (handle: {hwnd}): {e}")
 
 def wait_for_window(window_title, timeout=60):
     """
@@ -293,5 +359,20 @@ def wait_for_window(window_title, timeout=60):
             bring_window_to_front(window_title)
             return hwnd
         time.sleep(1)
-    logging.warning(f"Window with title '{window_title}' not found after {timeout} seconds.")
+    logging.error(f"Window with title '{window_title}' not found after {timeout} seconds.")
     return
+
+
+def terminate_window(window_title):
+    hwnd = win32gui.FindWindow(None, window_title)
+    if hwnd:
+        # Get process ID from window handle
+        _, pid = win32process.GetWindowThreadProcessId(hwnd)
+        try:
+            proc = psutil.Process(pid)
+            proc.terminate()  # or proc.kill() for immediate termination
+            print(f"Process {pid} terminated for window '{window_title}'.")
+        except Exception as e:
+            print(f"Failed to terminate process {pid}: {e}")
+    else:
+        print(f"Window '{window_title}' not found.")

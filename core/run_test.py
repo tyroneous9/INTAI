@@ -6,21 +6,22 @@ import time
 import threading
 import keyboard
 import logging
+import random
 
 from core.constants import (
-    HEALTH_TICK_COLOR, ENEMY_HEALTH_BAR_COLOR, SCREEN_CENTER
+    HEALTH_TICK_COLOR, ENEMY_HEALTH_BAR_COLOR, LEAGUE_GAME_WINDOW_TITLE, SCREEN_CENTER
 )
 from utils.config_utils import load_settings
-from utils.general_utils import click_percent, extract_screen_text, poll_live_client_data
+from utils.general_utils import terminate_window, poll_live_client_data
 from utils.game_utils import (
+    attack_enemy,
+    find_ally_location,
     get_distance,
-    move_random_offset,
+    is_game_started,
     move_to_ally,
     find_champion_location,
     buy_recommended_items,
-    level_up_abilities,
-    retreat_to_ally,
-    sleep_random,
+    retreat,
 )
 
 
@@ -31,73 +32,56 @@ from utils.game_utils import (
 _keybinds, _general = load_settings()
 _latest_game_data = {'data': None}
 
+ally_keys = [
+    _keybinds.get("select_ally_1"),
+    _keybinds.get("select_ally_2"),
+    _keybinds.get("select_ally_3"),
+    _keybinds.get("select_ally_4"),
+]
+
+current_ally_index = 0
+
 
 # ===========================
-# Arena Phase Functions
+# Phase Functions
 # ===========================
-
-def shop_phase():
-    """
-    Handles the Arena shop phase which is detected upon level up
-    """
-    logging.info("Running shop phase...")
-    # Click screen center in case of augment card
-    click_percent(SCREEN_CENTER[0], SCREEN_CENTER[1])
-
-    # Buy recommended items
-    buy_recommended_items()
-
-    # Level up abilities
-    level_up_abilities()
-
 
 def combat_phase():
-    """
-    Handles the combat phase:
-    - Finds enemy champion location and attacks w/ spells and items
-    - If no enemy found, find and move toward ally
-    """
-    logging.info("Running combat phase...")
-    center_camera_key = _keybinds.get("center_camera")
-    keyboard.press(center_camera_key)
-    time.sleep(0.1)
-    keyboard.release(center_camera_key)
-
-    enemy_location = find_champion_location(ENEMY_HEALTH_BAR_COLOR, HEALTH_TICK_COLOR)
-    if enemy_location:
-        # Move to enemy
-        click_percent(enemy_location[0], enemy_location[1], 0, 0, "right")
-    
-        # When within combat distance
-        distance_to_enemy = get_distance(SCREEN_CENTER, enemy_location)
-        if distance_to_enemy < 600:
-            keyboard.send(_keybinds.get("spell_4"))
-            keyboard.send(_keybinds.get("spell_1"))
-            keyboard.send(_keybinds.get("spell_2"))
-            keyboard.send(_keybinds.get("spell_3"))
-            keyboard.send(_keybinds.get("item_1"))
-            keyboard.send(_keybinds.get("item_2"))
-            keyboard.send(_keybinds.get("item_3"))
-            keyboard.send(_keybinds.get("item_4"))
-            keyboard.send(_keybinds.get("item_5"))
-            keyboard.send(_keybinds.get("item_6"))
-            sleep_random(0.1, 0.3)
-            move_random_offset(*enemy_location, 15)
-            sleep_random(0.1, 0.3)
-            # Self preservation
-            if _latest_game_data['data']:
-                current_hp = _latest_game_data['data']["activePlayer"].get("championStats", {}).get("currentHealth")
-                max_hp = _latest_game_data['data']["activePlayer"].get("championStats", {}).get("maxHealth")
-                if current_hp is not None and max_hp:
-                    hp_percent = (current_hp / max_hp)
-                    if hp_percent < .3:
-                        retreat_to_ally()
-                        if(hp_percent == 0):
-                            return
+    global current_ally_index
+    ally_location = find_ally_location()
+    if ally_location:
+        # look to attack
+        enemy_location = find_champion_location(ENEMY_HEALTH_BAR_COLOR, HEALTH_TICK_COLOR)
+        if enemy_location:
+            keyboard.press(_keybinds.get("center_camera"))
+            distance_to_enemy = get_distance(SCREEN_CENTER, enemy_location)
+            if distance_to_enemy < 500:
+                # Self preservation
+                if _latest_game_data['data']:
+                    current_hp = _latest_game_data['data']["activePlayer"].get("championStats", {}).get("currentHealth")
+                    max_hp = _latest_game_data['data']["activePlayer"].get("championStats", {}).get("maxHealth")
+                    if current_hp is not None and max_hp:
+                        hp_percent = (current_hp / max_hp)
+                        if hp_percent < .3:
+                            # Retreat away from enemy using screen center as base
+                            retreat(SCREEN_CENTER, enemy_location, duration=0.5)
+                            if hp_percent == 0:
+                                return
+                attack_enemy()
+                
+            keyboard.release(_keybinds.get("center_camera"))
+        follow_ally(current_ally_index)
+        time.sleep(0.13)  # After following ally
     else:
-        # Move to ally
-        move_to_ally(1)
-        sleep_random(0, 0.3)
+        # look for ally
+        current_ally_index = random.randint(0, len(ally_keys) - 1)
+        time.sleep(0.18)  # Sleep after random selection
+    move_to_ally(current_ally_index + 1)
+    time.sleep(0.18)  # Sleep after moving to ally
+
+def follow_ally(ally_index, distance=250):
+    keyboard.send(ally_keys[ally_index])
+    time.sleep(0.13)  # Sleep after following ally
 
 # ===========================
 # Main Bot Loop
@@ -105,30 +89,39 @@ def combat_phase():
 
 def run_game_loop(stop_event):
     """
-    Main loop for Arena bot:
+    Main loop for bot:
     - Waits for GameStart event before starting main loop
     - Runs shop phase when the active player's level increases (phase change)
     - Otherwise runs combat phase
     - Exits when monitor_game_end detects game end
     """
 
-    logging.info("Keybinds: %s", _keybinds)
-    extract_screen_text()
-    logging.info("OCR test complete.")
     # Game initialization
     polling_thread = threading.Thread(target=poll_live_client_data, args=(_latest_game_data, stop_event), daemon=True)
     polling_thread.start()
-    prev_level = 0
-    logging.info("Bot has started.")
 
+    while not stop_event.is_set() and not is_game_started(_latest_game_data['data']):
+        time.sleep(3)
+        
+    # Main loop
     while not stop_event.is_set():
-        logging.info("Running game loop...")
-
         if _latest_game_data['data']:
-            logging.info("Game data test successful. Now exiting...")
-            break
-        time.sleep(1)
- 
+            current_hp = _latest_game_data['data']["activePlayer"].get("championStats", {}).get("currentHealth")
+            if current_hp == 0:
+                zero_hp_start = time.time()
+                while not stop_event.is_set():
+                    current_hp = _latest_game_data['data']["activePlayer"].get("championStats", {}).get("currentHealth")
+                    if current_hp != 0:
+                        break
+                    elapsed = time.time() - zero_hp_start
+                    if elapsed > 100:
+                        logging.info("Exiting game due to being dead for over 100 seconds.")
+                        terminate_window(LEAGUE_GAME_WINDOW_TITLE)
+                        return
+                    time.sleep(1)
+        # combat_phase()
+        time.sleep(0.01)
+
 # For testing purposes
 # python -m core.run_test
 if __name__ == "__main__":

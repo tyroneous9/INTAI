@@ -17,7 +17,7 @@ from core.constants import (
     GAMEFLOW_PHASES,
     CHAMP_SELECT_SUBPHASES
 )
-from utils.general_utils import extract_screen_text, listen_for_exit_key, enable_logging, get_champions_map, wait_for_window
+from utils.general_utils import click_percent, extract_screen_text, listen_for_exit_key, enable_logging, get_champions_map, test_mkb, wait_for_window
 from lcu_driver import Connector
 from core.menu import show_menu  
 
@@ -100,7 +100,6 @@ async def on_gameflow_phase(connection, event):
     # Start bot loop thread on game start
     if phase == GAMEFLOW_PHASES["GAME_START"] or phase == GAMEFLOW_PHASES["IN_PROGRESS"]:
         logging.info("[EVENT] Game is in progress.")
-        await asyncio.sleep(3)  # Wait a bit for the game to load
         # Wait for the game window
         wait_for_window(LEAGUE_GAME_WINDOW_TITLE)
 
@@ -136,39 +135,22 @@ async def on_champ_select_session(connection, event):
     actions = session_data.get('actions', [])
     local_cell_id = session_data.get('localPlayerCellId')
 
-    # Find allowed champion IDs for the local player
-    allowed_champ_ids = []
-    logging.info(f"Full champ select session data: {session_data}")
-
     if champ_phase == CHAMP_SELECT_SUBPHASES["BAN_PICK"]:
         config = load_config()
-        preferred_champion = config.get("General", {}).get("preferred_champion", "").strip()
-        champions_map = get_champions_map()
-        preferred_champ_id = champions_map.get(preferred_champion) if preferred_champion else None
-
-        # Get summoner ID
-        summoner_resp = await connection.request('get', '/lol-summoner/v1/current-summoner')
-        summoner_data = await summoner_resp.json()
-        summoner_id = summoner_data.get('summonerId')
-
-        # Get owned champion IDs from correct endpoint
-        inventory_resp = await connection.request('get', f'/lol-champions/v1/inventories/{summoner_id}/champions-minimal')
-        inventory_data = await inventory_resp.json()
-        owned_champ_ids = [
-            champ['id'] for champ in inventory_data
-            if champ.get('owned') or champ.get('freeToPlay')
-        ]
-        logging.info(f"Owned champion IDs: {owned_champ_ids}")
-        logging.info(f"Allowed champion IDs: {allowed_champ_ids}")
-        pickable_champ_ids = [cid for cid in allowed_champ_ids if cid in owned_champ_ids]
-        logging.info(f"Pickable champion IDs (allowed ∩ owned): {pickable_champ_ids}")
-
+        preferred_champion_obj = config.get("General", {}).get("preferred_champion", {})
+        preferred_champ_id = preferred_champion_obj.get("id") if isinstance(preferred_champion_obj, dict) else None
 
         for action_group in actions:
             for action in action_group:
-                await asyncio.sleep(1)
                 # Ban phase
                 if action.get('actorCellId') == local_cell_id and action.get('type') == 'ban' and action.get('isInProgress'):
+                    grid_resp = await connection.request('get', '/lol-champ-select/v1/all-grid-champions')
+                    grid_data = await grid_resp.json()
+                    pickable_champ_ids = [
+                        champ['id'] for champ in grid_data
+                        if (champ.get('owned') or champ.get('freeToPlay'))
+                        and not champ.get('selectionStatus', {}).get('pickedByOtherOrBanned', False)
+                    ]
                     action_id = action.get('id')
                     ban_champ_id = random.choice(pickable_champ_ids)
                     response = await connection.request(
@@ -176,25 +158,40 @@ async def on_champ_select_session(connection, event):
                         f'/lol-champ-select/v1/session/actions/{action_id}',
                         data={"championId": ban_champ_id, "completed": True}
                     )
-                    logging.info(f"Ban response status: {response.status}")
                     await asyncio.sleep(0.5)
                 # Pick phase
                 if action.get('actorCellId') == local_cell_id and action.get('type') == 'pick' and action.get('isInProgress'):
+                    grid_resp = await connection.request('get', '/lol-champ-select/v1/all-grid-champions')
+                    grid_data = await grid_resp.json()
+                    owned_or_free_champs = [
+                        champ['id'] for champ in grid_data
+                        if (champ.get('owned') or champ.get('freeToPlay'))
+                    ]
                     action_id = action.get('id')
-                    await asyncio.sleep(1)
-                    # Pick logic: preferred > Bravery > random
-                    if preferred_champ_id and preferred_champ_id in pickable_champ_ids:
-                        champ_id = preferred_champ_id
-                    elif -3 in pickable_champ_ids:
-                        champ_id = -3  # Bravery
-                    else:
-                        champ_id = random.choice(pickable_champ_ids)
-                    response = await connection.request(
+
+                    # Try preferred champion
+                    await connection.request(
                         'patch',
                         f'/lol-champ-select/v1/session/actions/{action_id}',
-                        data={"championId": champ_id, "completed": True}
+                        data={"championId": preferred_champ_id, "completed": True}
                     )
-                    logging.info(f"Pick response body: {await response.text()}")
+
+                    # Try bravery champion
+                    await connection.request(
+                        'patch',
+                        f'/lol-champ-select/v1/session/actions/{action_id}',
+                        data={"championId": -3, "completed": True}
+                    )
+
+                    # Try random champion
+                    if owned_or_free_champs:
+                        champ_id = random.choice(owned_or_free_champs)
+                        logging.info(f"Picking random champion ID: {champ_id}")
+                        await connection.request(
+                            'patch',
+                            f'/lol-champ-select/v1/session/actions/{action_id}',
+                            data={"championId": champ_id, "completed": True}
+                        )
                     return
 
 @connector.close
@@ -232,7 +229,7 @@ def run_game_loop(stop_event):
     else:
         logging.error(f"No entry point found for '{selected_game_mode}'.")
 
-
+ 
 def run_script(testing=False):
     if testing:
         logging.info("Running tests...")
@@ -244,7 +241,7 @@ def run_script(testing=False):
 
 def run_tests():
     logging.info("Running tests...")
-    extract_screen_text()
+    test_mkb()
     logging.info("Tests completed.")
     show_menu(run_script, run_tests)
 

@@ -22,7 +22,7 @@
         "sum_2": "f"
     },
     "General": {
-        "selected_game_mode": "arena",
-        "preferred_champion": ""
+        "selected_game_mode": "aram",
+        "preferred_champion": {}
     }
 }

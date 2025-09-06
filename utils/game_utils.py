@@ -8,9 +8,8 @@ import random
 from utils.config_utils import load_settings
 from utils.general_utils import click_percent, find_text_location, get_screenshot
 
-
 # ===========================
-# Game Data Retrieval
+# Game Data Utilities
 # ===========================
 
 # Find the location of a champion by searching for health bar and tick colors
@@ -68,8 +67,21 @@ def find_enemy_location():
     return find_champion_location(ENEMY_HEALTH_BAR_COLOR, HEALTH_TICK_COLOR)
 
 
+def is_game_started(live_data):
+    """
+    Returns True if the GameStart event is present in live client data.
+    """
+    if not live_data:
+        return False
+    events = live_data.get("events", {}).get("Events", [])
+    for event in events:
+        if event.get("EventName") == "GameStart":
+            return True
+    return False
+
+
 # ===========================
-# Game Control Utilities
+# Helper Utilities
 # ===========================
 
 _keybinds, _general = load_settings()
@@ -139,39 +151,114 @@ def level_up_abilities(order=("R", "Q", "W", "E")):
                 logging.error(f"Invalid spell key: {key}. Must be 'Q', 'W', 'E', or 'R'.")
                 continue
             keyboard.send(f"{hold_key}+{spell_keys[key]}")
-            time.sleep(0.1)
+            time.sleep(0.5)
 
 def buy_recommended_items():
     """
     Finds the shop location and performs recommended item purchases.
     Opens the shop if not already open.
+    Retries up to 5 times to find the shop location.
     """
+    keyboard.send(_keybinds.get("shop"))
     time.sleep(0.5)  # Wait a moment to ensure shop is open
-    shop_location = find_text_location("SELL")
+
+    shop_location = None
+    max_attempts = 10
+    attempts = 0
+    # First search for shop location
+    while not shop_location and attempts < max_attempts:
+        shop_location = find_text_location("SELL")
+        if shop_location:
+            break
+        attempts += 1
+        time.sleep(0.2)
+
+    # If not found, press shop key again and retry
     if not shop_location:
-        # Open shop if not already open
+        logging.info("Shop not found, pressing shop key again and retrying...")
         keyboard.send(_keybinds.get("shop"))
         time.sleep(0.5)
-        shop_location = find_text_location("SELL")
-        if not shop_location:
-            logging.warning("Shop location could not be found after opening shop.")
-            keyboard.send(_keybinds.get("shop"))
-            return
+        attempts = 0
+        while not shop_location and attempts < max_attempts:
+            shop_location = find_text_location("SELL")
+            if shop_location:
+                break
+            attempts += 1
+            time.sleep(0.2)
+
+    if not shop_location:
+        logging.warning("Shop could not be detected while attempting to shop.")
+        return
 
     x, y = shop_location[:2]
 
     # Buy recommended item
     click_percent(x, y, 0, -62, "left")
-    time.sleep(0.5)
+    time.sleep(0.3)
     click_percent(x, y, 15, -25, "right")
-    time.sleep(0.5)
+    time.sleep(0.3)
     click_percent(x, y, 15, -25, "right")
-    time.sleep(0.5)
+    time.sleep(0.3)
     click_percent(x, y, 15, -25, "right")
-    time.sleep(0.5)
+    time.sleep(0.3)
 
     # Close shop
     keyboard.send(_keybinds.get("shop"))
+
+
+def buy_items_list(item_list):
+    """
+    Buys a list of items by opening the shop, searching for each item, and attempting to buy it.
+    Args:
+        item_names (list of str): List of item names to buy.
+    """
+    keyboard.send(_keybinds.get("shop"))
+    time.sleep(0.5)  # Wait for shop to open
+
+    shop_location = None
+    max_attempts = 5
+    attempts = 0
+    # First search for shop location
+    while not shop_location and attempts < max_attempts:
+        shop_location = find_text_location("SELL")
+        if shop_location:
+            break
+        attempts += 1
+        time.sleep(0.2)
+
+    # If not found, press shop key again and retry
+    if not shop_location:
+        logging.info("Shop not found, pressing shop key again and retrying...")
+        keyboard.send(_keybinds.get("shop"))
+        time.sleep(0.5)
+        attempts = 0
+        while not shop_location and attempts < max_attempts:
+            shop_location = find_text_location("SELL")
+            if shop_location:
+                break
+            attempts += 1
+            time.sleep(0.1)
+
+    if not shop_location:
+        logging.warning("Shop could not be detected while attempting to buy items.")
+        return
+
+    for item in item_list:
+        # Focus search bar (Ctrl+L)
+        keyboard.send("ctrl+l")
+        time.sleep(0.2)
+        # Type item name
+        keyboard.write(item)
+        time.sleep(0.2)
+        # Attempt to buy
+        keyboard.send("enter")
+        time.sleep(0.2)
+
+    # Close shop
+    time.sleep(1)
+    keyboard.send(_keybinds.get("shop"))
+        
+
 
 def move_to_ally(ally_number=1):
     """
@@ -195,14 +282,28 @@ def move_to_ally(ally_number=1):
     click_percent(SCREEN_CENTER[0], SCREEN_CENTER[1], offset_x, offset_y, "right")
     time.sleep(0.1)
 
-def retreat_to_ally(ally_number=1):
+def retreat(current_coords, threat_coords, duration=0.5):
     """
-    Moves the player to the specified ally position and randomly presses summoner spell keys.
-    Sometimes presses only one, both, or none for added randomness.
+    Moves the player away from the threat location for a specified duration.
+    Args:
+        current_coords (tuple): Current (x, y) coordinates of the player.
+        threat_coords (tuple): (x, y) coordinates of the threat/enemy.
+        duration (float): Time in seconds to wait after retreat click (default: 0.5).
     """
-    # Move to ally position
-    move_to_ally(ally_number)
-    time.sleep(0.1)
+    length = get_distance(current_coords, threat_coords)
+    if length == 0:
+        # Invalid coordinates, cannot retreat
+        return
+
+    dx = current_coords[0] - threat_coords[0]
+    dy = current_coords[1] - threat_coords[1]
+    # Normalize and scale (fixed offset)
+    retreat_x = int(current_coords[0] + (dx / length) * 600)
+    retreat_y = int(current_coords[1] + (dy / length) * 600)
+
+    # Move cursor to retreat location and right-click
+    click_percent(retreat_x, retreat_y, 0, 0, "right")
+    time.sleep(duration)
 
     # Randomly use summoner spells
     press_sum_1 = random.choice([True, False])
@@ -218,7 +319,6 @@ def retreat_to_ally(ally_number=1):
         if sum_2_key:
             keyboard.send(sum_2_key)
             time.sleep(0.1)
-    move_to_ally(ally_number)
 
 
 def attack_enemy():
@@ -226,9 +326,9 @@ def attack_enemy():
     Attacks the enemy by casting spells and using items.
     Searches for enemy location before each spell.
     """
-    _keybinds, _ = load_settings()
 
-    # For each spell, search for enemy location before sending
+    center_camera_key = _keybinds.get("center_camera")
+    keyboard.press(center_camera_key)
     for spell_key in ["spell_4", "spell_1", "spell_2", "spell_3"]:
         enemy_location = find_enemy_location()
         if enemy_location:
@@ -239,11 +339,25 @@ def attack_enemy():
     # Send all item keys at once (no location search)
     for item_key in ["item_1", "item_2", "item_3", "item_4", "item_5", "item_6"]:
         keyboard.send(_keybinds.get(item_key))
-
+    
     # Dodging
     sleep_random(0.1, 0.3)
     move_random_offset(*SCREEN_CENTER, 15)
     sleep_random(0.1, 0.3)
+    keyboard.release(center_camera_key)
 
+
+def vote_surrender():
+    """
+    Votes to surrender by clicking the surrender button in the chat.
+    """
+    logging.info("Attempting to vote surrender...")
+    time.sleep(0.5)
+    keyboard.send("enter")
+    time.sleep(0.5)
+    keyboard.write("/ff")
+    time.sleep(0.5)
+    keyboard.send("enter")
+    time.sleep(0.5)
 
 

@@ -77,19 +77,22 @@ def show_menu(run_script_callback, run_tests_callback):
         config = load_config()
         keybinds = config.get("Keybinds", {})
         general = config.get("General", {})
-        preferred_champion = general.get("preferred_champion", "")
+        preferred_champion_obj = general.get("preferred_champion", {})
 
-        champions_map = get_champions_map()
-        champ_names = sorted(champions_map.keys())
+        champions_map = get_champions_map()  # {id: name}
+        champ_ids = sorted(champions_map.keys())
+        champ_names = [champions_map[cid] for cid in champ_ids]
 
         # Add "None" option at the top
-        champ_names = ["None"] + champ_names
+        champ_display = [("None", -1)] + [(name, cid) for cid, name in zip(champ_ids, champ_names)]
 
-        champ_var = tk.StringVar(
-            value="None" if preferred_champion == "" else (
-                preferred_champion if preferred_champion in champ_names else (champ_names[0] if champ_names else "None")
-            )
-        )
+        # Determine initial selection
+        if isinstance(preferred_champion_obj, dict):
+            initial_name = preferred_champion_obj.get("name", "None")
+        else:
+            initial_name = "None"
+
+        champ_var = tk.StringVar(value=initial_name if initial_name in [name for name, _ in champ_display] else "None")
 
         # Clear previous widgets in settings_frame
         for widget in settings_frame.winfo_children():
@@ -162,23 +165,20 @@ def show_menu(run_script_callback, run_tests_callback):
         scrollbar.pack(side="left", fill="y")
         champ_listbox.config(yscrollcommand=scrollbar.set)
 
-        for name in champ_names:
+        for name, _ in champ_display:
             champ_listbox.insert(tk.END, name)
         # Set initial selection
-        if champ_var.get() in champ_names:
-            champ_listbox.selection_set(champ_names.index(champ_var.get()))
-            champ_listbox.see(champ_names.index(champ_var.get()))
+        if champ_var.get() in [name for name, _ in champ_display]:
+            champ_listbox.selection_set([name for name, _ in champ_display].index(champ_var.get()))
+            champ_listbox.see([name for name, _ in champ_display].index(champ_var.get()))
         else:
             champ_listbox.selection_set(0)
 
         def on_champ_select(event):
             selection = champ_listbox.curselection()
             if selection:
-                selected = champ_listbox.get(selection[0])
-                if selected == "None":
-                    champ_var.set("None")
-                else:
-                    champ_var.set(selected)
+                selected_name = champ_listbox.get(selection[0])
+                champ_var.set(selected_name)
 
         champ_listbox.bind("<<ListboxSelect>>", on_champ_select)
 
@@ -187,8 +187,15 @@ def show_menu(run_script_callback, run_tests_callback):
                 keybinds[key] = vars[key].get().strip()
             config["Keybinds"] = keybinds
             config.setdefault("General", {})
-            # Save as empty string if "None" is selected
-            config["General"]["preferred_champion"] = "" if champ_var.get() == "None" else champ_var.get()
+            selected_name = champ_var.get()
+            if selected_name == "None":
+                config["General"]["preferred_champion"] = {}
+            else:
+                # Find the champion id for the selected name
+                for name, cid in champ_display:
+                    if name == selected_name:
+                        config["General"]["preferred_champion"] = {"id": cid, "name": name}
+                        break
             save_config(config)
             show_frame(menu_frame)
 
@@ -203,7 +210,7 @@ def show_menu(run_script_callback, run_tests_callback):
                 entries[key].insert(0, val)
                 entries[key].config(state="readonly", bg="SystemButtonFace")
             champ_listbox.selection_clear(0, tk.END)
-            champ_var.set("")  # Set preferred champion to empty
+            champ_var.set("None")  # Set preferred champion to "None"
 
         # Buttons at the bottom (no "Back to Menu" here)
         btn_frame = tk.Frame(settings_frame)

@@ -8,21 +8,21 @@ import keyboard
 import logging
 
 from core.constants import (
-    HEALTH_TICK_COLOR, ENEMY_HEALTH_BAR_COLOR, SCREEN_CENTER
+    SCREEN_CENTER
 )
-from run_aram import attack_enemy
 from utils.config_utils import load_settings
-from utils.general_utils import click_on_cursor, click_percent, poll_live_client_data, find_text_location
+from utils.general_utils import click_percent, find_text_location, poll_live_client_data, terminate_window
 from utils.game_utils import (
+    attack_enemy,
+    buy_recommended_items,
     find_enemy_location,
     get_distance,
-    move_random_offset,
+    is_game_started,
     move_to_ally,
-    find_champion_location,
-    buy_recommended_items,
     level_up_abilities,
-    retreat_to_ally,
+    retreat,
     sleep_random,
+    vote_surrender,
 )
 
 
@@ -42,13 +42,13 @@ def shop_phase():
     """
     Handles the Arena shop phase which is detected upon level up
     """
-    # Click screen center in case of augment card
+    # Click screen center for augment cards
     click_percent(SCREEN_CENTER[0], SCREEN_CENTER[1])
     time.sleep(1)
-
-    # Buy recommended items
     buy_recommended_items()
-
+    time.sleep(2)
+    click_percent(SCREEN_CENTER[0], SCREEN_CENTER[1])
+    time.sleep(2)
     # Level up abilities
     level_up_abilities()
 
@@ -61,19 +61,15 @@ def combat_phase():
     """
     center_camera_key = _keybinds.get("center_camera")
     keyboard.press(center_camera_key)
-    time.sleep(0.1)
-    keyboard.release(center_camera_key)
-
     enemy_location = find_enemy_location()
+    keyboard.release(center_camera_key)
     if enemy_location:
         # Move to enemy
         click_percent(enemy_location[0], enemy_location[1], 0, 0, "right")
     
         # When within combat distance
         distance_to_enemy = get_distance(SCREEN_CENTER, enemy_location)
-        if distance_to_enemy < 600:
-            attack_enemy()
-            
+        if distance_to_enemy < 500:
             # Self preservation
             if _latest_game_data['data']:
                 current_hp = _latest_game_data['data']["activePlayer"].get("championStats", {}).get("currentHealth")
@@ -81,9 +77,12 @@ def combat_phase():
                 if current_hp is not None and max_hp:
                     hp_percent = (current_hp / max_hp)
                     if hp_percent < .3:
-                        retreat_to_ally()
-                        if(hp_percent == 0):
+                        # Retreat away from enemy using screen center as base
+                        retreat(SCREEN_CENTER, enemy_location, duration=0.5)
+                        if hp_percent == 0:
                             return
+                        
+            attack_enemy()
     else:
         # Move to ally
         move_to_ally(1)
@@ -95,7 +94,7 @@ def combat_phase():
 
 def run_game_loop(stop_event):
     """
-    Main loop for Arena bot:
+    Main loop for bot:
     - Waits for GameStart event before starting main loop
     - Runs shop phase when the active player's level increases (phase change)
     - Otherwise runs combat phase
@@ -106,31 +105,43 @@ def run_game_loop(stop_event):
     polling_thread = threading.Thread(target=poll_live_client_data, args=(_latest_game_data, stop_event), daemon=True)
     polling_thread.start()
     prev_level = 0
-    logging.info("Bot has started.")
+    
+    while not stop_event.is_set() and not is_game_started(_latest_game_data['data']):
+        time.sleep(1)
 
+    # Notify user that game has started
+    import winsound
+    winsound.MessageBeep()
+    
+    logging.info("Game has started.")
+
+    # Main loop
     while not stop_event.is_set():
         if _latest_game_data['data']:
-            # Shop phase
-            current_level = _latest_game_data['data']["activePlayer"].get("level")
-            if current_level is not None and current_level > prev_level:
-                time.sleep(4)
-                for _ in range(current_level - prev_level):
-                    shop_phase()
-                prev_level = current_level
-                
+             
             # Exit game
             current_hp = _latest_game_data['data']["activePlayer"].get("championStats", {}).get("currentHealth")
             if current_hp == 0:
-                logging.info("Player is dead, looking for exit button.")
-                # OCR for "Exit" button and click it
-                exit_box = find_text_location("EXITNOW")
-                if not exit_box: 
-                    exit_box = find_text_location("EXIT")
-                if not exit_box:
-                    exit_box = find_text_location("EXT")
-                if exit_box:
-                    x, y, w, h = exit_box
-                    click_percent(x, y)
+                logging.info("Player is dead, searching for exit button...")
+                found_exit = False
+                for label in ["EXITNOW", "EXIT", "EXT"]:
+                    exit_box = find_text_location(label)
+                    if exit_box:
+                        x, y, w, h = exit_box
+                        click_percent(x, y)
+                        break
+                    else:
+                        time.sleep(1)
+                continue
+
+            # Shop phase
+            current_level = _latest_game_data['data']["activePlayer"].get("level")
+            if current_level is not None and current_level > prev_level:
+                time.sleep(5)
+                shop_phase()
+                prev_level = current_level
+                vote_surrender()
+                continue
 
         combat_phase()
 

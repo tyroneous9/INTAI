@@ -2,8 +2,10 @@
 # Arena Mode Automation Script
 # ==========================================================
 
+import ctypes
 import time
 import threading
+import winsound
 import keyboard
 import logging
 import random
@@ -12,18 +14,18 @@ from core.constants import (
     HEALTH_TICK_COLOR, ENEMY_HEALTH_BAR_COLOR, SCREEN_CENTER
 )
 from utils.config_utils import load_settings
-from utils.general_utils import click_percent, poll_live_client_data, find_text_location
+from utils.general_utils import poll_live_client_data
 from utils.game_utils import (
     attack_enemy,
     find_ally_location,
     get_distance,
-    move_random_offset,
+    is_game_started,
     move_to_ally,
     find_champion_location,
     buy_recommended_items,
     level_up_abilities,
-    retreat_to_ally,
-    sleep_random,
+    retreat,
+    vote_surrender,
 )
 
 
@@ -49,17 +51,15 @@ current_ally_index = 0
 # ===========================
 
 def combat_phase():
+    global current_ally_index
     ally_location = find_ally_location()
     if ally_location:
         # look to attack
         enemy_location = find_champion_location(ENEMY_HEALTH_BAR_COLOR, HEALTH_TICK_COLOR)
         if enemy_location:
             keyboard.press(_keybinds.get("center_camera"))
-            time.sleep(0.08)
-            keyboard.release(_keybinds.get("center_camera"))
             distance_to_enemy = get_distance(SCREEN_CENTER, enemy_location)
-            if distance_to_enemy < 600:
-                attack_enemy()
+            if distance_to_enemy < 500:
                 # Self preservation
                 if _latest_game_data['data']:
                     current_hp = _latest_game_data['data']["activePlayer"].get("championStats", {}).get("currentHealth")
@@ -67,21 +67,22 @@ def combat_phase():
                     if current_hp is not None and max_hp:
                         hp_percent = (current_hp / max_hp)
                         if hp_percent < .3:
-                            retreat_to_ally(current_ally_index + 1)
+                            retreat(SCREEN_CENTER, enemy_location, duration=0.5)
                             if hp_percent == 0:
                                 return
-        follow_ally(current_ally_index)
-        time.sleep(0.13)  # After following ally
+                attack_enemy()
+            keyboard.release(_keybinds.get("center_camera"))
+        else:
+            # No enemy found, switch to another ally
+            current_ally_index = random.randint(0, len(ally_keys) - 1)
+            time.sleep(0.18)
     else:
         # look for ally
         current_ally_index = random.randint(0, len(ally_keys) - 1)
-        time.sleep(0.18)  # Sleep after random selection
+        time.sleep(0.18)
     move_to_ally(current_ally_index + 1)
     time.sleep(0.18)  # Sleep after moving to ally
 
-def follow_ally(ally_index, distance=250):
-    keyboard.send(ally_keys[ally_index])
-    time.sleep(0.13)  # Sleep after following ally
 
 # ===========================
 # Main Bot Loop
@@ -89,7 +90,7 @@ def follow_ally(ally_index, distance=250):
 
 def run_game_loop(stop_event):
     """
-    Main loop for Arena bot:
+    Main loop for bot:
     - Waits for GameStart event before starting main loop
     - Runs shop phase when the active player's level increases (phase change)
     - Otherwise runs combat phase
@@ -100,23 +101,33 @@ def run_game_loop(stop_event):
     polling_thread = threading.Thread(target=poll_live_client_data, args=(_latest_game_data, stop_event), daemon=True)
     polling_thread.start()
     prev_level = 0
-    logging.info("Bot has started.")
 
+    while not stop_event.is_set() and not is_game_started(_latest_game_data['data']):
+        time.sleep(1)
+
+    # Notify user that game has started
+    import winsound
+    winsound.MessageBeep()
+
+    logging.info("Game has started.")
+    buy_recommended_items()
+    
+    # Main loop
     while not stop_event.is_set():
         if _latest_game_data['data']:
-            # Shop phase
+
+            # Just level up
             current_level = _latest_game_data['data']["activePlayer"].get("level")
             if current_level is not None and current_level > prev_level:
-                for _ in range(current_level - prev_level):
-                    # Level up abilities
-                    level_up_abilities()
+                level_up_abilities()
                 prev_level = current_level
-                
+
             # Dead, thus shop
             current_hp = _latest_game_data['data']["activePlayer"].get("championStats", {}).get("currentHealth")
             if current_hp == 0:
-                logging.info("Player is dead, now shopping.")
                 buy_recommended_items()
+                time.sleep(3)
+                vote_surrender()
                 continue
 
         combat_phase()
