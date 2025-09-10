@@ -123,15 +123,8 @@ def run_game_loop(stop_event):
             current_hp = _latest_game_data['data']["activePlayer"].get("championStats", {}).get("currentHealth")
             if current_hp == 0:
                 logging.info("Player is dead, searching for exit button...")
-                found_exit = False
-                for label in ["EXITNOW", "EXIT", "EXT"]:
-                    exit_box = find_text_location(label)
-                    if exit_box:
-                        x, y, w, h = exit_box
-                        click_percent(x, y)
-                        break
-                    else:
-                        time.sleep(1)
+                click_percent(SCREEN_CENTER[0], SCREEN_CENTER[1], -3, -17)
+                time.sleep(1)
                 continue
 
             # Shop phase

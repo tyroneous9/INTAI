@@ -1,0 +1,14 @@
+2025-09-07 22:02:02 [INFO] Press DELETE key to exit anytime.
+2025-09-07 22:02:02 [INFO] Script started. PID: 24248, Thread: MainThread
+2025-09-07 22:02:03 [INFO] Starting Script. Waiting for client...
+2025-09-07 22:02:03 [INFO] Connected to League client.
+2025-09-07 22:02:05 [INFO] Arena lobby created.
+2025-09-07 22:02:06 [INFO] [EVENT] Starting queue.
+2025-09-07 22:02:10 [INFO] Event loop interrupted by keyboard
+2025-09-07 22:02:10 [ERROR] Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x000002F8572E4390>
+2025-09-07 22:02:10 [ERROR] Unclosed connector
+connections: ['deque([(<aiohttp.client_proto.ResponseHandler object at 0x000002F857281EF0>, 49267.171)])']
+connector: <aiohttp.connector.TCPConnector object at 0x000002F8572E4350>
+2025-09-07 22:02:10 [ERROR] Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x000002F856B96510>

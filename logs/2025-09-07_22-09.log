@@ -1,0 +1,99 @@
+2025-09-07 22:09:41 [INFO] Press DELETE key to exit anytime.
+2025-09-07 22:09:41 [INFO] Script started. PID: 11100, Thread: MainThread
+2025-09-07 22:09:43 [INFO] Starting Script. Waiting for client...
+2025-09-07 22:09:43 [INFO] Connected to League client.
+2025-09-07 22:09:45 [INFO] [EVENT] Starting queue.
+2025-09-07 22:10:27 [INFO] Accepted ready check.
+2025-09-07 22:11:04 [INFO] Picking random champion ID: 157
+2025-09-07 22:11:57 [INFO] [EVENT] Game is in progress.
+2025-09-07 22:12:21 [INFO] Starting bot for mode: core.run_arena
+2025-09-07 22:15:18 [INFO] Game has started.
+2025-09-07 22:15:27 [INFO] OCR: Found text 'SELL' at location (463, 935, 36, 12)
+2025-09-07 22:15:36 [INFO] Attempting to vote surrender...
+2025-09-07 22:16:43 [INFO] Player is dead, searching for exit button...
+2025-09-07 22:16:44 [INFO] OCR: Text 'EXITNOW' not found on screen.
+2025-09-07 22:16:47 [INFO] OCR: Text 'EXIT' not found on screen.
+2025-09-07 22:16:49 [INFO] OCR: Text 'EXT' not found on screen.
+2025-09-07 22:16:50 [INFO] Player is dead, searching for exit button...
+2025-09-07 22:16:51 [INFO] OCR: Text 'EXITNOW' not found on screen.
+2025-09-07 22:16:53 [INFO] OCR: Text 'EXIT' not found on screen.
+2025-09-07 22:16:55 [INFO] OCR: Text 'EXT' not found on screen.
+2025-09-07 22:16:56 [INFO] Player is dead, searching for exit button...
+2025-09-07 22:16:57 [INFO] OCR: Text 'EXITNOW' not found on screen.
+2025-09-07 22:16:59 [INFO] OCR: Text 'EXIT' not found on screen.
+2025-09-07 22:17:01 [INFO] OCR: Text 'EXT' not found on screen.
+2025-09-07 22:17:10 [INFO] Player is dead, searching for exit button...
+2025-09-07 22:17:11 [INFO] OCR: Text 'EXITNOW' not found on screen.
+2025-09-07 22:17:13 [INFO] OCR: Text 'EXIT' not found on screen.
+2025-09-07 22:17:16 [INFO] OCR: Text 'EXT' not found on screen.
+2025-09-07 22:17:52 [INFO] OCR: Found text 'SELL' at location (463, 935, 36, 12)
+2025-09-07 22:18:01 [INFO] Attempting to vote surrender...
+2025-09-07 22:18:48 [INFO] Player is dead, searching for exit button...
+2025-09-07 22:18:49 [INFO] OCR: Text 'EXITNOW' not found on screen.
+2025-09-07 22:18:51 [INFO] OCR: Text 'EXIT' not found on screen.
+2025-09-07 22:18:53 [INFO] OCR: Text 'EXT' not found on screen.
+2025-09-07 22:18:55 [INFO] Player is dead, searching for exit button...
+2025-09-07 22:18:56 [INFO] OCR: Text 'EXITNOW' not found on screen.
+2025-09-07 22:18:58 [INFO] OCR: Text 'EXIT' not found on screen.
+2025-09-07 22:19:00 [INFO] OCR: Text 'EXT' not found on screen.
+2025-09-07 22:19:01 [INFO] Player is dead, searching for exit button...
+2025-09-07 22:19:02 [INFO] OCR: Text 'EXITNOW' not found on screen.
+2025-09-07 22:19:04 [INFO] OCR: Text 'EXIT' not found on screen.
+2025-09-07 22:19:06 [INFO] OCR: Text 'EXT' not found on screen.
+2025-09-07 22:19:07 [INFO] Player is dead, searching for exit button...
+2025-09-07 22:19:08 [INFO] OCR: Text 'EXITNOW' not found on screen.
+2025-09-07 22:19:10 [INFO] OCR: Text 'EXIT' not found on screen.
+2025-09-07 22:19:12 [INFO] OCR: Text 'EXT' not found on screen.
+2025-09-07 22:19:13 [INFO] Player is dead, searching for exit button...
+2025-09-07 22:19:14 [INFO] OCR: Text 'EXITNOW' not found on screen.
+2025-09-07 22:19:16 [INFO] OCR: Text 'EXIT' not found on screen.
+2025-09-07 22:19:18 [INFO] OCR: Found text 'EXT' at location (1020, 998, 26, 27)
+2025-09-07 22:19:27 [INFO] Player is dead, searching for exit button...
+2025-09-07 22:19:27 [INFO] OCR: Text 'EXITNOW' not found on screen.
+2025-09-07 22:19:29 [INFO] OCR: Text 'EXIT' not found on screen.
+2025-09-07 22:19:31 [INFO] OCR: Text 'EXT' not found on screen.
+2025-09-07 22:19:33 [INFO] Player is dead, searching for exit button...
+2025-09-07 22:19:33 [INFO] OCR: Text 'EXITNOW' not found on screen.
+2025-09-07 22:19:36 [INFO] OCR: Text 'EXIT' not found on screen.
+2025-09-07 22:19:38 [INFO] OCR: Text 'EXT' not found on screen.
+2025-09-07 22:19:39 [INFO] Player is dead, searching for exit button...
+2025-09-07 22:19:40 [INFO] OCR: Text 'EXITNOW' not found on screen.
+2025-09-07 22:19:42 [INFO] OCR: Text 'EXIT' not found on screen.
+2025-09-07 22:19:44 [INFO] OCR: Text 'EXT' not found on screen.
+2025-09-07 22:19:45 [INFO] Player is dead, searching for exit button...
+2025-09-07 22:19:46 [INFO] OCR: Text 'EXITNOW' not found on screen.
+2025-09-07 22:19:48 [INFO] OCR: Text 'EXIT' not found on screen.
+2025-09-07 22:19:50 [INFO] OCR: Text 'EXT' not found on screen.
+2025-09-07 22:20:00 [INFO] OCR: Found text 'SELL' at location (463, 935, 36, 12)
+2025-09-07 22:20:09 [INFO] Attempting to vote surrender...
+2025-09-07 22:21:03 [INFO] Player is dead, searching for exit button...
+2025-09-07 22:21:04 [INFO] OCR: Text 'EXITNOW' not found on screen.
+2025-09-07 22:21:06 [INFO] OCR: Text 'EXIT' not found on screen.
+2025-09-07 22:21:08 [INFO] OCR: Text 'EXT' not found on screen.
+2025-09-07 22:21:09 [INFO] Player is dead, searching for exit button...
+2025-09-07 22:21:10 [INFO] OCR: Text 'EXITNOW' not found on screen.
+2025-09-07 22:21:12 [INFO] OCR: Text 'EXIT' not found on screen.
+2025-09-07 22:21:14 [INFO] OCR: Text 'EXT' not found on screen.
+2025-09-07 22:21:16 [INFO] Player is dead, searching for exit button...
+2025-09-07 22:21:17 [INFO] OCR: Text 'EXITNOW' not found on screen.
+2025-09-07 22:21:19 [INFO] OCR: Text 'EXIT' not found on screen.
+2025-09-07 22:21:21 [INFO] OCR: Text 'EXT' not found on screen.
+2025-09-07 22:21:32 [INFO] Player is dead, searching for exit button...
+2025-09-07 22:21:33 [INFO] OCR: Text 'EXITNOW' not found on screen.
+2025-09-07 22:21:35 [INFO] OCR: Text 'EXIT' not found on screen.
+2025-09-07 22:21:37 [INFO] OCR: Text 'EXT' not found on screen.
+2025-09-07 22:21:39 [INFO] Player is dead, searching for exit button...
+2025-09-07 22:21:39 [INFO] OCR: Text 'EXITNOW' not found on screen.
+2025-09-07 22:21:41 [INFO] OCR: Text 'EXIT' not found on screen.
+2025-09-07 22:21:44 [INFO] OCR: Text 'EXT' not found on screen.
+2025-09-07 22:21:53 [INFO] OCR: Found text 'SELL' at location (463, 935, 36, 12)
+2025-09-07 22:22:02 [INFO] Attempting to vote surrender...
+2025-09-07 22:22:08 [INFO] Player is dead, searching for exit button...
+2025-09-07 22:22:09 [INFO] OCR: Text 'EXITNOW' not found on screen.
+2025-09-07 22:22:11 [INFO] OCR: Text 'EXIT' not found on screen.
+2025-09-07 22:22:13 [INFO] OCR: Text 'EXT' not found on screen.
+2025-09-07 22:22:14 [INFO] Player is dead, searching for exit button...
+2025-09-07 22:22:15 [INFO] OCR: Text 'EXITNOW' not found on screen.
+2025-09-07 22:22:17 [INFO] OCR: Text 'EXIT' not found on screen.
+2025-09-07 22:22:19 [INFO] OCR: Text 'EXT' not found on screen.
+2025-09-07 22:22:20 [INFO] DELETE key pressed. Exiting program...

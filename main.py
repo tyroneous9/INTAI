@@ -5,6 +5,7 @@ import logging
 import threading
 import random
 import importlib
+import os
 from utils.config_utils import (
     disable_insecure_request_warning, get_selected_game_mode, load_config
 )
@@ -98,7 +99,7 @@ async def on_gameflow_phase(connection, event):
             logging.error(f"Failed to accept ready check: {e}")
 
     # Start bot loop thread on game start
-    if phase == GAMEFLOW_PHASES["GAME_START"] or phase == GAMEFLOW_PHASES["IN_PROGRESS"]:
+    if phase == GAMEFLOW_PHASES["IN_PROGRESS"]:
         logging.info("[EVENT] Game is in progress.")
         # Wait for the game window
         wait_for_window(LEAGUE_GAME_WINDOW_TITLE)
@@ -108,8 +109,8 @@ async def on_gameflow_phase(connection, event):
         game_loop_thread = threading.Thread(target=run_game_loop, args=(game_end_event,), daemon=True)
         game_loop_thread.start()
 
-    # Clean up bot thread and playagain on end of game
-    if phase == GAMEFLOW_PHASES["END_OF_GAME"] or phase == GAMEFLOW_PHASES["PRE_END_OF_GAME"]:
+    # Clean up bot thread and play again on end of game
+    if phase == GAMEFLOW_PHASES["PRE_END_OF_GAME"]:
         logging.info("[EVENT] Game ended.")
         game_end_event.set()
         if game_loop_thread is not None:
@@ -257,6 +258,7 @@ if __name__ == "__main__":
     disable_insecure_request_warning()
     enable_logging()
     threading.Thread(target=listen_for_exit_key, daemon=True).start()
+    logging.info(f"Script started. PID: {os.getpid()}, Thread: {threading.current_thread().name}")
     show_menu(run_script, run_tests)  # Pass both callbacks
 
 
