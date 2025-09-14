@@ -11,7 +11,7 @@ import logging
 import random
 
 from core.constants import (
-    HEALTH_TICK_COLOR, ENEMY_HEALTH_BAR_COLOR, SCREEN_CENTER
+    HEALTH_BORDER_COLOR, ENEMY_HEALTH_BAR_COLOR, SCREEN_CENTER
 )
 from utils.config_utils import load_settings
 from utils.general_utils import poll_live_client_data
@@ -55,7 +55,7 @@ def combat_phase():
     ally_location = find_ally_location()
     if ally_location:
         # look to attack
-        enemy_location = find_champion_location(ENEMY_HEALTH_BAR_COLOR, HEALTH_TICK_COLOR)
+        enemy_location = find_champion_location(ENEMY_HEALTH_BAR_COLOR, HEALTH_BORDER_COLOR)
         if enemy_location:
             keyboard.press(_keybinds.get("center_camera"))
             distance_to_enemy = get_distance(SCREEN_CENTER, enemy_location)

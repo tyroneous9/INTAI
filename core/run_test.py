@@ -9,7 +9,7 @@ import logging
 import random
 
 from core.constants import (
-    HEALTH_TICK_COLOR, ENEMY_HEALTH_BAR_COLOR, LEAGUE_GAME_WINDOW_TITLE, SCREEN_CENTER
+    HEALTH_BORDER_COLOR, ENEMY_HEALTH_BAR_COLOR, LEAGUE_GAME_WINDOW_TITLE, SCREEN_CENTER
 )
 from utils.config_utils import load_settings
 from utils.general_utils import click_percent, terminate_window, poll_live_client_data
@@ -47,7 +47,7 @@ current_ally_index = 0
 # ===========================
 
 def combat_phase():
-    enemy_location = find_champion_location(ENEMY_HEALTH_BAR_COLOR, HEALTH_TICK_COLOR)
+    enemy_location = find_champion_location(ENEMY_HEALTH_BAR_COLOR, HEALTH_BORDER_COLOR)
     if enemy_location:
         logging.info(f"Enemy found at {enemy_location}.")
         click_percent(enemy_location[0], enemy_location[1])
@@ -71,8 +71,8 @@ def run_game_loop(stop_event):
         
     # Main loop
     while not stop_event.is_set():
-        click_percent(SCREEN_CENTER[0], SCREEN_CENTER[1], -15, -15)
-        time.sleep(2)
+        combat_phase()
+        time.sleep(1)
 
 # For testing purposes
 # python -m core.run_test
