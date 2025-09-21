@@ -258,11 +258,11 @@ if __name__ == "__main__":
     disable_insecure_request_warning()
     enable_logging()
     threading.Thread(target=listen_for_exit_key, daemon=True).start()
-    logging.info(f"Script started. PID: {os.getpid()}, Thread: {threading.current_thread().name}")
-    show_menu(run_script, run_tests)  # Pass both callbacks
-
-
-
-
+    try:
+        show_menu(run_script, run_tests)  # Pass both callbacks
+    except Exception as e:
+        logging.exception("Unhandled exception occurred:")
+        print("\nAn error occurred. Press Enter to exit...")
+        input()
 
 

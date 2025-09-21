@@ -47,7 +47,7 @@ current_ally_index = 0
 # ===========================
 
 def combat_phase():
-    enemy_location = find_champion_location(ENEMY_HEALTH_BAR_COLOR, HEALTH_BORDER_COLOR)
+    enemy_location = find_champion_location(ENEMY_HEALTH_BAR_COLOR)
     if enemy_location:
         logging.info(f"Enemy found at {enemy_location}.")
         click_percent(enemy_location[0], enemy_location[1])

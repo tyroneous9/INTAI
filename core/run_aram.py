@@ -55,7 +55,7 @@ def combat_phase():
     ally_location = find_ally_location()
     if ally_location:
         # look to attack
-        enemy_location = find_champion_location(ENEMY_HEALTH_BAR_COLOR, HEALTH_BORDER_COLOR)
+        enemy_location = find_champion_location(ENEMY_HEALTH_BAR_COLOR)
         if enemy_location:
             keyboard.press(_keybinds.get("center_camera"))
             distance_to_enemy = get_distance(SCREEN_CENTER, enemy_location)

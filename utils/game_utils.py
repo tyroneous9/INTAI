@@ -8,6 +8,8 @@ import random
 from utils.config_utils import load_settings
 from utils.general_utils import click_percent, find_text_location, get_screenshot
 
+_keybinds, _general = load_settings()
+
 # ===========================
 # Game Data Utilities
 # ===========================
@@ -80,8 +82,6 @@ def is_game_started(live_data):
 # ===========================
 # Helper Utilities
 # ===========================
-
-_keybinds, _general = load_settings()
 
 def sleep_random(min_seconds, max_seconds):
     """
@@ -347,7 +347,12 @@ def attack_enemy():
 def vote_surrender():
     """
     Votes to surrender by clicking the surrender button in the chat.
+    Only proceeds if 'surrender' is set to True in the config.
     """
+    if not _general.get("surrender", False):
+        logging.info("Surrender is disabled. Skipping surrender vote.")
+        return
+
     logging.info("Attempting to vote surrender...")
     time.sleep(0.5)
     keyboard.send("enter")

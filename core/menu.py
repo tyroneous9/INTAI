@@ -182,6 +182,14 @@ def show_menu(run_script_callback, run_tests_callback):
 
         champ_listbox.bind("<<ListboxSelect>>", on_champ_select)
 
+        # Surrender option (True/False)
+        surrender_var = tk.BooleanVar(value=general.get("surrender", False))
+        surrender_frame = tk.Frame(right_frame)
+        surrender_frame.pack(anchor="w", pady=(10, 0))
+        tk.Label(surrender_frame, text="Surrender:").pack(side="left")
+        surrender_checkbox = tk.Checkbutton(surrender_frame, variable=surrender_var)
+        surrender_checkbox.pack(side="left", padx=5)
+
         def save_and_exit():
             for key in vars:
                 keybinds[key] = vars[key].get().strip()
@@ -196,6 +204,8 @@ def show_menu(run_script_callback, run_tests_callback):
                     if name == selected_name:
                         config["General"]["preferred_champion"] = {"id": cid, "name": name}
                         break
+            # Save surrender option
+            config["General"]["surrender"] = surrender_var.get()
             save_config(config)
             show_frame(menu_frame)
 
@@ -211,11 +221,12 @@ def show_menu(run_script_callback, run_tests_callback):
                 entries[key].config(state="readonly", bg="SystemButtonFace")
             champ_listbox.selection_clear(0, tk.END)
             champ_var.set("None")  # Set preferred champion to "None"
+            surrender_var.set(False)  # Reset surrender to False
 
         # Buttons at the bottom (no "Back to Menu" here)
         btn_frame = tk.Frame(settings_frame)
         btn_frame.pack(pady=10)
-        tk.Button(btn_frame, text="Save and Close", command=save_and_exit).pack(side="left", padx=5)
+        tk.Button(btn_frame, text="Save", command=save_and_exit).pack(side="left", padx=5)
         tk.Button(btn_frame, text="Reset to Default", command=reset_to_default).pack(side="left", padx=5)
 
         settings_frame.update_idletasks()

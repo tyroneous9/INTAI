@@ -23,6 +23,7 @@
     },
     "General": {
         "selected_game_mode": "test",
-        "preferred_champion": {}
+        "preferred_champion": {},
+        "surrender": false
     }
 }
