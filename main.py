@@ -18,7 +18,7 @@ from core.constants import (
     GAMEFLOW_PHASES,
     CHAMP_SELECT_SUBPHASES
 )
-from utils.general_utils import click_percent, extract_screen_text, listen_for_exit_key, enable_logging, get_champions_map, test_mkb, wait_for_window
+from utils.general_utils import extract_screen_text, listen_for_exit_key, enable_logging, test_mkb, wait_for_window
 from lcu_driver import Connector
 from core.menu import show_menu  
 

@@ -11,7 +11,7 @@ from core.constants import (
     SCREEN_CENTER
 )
 from utils.config_utils import load_settings
-from utils.general_utils import click_percent, find_text_location, poll_live_client_data, terminate_window
+from utils.general_utils import click_percent, poll_live_client_data
 from utils.game_utils import (
     attack_enemy,
     buy_recommended_items,
@@ -69,24 +69,12 @@ def combat_phase():
     
         # When within combat distance
         distance_to_enemy = get_distance(SCREEN_CENTER, enemy_location)
-        if distance_to_enemy < 500:
-            # Self preservation
-            if _latest_game_data['data']:
-                current_hp = _latest_game_data['data']["activePlayer"].get("championStats", {}).get("currentHealth")
-                max_hp = _latest_game_data['data']["activePlayer"].get("championStats", {}).get("maxHealth")
-                if current_hp is not None and max_hp:
-                    hp_percent = (current_hp / max_hp)
-                    if hp_percent < .3:
-                        # Retreat away from enemy using screen center as base
-                        retreat(SCREEN_CENTER, enemy_location, duration=0.5)
-                        if hp_percent == 0:
-                            return
-                        
+        if distance_to_enemy < 500:      
             attack_enemy()
     else:
         # Move to ally
         move_to_ally(1)
-        sleep_random(0.1, 0.3)
+        sleep_random(0.1, 0.2)
 
 # ===========================
 # Main Bot Loop
