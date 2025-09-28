@@ -35,9 +35,9 @@ SUPPORTED_MODES = {
 
 # Health bar colors
 HEALTH_BORDER_COLOR = (8, 4, 8) # Black
-PLAYER_HEALTH_BAR_COLOR = (107, 217, 99) # Green
+PLAYER_HEALTH_BAR_COLOR = (66, 199, 66) # Green
 ENEMY_HEALTH_BAR_COLOR = (90, 101, 206) # Red
-ALLY_HEALTH_BAR_COLOR = (242, 189, 110)  # Blue
+ALLY_HEALTH_BAR_COLOR = (247, 186, 66)  # Blue
 
 
 # ===========================

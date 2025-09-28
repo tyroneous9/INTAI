@@ -160,7 +160,7 @@ def buy_recommended_items():
     time.sleep(0.5)  # Wait a moment to ensure shop is open
 
     shop_location = None
-    max_attempts = 10
+    max_attempts = 5
     attempts = 0
     # First search for shop location
     while not shop_location and attempts < max_attempts:

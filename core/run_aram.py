@@ -55,9 +55,11 @@ def combat_phase():
     ally_location = find_ally_location()
     if ally_location:
         # look to attack
+        logging.info("ally found, looking for enemy.")
         enemy_location = find_champion_location(ENEMY_HEALTH_BAR_COLOR)
         if enemy_location:
             keyboard.press(_keybinds.get("center_camera"))
+            keyboard.release(_keybinds.get("center_camera"))
             distance_to_enemy = get_distance(SCREEN_CENTER, enemy_location)
             if distance_to_enemy < 500:
                 # Self preservation
@@ -67,13 +69,11 @@ def combat_phase():
                     if current_hp is not None and max_hp:
                         hp_percent = (current_hp / max_hp)
                         if hp_percent < .3:
-                            retreat(SCREEN_CENTER, enemy_location, duration=0.5)
-                            if hp_percent == 0:
-                                return
+                            retreat(SCREEN_CENTER, enemy_location)
                 attack_enemy()
-            keyboard.release(_keybinds.get("center_camera"))
         else:
             # No enemy found, switch to another ally
+            logging.info("No enemy found, switching ally.")
             current_ally_index = random.randint(0, len(ally_keys) - 1)
             time.sleep(0.18)
     else:
@@ -104,10 +104,6 @@ def run_game_loop(stop_event):
 
     while not stop_event.is_set() and not is_game_started(_latest_game_data['data']):
         time.sleep(1)
-
-    # Notify user that game has started
-    import winsound
-    winsound.MessageBeep()
 
     logging.info("Game has started.")
     buy_recommended_items()
