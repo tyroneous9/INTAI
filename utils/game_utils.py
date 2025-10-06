@@ -326,22 +326,20 @@ def attack_enemy():
 
     center_camera_key = _keybinds.get("center_camera")
     keyboard.press(center_camera_key)
+    keyboard.release(center_camera_key)
     for spell_key in ["spell_4", "spell_1", "spell_2", "spell_3"]:
         enemy_location = find_enemy_location()
         if enemy_location:
-            click_percent(enemy_location[0], enemy_location[1], 0, 0, "right")
+            keyboard.send(_keybinds.get("attack_move"))
+            click_percent(enemy_location[0], enemy_location[1], 0, 0, "left")
             keyboard.send(_keybinds.get(spell_key))
-            time.sleep(0.3)  # Delay to prevent spamming
+            
 
     # Send all item keys at once (no location search)
     for item_key in ["item_1", "item_2", "item_3", "item_4", "item_5", "item_6"]:
         keyboard.send(_keybinds.get(item_key))
-    
-    # Dodging
-    sleep_random(0.1, 0.3)
     move_random_offset(*SCREEN_CENTER, 15)
-    sleep_random(0.1, 0.3)
-    keyboard.release(center_camera_key)
+    
 
 
 def vote_surrender():

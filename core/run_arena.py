@@ -11,7 +11,7 @@ from core.constants import (
     SCREEN_CENTER
 )
 from utils.config_utils import load_settings
-from utils.general_utils import click_percent, poll_live_client_data
+from utils.general_utils import click_percent, find_text_location, poll_live_client_data
 from utils.game_utils import (
     attack_enemy,
     buy_recommended_items,
@@ -20,7 +20,6 @@ from utils.game_utils import (
     is_game_started,
     move_to_ally,
     level_up_abilities,
-    retreat,
     sleep_random,
     vote_surrender,
 )
@@ -96,10 +95,6 @@ def run_game_loop(stop_event):
     
     while not stop_event.is_set() and not is_game_started(_latest_game_data['data']):
         time.sleep(1)
-
-    # Notify user that game has started
-    import winsound
-    winsound.MessageBeep()
     
     logging.info("Game has started.")
 
@@ -111,8 +106,14 @@ def run_game_loop(stop_event):
             current_hp = _latest_game_data['data']["activePlayer"].get("championStats", {}).get("currentHealth")
             if current_hp == 0:
                 logging.info("Player is dead, searching for exit button...")
-                click_percent(SCREEN_CENTER[0], SCREEN_CENTER[1], -3, -17)
-                time.sleep(1)
+                for label in ["EXITNOW", "EXIT", "EXT"]:
+                    exit_box = find_text_location(label)
+                    if exit_box:
+                        x, y, w, h = exit_box
+                        click_percent(x, y)
+                        break
+                    else:
+                        time.sleep(1)
                 continue
 
             # Shop phase

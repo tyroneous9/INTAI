@@ -13,13 +13,14 @@
         "select_ally_2": "f2",
         "select_ally_3": "f3",
         "select_ally_4": "f4",
-        "shop": "p",
         "spell_1": "q",
         "spell_2": "w",
         "spell_3": "e",
         "spell_4": "r",
         "sum_1": "d",
-        "sum_2": "f"
+        "sum_2": "f",
+        "shop": "p",
+        "attack_move": "a"
     },
     "General": {
         "selected_game_mode": "aram",
