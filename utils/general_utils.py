@@ -342,7 +342,7 @@ def bring_window_to_front(window_title):
     except Exception as e:
         logging.error(f"SetForegroundWindow failed for '{window_title}' (handle: {hwnd}): {e}")
 
-def wait_for_window(window_title, timeout=60):
+def wait_for_window(window_title, timeout=120):
     """
     Waits for a window with the given title to appear within the timeout period.
     If found, brings it to the foreground.
