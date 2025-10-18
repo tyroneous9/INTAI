@@ -18,6 +18,7 @@ from utils.general_utils import poll_live_client_data
 from utils.game_utils import (
     attack_enemy,
     find_ally_location,
+    find_enemy_location,
     get_distance,
     is_game_started,
     move_to_ally,
@@ -56,11 +57,9 @@ def combat_phase():
     if ally_location:
         # look to attack
         logging.info("ally found, looking for enemy.")
-        enemy_location = find_champion_location(ENEMY_HEALTH_BAR_COLOR)
+        enemy_location = find_enemy_location()
         if enemy_location:
-            keyboard.press(_keybinds.get("center_camera"))
-            keyboard.release(_keybinds.get("center_camera"))
-            distance_to_enemy = get_distance(SCREEN_CENTER, enemy_location)
+            distance_to_enemy = get_distance(ally_location, enemy_location)
             if distance_to_enemy < 500:
                 # Self preservation
                 if _latest_game_data['data']:

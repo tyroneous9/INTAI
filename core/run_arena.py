@@ -58,10 +58,7 @@ def combat_phase():
     - Finds enemy champion location and attacks w/ spells and items
     - If no enemy found, find and move toward ally
     """
-    center_camera_key = _keybinds.get("center_camera")
-    keyboard.press(center_camera_key)
     enemy_location = find_enemy_location()
-    keyboard.release(center_camera_key)
     if enemy_location:
         # Move to enemy
         click_percent(enemy_location[0], enemy_location[1], 0, 0, "right")
