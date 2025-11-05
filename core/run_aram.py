@@ -59,7 +59,10 @@ def combat_phase():
         logging.info("ally found, looking for enemy.")
         enemy_location = find_enemy_location()
         if enemy_location:
-            distance_to_enemy = get_distance(ally_location, enemy_location)
+            center_camera_key = _keybinds.get("center_camera")
+            keyboard.press(center_camera_key)
+            keyboard.release(center_camera_key)
+            distance_to_enemy = get_distance(SCREEN_CENTER, enemy_location)
             if distance_to_enemy < 500:
                 # Self preservation
                 if _latest_game_data['data']:

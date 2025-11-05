@@ -19,7 +19,8 @@
         "spell_3": "e",
         "spell_4": "r",
         "sum_1": "d",
-        "sum_2": "f"
+        "sum_2": "f",
+        "attack_move": "a"
     },
     "General": {
         "selected_game_mode": "Arena",

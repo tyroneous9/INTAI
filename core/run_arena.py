@@ -62,7 +62,9 @@ def combat_phase():
     if enemy_location:
         # Move to enemy
         click_percent(enemy_location[0], enemy_location[1], 0, 0, "right")
-    
+        center_camera_key = _keybinds.get("center_camera")
+        keyboard.press(center_camera_key)
+        keyboard.release(center_camera_key)
         # When within combat distance
         distance_to_enemy = get_distance(SCREEN_CENTER, enemy_location)
         if distance_to_enemy < 500:      

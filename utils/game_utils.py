@@ -317,16 +317,11 @@ def retreat(current_coords, threat_coords, duration=0.5):
             keyboard.send(sum_2_key)
             time.sleep(0.1)
 
-
 def attack_enemy():
     """
     Attacks the enemy by casting spells and using items.
     Searches for enemy location before each spell.
     """
-
-    center_camera_key = _keybinds.get("center_camera")
-    keyboard.press(center_camera_key)
-    keyboard.release(center_camera_key)
     for spell_key in ["spell_4", "spell_1", "spell_2", "spell_3"]:
         enemy_location = find_enemy_location()
         if enemy_location:
