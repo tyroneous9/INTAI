@@ -2,10 +2,8 @@
 # Arena Mode Automation Script
 # ==========================================================
 
-import ctypes
 import time
 import threading
-import winsound
 import keyboard
 import logging
 import random
@@ -22,7 +20,6 @@ from utils.game_utils import (
     get_distance,
     is_game_started,
     move_to_ally,
-    find_champion_location,
     buy_recommended_items,
     level_up_abilities,
     retreat,
@@ -71,9 +68,11 @@ def combat_phase():
         enemy_location = find_enemy_location()
         if enemy_location:
             center_camera_key = _keybinds.get("center_camera")
+            distance_to_enemy = get_distance(SCREEN_CENTER, find_enemy_location())
             keyboard.press(center_camera_key)
+            time.sleep(0.1)
             keyboard.release(center_camera_key)
-            distance_to_enemy = get_distance(SCREEN_CENTER, enemy_location)
+            
             if distance_to_enemy < 500:
                 # Self preservation
                 if _latest_game_data['data']:
@@ -101,7 +100,7 @@ def combat_phase():
 # Main Bot Loop
 # ===========================
 
-def run_game_loop(stop_event):
+def run_game_loop(game_end_event):
     """
     Main loop for bot:
     - Waits for GameStart event before starting main loop
@@ -111,11 +110,11 @@ def run_game_loop(stop_event):
     """
 
     # Game initialization
-    polling_thread = threading.Thread(target=poll_live_client_data, args=(_latest_game_data, stop_event), daemon=True)
+    polling_thread = threading.Thread(target=poll_live_client_data, args=(_latest_game_data, game_end_event), daemon=True)
     polling_thread.start()
     prev_level = 0
 
-    while not stop_event.is_set() and not is_game_started(_latest_game_data['data']):
+    while not game_end_event.is_set() and not is_game_started(_latest_game_data['data']):
         time.sleep(1)
 
     logging.info("Game has started.")
@@ -123,7 +122,7 @@ def run_game_loop(stop_event):
     shop_phase()
     
     # Main loop
-    while not stop_event.is_set():
+    while not game_end_event.is_set():
         if _latest_game_data['data']:
 
             # Just level up
@@ -136,6 +135,7 @@ def run_game_loop(stop_event):
             current_hp = _latest_game_data['data']["activePlayer"].get("championStats", {}).get("currentHealth")
             if current_hp == 0:
                 shop_phase()
+                time.sleep(3)
                 vote_surrender()
                 continue
 
@@ -148,5 +148,5 @@ def run_game_loop(stop_event):
 # python -m core.run_arena
 if __name__ == "__main__":
     time.sleep(2)
-    stop_event = threading.Event()
-    run_game_loop(stop_event)
+    game_end_event = threading.Event()
+    run_game_loop(game_end_event)

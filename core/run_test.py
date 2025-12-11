@@ -53,7 +53,7 @@ def combat_phase():
 # Main Bot Loop
 # ===========================
 
-def run_game_loop(stop_event):
+def run_game_loop(game_end_event):
     """
     Main loop for bot:
     - Waits for GameStart event before starting main loop
@@ -63,17 +63,17 @@ def run_game_loop(stop_event):
     """
 
     # Game initialization
-    polling_thread = threading.Thread(target=poll_live_client_data, args=(_latest_game_data, stop_event), daemon=True)
+    polling_thread = threading.Thread(target=poll_live_client_data, args=(_latest_game_data, game_end_event), daemon=True)
     polling_thread.start()
         
     # Main loop
-    while not stop_event.is_set():
-        combat_phase()
-        time.sleep(0.01)
+    while not game_end_event.is_set() and not is_game_started(_latest_game_data['data']):
+        time.sleep(1)
+    logging.info("game started!")
 
 # For testing purposes
 # python -m core.run_test
 if __name__ == "__main__":
     time.sleep(2)
-    stop_event = threading.Event()
-    run_game_loop(stop_event)
+    game_end_event = threading.Event()
+    run_game_loop(game_end_event)

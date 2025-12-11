@@ -209,10 +209,10 @@ async def disconnect(_):
 # ===========================
 
 
-def run_game_loop(stop_event):
+def run_game_loop(game_end_event):
     """
     Runs the correct bot loop for the selected game mode.
-    The loop should exit when stop_event is set (signaled by EndOfGame phase).
+    The loop should exit when game_end_event is set (signaled by EndOfGame phase).
     """
     selected_game_mode = get_selected_game_mode()
     mode_info = SUPPORTED_MODES.get(selected_game_mode)
@@ -224,7 +224,7 @@ def run_game_loop(stop_event):
         logging.error(f"Could not import module '{module_name}': {e}")
         return
     if hasattr(module, "run_game_loop"):
-        module.run_game_loop(stop_event)
+        module.run_game_loop(game_end_event)
     elif hasattr(module, "main"):
         module.main()
     else:
