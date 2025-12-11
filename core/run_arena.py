@@ -44,11 +44,8 @@ def shop_phase():
     # Click screen center for augment cards
     click_percent(SCREEN_CENTER[0], SCREEN_CENTER[1])
     time.sleep(1)
-    buy_recommended_items()
-    time.sleep(2)
-    click_percent(SCREEN_CENTER[0], SCREEN_CENTER[1])
-    time.sleep(2)
-    # Level up abilities
+    while(buy_recommended_items() != True):
+        click_percent(SCREEN_CENTER[0], SCREEN_CENTER[1])
     level_up_abilities()
 
 
@@ -64,6 +61,7 @@ def combat_phase():
         click_percent(enemy_location[0], enemy_location[1], 0, 0, "right")
         center_camera_key = _keybinds.get("center_camera")
         keyboard.press(center_camera_key)
+        time.sleep(0.1)
         keyboard.release(center_camera_key)
         # When within combat distance
         distance_to_enemy = get_distance(SCREEN_CENTER, enemy_location)

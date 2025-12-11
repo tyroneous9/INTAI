@@ -50,15 +50,13 @@ current_ally_index = 0
 
 def shop_phase():
     """
-    Handles the Arena shop phase which is detected upon level up
+    Handles the shop phase which occurs when dead or at game start
     """
     # Click screen center for augment cards
-    time.sleep(3)
     click_percent(SCREEN_CENTER[0], SCREEN_CENTER[1])
-    time.sleep(2)
-    buy_recommended_items()
-    time.sleep(2)
-    click_percent(SCREEN_CENTER[0], SCREEN_CENTER[1])
+    time.sleep(1)
+    while(buy_recommended_items() != True):
+        click_percent(SCREEN_CENTER[0], SCREEN_CENTER[1])
     level_up_abilities()
     
 def combat_phase():
@@ -122,7 +120,7 @@ def run_game_loop(game_end_event):
         time.sleep(1)
 
     logging.info("Game has started.")
-    time.sleep(5)
+    time.sleep(1)
     shop_phase()
     
     # Main loop
@@ -139,7 +137,6 @@ def run_game_loop(game_end_event):
             current_hp = _latest_game_data['data']["activePlayer"].get("championStats", {}).get("currentHealth")
             if current_hp == 0:
                 shop_phase()
-                time.sleep(3)
                 vote_surrender()
                 continue
 

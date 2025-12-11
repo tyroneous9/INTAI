@@ -154,42 +154,21 @@ def buy_recommended_items():
     """
     Finds the shop location and performs recommended item purchases.
     Opens the shop if not already open.
-    Retries up to 5 times to find the shop location.
+    Returns true if successful, otherwise false
     """
-    keyboard.send(_keybinds.get("shop"))
-    time.sleep(0.5)  # Wait a moment to ensure shop is open
-
-    shop_location = None
-    max_attempts = 3
-    attempts = 0
-    # First search for shop location
-    while not shop_location and attempts < max_attempts:
-        shop_location = find_text_location("SELL")
-        if shop_location:
-            break
-        attempts += 1
-        time.sleep(0.2)
-
-    # If not found, press shop key again and retry
-    if not shop_location:
-        logging.info("Shop not found, pressing shop key again and retrying...")
+    # Open shop if not already open
+    if not find_text_location("SELL"):
         keyboard.send(_keybinds.get("shop"))
         time.sleep(0.5)
-        attempts = 0
-        while not shop_location and attempts < max_attempts:
-            shop_location = find_text_location("SELL")
-            if shop_location:
-                break
-            attempts += 1
-            time.sleep(0.2)
 
+    # First search for shop location
+    shop_location = find_text_location("SELL")
     if not shop_location:
-        logging.warning("Shop could not be detected while attempting to shop.")
-        return
+        logging.warning("Shop could not be detected.")
+        return False
 
+    # Shop found, now buy items
     x, y = shop_location[:2]
-
-    # Buy recommended item
     click_percent(x, y, 0, -62, "left")
     time.sleep(0.3)
     click_percent(x, y, 15, -25, "right")
@@ -201,6 +180,7 @@ def buy_recommended_items():
 
     # Close shop
     keyboard.send(_keybinds.get("shop"))
+    return True
 
 
 def buy_items_list(item_list):
@@ -209,37 +189,18 @@ def buy_items_list(item_list):
     Args:
         item_names (list of str): List of item names to buy.
     """
-    keyboard.send(_keybinds.get("shop"))
-    time.sleep(0.5)  # Wait for shop to open
-
-    shop_location = None
-    max_attempts = 3
-    attempts = 0
-    # First search for shop location
-    while not shop_location and attempts < max_attempts:
-        shop_location = find_text_location("SELL")
-        if shop_location:
-            break
-        attempts += 1
-        time.sleep(0.2)
-
-    # If not found, press shop key again and retry
-    if not shop_location:
-        logging.info("Shop not found, pressing shop key again and retrying...")
+    # Open shop if not already open
+    if not find_text_location("SELL"):
         keyboard.send(_keybinds.get("shop"))
         time.sleep(0.5)
-        attempts = 0
-        while not shop_location and attempts < max_attempts:
-            shop_location = find_text_location("SELL")
-            if shop_location:
-                break
-            attempts += 1
-            time.sleep(0.1)
 
+    # First search for shop location
+    shop_location = find_text_location("SELL")
     if not shop_location:
-        logging.warning("Shop could not be detected while attempting to buy items.")
-        return
+        logging.warning("Shop could not be detected.")
+        return False
 
+    # Shop found, now buy items
     for item in item_list:
         # Focus search bar (Ctrl+L)
         keyboard.send("ctrl+l")
@@ -252,7 +213,6 @@ def buy_items_list(item_list):
         time.sleep(0.2)
 
     # Close shop
-    time.sleep(1)
     keyboard.send(_keybinds.get("shop"))
         
 
