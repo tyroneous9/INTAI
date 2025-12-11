@@ -35,18 +35,18 @@ def fetch_live_client_data():
         if res.status_code == 200:
             return res.json()
         else:
-            print("[INFO] No game data available yet.")
+            logging.warning("Request succeeded, but game data not found.")
             time.sleep(5)
             return None
     except Exception as e:
-        print(f"[ERROR] Game data request failed.")
+        logging.error("Game data request failed.")
         time.sleep(5)
         return None
 
 
 def poll_live_client_data(latest_game_data_container, stop_event, poll_time=0.2):
     """
-    Continuously polls live client data and updates the provided container.
+    Continuously polls live client data and updates the provided container. Container returns None if data was not successfully retrieved.
     Exits when stop_event is set.
     Args:
         latest_game_data_container (dict): Container to store latest data.
@@ -131,7 +131,7 @@ def click_percent(x, y, x_offset_percent=0, y_offset_percent=0, button="left"):
         time.sleep(0.05)
         win32api.mouse_event(win32con.MOUSEEVENTF_RIGHTUP, new_x, new_y, 0, 0)
     else:
-        print(f"[WARN] Unknown mouse button: {button}. Use 'left' or 'right'.")
+        logging.warning(f"Unknown mouse button: {button}. Use 'left' or 'right'.")
 
 
 def click_on_cursor(button="left"):
@@ -144,7 +144,7 @@ def click_on_cursor(button="left"):
     elif button == "right":
         win32api.mouse_event(win32con.MOUSEEVENTF_RIGHTDOWN, x, y, 0, 0)
     else:
-        print(f"[WARN] Unknown mouse button: {button}. Use 'left' or 'right'.")
+        logging.warning(f"Unknown mouse button: {button}. Use 'left' or 'right'.")
     win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP, x, y, 0, 0)
 
 
@@ -371,8 +371,8 @@ def terminate_window(window_title):
         try:
             proc = psutil.Process(pid)
             proc.terminate()  # or proc.kill() for immediate termination
-            print(f"Process {pid} terminated for window '{window_title}'.")
+            logging.info(f"Process {pid} terminated for window '{window_title}'.")
         except Exception as e:
-            print(f"Failed to terminate process {pid}: {e}")
+            logging.error(f"Failed to terminate process {pid}: {e}")
     else:
-        print(f"Window '{window_title}' not found.")
+        logging.warning(f"Window '{window_title}' not found.")

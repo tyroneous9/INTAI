@@ -55,7 +55,7 @@ def shop_phase():
     # Click screen center for augment cards
     click_percent(SCREEN_CENTER[0], SCREEN_CENTER[1])
     time.sleep(1)
-    while(buy_recommended_items() != True):
+    while((buy_recommended_items() != True) and (_latest_game_data['data'] != None)):
         click_percent(SCREEN_CENTER[0], SCREEN_CENTER[1])
     level_up_abilities()
     
@@ -120,6 +120,7 @@ def run_game_loop(game_end_event):
         time.sleep(1)
 
     logging.info("Game has started.")
+    time.sleep(3)
     shop_phase()
     
     # Main loop
@@ -135,6 +136,7 @@ def run_game_loop(game_end_event):
             # Dead, thus shop
             current_hp = _latest_game_data['data']["activePlayer"].get("championStats", {}).get("currentHealth")
             if current_hp == 0:
+                time.sleep(3)
                 shop_phase()
                 vote_surrender()
                 continue

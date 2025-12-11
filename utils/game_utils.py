@@ -164,7 +164,6 @@ def buy_recommended_items():
     # First search for shop location
     shop_location = find_text_location("SELL")
     if not shop_location:
-        logging.warning("Shop could not be detected.")
         return False
 
     # Shop found, now buy items
@@ -197,7 +196,6 @@ def buy_items_list(item_list):
     # First search for shop location
     shop_location = find_text_location("SELL")
     if not shop_location:
-        logging.warning("Shop could not be detected.")
         return False
 
     # Shop found, now buy items
