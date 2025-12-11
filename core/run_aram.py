@@ -14,7 +14,7 @@ from core.constants import (
     HEALTH_BORDER_COLOR, ENEMY_HEALTH_BAR_COLOR, SCREEN_CENTER
 )
 from utils.config_utils import load_settings
-from utils.general_utils import poll_live_client_data
+from utils.general_utils import click_percent, poll_live_client_data
 from utils.game_utils import (
     attack_enemy,
     find_ally_location,
@@ -51,6 +51,17 @@ current_ally_index = 0
 # Phase Functions
 # ===========================
 
+def shop_phase():
+    """
+    Handles the Arena shop phase which is detected upon level up
+    """
+    # Click screen center for augment cards
+    time.sleep(2)
+    click_percent(SCREEN_CENTER[0], SCREEN_CENTER[1])
+    time.sleep(1)
+    buy_recommended_items()
+    click_percent(SCREEN_CENTER[0], SCREEN_CENTER[1])
+    
 def combat_phase():
     global current_ally_index
     ally_location = find_ally_location()
@@ -108,7 +119,8 @@ def run_game_loop(stop_event):
         time.sleep(1)
 
     logging.info("Game has started.")
-    buy_recommended_items()
+    time.sleep(5)
+    shop_phase()
     
     # Main loop
     while not stop_event.is_set():
@@ -123,8 +135,7 @@ def run_game_loop(stop_event):
             # Dead, thus shop
             current_hp = _latest_game_data['data']["activePlayer"].get("championStats", {}).get("currentHealth")
             if current_hp == 0:
-                buy_recommended_items()
-                time.sleep(3)
+                shop_phase()
                 vote_surrender()
                 continue
 
