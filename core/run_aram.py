@@ -70,7 +70,7 @@ def combat_phase():
         if enemy_location:
              # check enemy relative location
             keyboard.press(center_camera_key)
-            time.sleep(0.1)
+            time.sleep(0.01)
             enemy_location = find_enemy_location()
             if enemy_location: 
                 distance_to_enemy = get_distance(SCREEN_CENTER, enemy_location)
@@ -120,7 +120,6 @@ def run_game_loop(game_end_event):
         time.sleep(1)
 
     logging.info("Game has started.")
-    time.sleep(1)
     shop_phase()
     
     # Main loop
