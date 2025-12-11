@@ -53,36 +53,40 @@ def shop_phase():
     Handles the Arena shop phase which is detected upon level up
     """
     # Click screen center for augment cards
+    time.sleep(3)
+    click_percent(SCREEN_CENTER[0], SCREEN_CENTER[1])
+    time.sleep(2)
+    buy_recommended_items()
     time.sleep(2)
     click_percent(SCREEN_CENTER[0], SCREEN_CENTER[1])
-    time.sleep(1)
-    buy_recommended_items()
-    click_percent(SCREEN_CENTER[0], SCREEN_CENTER[1])
+    level_up_abilities()
     
 def combat_phase():
     global current_ally_index
+    center_camera_key = _keybinds.get("center_camera")
     ally_location = find_ally_location()
     if ally_location:
-        # look to attack
+        # check enemy location
         logging.info("ally found, looking for enemy.")
         enemy_location = find_enemy_location()
         if enemy_location:
-            center_camera_key = _keybinds.get("center_camera")
-            distance_to_enemy = get_distance(SCREEN_CENTER, find_enemy_location())
+             # check enemy relative location
             keyboard.press(center_camera_key)
             time.sleep(0.1)
-            keyboard.release(center_camera_key)
-            
-            if distance_to_enemy < 500:
+            enemy_location = find_enemy_location()
+            if enemy_location: 
+                distance_to_enemy = get_distance(SCREEN_CENTER, enemy_location)
+                if distance_to_enemy < 500:
                 # Self preservation
-                if _latest_game_data['data']:
-                    current_hp = _latest_game_data['data']["activePlayer"].get("championStats", {}).get("currentHealth")
-                    max_hp = _latest_game_data['data']["activePlayer"].get("championStats", {}).get("maxHealth")
-                    if current_hp is not None and max_hp:
-                        hp_percent = (current_hp / max_hp)
-                        if hp_percent < .3:
-                            retreat(SCREEN_CENTER, enemy_location)
-                attack_enemy()
+                    if _latest_game_data['data']:
+                        current_hp = _latest_game_data['data']["activePlayer"].get("championStats", {}).get("currentHealth")
+                        max_hp = _latest_game_data['data']["activePlayer"].get("championStats", {}).get("maxHealth")
+                        if current_hp is not None and max_hp:
+                            hp_percent = (current_hp / max_hp)
+                            if hp_percent < .3:
+                                retreat(SCREEN_CENTER, enemy_location)
+                    attack_enemy()
+            keyboard.release(center_camera_key)
         else:
             # No enemy found, switch to another ally
             logging.info("No enemy found, switching ally.")
