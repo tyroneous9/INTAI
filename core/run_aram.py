@@ -55,8 +55,13 @@ def shop_phase():
     # Click screen center for augment cards
     click_percent(SCREEN_CENTER[0], SCREEN_CENTER[1])
     time.sleep(1)
-    while((buy_recommended_items() != True) and (_latest_game_data['data'] != None)):
-        click_percent(SCREEN_CENTER[0], SCREEN_CENTER[1])
+    start = time.time()
+    timeout = 20
+    while(buy_recommended_items() != True):
+        time.sleep(1)
+        if time.time() - start > timeout:
+            break
+    click_percent(SCREEN_CENTER[0], SCREEN_CENTER[1])
     level_up_abilities()
     
 def combat_phase():
@@ -94,6 +99,8 @@ def combat_phase():
         # look for ally
         current_ally_index = random.randint(0, len(ally_keys) - 1)
         time.sleep(0.18)
+        # maybe augment in the way
+        click_percent(SCREEN_CENTER[0], SCREEN_CENTER[1])
     move_to_ally(current_ally_index + 1)
     time.sleep(0.18)  # Sleep after moving to ally
 
@@ -108,7 +115,7 @@ def run_game_loop(game_end_event):
     - Waits for GameStart event before starting main loop
     - Runs shop phase when the active player's level increases (phase change)
     - Otherwise runs combat phase
-    - Exits when monitor_game_end detects game end
+    - Exits when main thread detects game end
     """
 
     # Game initialization

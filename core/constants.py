@@ -28,7 +28,6 @@ SUPPORTED_MODES = {
     # Add more modes as needed
 }
 
-
 # ===========================
 # Ingame Color Definitions (BGR)
 # ===========================

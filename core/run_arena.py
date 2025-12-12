@@ -44,8 +44,13 @@ def shop_phase():
     # Click screen center for augment cards
     click_percent(SCREEN_CENTER[0], SCREEN_CENTER[1])
     time.sleep(1)
-    while((buy_recommended_items() != True) or (_latest_game_data['data'] == None)):
-        click_percent(SCREEN_CENTER[0], SCREEN_CENTER[1])
+    start = time.time()
+    timeout = 20
+    while(buy_recommended_items() != True):
+        time.sleep(1)
+        if time.time() - start > timeout:
+            break
+    click_percent(SCREEN_CENTER[0], SCREEN_CENTER[1])
     level_up_abilities()
 
 
