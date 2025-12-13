@@ -156,15 +156,16 @@ def buy_recommended_items():
     Opens the shop if not already open.
     Returns true if successful, otherwise false
     """
+    # First check for shop location
+    shop_location = find_text_location("SELL")
+
     # Open shop if not already open
-    if not find_text_location("SELL"):
+    if not shop_location:
         keyboard.send(_keybinds.get("shop"))
         time.sleep(0.5)
-
-    # First search for shop location
-    shop_location = find_text_location("SELL")
-    if not shop_location:
-        return False
+        shop_location = find_text_location("SELL")
+        if not shop_location:
+            return False
 
     # Shop found, now buy items
     x, y = shop_location[:2]
