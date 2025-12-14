@@ -56,15 +56,17 @@ def shop_phase():
     click_percent(SCREEN_CENTER[0], SCREEN_CENTER[1])
     time.sleep(1)
     start = time.time()
-    timeout = 20
+    timeout = 60
     while(True):
         # Successful shopping or timeout reached
-        if(buy_recommended_items() == True or time.time() - start > timeout):
+        if(buy_recommended_items() == True):
             break
-        time.sleep(1)
+        elif(time.time() - start > timeout):
+            logging.warning("Timeout reached without successfully shopping")
+            return
+        time.sleep(0.1)
     time.sleep(1)
     click_percent(SCREEN_CENTER[0], SCREEN_CENTER[1])
-    level_up_abilities()
     
 def combat_phase():
     global current_ally_index
@@ -129,13 +131,12 @@ def run_game_loop(game_end_event):
         time.sleep(1)
 
     logging.info("Game has started.")
-    time.sleep(5)
+    time.sleep(6)
     shop_phase()
     
     # Main loop
     while not game_end_event.is_set():
         if _latest_game_data['data']:
-
             # Just level up
             current_level = _latest_game_data['data']["activePlayer"].get("level")
             if current_level is not None and current_level > prev_level:

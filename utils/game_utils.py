@@ -165,6 +165,7 @@ def buy_recommended_items():
         time.sleep(0.5)
         shop_location = find_text_location("SELL")
         if not shop_location:
+            keyboard.send(_keybinds.get("shop"))
             return False
 
     # Shop found, now buy items
