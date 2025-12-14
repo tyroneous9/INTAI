@@ -45,12 +45,15 @@ def shop_phase():
     click_percent(SCREEN_CENTER[0], SCREEN_CENTER[1])
     time.sleep(1)
     start = time.time()
-    timeout = 20
+    timeout = 30
     while(True):
         # Successful shopping or timeout reached
-        if(buy_recommended_items() == True or time.time() - start > timeout):
+        if(buy_recommended_items() == True):
             break
-        time.sleep(1)
+        elif(time.time() - start > timeout):
+            logging.warning("Timeout reached without successfully shopping")
+            return
+        time.sleep(0.1)
     time.sleep(1)
     click_percent(SCREEN_CENTER[0], SCREEN_CENTER[1])
     level_up_abilities()

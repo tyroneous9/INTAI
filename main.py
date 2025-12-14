@@ -18,7 +18,7 @@ from core.constants import (
     GAMEFLOW_PHASES,
     CHAMP_SELECT_SUBPHASES
 )
-from utils.general_utils import extract_screen_text, listen_for_exit_key, enable_logging, test_mkb, wait_for_window
+from utils.general_utils import bring_window_to_front, extract_screen_text, listen_for_exit_key, enable_logging, test_mkb, wait_for_window
 from lcu_driver import Connector
 from core.menu import show_menu  
 
@@ -43,8 +43,8 @@ async def connect(connection):
     Waits for the client window, then triggers the initial gameflow phase logic.
     """
 
-    # Wait for the client window
-    wait_for_window(LEAGUE_CLIENT_WINDOW_TITLE)
+    # Activate the client window
+    bring_window_to_front(LEAGUE_CLIENT_WINDOW_TITLE)
     logging.info("Connected to League client.")
 
     # Check current gameflow phase and run the handler logic
@@ -101,8 +101,8 @@ async def on_gameflow_phase(connection, event):
     # Start bot loop thread on game start
     if phase == GAMEFLOW_PHASES["IN_PROGRESS"]:
         logging.info("[EVENT] Game is in progress.")
-        # Wait for the game window
-        wait_for_window(LEAGUE_GAME_WINDOW_TITLE)
+        # Activate the game window
+        bring_window_to_front(LEAGUE_GAME_WINDOW_TITLE)
 
         # Start the game loop thread unless already running
         game_end_event.clear()

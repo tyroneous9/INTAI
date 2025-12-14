@@ -325,42 +325,48 @@ def enable_logging(log_file=None, level=logging.INFO):
     )
 
 
-def bring_window_to_front(window_title):
+def bring_window_to_front(window_title, timeout=60, retry_delay=0.5):
     """
-    Finds the window by title and brings it to the foreground.
-    Args:
-        window_title (str): The title of the window.
-    """
-    hwnd = win32gui.FindWindow(None, window_title)
-    if not hwnd:
-        logging.error(f"Window with title '{window_title}' not found.")
-        return
-    win32gui.ShowWindow(hwnd, win32con.SW_RESTORE)
-    time.sleep(0.1)
-    try:
-        win32gui.SetForegroundWindow(hwnd)
-    except Exception as e:
-        logging.error(f"SetForegroundWindow failed for '{window_title}' (handle: {hwnd}): {e}")
+    Finds a window by title and repeatedly attempts to bring it to the foreground
+    until successful or until timeout is reached.
 
-def wait_for_window(window_title, timeout=120):
-    """
-    Waits for a window with the given title to appear within the timeout period.
-    If found, brings it to the foreground.
     Args:
-        window_title (str): The title of the window to wait for.
-        timeout (int): Maximum time to wait in seconds.
+        window_title (str): Title of the window.
+        timeout (int): Maximum time to keep trying (seconds).
+        retry_delay (float): Delay between attempts (seconds).
+
     Returns:
-        int or None: Window handle if found, else None.
+        int | None: Window handle if successful, otherwise None.
     """
+    end_time = time.time() + timeout
     hwnd = None
-    for _ in range(timeout):
+
+    while time.time() < end_time:
         hwnd = win32gui.FindWindow(None, window_title)
-        if hwnd:
-            bring_window_to_front(window_title)
-            return hwnd
-        time.sleep(1)
-    logging.error(f"Window with title '{window_title}' not found after {timeout} seconds.")
-    return
+
+        if not hwnd:
+            time.sleep(retry_delay)
+            continue
+
+        try:
+            # Restore if minimized
+            win32gui.ShowWindow(hwnd, win32con.SW_RESTORE)
+            time.sleep(0.1)
+
+            win32gui.SetForegroundWindow(hwnd)
+            return hwnd  # success
+
+        except Exception as e:
+            logging.debug(
+                f"Failed to bring '{window_title}' to front (hwnd={hwnd}): {e}"
+            )
+
+        time.sleep(retry_delay)
+
+    logging.error(
+        f"Failed to bring window '{window_title}' to front after {timeout} seconds."
+    )
+    return None
 
 
 def terminate_window(window_title):

@@ -56,7 +56,7 @@ def shop_phase():
     click_percent(SCREEN_CENTER[0], SCREEN_CENTER[1])
     time.sleep(1)
     start = time.time()
-    timeout = 60
+    timeout = 30
     while(True):
         # Successful shopping or timeout reached
         if(buy_recommended_items() == True):
@@ -131,7 +131,6 @@ def run_game_loop(game_end_event):
         time.sleep(1)
 
     logging.info("Game has started.")
-    time.sleep(6)
     shop_phase()
     
     # Main loop
