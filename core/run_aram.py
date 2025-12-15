@@ -99,15 +99,14 @@ def combat_phase(latest_game_data):
             # No enemy found, switch to another ally
             logging.info("No enemy found, switching ally.")
             current_ally_index = random.randint(0, len(ally_keys) - 1)
-            time.sleep(0.18)
+            time.sleep(0.1)
     else:
         # look for ally
         current_ally_index = random.randint(0, len(ally_keys) - 1)
-        time.sleep(0.18)
-        # maybe augment in the way
-        click_percent(SCREEN_CENTER[0], SCREEN_CENTER[1])
+        time.sleep(0.1)
+        # click_percent(SCREEN_CENTER[0], SCREEN_CENTER[1])
     move_to_ally(current_ally_index + 1)
-    time.sleep(0.18)  # Sleep after moving to ally
+    time.sleep(0.1)  # Sleep after moving to ally
 
 
 # ===========================
@@ -153,9 +152,3 @@ def run_game_loop(game_end_event, shutdown_event):
 
         combat_phase(latest_game_data)
     logging.info("Bot thread has exited.")
-# For testing purposes
-# python -m core.run_arena
-if __name__ == "__main__":
-    time.sleep(2)
-    game_end_event = threading.Event()
-    run_game_loop(game_end_event)

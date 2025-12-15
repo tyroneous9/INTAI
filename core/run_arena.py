@@ -139,9 +139,3 @@ def run_game_loop(game_end_event, shutdown_event):
         combat_phase(latest_game_data)
     logging.info("Bot thread has exited.")
 
-# For testing purposes
-# python -m core.run_arena
-if __name__ == "__main__":
-    time.sleep(2)
-    stop_event = threading.Event()
-    run_game_loop(stop_event)

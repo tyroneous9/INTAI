@@ -6,6 +6,7 @@ import os
 import threading
 import random
 import importlib
+import winsound
 from utils.config_utils import (
     disable_insecure_request_warning, get_selected_game_mode, load_config
 )
@@ -241,11 +242,12 @@ def shutdown():
     # Join threads
     if game_loop_thread is not None:
         try:
-            game_loop_thread.join(timeout=5)
+            game_loop_thread.join(timeout=10)
         except Exception:
             logging.exception("Failed to join game loop thread.")
 
     logging.info("Shut down complete.")
+    winsound.Beep(500,200)
     os._exit(0)
 
 # ===========================
@@ -259,6 +261,7 @@ if __name__ == "__main__":
     """
     disable_insecure_request_warning()
     enable_logging()
+    logging.info(f"Process PID: {os.getpid()}")
     threading.Thread(target=exit_listener, daemon=True, args=(shutdown,)).start()
     show_menu(run_script)
 
