@@ -148,15 +148,14 @@ def click_on_cursor(button="left"):
     win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP, x, y, 0, 0)
 
 
-# Listen for the END key to terminate the bot
-def listen_for_exit_key():
+# Listen for the exit key to terminate the bot
+def exit_listener(shutdown):
     """
-    Listens for the END key and exits the program immediately.
+    Listens for the exit key and then sets the shutdown_event.
     """
     logging.info("Press DELETE key to exit anytime.")
     keyboard.wait("delete")
-    logging.info("DELETE key pressed. Exiting program...")
-    os._exit(0)
+    shutdown()
 
 
 def test_mkb():
@@ -280,7 +279,7 @@ def find_text_location(target_text):
             if entry['text'].lower() == target_text.lower():
                 logging.info(f"OCR: Found text '{target_text}' at location {entry['box']}")
                 return entry['box']
-    logging.info(f"OCR: Text '{target_text}' not found on screen.")
+    logging.info(f"OCR: '{target_text}' not found on screen.")
     return None
 
 
@@ -299,7 +298,7 @@ def find_text_location_retry(target_text, max_attempts=5, delay=0.2):
         if location:
             return location
         time.sleep(delay)
-    logging.info(f"OCR: Text '{target_text}' not found on screen after {max_attempts} attempts.")
+    logging.info(f"OCR: '{target_text}' not found on screen after {max_attempts} attempts.")
     return None
 
 

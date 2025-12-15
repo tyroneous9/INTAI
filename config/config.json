@@ -23,7 +23,7 @@
         "attack_move": "a"
     },
     "General": {
-        "selected_game_mode": "arena",
+        "selected_game_mode": "aram",
         "preferred_champion": {},
         "surrender": false
     }

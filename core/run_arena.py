@@ -86,7 +86,7 @@ def combat_phase():
 # Main Bot Loop
 # ===========================
 
-def run_game_loop(stop_event):
+def run_game_loop(game_end_event, shutdown_event):
     """
     Main loop for bot:
     - Waits for GameStart event before starting main loop
@@ -100,13 +100,15 @@ def run_game_loop(stop_event):
     polling_thread.start()
     prev_level = 0
     
-    while not stop_event.is_set() and not is_game_started(_latest_game_data['data']):
+    while (not game_end_event.is_set() or not shutdown_event.is_set()):
+        if(is_game_started(_latest_game_data['data']) == True):
+            break
         time.sleep(1)
     
     logging.info("Game has started.")
 
     # Main loop
-    while not stop_event.is_set():
+    while not game_end_event.is_set() or not shutdown_event.is_set():
         if _latest_game_data['data']:
              
             # Exit game
@@ -133,9 +135,7 @@ def run_game_loop(stop_event):
                 continue
 
         combat_phase()
-
-        # Small delay to allow thread switching
-        time.sleep(0.01)
+    logging.info("Bot thread has exited.")
 
 # For testing purposes
 # python -m core.run_arena

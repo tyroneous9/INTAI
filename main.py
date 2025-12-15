@@ -2,10 +2,11 @@
 
 import asyncio
 import logging
+import os
 import threading
+import concurrent.futures
 import random
 import importlib
-import os
 from utils.config_utils import (
     disable_insecure_request_warning, get_selected_game_mode, load_config
 )
@@ -18,7 +19,7 @@ from core.constants import (
     GAMEFLOW_PHASES,
     CHAMP_SELECT_SUBPHASES
 )
-from utils.general_utils import bring_window_to_front, extract_screen_text, listen_for_exit_key, enable_logging, test_mkb
+from utils.general_utils import bring_window_to_front, exit_listener, enable_logging
 from lcu_driver import Connector
 from core.menu import show_menu  
 
@@ -26,6 +27,7 @@ connector = Connector()
 
 # State variables
 last_phase = None
+shutdown_event = threading.Event()
 game_end_event = threading.Event()
 
 # Thread references
@@ -51,7 +53,6 @@ async def connect(connection):
     try:
         phase_resp = await connection.request('get', '/lol-gameflow/v1/gameflow-phase')
         current_phase = await phase_resp.json()
-        # Call the gameflow phase handler manually
         await on_gameflow_phase(connection, type('Event', (object,), {'data': current_phase})())
     except Exception as e:
         logging.error(f"Failed to check gameflow phase: {e}")
@@ -104,18 +105,16 @@ async def on_gameflow_phase(connection, event):
         # Activate the game window
         bring_window_to_front(LEAGUE_GAME_WINDOW_TITLE)
 
-        # Start the game loop thread unless already running
-        game_end_event.clear()
-        game_loop_thread = threading.Thread(target=run_game_loop, args=(game_end_event,), daemon=True)
+        # Start the game loop thread
+        game_loop_thread = threading.Thread(target=run_game_loop, args=(game_end_event,shutdown_event), daemon=True)
         game_loop_thread.start()
 
     # Clean up bot thread and play again on end of game
     if phase == GAMEFLOW_PHASES["PRE_END_OF_GAME"]:
         logging.info("[EVENT] Game ended.")
         game_end_event.set()
-        if game_loop_thread is not None:
-            game_loop_thread.join()
-            game_loop_thread = None
+        game_loop_thread.join()
+        game_end_event.clear()
         # Play again (recreate lobby)
         try:
             await connection.request('post', '/lol-lobby/v2/play-again')
@@ -198,9 +197,10 @@ async def on_champ_select_session(connection, event):
 @connector.close
 async def disconnect(_):
     """
-    Handler for when the League Client is closed.
-    Logs the disconnect event.
+    Handler for disconnect event.
+    Closes the connector and logs the disconnection.
     """
+    await connector.stop()
     logging.info("[INFO] League Client has been closed.")
 
 
@@ -209,7 +209,7 @@ async def disconnect(_):
 # ===========================
 
 
-def run_game_loop(game_end_event):
+def run_game_loop(game_end_event, shutdown_event):
     """
     Runs the correct bot loop for the selected game mode.
     The loop should exit when game_end_event is set (signaled by EndOfGame phase).
@@ -224,27 +224,30 @@ def run_game_loop(game_end_event):
         logging.error(f"Could not import module '{module_name}': {e}")
         return
     if hasattr(module, "run_game_loop"):
-        module.run_game_loop(game_end_event)
+        module.run_game_loop(game_end_event, shutdown_event)
     elif hasattr(module, "main"):
         module.main()
     else:
         logging.error(f"No entry point found for '{selected_game_mode}'.")
 
  
-def run_script(testing=False):
-    if testing:
-        logging.info("Running tests...")
-        extract_screen_text()
-        logging.info("Tests completed.")
-    else:
-        logging.info("Starting Script. Waiting for client...")
-        connector.start()
+def run_script():
+    logging.info("Starting Script. Waiting for client...")
+    connector.start()
 
-def run_tests():
-    logging.info("Running tests...")
-    test_mkb()
-    logging.info("Tests completed.")
-    show_menu(run_script, run_tests)
+def shutdown():
+    logging.info("Shutting down program...")
+    shutdown_event.set()
+    
+    # Join threads
+    if game_loop_thread is not None:
+        try:
+            game_loop_thread.join(timeout=5)
+        except Exception:
+            logging.exception("Failed to join game loop thread.")
+
+    logging.info("Shut down complete.")
+    os._exit(0)
 
 # ===========================
 # Main Entry Point
@@ -257,12 +260,8 @@ if __name__ == "__main__":
     """
     disable_insecure_request_warning()
     enable_logging()
-    threading.Thread(target=listen_for_exit_key, daemon=True).start()
-    try:
-        show_menu(run_script, run_tests)  # Pass both callbacks
-    except Exception as e:
-        logging.exception("Unhandled exception occurred:")
-        print("\nAn error occurred. Press Enter to exit...")
-        input()
+    threading.Thread(target=exit_listener, daemon=True, args=(shutdown,)).start()
+    show_menu(run_script)
+
 
 
