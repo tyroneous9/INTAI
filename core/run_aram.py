@@ -32,7 +32,7 @@ from utils.game_utils import (
 # ===========================
 
 _keybinds, _general = load_settings()
-_latest_game_data = {'data': None}
+# latest_game_data is created in run_game_loop and passed to threads/functions
 
 ally_keys = [
     _keybinds.get("select_ally_1"),
@@ -54,21 +54,22 @@ def shop_phase():
     """
     # Click screen center for augment cards
     click_percent(SCREEN_CENTER[0], SCREEN_CENTER[1])
-    time.sleep(1)
+    time.sleep(0.5)
     start = time.time()
     timeout = 30
     while(True):
         # Successful shopping or timeout reached
+        click_percent(SCREEN_CENTER[0], SCREEN_CENTER[1])
         if(buy_recommended_items() == True):
             break
         elif(time.time() - start > timeout):
             logging.warning("Timeout reached without successfully shopping")
             return
         time.sleep(0.1)
-    time.sleep(1)
+    time.sleep(0.5)
     click_percent(SCREEN_CENTER[0], SCREEN_CENTER[1])
     
-def combat_phase():
+def combat_phase(latest_game_data):
     global current_ally_index
     center_camera_key = _keybinds.get("center_camera")
     ally_location = find_ally_location()
@@ -85,9 +86,9 @@ def combat_phase():
                 distance_to_enemy = get_distance(SCREEN_CENTER, enemy_location)
                 if distance_to_enemy < 500:
                 # Self preservation
-                    if _latest_game_data['data']:
-                        current_hp = _latest_game_data['data']["activePlayer"].get("championStats", {}).get("currentHealth")
-                        max_hp = _latest_game_data['data']["activePlayer"].get("championStats", {}).get("maxHealth")
+                    if latest_game_data['data']:
+                        current_hp = latest_game_data['data']["activePlayer"].get("championStats", {}).get("currentHealth")
+                        max_hp = latest_game_data['data']["activePlayer"].get("championStats", {}).get("maxHealth")
                         if current_hp is not None and max_hp:
                             hp_percent = (current_hp / max_hp)
                             if hp_percent < .3:
@@ -119,37 +120,38 @@ def run_game_loop(game_end_event, shutdown_event):
     """
 
     # Game initialization
-    polling_thread = threading.Thread(target=poll_live_client_data, args=(_latest_game_data, game_end_event), daemon=True)
+    latest_game_data = {'data': None}
+    polling_thread = threading.Thread(target=poll_live_client_data, args=(latest_game_data, game_end_event), daemon=True)
     polling_thread.start()
     prev_level = 0
 
     while (not game_end_event.is_set() or not shutdown_event.is_set()):
-        if(is_game_started(_latest_game_data['data']) == True):
+        if(is_game_started(latest_game_data['data']) == True):
             break
         time.sleep(1)
 
     logging.info("Game has started.")
-    # time.sleep(10)
-    # shop_phase()
+    # time.sleep(5)
+    shop_phase()
     
     # Main loop
     while not game_end_event.is_set() or not shutdown_event.is_set():
-        if _latest_game_data['data']:
+        if latest_game_data['data']:
             # Just level up
-            current_level = _latest_game_data['data']["activePlayer"].get("level")
+            current_level = latest_game_data['data']["activePlayer"].get("level")
             if current_level is not None and current_level > prev_level:
                 level_up_abilities()
                 prev_level = current_level
 
             # Dead, thus shop
-            current_hp = _latest_game_data['data']["activePlayer"].get("championStats", {}).get("currentHealth")
+            current_hp = latest_game_data['data']["activePlayer"].get("championStats", {}).get("currentHealth")
             if current_hp == 0:
                 time.sleep(3)
                 shop_phase()
                 vote_surrender()
                 continue
 
-        combat_phase()
+        combat_phase(latest_game_data)
     logging.info("Bot thread has exited.")
 # For testing purposes
 # python -m core.run_arena

@@ -30,7 +30,8 @@ from utils.game_utils import (
 # ===========================
 
 _keybinds, _general = load_settings()
-_latest_game_data = {'data': None}
+
+# latest_game_data is created inside run_game_loop and passed to threads/functions
 
 
 # ===========================
@@ -59,7 +60,7 @@ def shop_phase():
     level_up_abilities()
 
 
-def combat_phase():
+def combat_phase(latest_game_data):
     """
     Handles the combat phase:
     - Finds enemy champion location and attacks w/ spells and items
@@ -96,12 +97,13 @@ def run_game_loop(game_end_event, shutdown_event):
     """
 
     # Game initialization
-    polling_thread = threading.Thread(target=poll_live_client_data, args=(_latest_game_data, stop_event), daemon=True)
+    latest_game_data = {'data': None}
+    polling_thread = threading.Thread(target=poll_live_client_data, args=(latest_game_data, game_end_event), daemon=True)
     polling_thread.start()
     prev_level = 0
     
     while (not game_end_event.is_set() or not shutdown_event.is_set()):
-        if(is_game_started(_latest_game_data['data']) == True):
+        if(is_game_started(latest_game_data['data']) == True):
             break
         time.sleep(1)
     
@@ -109,10 +111,10 @@ def run_game_loop(game_end_event, shutdown_event):
 
     # Main loop
     while not game_end_event.is_set() or not shutdown_event.is_set():
-        if _latest_game_data['data']:
+        if latest_game_data['data']:
              
             # Exit game
-            current_hp = _latest_game_data['data']["activePlayer"].get("championStats", {}).get("currentHealth")
+            current_hp = latest_game_data['data']["activePlayer"].get("championStats", {}).get("currentHealth")
             if current_hp == 0:
                 logging.info("Player is dead, searching for exit button...")
                 for label in ["EXITNOW", "EXIT", "EXT"]:
@@ -126,7 +128,7 @@ def run_game_loop(game_end_event, shutdown_event):
                 continue
 
             # Shop phase
-            current_level = _latest_game_data['data']["activePlayer"].get("level")
+            current_level = latest_game_data['data']["activePlayer"].get("level")
             if current_level is not None and current_level > prev_level:
                 time.sleep(5)
                 shop_phase()
@@ -134,7 +136,7 @@ def run_game_loop(game_end_event, shutdown_event):
                 vote_surrender()
                 continue
 
-        combat_phase()
+        combat_phase(latest_game_data)
     logging.info("Bot thread has exited.")
 
 # For testing purposes
