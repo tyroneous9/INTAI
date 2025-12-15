@@ -9,7 +9,7 @@ import logging
 import random
 
 from core.constants import (
-    HEALTH_BORDER_COLOR, ENEMY_HEALTH_BAR_COLOR, SCREEN_CENTER
+    SCREEN_CENTER
 )
 from utils.config_utils import load_settings
 from utils.general_utils import click_percent, poll_live_client_data
@@ -131,7 +131,8 @@ def run_game_loop(game_end_event):
         time.sleep(1)
 
     logging.info("Game has started.")
-    shop_phase()
+    # time.sleep(10)
+    # shop_phase()
     
     # Main loop
     while not game_end_event.is_set():
