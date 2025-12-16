@@ -30,8 +30,7 @@ last_phase = None
 shutdown_event = threading.Event()
 game_end_event = threading.Event()
 
-# Thread references
-game_loop_thread = None
+# Thread references are stored on the `connector` instance to reduce module scope
 
 
 # ===========================
@@ -44,7 +43,7 @@ async def connect(connection):
     Handler for when the connector is ready and connected to the League Client.
     Waits for the client window, then triggers the initial gameflow phase logic.
     """
-
+    connector.loop = asyncio.get_running_loop()
     # Activate the client window
     bring_window_to_front(LEAGUE_CLIENT_WINDOW_TITLE)
     logging.info("Connected to League client.")
@@ -64,7 +63,7 @@ async def on_gameflow_phase(connection, event):
     Handles changes in the overall gameflow phase (lobby, matchmaking, champ select, game start, etc.).
     Manages lobby creation, queueing, ready check, bot thread lifecycle, and play-again requests.
     """
-    global last_phase, game_loop_thread
+    global last_phase
     phase = event.data
     if phase == last_phase:
         return
@@ -105,17 +104,28 @@ async def on_gameflow_phase(connection, event):
         # Activate the game window
         bring_window_to_front(LEAGUE_GAME_WINDOW_TITLE)
 
-        # Start the game loop thread
-        game_loop_thread = threading.Thread(target=run_game_loop, args=(game_end_event,shutdown_event), daemon=True)
-        game_loop_thread.start()
+        # Start the game loop thread and attach it to the connector instance
+        connector.game_loop_thread = threading.Thread(
+            target=run_game_loop, args=(game_end_event, shutdown_event), daemon=True
+        )
+        connector.game_loop_thread.start()
 
     # Clean up bot thread and play again on end of game
     if phase == GAMEFLOW_PHASES["PRE_END_OF_GAME"]:
         logging.info("[EVENT] Game ended.")
+ 
+        # join the thread
         game_end_event.set()
-        game_loop_thread.join()
+        game_loop_thread = getattr(connector, "game_loop_thread", None)
+        if game_loop_thread and game_loop_thread.is_alive():
+            loop = asyncio.get_running_loop()
+            try:
+                await loop.run_in_executor(None, game_loop_thread.join, 10)
+            except Exception:
+                logging.exception("Error joining game loop thread")
         game_end_event.clear()
         # Play again (recreate lobby)
+
         try:
             await connection.request('post', '/lol-lobby/v2/play-again')
             logging.info("Sent play-again request.")
@@ -195,13 +205,16 @@ async def on_champ_select_session(connection, event):
                     return
 
 @connector.close
-async def disconnect(_):
+async def disconnect(connection):
     """
     Handler for disconnect event.
     Closes the connector and logs the disconnection.
     """
-    await connector.stop()
-    logging.info("[INFO] League Client has been closed.")
+    game_loop_thread = getattr(connector, "game_loop_thread", None)
+    if game_loop_thread and game_loop_thread.is_alive():
+        loop = asyncio.get_running_loop()
+        await loop.run_in_executor(None, game_loop_thread.join)
+    logging.info("[INFO] Connector has been closed.")
 
 
 # ===========================
@@ -238,13 +251,10 @@ def run_script():
 def shutdown():
     logging.info("Shutting down program...")
     shutdown_event.set()
-    
-    # Join threads
-    if game_loop_thread is not None:
-        try:
-            game_loop_thread.join(timeout=10)
-        except Exception:
-            logging.exception("Failed to join game loop thread.")
+
+    # Stop connector
+    fut = asyncio.run_coroutine_threadsafe(connector.stop(), connector.loop)
+    fut.result(timeout=10)
 
     logging.info("Shut down complete.")
     winsound.Beep(500,200)
@@ -261,7 +271,6 @@ if __name__ == "__main__":
     """
     disable_insecure_request_warning()
     enable_logging()
-    logging.info(f"Process PID: {os.getpid()}")
     threading.Thread(target=exit_listener, daemon=True, args=(shutdown,)).start()
     show_menu(run_script)
 
