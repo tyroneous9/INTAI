@@ -56,16 +56,7 @@ def shop_phase():
     # Click screen center for augment cards
     click_percent(SCREEN_CENTER[0], SCREEN_CENTER[1])
     time.sleep(0.2)
-    start = time.time()
-    timeout = 20
-    while(True):
-        # Successful shopping or timeout reached
-        if(buy_items_list(["","",""]) == True):
-            break
-        elif(time.time() - start > timeout):
-            logging.warning("Timeout reached without successfully shopping")
-            return
-        time.sleep(0.1)
+    buy_items_list(["","",""])
     time.sleep(0.2)
     click_percent(SCREEN_CENTER[0], SCREEN_CENTER[1])
     
