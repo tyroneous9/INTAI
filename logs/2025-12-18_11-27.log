@@ -1,0 +1,36 @@
+2025-12-18 11:27:29 [INFO] Press DELETE key to exit anytime.
+2025-12-18 11:27:31 [INFO] Starting Script. Waiting for client...
+2025-12-18 11:27:31 [INFO] Connected to League client.
+2025-12-18 11:27:32 [INFO] [EVENT] Game is in progress.
+2025-12-18 11:27:32 [INFO] Starting bot for mode: core.run_test
+2025-12-18 11:27:33 [INFO] Game has started.
+2025-12-18 11:27:33 [INFO] Current HP: 660.0
+2025-12-18 11:27:33 [INFO] Current Level: 1
+2025-12-18 11:27:36 [INFO] Current HP: 660.0
+2025-12-18 11:27:36 [INFO] Current Level: 1
+2025-12-18 11:27:39 [INFO] Current HP: 660.0
+2025-12-18 11:27:39 [INFO] Current Level: 1
+2025-12-18 11:27:42 [INFO] Current HP: 660.0
+2025-12-18 11:27:42 [INFO] Current Level: 1
+2025-12-18 11:27:45 [INFO] Current HP: 660.0
+2025-12-18 11:27:45 [INFO] Current Level: 1
+2025-12-18 11:27:48 [INFO] Current HP: 660.0
+2025-12-18 11:27:48 [INFO] Current Level: 1
+2025-12-18 11:27:51 [INFO] Current HP: 660.0
+2025-12-18 11:27:51 [INFO] Current Level: 1
+2025-12-18 11:27:54 [INFO] Current HP: 660.0
+2025-12-18 11:27:54 [INFO] Current Level: 1
+2025-12-18 11:27:57 [INFO] Current HP: 224.39859008789062
+2025-12-18 11:27:57 [INFO] Current Level: 1
+2025-12-18 11:28:01 [INFO] Current HP: 0.0
+2025-12-18 11:28:01 [INFO] Current Level: 1
+2025-12-18 11:28:05 [INFO] Current HP: 0.0
+2025-12-18 11:28:05 [INFO] Current Level: 1
+2025-12-18 11:28:09 [INFO] Current HP: 0.0
+2025-12-18 11:28:09 [INFO] Current Level: 1
+2025-12-18 11:28:13 [INFO] Current HP: 660.0
+2025-12-18 11:28:13 [INFO] Current Level: 1
+2025-12-18 11:28:13 [INFO] Shutting down program...
+2025-12-18 11:28:13 [INFO] [INFO] Connector has been closed.
+2025-12-18 11:28:16 [INFO] Game loop has exited.
+2025-12-18 11:28:16 [INFO] Shut down complete.

@@ -12,11 +12,12 @@ from core.constants import (
     HEALTH_BORDER_COLOR, ENEMY_HEALTH_BAR_COLOR, LEAGUE_GAME_WINDOW_TITLE, SCREEN_CENTER
 )
 from utils.config_utils import load_settings
-from utils.general_utils import click_percent, terminate_window, poll_live_client_data
+from utils.general_utils import poll_live_client_data
 from utils.game_utils import (
     attack_enemy,
     find_ally_location,
     get_distance,
+    is_game_ended,
     is_game_started,
     move_to_ally,
     find_champion_location,
@@ -30,7 +31,6 @@ from utils.game_utils import (
 # ===========================
 
 _keybinds, _general = load_settings()
-_latest_game_data = {'data': None}
 
 ally_keys = [
     _keybinds.get("select_ally_1"),
@@ -53,27 +53,38 @@ def combat_phase():
 # Main Bot Loop
 # ===========================
 
-def run_game_loop(game_end_event):
+def run_game_loop(shutdown_event):
     """
-    Main loop for bot:
-    - Waits for GameStart event before starting main loop
-    - Runs shop phase when the active player's level increases (phase change)
-    - Otherwise runs combat phase
-    - Exits when monitor_game_end detects game end
+    Module entrypoint
     """
 
     # Game initialization
-    polling_thread = threading.Thread(target=poll_live_client_data, args=(_latest_game_data, game_end_event), daemon=True)
+    latest_game_data = {}
+    game_data_lock = threading.Lock()
+    polling_thread = threading.Thread(target=poll_live_client_data, args=(latest_game_data, shutdown_event, game_data_lock), daemon=True)
     polling_thread.start()
-        
-    # Main loop
-    while not game_end_event.is_set() and not is_game_started(_latest_game_data['data']):
+    while not shutdown_event.is_set():
+        if is_game_started(latest_game_data):
+            break
         time.sleep(1)
-    logging.info("game started!")
 
-# For testing purposes
-# python -m core.run_test
-if __name__ == "__main__":
-    time.sleep(2)
-    game_end_event = threading.Event()
-    run_game_loop(game_end_event)
+    logging.info("Game has started.")
+    
+    # Main loop
+    while not shutdown_event.is_set():
+        with game_data_lock:
+            current_level = latest_game_data["activePlayer"]["level"]
+            current_hp = latest_game_data["activePlayer"]["championStats"]["currentHealth"]
+            game_ended = is_game_ended(latest_game_data)
+            # test data access
+            current_hp = latest_game_data["activePlayer"]["championStats"]["currentHealth"]
+            logging.info(f"Current HP: {current_hp}")
+            current_level = latest_game_data["activePlayer"]["level"]
+            logging.info(f"Current Level: {current_level}")
+            
+            # Exits loop on game end
+            if game_ended:
+                logging.info("Game loop has exited.")
+                break
+        # poll time delay
+    

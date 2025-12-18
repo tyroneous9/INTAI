@@ -1,0 +1,418 @@
+2025-12-18 12:44:01 [INFO] Press DELETE key to exit anytime.
+2025-12-18 12:44:02 [INFO] Starting Script. Waiting for client...
+2025-12-18 12:44:02 [INFO] Connected to League client.
+2025-12-18 12:44:03 [INFO] [EVENT] Game is in progress.
+2025-12-18 12:44:07 [INFO] Starting bot for mode: core.run_aram
+2025-12-18 12:44:08 [INFO] Game has started.
+2025-12-18 12:44:12 [INFO] Shutting down program...
+2025-12-18 12:44:12 [INFO] [INFO] Connector has been closed.
+2025-12-18 12:44:18 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:44:20 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:44:21 [INFO] Event loop interrupted by keyboard
+2025-12-18 12:44:21 [ERROR] Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x000001FB7F511B90>
+2025-12-18 12:44:21 [INFO] Press DELETE key to exit anytime.
+2025-12-18 12:44:32 [INFO] Starting Script. Waiting for client...
+2025-12-18 12:44:32 [INFO] Connected to League client.
+2025-12-18 12:44:33 [INFO] [EVENT] Game is in progress.
+2025-12-18 12:44:33 [INFO] Starting bot for mode: core.run_aram
+2025-12-18 12:44:34 [INFO] Game has started.
+2025-12-18 12:44:44 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:44:44 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:44:45 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:44:46 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:44:46 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:44:47 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:44:48 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:44:49 [INFO] OCR: Found text 'SELL' at location (500, 853, 38, 13)
+2025-12-18 12:44:54 [INFO] ally found, looking for enemy.
+2025-12-18 12:44:55 [INFO] ally found, looking for enemy.
+2025-12-18 12:44:56 [INFO] ally found, looking for enemy.
+2025-12-18 12:44:57 [INFO] ally found, looking for enemy.
+2025-12-18 12:44:58 [INFO] ally found, looking for enemy.
+2025-12-18 12:44:59 [INFO] ally found, looking for enemy.
+2025-12-18 12:45:01 [INFO] ally found, looking for enemy.
+2025-12-18 12:45:02 [INFO] ally found, looking for enemy.
+2025-12-18 12:45:03 [INFO] ally found, looking for enemy.
+2025-12-18 12:45:04 [INFO] ally found, looking for enemy.
+2025-12-18 12:45:05 [INFO] ally found, looking for enemy.
+2025-12-18 12:45:05 [INFO] ally found, looking for enemy.
+2025-12-18 12:45:07 [INFO] ally found, looking for enemy.
+2025-12-18 12:45:08 [INFO] ally found, looking for enemy.
+2025-12-18 12:45:09 [INFO] ally found, looking for enemy.
+2025-12-18 12:45:10 [INFO] ally found, looking for enemy.
+2025-12-18 12:45:11 [INFO] ally found, looking for enemy.
+2025-12-18 12:45:11 [INFO] No enemy found, switching ally.
+2025-12-18 12:45:12 [INFO] ally found, looking for enemy.
+2025-12-18 12:45:12 [INFO] No enemy found, switching ally.
+2025-12-18 12:45:13 [INFO] ally found, looking for enemy.
+2025-12-18 12:45:14 [INFO] ally found, looking for enemy.
+2025-12-18 12:45:15 [INFO] ally found, looking for enemy.
+2025-12-18 12:45:18 [INFO] ally found, looking for enemy.
+2025-12-18 12:45:21 [INFO] ally found, looking for enemy.
+2025-12-18 12:45:22 [INFO] ally found, looking for enemy.
+2025-12-18 12:45:23 [INFO] ally found, looking for enemy.
+2025-12-18 12:45:28 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:45:29 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:45:30 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:45:32 [INFO] OCR: Found text 'SELL' at location (500, 853, 38, 13)
+2025-12-18 12:45:34 [INFO] Surrender is disabled. Skipping surrender vote.
+2025-12-18 12:45:39 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:45:40 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:45:40 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:45:41 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:45:42 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:45:43 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:45:44 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:45:45 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:45:46 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:45:47 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:45:48 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:45:48 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:45:49 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:45:50 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:45:51 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:45:52 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:45:52 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:45:53 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:45:54 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:45:54 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:45:55 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:45:55 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:45:56 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:45:57 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:45:57 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:45:58 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:45:59 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:45:59 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:46:00 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:46:01 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:46:02 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:46:02 [INFO] OCR: Found text 'SELL' at location (124, 965, 73, 62)
+2025-12-18 12:46:05 [INFO] Surrender is disabled. Skipping surrender vote.
+2025-12-18 12:46:07 [INFO] ally found, looking for enemy.
+2025-12-18 12:46:07 [INFO] No enemy found, switching ally.
+2025-12-18 12:46:09 [INFO] ally found, looking for enemy.
+2025-12-18 12:46:09 [INFO] No enemy found, switching ally.
+2025-12-18 12:46:10 [INFO] ally found, looking for enemy.
+2025-12-18 12:46:10 [INFO] No enemy found, switching ally.
+2025-12-18 12:46:12 [INFO] ally found, looking for enemy.
+2025-12-18 12:46:12 [INFO] No enemy found, switching ally.
+2025-12-18 12:46:14 [INFO] ally found, looking for enemy.
+2025-12-18 12:46:14 [INFO] No enemy found, switching ally.
+2025-12-18 12:46:15 [INFO] ally found, looking for enemy.
+2025-12-18 12:46:16 [INFO] No enemy found, switching ally.
+2025-12-18 12:46:16 [INFO] ally found, looking for enemy.
+2025-12-18 12:46:18 [INFO] ally found, looking for enemy.
+2025-12-18 12:46:19 [INFO] ally found, looking for enemy.
+2025-12-18 12:46:20 [INFO] ally found, looking for enemy.
+2025-12-18 12:46:21 [INFO] ally found, looking for enemy.
+2025-12-18 12:46:21 [INFO] No enemy found, switching ally.
+2025-12-18 12:46:22 [INFO] ally found, looking for enemy.
+2025-12-18 12:46:22 [INFO] No enemy found, switching ally.
+2025-12-18 12:46:23 [INFO] ally found, looking for enemy.
+2025-12-18 12:46:23 [INFO] No enemy found, switching ally.
+2025-12-18 12:46:25 [INFO] ally found, looking for enemy.
+2025-12-18 12:46:25 [INFO] No enemy found, switching ally.
+2025-12-18 12:46:26 [INFO] ally found, looking for enemy.
+2025-12-18 12:46:27 [INFO] No enemy found, switching ally.
+2025-12-18 12:46:28 [INFO] ally found, looking for enemy.
+2025-12-18 12:46:28 [INFO] No enemy found, switching ally.
+2025-12-18 12:46:29 [INFO] ally found, looking for enemy.
+2025-12-18 12:46:29 [INFO] No enemy found, switching ally.
+2025-12-18 12:46:30 [INFO] ally found, looking for enemy.
+2025-12-18 12:46:30 [INFO] No enemy found, switching ally.
+2025-12-18 12:46:31 [INFO] ally found, looking for enemy.
+2025-12-18 12:46:31 [INFO] No enemy found, switching ally.
+2025-12-18 12:46:32 [INFO] ally found, looking for enemy.
+2025-12-18 12:46:32 [INFO] No enemy found, switching ally.
+2025-12-18 12:46:33 [INFO] ally found, looking for enemy.
+2025-12-18 12:46:33 [INFO] No enemy found, switching ally.
+2025-12-18 12:46:34 [INFO] ally found, looking for enemy.
+2025-12-18 12:46:34 [INFO] No enemy found, switching ally.
+2025-12-18 12:46:35 [INFO] ally found, looking for enemy.
+2025-12-18 12:46:35 [INFO] No enemy found, switching ally.
+2025-12-18 12:46:36 [INFO] ally found, looking for enemy.
+2025-12-18 12:46:37 [INFO] No enemy found, switching ally.
+2025-12-18 12:46:37 [INFO] ally found, looking for enemy.
+2025-12-18 12:46:38 [INFO] No enemy found, switching ally.
+2025-12-18 12:46:39 [INFO] ally found, looking for enemy.
+2025-12-18 12:46:39 [INFO] No enemy found, switching ally.
+2025-12-18 12:46:40 [INFO] ally found, looking for enemy.
+2025-12-18 12:46:40 [INFO] No enemy found, switching ally.
+2025-12-18 12:46:41 [INFO] ally found, looking for enemy.
+2025-12-18 12:46:42 [INFO] ally found, looking for enemy.
+2025-12-18 12:46:43 [INFO] ally found, looking for enemy.
+2025-12-18 12:46:44 [INFO] ally found, looking for enemy.
+2025-12-18 12:46:45 [INFO] ally found, looking for enemy.
+2025-12-18 12:46:46 [INFO] ally found, looking for enemy.
+2025-12-18 12:46:46 [INFO] No enemy found, switching ally.
+2025-12-18 12:46:47 [INFO] ally found, looking for enemy.
+2025-12-18 12:46:47 [INFO] No enemy found, switching ally.
+2025-12-18 12:46:48 [INFO] ally found, looking for enemy.
+2025-12-18 12:46:52 [INFO] ally found, looking for enemy.
+2025-12-18 12:46:53 [INFO] ally found, looking for enemy.
+2025-12-18 12:46:54 [INFO] ally found, looking for enemy.
+2025-12-18 12:46:55 [INFO] ally found, looking for enemy.
+2025-12-18 12:46:56 [INFO] ally found, looking for enemy.
+2025-12-18 12:46:57 [INFO] ally found, looking for enemy.
+2025-12-18 12:46:57 [INFO] No enemy found, switching ally.
+2025-12-18 12:46:58 [INFO] ally found, looking for enemy.
+2025-12-18 12:46:58 [INFO] No enemy found, switching ally.
+2025-12-18 12:46:59 [INFO] ally found, looking for enemy.
+2025-12-18 12:46:59 [INFO] No enemy found, switching ally.
+2025-12-18 12:47:00 [INFO] ally found, looking for enemy.
+2025-12-18 12:47:01 [INFO] ally found, looking for enemy.
+2025-12-18 12:47:03 [INFO] ally found, looking for enemy.
+2025-12-18 12:47:04 [INFO] ally found, looking for enemy.
+2025-12-18 12:47:05 [INFO] ally found, looking for enemy.
+2025-12-18 12:47:06 [INFO] ally found, looking for enemy.
+2025-12-18 12:47:08 [INFO] ally found, looking for enemy.
+2025-12-18 12:47:10 [INFO] ally found, looking for enemy.
+2025-12-18 12:47:16 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:47:18 [INFO] OCR: Found text 'SELL' at location (500, 853, 38, 13)
+2025-12-18 12:47:20 [INFO] Surrender is disabled. Skipping surrender vote.
+2025-12-18 12:47:24 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:47:25 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:47:25 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:47:26 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:47:27 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:47:28 [INFO] OCR: Found text 'SELL' at location (500, 853, 38, 13)
+2025-12-18 12:47:31 [INFO] Surrender is disabled. Skipping surrender vote.
+2025-12-18 12:47:35 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:47:35 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:47:36 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:47:37 [INFO] OCR: Found text 'SELL' at location (500, 853, 38, 13)
+2025-12-18 12:47:40 [INFO] Surrender is disabled. Skipping surrender vote.
+2025-12-18 12:47:41 [INFO] ally found, looking for enemy.
+2025-12-18 12:47:41 [INFO] No enemy found, switching ally.
+2025-12-18 12:47:42 [INFO] ally found, looking for enemy.
+2025-12-18 12:47:43 [INFO] ally found, looking for enemy.
+2025-12-18 12:47:44 [INFO] ally found, looking for enemy.
+2025-12-18 12:47:44 [INFO] No enemy found, switching ally.
+2025-12-18 12:47:45 [INFO] ally found, looking for enemy.
+2025-12-18 12:47:46 [INFO] ally found, looking for enemy.
+2025-12-18 12:47:47 [INFO] ally found, looking for enemy.
+2025-12-18 12:47:47 [INFO] No enemy found, switching ally.
+2025-12-18 12:47:48 [INFO] ally found, looking for enemy.
+2025-12-18 12:47:49 [INFO] No enemy found, switching ally.
+2025-12-18 12:47:50 [INFO] ally found, looking for enemy.
+2025-12-18 12:47:50 [INFO] No enemy found, switching ally.
+2025-12-18 12:47:51 [INFO] ally found, looking for enemy.
+2025-12-18 12:47:51 [INFO] No enemy found, switching ally.
+2025-12-18 12:47:53 [INFO] ally found, looking for enemy.
+2025-12-18 12:47:53 [INFO] No enemy found, switching ally.
+2025-12-18 12:47:54 [INFO] ally found, looking for enemy.
+2025-12-18 12:47:54 [INFO] No enemy found, switching ally.
+2025-12-18 12:47:55 [INFO] ally found, looking for enemy.
+2025-12-18 12:47:56 [INFO] ally found, looking for enemy.
+2025-12-18 12:47:57 [INFO] ally found, looking for enemy.
+2025-12-18 12:47:58 [INFO] ally found, looking for enemy.
+2025-12-18 12:47:59 [INFO] ally found, looking for enemy.
+2025-12-18 12:48:01 [INFO] ally found, looking for enemy.
+2025-12-18 12:48:02 [INFO] ally found, looking for enemy.
+2025-12-18 12:48:03 [INFO] ally found, looking for enemy.
+2025-12-18 12:48:04 [INFO] ally found, looking for enemy.
+2025-12-18 12:48:05 [INFO] ally found, looking for enemy.
+2025-12-18 12:48:06 [INFO] ally found, looking for enemy.
+2025-12-18 12:48:10 [INFO] ally found, looking for enemy.
+2025-12-18 12:48:12 [INFO] ally found, looking for enemy.
+2025-12-18 12:48:15 [INFO] ally found, looking for enemy.
+2025-12-18 12:48:16 [INFO] ally found, looking for enemy.
+2025-12-18 12:48:17 [INFO] ally found, looking for enemy.
+2025-12-18 12:48:18 [INFO] ally found, looking for enemy.
+2025-12-18 12:48:19 [INFO] ally found, looking for enemy.
+2025-12-18 12:48:20 [INFO] ally found, looking for enemy.
+2025-12-18 12:48:22 [INFO] ally found, looking for enemy.
+2025-12-18 12:48:23 [INFO] ally found, looking for enemy.
+2025-12-18 12:48:26 [INFO] ally found, looking for enemy.
+2025-12-18 12:48:27 [INFO] ally found, looking for enemy.
+2025-12-18 12:48:28 [INFO] ally found, looking for enemy.
+2025-12-18 12:48:35 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:48:36 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:48:36 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:48:37 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:48:37 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:48:38 [INFO] OCR: Found text 'SELL' at location (500, 853, 38, 13)
+2025-12-18 12:48:41 [INFO] Surrender is disabled. Skipping surrender vote.
+2025-12-18 12:48:44 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:48:45 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:48:46 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:48:46 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:48:47 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:48:48 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:48:49 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:48:49 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:48:50 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:48:52 [INFO] OCR: Found text 'SELL' at location (500, 853, 38, 13)
+2025-12-18 12:48:54 [INFO] Surrender is disabled. Skipping surrender vote.
+2025-12-18 12:48:58 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:48:59 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:48:59 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:49:00 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:49:01 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:49:02 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:49:02 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:49:03 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:49:04 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:49:04 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:49:05 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:49:05 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:49:06 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:49:07 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:49:08 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:49:08 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:49:09 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:49:10 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:49:10 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:49:11 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:49:12 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:49:13 [INFO] OCR: Found text 'SELL' at location (500, 853, 38, 13)
+2025-12-18 12:49:15 [INFO] Surrender is disabled. Skipping surrender vote.
+2025-12-18 12:49:16 [INFO] ally found, looking for enemy.
+2025-12-18 12:49:16 [INFO] No enemy found, switching ally.
+2025-12-18 12:49:17 [INFO] ally found, looking for enemy.
+2025-12-18 12:49:19 [INFO] ally found, looking for enemy.
+2025-12-18 12:49:20 [INFO] ally found, looking for enemy.
+2025-12-18 12:49:22 [INFO] ally found, looking for enemy.
+2025-12-18 12:49:23 [INFO] ally found, looking for enemy.
+2025-12-18 12:49:24 [INFO] No enemy found, switching ally.
+2025-12-18 12:49:25 [INFO] ally found, looking for enemy.
+2025-12-18 12:49:26 [INFO] ally found, looking for enemy.
+2025-12-18 12:49:26 [INFO] No enemy found, switching ally.
+2025-12-18 12:49:28 [INFO] ally found, looking for enemy.
+2025-12-18 12:49:28 [INFO] No enemy found, switching ally.
+2025-12-18 12:49:29 [INFO] ally found, looking for enemy.
+2025-12-18 12:49:29 [INFO] No enemy found, switching ally.
+2025-12-18 12:49:30 [INFO] ally found, looking for enemy.
+2025-12-18 12:49:30 [INFO] No enemy found, switching ally.
+2025-12-18 12:49:31 [INFO] ally found, looking for enemy.
+2025-12-18 12:49:31 [INFO] No enemy found, switching ally.
+2025-12-18 12:49:33 [INFO] ally found, looking for enemy.
+2025-12-18 12:49:33 [INFO] No enemy found, switching ally.
+2025-12-18 12:49:34 [INFO] ally found, looking for enemy.
+2025-12-18 12:49:34 [INFO] No enemy found, switching ally.
+2025-12-18 12:49:35 [INFO] ally found, looking for enemy.
+2025-12-18 12:49:35 [INFO] No enemy found, switching ally.
+2025-12-18 12:49:36 [INFO] ally found, looking for enemy.
+2025-12-18 12:49:37 [INFO] No enemy found, switching ally.
+2025-12-18 12:49:38 [INFO] ally found, looking for enemy.
+2025-12-18 12:49:38 [INFO] No enemy found, switching ally.
+2025-12-18 12:49:39 [INFO] ally found, looking for enemy.
+2025-12-18 12:49:39 [INFO] No enemy found, switching ally.
+2025-12-18 12:49:40 [INFO] ally found, looking for enemy.
+2025-12-18 12:49:40 [INFO] No enemy found, switching ally.
+2025-12-18 12:49:41 [INFO] ally found, looking for enemy.
+2025-12-18 12:49:41 [INFO] No enemy found, switching ally.
+2025-12-18 12:49:42 [INFO] ally found, looking for enemy.
+2025-12-18 12:49:42 [INFO] No enemy found, switching ally.
+2025-12-18 12:49:43 [INFO] ally found, looking for enemy.
+2025-12-18 12:49:44 [INFO] ally found, looking for enemy.
+2025-12-18 12:49:44 [INFO] No enemy found, switching ally.
+2025-12-18 12:49:45 [INFO] ally found, looking for enemy.
+2025-12-18 12:49:45 [INFO] No enemy found, switching ally.
+2025-12-18 12:49:46 [INFO] ally found, looking for enemy.
+2025-12-18 12:49:46 [INFO] No enemy found, switching ally.
+2025-12-18 12:49:47 [INFO] ally found, looking for enemy.
+2025-12-18 12:49:48 [INFO] No enemy found, switching ally.
+2025-12-18 12:49:49 [INFO] ally found, looking for enemy.
+2025-12-18 12:49:49 [INFO] No enemy found, switching ally.
+2025-12-18 12:49:50 [INFO] ally found, looking for enemy.
+2025-12-18 12:49:51 [INFO] ally found, looking for enemy.
+2025-12-18 12:49:52 [INFO] ally found, looking for enemy.
+2025-12-18 12:49:53 [INFO] ally found, looking for enemy.
+2025-12-18 12:49:54 [INFO] ally found, looking for enemy.
+2025-12-18 12:49:55 [INFO] ally found, looking for enemy.
+2025-12-18 12:49:56 [INFO] ally found, looking for enemy.
+2025-12-18 12:49:57 [INFO] ally found, looking for enemy.
+2025-12-18 12:49:58 [INFO] ally found, looking for enemy.
+2025-12-18 12:49:58 [INFO] No enemy found, switching ally.
+2025-12-18 12:49:59 [INFO] ally found, looking for enemy.
+2025-12-18 12:49:59 [INFO] No enemy found, switching ally.
+2025-12-18 12:50:00 [INFO] ally found, looking for enemy.
+2025-12-18 12:50:00 [INFO] No enemy found, switching ally.
+2025-12-18 12:50:01 [INFO] ally found, looking for enemy.
+2025-12-18 12:50:01 [INFO] No enemy found, switching ally.
+2025-12-18 12:50:02 [INFO] ally found, looking for enemy.
+2025-12-18 12:50:03 [INFO] No enemy found, switching ally.
+2025-12-18 12:50:06 [INFO] ally found, looking for enemy.
+2025-12-18 12:50:06 [INFO] No enemy found, switching ally.
+2025-12-18 12:50:07 [INFO] ally found, looking for enemy.
+2025-12-18 12:50:07 [INFO] No enemy found, switching ally.
+2025-12-18 12:50:08 [INFO] ally found, looking for enemy.
+2025-12-18 12:50:09 [INFO] ally found, looking for enemy.
+2025-12-18 12:50:10 [INFO] ally found, looking for enemy.
+2025-12-18 12:50:12 [INFO] ally found, looking for enemy.
+2025-12-18 12:50:13 [INFO] ally found, looking for enemy.
+2025-12-18 12:50:14 [INFO] ally found, looking for enemy.
+2025-12-18 12:50:15 [INFO] ally found, looking for enemy.
+2025-12-18 12:50:16 [INFO] ally found, looking for enemy.
+2025-12-18 12:50:17 [INFO] ally found, looking for enemy.
+2025-12-18 12:50:18 [INFO] ally found, looking for enemy.
+2025-12-18 12:50:18 [INFO] ally found, looking for enemy.
+2025-12-18 12:50:19 [INFO] ally found, looking for enemy.
+2025-12-18 12:50:20 [INFO] ally found, looking for enemy.
+2025-12-18 12:50:21 [INFO] ally found, looking for enemy.
+2025-12-18 12:50:22 [INFO] ally found, looking for enemy.
+2025-12-18 12:50:23 [INFO] ally found, looking for enemy.
+2025-12-18 12:50:24 [INFO] ally found, looking for enemy.
+2025-12-18 12:50:25 [INFO] ally found, looking for enemy.
+2025-12-18 12:50:28 [INFO] ally found, looking for enemy.
+2025-12-18 12:50:29 [INFO] ally found, looking for enemy.
+2025-12-18 12:50:30 [INFO] ally found, looking for enemy.
+2025-12-18 12:50:33 [INFO] ally found, looking for enemy.
+2025-12-18 12:50:34 [INFO] ally found, looking for enemy.
+2025-12-18 12:50:35 [INFO] ally found, looking for enemy.
+2025-12-18 12:50:36 [INFO] ally found, looking for enemy.
+2025-12-18 12:50:37 [INFO] ally found, looking for enemy.
+2025-12-18 12:50:38 [INFO] ally found, looking for enemy.
+2025-12-18 12:50:43 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:50:44 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:50:45 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:50:46 [INFO] OCR: Found text 'SELL' at location (500, 853, 38, 13)
+2025-12-18 12:50:48 [INFO] Surrender is disabled. Skipping surrender vote.
+2025-12-18 12:50:52 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:50:53 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:50:54 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:50:54 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:50:55 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:50:55 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:50:56 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:50:57 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:50:57 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:50:58 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:50:58 [INFO] [EVENT] Game ended.
+2025-12-18 12:50:58 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:50:59 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:51:00 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:51:00 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:51:01 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:51:01 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:51:02 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:51:02 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:51:03 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:51:04 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:51:04 [ERROR] Game data request failed.
+2025-12-18 12:51:04 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:51:05 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:51:06 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:51:07 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:51:07 [INFO] Shutting down program...
+2025-12-18 12:51:08 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:51:09 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:51:10 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:51:11 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:51:12 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:51:13 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:51:15 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:51:18 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:51:20 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:51:22 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:51:24 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:51:25 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 12:51:25 [WARNING] Timeout reached without successfully shopping
+2025-12-18 12:51:25 [INFO] Surrender is disabled. Skipping surrender vote.
+2025-12-18 12:51:25 [INFO] Bot thread has exited.
+2025-12-18 12:51:25 [INFO] [INFO] Connector has been closed.
+2025-12-18 12:51:25 [ERROR] Failed to send play-again request: Connector is closed.
+2025-12-18 12:51:25 [INFO] [INFO] Connector has been closed.

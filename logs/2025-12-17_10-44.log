@@ -1,0 +1,11 @@
+2025-12-17 10:44:15 [INFO] Press DELETE key to exit anytime.
+2025-12-17 10:44:16 [INFO] Starting Script. Waiting for client...
+2025-12-17 10:44:16 [INFO] Connected to League client.
+2025-12-17 10:44:18 [INFO] [EVENT] Starting queue.
+2025-12-17 10:44:18 [INFO] Picking random champion ID: 887
+2025-12-17 10:44:30 [INFO] [EVENT] Game is in progress.
+2025-12-17 10:44:34 [INFO] Starting bot for mode: core.run_test
+2025-12-17 10:44:34 [WARNING] Request succeeded, but game data not found.
+2025-12-17 10:44:40 [INFO] Game has started.
+2025-12-17 10:44:40 [INFO] data present
+2025-12-17 10:47:57 [INFO] Event loop interrupted by keyboard

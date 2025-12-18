@@ -1,0 +1,26 @@
+2025-12-18 11:35:54 [INFO] Press DELETE key to exit anytime.
+2025-12-18 11:35:55 [INFO] Starting Script. Waiting for client...
+2025-12-18 11:35:55 [INFO] Connected to League client.
+2025-12-18 11:35:56 [INFO] [EVENT] Game is in progress.
+2025-12-18 11:35:57 [INFO] Starting bot for mode: core.run_aram
+2025-12-18 11:35:58 [INFO] Game has started.
+2025-12-18 11:35:59 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 11:36:00 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 11:36:00 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 11:36:01 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 11:36:02 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 11:36:02 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 11:36:03 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 11:36:04 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 11:36:04 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 11:36:05 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 11:36:06 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 11:36:06 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 11:36:07 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 11:36:08 [INFO] OCR: Found text 'SELL' at location (500, 853, 38, 13)
+2025-12-18 11:36:11 [INFO] OCR: Found text 'SELL' at location (500, 853, 38, 13)
+2025-12-18 11:36:12 [INFO] OCR: 'SELL' not found on screen.
+2025-12-18 11:36:25 [INFO] Shutting down program...
+2025-12-18 11:36:25 [INFO] [INFO] Connector has been closed.
+2025-12-18 11:36:26 [INFO] Bot thread has exited.
+2025-12-18 11:36:26 [INFO] Shut down complete.

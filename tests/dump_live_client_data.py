@@ -4,7 +4,7 @@ Script to retrieve all data from the League Live Client API and save it to a fil
 
 import json
 import requests
-from constants import LIVE_CLIENT_URL, DEFAULT_API_TIMEOUT
+from core.constants import LIVE_CLIENT_URL, DEFAULT_API_TIMEOUT
 import os
 
 def dump_live_client_data(output_file=None):

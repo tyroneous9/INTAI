@@ -1,0 +1,40 @@
+2025-12-17 10:52:12 [INFO] Press DELETE key to exit anytime.
+2025-12-17 10:52:29 [INFO] Press DELETE key to exit anytime.
+2025-12-17 10:52:30 [INFO] Starting Script. Waiting for client...
+2025-12-17 10:52:31 [INFO] Connected to League client.
+2025-12-17 10:52:32 [INFO] [EVENT] Game is in progress.
+2025-12-17 10:52:32 [INFO] Starting bot for mode: core.run_test
+2025-12-17 10:52:33 [INFO] Game has started.
+2025-12-17 10:52:33 [INFO] {'Events': [{'EventID': 0, 'EventName': 'GameStart', 'EventTime': 0.0193914994597435}, {'EventID': 1, 'EventName': 'MinionsSpawning', 'EventTime': 65.0327377319336}]}
+2025-12-17 10:52:34 [INFO] {'Events': [{'EventID': 0, 'EventName': 'GameStart', 'EventTime': 0.0193914994597435}, {'EventID': 1, 'EventName': 'MinionsSpawning', 'EventTime': 65.0327377319336}]}
+2025-12-17 10:52:34 [INFO] {'Events': [{'EventID': 0, 'EventName': 'GameStart', 'EventTime': 0.0193914994597435}, {'EventID': 1, 'EventName': 'MinionsSpawning', 'EventTime': 65.0327377319336}]}
+2025-12-17 10:52:35 [INFO] {'Events': [{'EventID': 0, 'EventName': 'GameStart', 'EventTime': 0.0193914994597435}, {'EventID': 1, 'EventName': 'MinionsSpawning', 'EventTime': 65.0327377319336}]}
+2025-12-17 10:52:35 [INFO] {'Events': [{'EventID': 0, 'EventName': 'GameStart', 'EventTime': 0.0193914994597435}, {'EventID': 1, 'EventName': 'MinionsSpawning', 'EventTime': 65.0327377319336}]}
+2025-12-17 10:52:36 [INFO] {'Events': [{'EventID': 0, 'EventName': 'GameStart', 'EventTime': 0.0193914994597435}, {'EventID': 1, 'EventName': 'MinionsSpawning', 'EventTime': 65.0327377319336}]}
+2025-12-17 10:52:36 [INFO] {'Events': [{'EventID': 0, 'EventName': 'GameStart', 'EventTime': 0.0193914994597435}, {'EventID': 1, 'EventName': 'MinionsSpawning', 'EventTime': 65.0327377319336}]}
+2025-12-17 10:52:37 [INFO] {'Events': [{'EventID': 0, 'EventName': 'GameStart', 'EventTime': 0.0193914994597435}, {'EventID': 1, 'EventName': 'MinionsSpawning', 'EventTime': 65.0327377319336}]}
+2025-12-17 10:52:37 [INFO] {'Events': [{'EventID': 0, 'EventName': 'GameStart', 'EventTime': 0.0193914994597435}, {'EventID': 1, 'EventName': 'MinionsSpawning', 'EventTime': 65.0327377319336}]}
+2025-12-17 10:52:38 [INFO] {'Events': [{'EventID': 0, 'EventName': 'GameStart', 'EventTime': 0.0193914994597435}, {'EventID': 1, 'EventName': 'MinionsSpawning', 'EventTime': 65.0327377319336}]}
+2025-12-17 10:52:38 [INFO] {'Events': [{'EventID': 0, 'EventName': 'GameStart', 'EventTime': 0.0193914994597435}, {'EventID': 1, 'EventName': 'MinionsSpawning', 'EventTime': 65.0327377319336}]}
+2025-12-17 10:52:39 [INFO] {'Events': [{'EventID': 0, 'EventName': 'GameStart', 'EventTime': 0.0193914994597435}, {'EventID': 1, 'EventName': 'MinionsSpawning', 'EventTime': 65.0327377319336}]}
+2025-12-17 10:52:39 [INFO] {'Events': [{'EventID': 0, 'EventName': 'GameStart', 'EventTime': 0.0193914994597435}, {'EventID': 1, 'EventName': 'MinionsSpawning', 'EventTime': 65.0327377319336}]}
+2025-12-17 10:52:40 [INFO] {'Events': [{'EventID': 0, 'EventName': 'GameStart', 'EventTime': 0.0193914994597435}, {'EventID': 1, 'EventName': 'MinionsSpawning', 'EventTime': 65.0327377319336}]}
+2025-12-17 10:52:40 [INFO] {'Events': [{'EventID': 0, 'EventName': 'GameStart', 'EventTime': 0.0193914994597435}, {'EventID': 1, 'EventName': 'MinionsSpawning', 'EventTime': 65.0327377319336}]}
+2025-12-17 10:52:41 [INFO] {'Events': [{'EventID': 0, 'EventName': 'GameStart', 'EventTime': 0.0193914994597435}, {'EventID': 1, 'EventName': 'MinionsSpawning', 'EventTime': 65.0327377319336}]}
+2025-12-17 10:52:41 [INFO] {'Events': [{'EventID': 0, 'EventName': 'GameStart', 'EventTime': 0.0193914994597435}, {'EventID': 1, 'EventName': 'MinionsSpawning', 'EventTime': 65.0327377319336}]}
+2025-12-17 10:52:42 [INFO] {'Events': [{'EventID': 0, 'EventName': 'GameStart', 'EventTime': 0.0193914994597435}, {'EventID': 1, 'EventName': 'MinionsSpawning', 'EventTime': 65.0327377319336}]}
+2025-12-17 10:52:42 [INFO] {'Events': [{'EventID': 0, 'EventName': 'GameStart', 'EventTime': 0.0193914994597435}, {'EventID': 1, 'EventName': 'MinionsSpawning', 'EventTime': 65.0327377319336}, {'EventID': 2, 'EventName': 'GameEnd', 'EventTime': 485.57830810546875, 'Result': 'Win'}]}
+2025-12-17 10:52:43 [INFO] {'Events': [{'EventID': 0, 'EventName': 'GameStart', 'EventTime': 0.0193914994597435}, {'EventID': 1, 'EventName': 'MinionsSpawning', 'EventTime': 65.0327377319336}, {'EventID': 2, 'EventName': 'GameEnd', 'EventTime': 485.57830810546875, 'Result': 'Win'}]}
+2025-12-17 10:52:43 [INFO] {'Events': [{'EventID': 0, 'EventName': 'GameStart', 'EventTime': 0.0193914994597435}, {'EventID': 1, 'EventName': 'MinionsSpawning', 'EventTime': 65.0327377319336}, {'EventID': 2, 'EventName': 'GameEnd', 'EventTime': 485.57830810546875, 'Result': 'Win'}]}
+2025-12-17 10:52:44 [INFO] {'Events': [{'EventID': 0, 'EventName': 'GameStart', 'EventTime': 0.0193914994597435}, {'EventID': 1, 'EventName': 'MinionsSpawning', 'EventTime': 65.0327377319336}, {'EventID': 2, 'EventName': 'GameEnd', 'EventTime': 485.57830810546875, 'Result': 'Win'}]}
+2025-12-17 10:52:44 [INFO] {'Events': [{'EventID': 0, 'EventName': 'GameStart', 'EventTime': 0.0193914994597435}, {'EventID': 1, 'EventName': 'MinionsSpawning', 'EventTime': 65.0327377319336}, {'EventID': 2, 'EventName': 'GameEnd', 'EventTime': 485.57830810546875, 'Result': 'Win'}]}
+2025-12-17 10:52:45 [INFO] {'Events': [{'EventID': 0, 'EventName': 'GameStart', 'EventTime': 0.0193914994597435}, {'EventID': 1, 'EventName': 'MinionsSpawning', 'EventTime': 65.0327377319336}, {'EventID': 2, 'EventName': 'GameEnd', 'EventTime': 485.57830810546875, 'Result': 'Win'}]}
+2025-12-17 10:52:45 [INFO] [EVENT] Game ended.
+2025-12-17 10:52:45 [INFO] {'Events': [{'EventID': 0, 'EventName': 'GameStart', 'EventTime': 0.0193914994597435}, {'EventID': 1, 'EventName': 'MinionsSpawning', 'EventTime': 65.0327377319336}, {'EventID': 2, 'EventName': 'GameEnd', 'EventTime': 485.57830810546875, 'Result': 'Win'}]}
+2025-12-17 10:52:45 [INFO] Bot thread has exited.
+2025-12-17 10:52:46 [INFO] Sent play-again request.
+2025-12-17 10:52:47 [INFO] [EVENT] Starting queue.
+2025-12-17 10:52:47 [INFO] Picking random champion ID: 5
+2025-12-17 10:52:48 [INFO] Shutting down program...
+2025-12-17 10:52:48 [INFO] [INFO] Connector has been closed.
+2025-12-17 10:52:48 [INFO] Shut down complete.

@@ -2,10 +2,8 @@
 
 import asyncio
 import logging
-import os
 import threading
 import random
-import importlib
 import winsound
 from utils.config_utils import (
     disable_insecure_request_warning, get_selected_game_mode, load_config
@@ -19,19 +17,21 @@ from core.constants import (
     GAMEFLOW_PHASES,
     CHAMP_SELECT_SUBPHASES
 )
-from utils.general_utils import bring_window_to_front, exit_listener, enable_logging
+from utils.general_utils import bring_window_to_front, enable_logging, listen_for_exit
 from lcu_driver import Connector
 from core.menu import show_menu  
+from core.bot_manager import BotManager
 
-connector = Connector()
+
+
 
 # State variables
 last_phase = None
 shutdown_event = threading.Event()
-game_end_event = threading.Event()
 
-# Thread references are stored on the `connector` instance to reduce module scope
-
+# Module instances
+connector = Connector()
+bot_manager = BotManager(shutdown_event)
 
 # ===========================
 # LCU Event Listeners
@@ -52,7 +52,7 @@ async def connect(connection):
     try:
         phase_resp = await connection.request('get', '/lol-gameflow/v1/gameflow-phase')
         current_phase = await phase_resp.json()
-        await on_gameflow_phase(connection, type('Event', (object,), {'data': current_phase})())
+        await on_gameflow_phase(connection, type('Event', (object,), {"data": current_phase})())
     except Exception as e:
         logging.error(f"Failed to check gameflow phase: {e}")
 
@@ -104,28 +104,17 @@ async def on_gameflow_phase(connection, event):
         # Activate the game window
         bring_window_to_front(LEAGUE_GAME_WINDOW_TITLE)
 
-        # Start the game loop thread and attach it to the connector instance
-        connector.game_loop_thread = threading.Thread(
-            target=run_game_loop, args=(game_end_event, shutdown_event), daemon=True
-        )
-        connector.game_loop_thread.start()
+        # Start the bot via the bot manager
+        bot_manager.run_bot()
 
     # Clean up bot thread and play again on end of game
     if phase == GAMEFLOW_PHASES["PRE_END_OF_GAME"]:
         logging.info("[EVENT] Game ended.")
  
-        # join the thread
-        game_end_event.set()
-        game_loop_thread = getattr(connector, "game_loop_thread", None)
-        if game_loop_thread and game_loop_thread.is_alive():
-            loop = asyncio.get_running_loop()
-            try:
-                await loop.run_in_executor(None, game_loop_thread.join, 10)
-            except Exception:
-                logging.exception("Error joining game loop thread")
-        game_end_event.clear()
+        # Stop the bot thread
+        bot_manager.stop_bot()
+        
         # Play again (recreate lobby)
-
         try:
             await connection.request('post', '/lol-lobby/v2/play-again')
             logging.info("Sent play-again request.")
@@ -210,38 +199,12 @@ async def disconnect(connection):
     Handler for disconnect event.
     Closes the connector and logs the disconnection.
     """
-    game_loop_thread = getattr(connector, "game_loop_thread", None)
-    if game_loop_thread and game_loop_thread.is_alive():
-        loop = asyncio.get_running_loop()
-        await loop.run_in_executor(None, game_loop_thread.join)
     logging.info("[INFO] Connector has been closed.")
 
 
 # ===========================
 # Script Functions
 # ===========================
-
-
-def run_game_loop(game_end_event, shutdown_event):
-    """
-    Runs the correct bot loop for the selected game mode.
-    The loop should exit when game_end_event is set (signaled by EndOfGame phase).
-    """
-    selected_game_mode = get_selected_game_mode()
-    mode_info = SUPPORTED_MODES.get(selected_game_mode)
-    logging.info(f"Starting bot for mode: {mode_info.get('module')}")
-    module_name = mode_info.get("module")
-    try:
-        module = importlib.import_module(module_name)
-    except ImportError as e:
-        logging.error(f"Could not import module '{module_name}': {e}")
-        return
-    if hasattr(module, "run_game_loop"):
-        module.run_game_loop(game_end_event, shutdown_event)
-    elif hasattr(module, "main"):
-        module.main()
-    else:
-        logging.error(f"No entry point found for '{selected_game_mode}'.")
 
  
 def run_script():
@@ -256,9 +219,11 @@ def shutdown():
     fut = asyncio.run_coroutine_threadsafe(connector.stop(), connector.loop)
     fut.result(timeout=10)
 
+    # Stop bot thread
+    bot_manager.stop_bot()
+
     logging.info("Shut down complete.")
     winsound.Beep(500,200)
-    os._exit(0)
 
 # ===========================
 # Main Entry Point
@@ -271,7 +236,7 @@ if __name__ == "__main__":
     """
     disable_insecure_request_warning()
     enable_logging()
-    threading.Thread(target=exit_listener, daemon=True, args=(shutdown,)).start()
+    listen_for_exit(shutdown)
     show_menu(run_script)
 
 

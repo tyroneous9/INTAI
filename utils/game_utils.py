@@ -66,15 +66,27 @@ def find_enemy_location():
     return find_champion_location(ENEMY_HEALTH_BAR_COLOR)
 
 
-def is_game_started(live_data):
+def is_game_started(game_data):
     """
     Returns True if the GameStart event is present in live client data.
     """
-    if not live_data:
+    if not game_data:
         return False
-    events = live_data.get("events", {}).get("Events", [])
+    events = game_data.get("events", {}).get("Events", [])
     for event in events:
         if event.get("EventName") == "GameStart":
+            return True
+    return False
+
+def is_game_ended(game_data):
+    """
+    Returns True if the GameStart event is present in live client data.
+    """
+    if not game_data:
+        return False
+    events = game_data["events"]["Events"]
+    for event in events:
+        if event["EventName"] == "GameEnd":
             return True
     return False
 
@@ -156,17 +168,15 @@ def buy_recommended_items():
     Opens the shop if not already open.
     Returns true if successful, otherwise false
     """
-    # First check for shop location
-    shop_location = find_text_location("SELL")
-
     # Open shop if not already open
-    if not shop_location:
+    if find_text_location("SELL") == None:
         keyboard.send(_keybinds.get("shop"))
-        time.sleep(0.5)
-        shop_location = find_text_location("SELL")
-        if not shop_location:
-            keyboard.send(_keybinds.get("shop"))
-            return False
+
+    # First search for shop location
+    shop_location = find_text_location("SELL")
+    if shop_location == None:
+        keyboard.send(_keybinds.get("shop"))
+        return False
 
     # Shop found, now buy items
     x, y = shop_location[:2]
@@ -184,6 +194,7 @@ def buy_recommended_items():
     return True
 
 
+
 def buy_items_list(item_list):
     """
     Buys a list of items by opening the shop, searching for each item, and attempting to buy it.
@@ -191,13 +202,13 @@ def buy_items_list(item_list):
         item_names (list of str): List of item names to buy.
     """
     # Open shop if not already open
-    if not find_text_location("SELL"):
+    if find_text_location("SELL") == None:
         keyboard.send(_keybinds.get("shop"))
-        time.sleep(0.5)
 
     # First search for shop location
     shop_location = find_text_location("SELL")
-    if not shop_location:
+    if shop_location == None:
+        keyboard.send(_keybinds.get("shop"))
         return False
 
     # Shop found, now buy items
@@ -214,6 +225,7 @@ def buy_items_list(item_list):
 
     # Close shop
     keyboard.send(_keybinds.get("shop"))
+    return True
         
 
 

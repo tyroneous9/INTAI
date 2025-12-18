@@ -1,5 +1,6 @@
 import datetime
 import os
+import threading
 import psutil
 import requests
 import win32gui
@@ -44,7 +45,7 @@ def fetch_live_client_data():
         return None
 
 
-def poll_live_client_data(latest_game_data_container, stop_event, poll_time=0.2):
+def poll_live_client_data(latest_game_data_container, shutdown_event, game_data_lock, poll_time=0.1):
     """
     Continuously polls live client data and updates the provided container. Container returns None if data was not successfully retrieved.
     Exits when stop_event is set.
@@ -53,8 +54,21 @@ def poll_live_client_data(latest_game_data_container, stop_event, poll_time=0.2)
         stop_event (threading.Event): Event to signal polling should stop.
         poll_time (int): Poll interval in seconds.
     """
-    while not stop_event.is_set():
-        latest_game_data_container['data'] = fetch_live_client_data()
+    
+    while not shutdown_event.is_set():
+        data = fetch_live_client_data()
+        # If the API call failed or returned None, skip update and retry
+        if data is None:
+            time.sleep(poll_time)
+            continue
+
+        # Replace the contents of the shared container with the latest data
+        try:
+            with game_data_lock:
+                latest_game_data_container.update(data)
+        except Exception:
+            logging.error("Failed to update latest_game_data_container with fetched data")
+            raise RuntimeError("Failed to update latest_game_data_container with fetched data")
         time.sleep(poll_time)
 
 
@@ -97,6 +111,23 @@ def get_champions_map():
 # Mouse and Keyboard Actions
 # ===========================
 
+
+def listen_for_exit(shutdown):
+        """
+        Listens for the exit key and then sets the shutdown_event.
+        """
+        exit_listener_thread = threading.Thread(target=_listen_for_exit_thread, args=(shutdown,), daemon=True)
+        exit_listener_thread.start()
+        return True
+    
+def _listen_for_exit_thread(shutdown):
+    """
+    Helper function for listening for exit key.
+    """
+    logging.info("Press DELETE key to exit anytime.")
+    keyboard.wait("delete")
+    shutdown()
+    
 
 def click_percent(x, y, x_offset_percent=0, y_offset_percent=0, button="left"):
     """
@@ -146,16 +177,6 @@ def click_on_cursor(button="left"):
     else:
         logging.warning(f"Unknown mouse button: {button}. Use 'left' or 'right'.")
     win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP, x, y, 0, 0)
-
-
-# Listen for the exit key to terminate the bot
-def exit_listener(shutdown):
-    """
-    Listens for the exit key and then sets the shutdown_event.
-    """
-    logging.info("Press DELETE key to exit anytime.")
-    keyboard.wait("delete")
-    shutdown()
 
 
 def test_mkb():
