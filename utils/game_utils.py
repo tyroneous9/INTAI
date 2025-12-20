@@ -215,21 +215,19 @@ def buy_recommended_items():
         if shop_location == None:
             time.sleep(0.5)
             keyboard.send(_keybinds.get("shop"))
+            time.sleep(0.5)
             return False
 
     # Shop found, now buy items
     x, y = shop_location[:2]
     click_percent(x, y, 0, -62, "left")
-    time.sleep(0.3)
+    time.sleep(0.5)
     click_percent(x, y, 15, -25, "right")
-    time.sleep(0.3)
-    click_percent(x, y, 15, -25, "right")
-    time.sleep(0.3)
-    click_percent(x, y, 15, -25, "right")
-    time.sleep(0.3)
+    time.sleep(0.5)
 
     # Close shop
     keyboard.send(_keybinds.get("shop"))
+    time.sleep(0.5)
     return True
 
 

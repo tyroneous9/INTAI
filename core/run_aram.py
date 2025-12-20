@@ -50,25 +50,16 @@ current_ally_index = 0
 # Phase Functions
 # ===========================
 
-def shop_phase(shutdown_event):
+def shop_phase():
     """
     Handles the shop phase which occurs when dead or at game start
     """
     # Click screen center for augment cards
     click_percent(SCREEN_CENTER[0], SCREEN_CENTER[1])
-    time.sleep(0.5)
-    timeout = 30
-    end_time = time.time() + timeout
-    while not shutdown_event.is_set():
-        # Successful shopping or timeout reached
-        if(buy_recommended_items() == True):
-            time.sleep(0.5)
-            break
-        elif time.time() > end_time:
-            logging.warning("Timeout reached without successfully shopping")
-            return
-        time.sleep(0.5)
-        click_percent(SCREEN_CENTER[0], SCREEN_CENTER[1])
+    time.sleep(0.1)
+    buy_recommended_items()
+    time.sleep(0.1)
+    click_percent(SCREEN_CENTER[0], SCREEN_CENTER[1])
     
     
 def combat_phase(latest_game_data, game_data_lock):
@@ -127,7 +118,7 @@ def run_game_loop(shutdown_event):
 
     logging.info("Game loop has started.")
     time.sleep(5)
-    shop_phase(shutdown_event)
+    shop_phase()
     
     # Main loop
     while not shutdown_event.is_set():
@@ -152,8 +143,9 @@ def run_game_loop(shutdown_event):
 
         # Shop or combat phase
         if current_hp == 0:
+            time.sleep(5)
             logging.info("Entering shop phase.")
-            shop_phase(shutdown_event)
+            shop_phase()
             vote_surrender()
         else:
             logging.info("Entering combat phase.")
