@@ -25,6 +25,6 @@
     "General": {
         "selected_game_mode": "Arena",
         "preferred_champion": "",
-        "surrender": true
+        "surrender": false
     }
 }

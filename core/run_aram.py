@@ -96,10 +96,11 @@ def combat_phase(latest_game_data, game_data_lock):
     else:
         # look for ally
         current_ally_index = random.randint(0, len(ally_keys) - 1)
+        click_percent(SCREEN_CENTER[0], SCREEN_CENTER[1])
         time.sleep(0.01)
     move_to_ally(current_ally_index + 1)
     time.sleep(0.01)  # Sleep after moving to ally
-    click_percent(SCREEN_CENTER[0], SCREEN_CENTER[1])
+    
 
 
 # ===========================
@@ -134,6 +135,8 @@ def run_game_loop(shutdown_event):
             current_level = latest_game_data["activePlayer"]["level"]
             current_hp = latest_game_data["activePlayer"]["championStats"]["currentHealth"]
             game_ended = is_game_ended(latest_game_data)
+        
+        logging.info(f"Current HP: {current_hp}, Level: {current_level}, Game Ended: {game_ended}")
 
         # Exits loop on game end
         if game_ended:
