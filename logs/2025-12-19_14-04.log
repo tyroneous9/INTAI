@@ -1,0 +1,854 @@
+2025-12-19 14:04:48 [INFO] Press DELETE key to exit anytime.
+2025-12-19 14:04:49 [INFO] Starting Script. Waiting for client...
+2025-12-19 14:04:50 [INFO] Connected to League client.
+2025-12-19 14:04:51 [INFO] [EVENT] Game is in progress.
+2025-12-19 14:04:51 [INFO] Starting bot for mode: core.run_test
+2025-12-19 14:04:52 [INFO] Game has started.
+2025-12-19 14:04:52 [INFO] Player Level: 1
+2025-12-19 14:04:52 [INFO] Current HP: 660.0 / 660.0
+2025-12-19 14:04:52 [INFO] Events:
+Events:   -     EventID: 0
+    EventName: GameStart
+    EventTime: 0.013664299622178078
+  -     EventID: 1
+    EventName: MinionsSpawning
+    EventTime: 65.01764678955078
+2025-12-19 14:04:57 [INFO] Player Level: 1
+2025-12-19 14:04:57 [INFO] Current HP: 660.0 / 660.0
+2025-12-19 14:04:57 [INFO] Events:
+Events:   -     EventID: 0
+    EventName: GameStart
+    EventTime: 0.013664299622178078
+  -     EventID: 1
+    EventName: MinionsSpawning
+    EventTime: 65.01764678955078
+2025-12-19 14:04:59 [ERROR] Game data request failed.
+2025-12-19 14:05:01 [INFO] Test lobby created.
+2025-12-19 14:05:01 [INFO] Test lobby created.
+2025-12-19 14:05:02 [INFO] Player Level: 1
+2025-12-19 14:05:02 [INFO] Current HP: 660.0 / 660.0
+2025-12-19 14:05:02 [INFO] Events:
+Events:   -     EventID: 0
+    EventName: GameStart
+    EventTime: 0.013664299622178078
+  -     EventID: 1
+    EventName: MinionsSpawning
+    EventTime: 65.01764678955078
+2025-12-19 14:05:06 [ERROR] Game data request failed.
+2025-12-19 14:05:07 [INFO] Player Level: 1
+2025-12-19 14:05:07 [INFO] Current HP: 660.0 / 660.0
+2025-12-19 14:05:07 [INFO] Events:
+Events:   -     EventID: 0
+    EventName: GameStart
+    EventTime: 0.013664299622178078
+  -     EventID: 1
+    EventName: MinionsSpawning
+    EventTime: 65.01764678955078
+2025-12-19 14:05:12 [INFO] Player Level: 1
+2025-12-19 14:05:12 [INFO] Current HP: 660.0 / 660.0
+2025-12-19 14:05:12 [INFO] Events:
+Events:   -     EventID: 0
+    EventName: GameStart
+    EventTime: 0.013664299622178078
+  -     EventID: 1
+    EventName: MinionsSpawning
+    EventTime: 65.01764678955078
+2025-12-19 14:05:13 [ERROR] Game data request failed.
+2025-12-19 14:05:17 [INFO] Player Level: 1
+2025-12-19 14:05:17 [INFO] Current HP: 660.0 / 660.0
+2025-12-19 14:05:17 [INFO] Events:
+Events:   -     EventID: 0
+    EventName: GameStart
+    EventTime: 0.013664299622178078
+  -     EventID: 1
+    EventName: MinionsSpawning
+    EventTime: 65.01764678955078
+2025-12-19 14:05:20 [ERROR] Game data request failed.
+2025-12-19 14:05:22 [INFO] Player Level: 1
+2025-12-19 14:05:22 [INFO] Current HP: 660.0 / 660.0
+2025-12-19 14:05:22 [INFO] Events:
+Events:   -     EventID: 0
+    EventName: GameStart
+    EventTime: 0.013664299622178078
+  -     EventID: 1
+    EventName: MinionsSpawning
+    EventTime: 65.01764678955078
+2025-12-19 14:05:27 [ERROR] Game data request failed.
+2025-12-19 14:05:27 [INFO] Player Level: 1
+2025-12-19 14:05:27 [INFO] Current HP: 660.0 / 660.0
+2025-12-19 14:05:27 [INFO] Events:
+Events:   -     EventID: 0
+    EventName: GameStart
+    EventTime: 0.013664299622178078
+  -     EventID: 1
+    EventName: MinionsSpawning
+    EventTime: 65.01764678955078
+2025-12-19 14:05:32 [INFO] Player Level: 1
+2025-12-19 14:05:32 [INFO] Current HP: 660.0 / 660.0
+2025-12-19 14:05:32 [INFO] Events:
+Events:   -     EventID: 0
+    EventName: GameStart
+    EventTime: 0.013664299622178078
+  -     EventID: 1
+    EventName: MinionsSpawning
+    EventTime: 65.01764678955078
+2025-12-19 14:05:34 [ERROR] Game data request failed.
+2025-12-19 14:05:37 [INFO] Player Level: 1
+2025-12-19 14:05:37 [INFO] Current HP: 660.0 / 660.0
+2025-12-19 14:05:37 [INFO] Events:
+Events:   -     EventID: 0
+    EventName: GameStart
+    EventTime: 0.013664299622178078
+  -     EventID: 1
+    EventName: MinionsSpawning
+    EventTime: 65.01764678955078
+2025-12-19 14:05:41 [ERROR] Game data request failed.
+2025-12-19 14:05:42 [INFO] Player Level: 1
+2025-12-19 14:05:42 [INFO] Current HP: 660.0 / 660.0
+2025-12-19 14:05:42 [INFO] Events:
+Events:   -     EventID: 0
+    EventName: GameStart
+    EventTime: 0.013664299622178078
+  -     EventID: 1
+    EventName: MinionsSpawning
+    EventTime: 65.01764678955078
+2025-12-19 14:05:47 [INFO] Player Level: 1
+2025-12-19 14:05:47 [INFO] Current HP: 660.0 / 660.0
+2025-12-19 14:05:47 [INFO] Events:
+Events:   -     EventID: 0
+    EventName: GameStart
+    EventTime: 0.013664299622178078
+  -     EventID: 1
+    EventName: MinionsSpawning
+    EventTime: 65.01764678955078
+2025-12-19 14:05:49 [ERROR] Game data request failed.
+2025-12-19 14:05:52 [INFO] Player Level: 1
+2025-12-19 14:05:52 [INFO] Current HP: 660.0 / 660.0
+2025-12-19 14:05:52 [INFO] Events:
+Events:   -     EventID: 0
+    EventName: GameStart
+    EventTime: 0.013664299622178078
+  -     EventID: 1
+    EventName: MinionsSpawning
+    EventTime: 65.01764678955078
+2025-12-19 14:05:56 [ERROR] Game data request failed.
+2025-12-19 14:05:57 [INFO] Player Level: 1
+2025-12-19 14:05:57 [INFO] Current HP: 660.0 / 660.0
+2025-12-19 14:05:57 [INFO] Events:
+Events:   -     EventID: 0
+    EventName: GameStart
+    EventTime: 0.013664299622178078
+  -     EventID: 1
+    EventName: MinionsSpawning
+    EventTime: 65.01764678955078
+2025-12-19 14:06:02 [INFO] Player Level: 1
+2025-12-19 14:06:02 [INFO] Current HP: 660.0 / 660.0
+2025-12-19 14:06:02 [INFO] Events:
+Events:   -     EventID: 0
+    EventName: GameStart
+    EventTime: 0.013664299622178078
+  -     EventID: 1
+    EventName: MinionsSpawning
+    EventTime: 65.01764678955078
+2025-12-19 14:06:03 [ERROR] Game data request failed.
+2025-12-19 14:06:07 [INFO] Player Level: 1
+2025-12-19 14:06:07 [INFO] Current HP: 660.0 / 660.0
+2025-12-19 14:06:07 [INFO] Events:
+Events:   -     EventID: 0
+    EventName: GameStart
+    EventTime: 0.013664299622178078
+  -     EventID: 1
+    EventName: MinionsSpawning
+    EventTime: 65.01764678955078
+2025-12-19 14:06:10 [ERROR] Game data request failed.
+2025-12-19 14:06:12 [INFO] Player Level: 1
+2025-12-19 14:06:12 [INFO] Current HP: 660.0 / 660.0
+2025-12-19 14:06:12 [INFO] Events:
+Events:   -     EventID: 0
+    EventName: GameStart
+    EventTime: 0.013664299622178078
+  -     EventID: 1
+    EventName: MinionsSpawning
+    EventTime: 65.01764678955078
+2025-12-19 14:06:17 [ERROR] Game data request failed.
+2025-12-19 14:06:17 [INFO] Player Level: 1
+2025-12-19 14:06:17 [INFO] Current HP: 660.0 / 660.0
+2025-12-19 14:06:17 [INFO] Events:
+Events:   -     EventID: 0
+    EventName: GameStart
+    EventTime: 0.013664299622178078
+  -     EventID: 1
+    EventName: MinionsSpawning
+    EventTime: 65.01764678955078
+2025-12-19 14:06:22 [INFO] Player Level: 1
+2025-12-19 14:06:22 [INFO] Current HP: 660.0 / 660.0
+2025-12-19 14:06:22 [INFO] Events:
+Events:   -     EventID: 0
+    EventName: GameStart
+    EventTime: 0.013664299622178078
+  -     EventID: 1
+    EventName: MinionsSpawning
+    EventTime: 65.01764678955078
+2025-12-19 14:06:24 [ERROR] Game data request failed.
+2025-12-19 14:06:27 [INFO] Player Level: 1
+2025-12-19 14:06:27 [INFO] Current HP: 660.0 / 660.0
+2025-12-19 14:06:27 [INFO] Events:
+Events:   -     EventID: 0
+    EventName: GameStart
+    EventTime: 0.013664299622178078
+  -     EventID: 1
+    EventName: MinionsSpawning
+    EventTime: 65.01764678955078
+2025-12-19 14:06:31 [ERROR] Game data request failed.
+2025-12-19 14:06:32 [INFO] Player Level: 1
+2025-12-19 14:06:32 [INFO] Current HP: 660.0 / 660.0
+2025-12-19 14:06:32 [INFO] Events:
+Events:   -     EventID: 0
+    EventName: GameStart
+    EventTime: 0.013664299622178078
+  -     EventID: 1
+    EventName: MinionsSpawning
+    EventTime: 65.01764678955078
+2025-12-19 14:06:37 [INFO] Player Level: 1
+2025-12-19 14:06:37 [INFO] Current HP: 660.0 / 660.0
+2025-12-19 14:06:37 [INFO] Events:
+Events:   -     EventID: 0
+    EventName: GameStart
+    EventTime: 0.013664299622178078
+  -     EventID: 1
+    EventName: MinionsSpawning
+    EventTime: 65.01764678955078
+2025-12-19 14:06:39 [ERROR] Game data request failed.
+2025-12-19 14:06:42 [INFO] Player Level: 1
+2025-12-19 14:06:42 [INFO] Current HP: 660.0 / 660.0
+2025-12-19 14:06:42 [INFO] Events:
+Events:   -     EventID: 0
+    EventName: GameStart
+    EventTime: 0.013664299622178078
+  -     EventID: 1
+    EventName: MinionsSpawning
+    EventTime: 65.01764678955078
+2025-12-19 14:06:46 [ERROR] Game data request failed.
+2025-12-19 14:06:47 [INFO] Player Level: 1
+2025-12-19 14:06:47 [INFO] Current HP: 660.0 / 660.0
+2025-12-19 14:06:47 [INFO] Events:
+Events:   -     EventID: 0
+    EventName: GameStart
+    EventTime: 0.013664299622178078
+  -     EventID: 1
+    EventName: MinionsSpawning
+    EventTime: 65.01764678955078
+2025-12-19 14:06:52 [INFO] Player Level: 1
+2025-12-19 14:06:52 [INFO] Current HP: 660.0 / 660.0
+2025-12-19 14:06:52 [INFO] Events:
+Events:   -     EventID: 0
+    EventName: GameStart
+    EventTime: 0.013664299622178078
+  -     EventID: 1
+    EventName: MinionsSpawning
+    EventTime: 65.01764678955078
+2025-12-19 14:06:53 [ERROR] Game data request failed.
+2025-12-19 14:06:57 [INFO] Player Level: 1
+2025-12-19 14:06:57 [INFO] Current HP: 660.0 / 660.0
+2025-12-19 14:06:57 [INFO] Events:
+Events:   -     EventID: 0
+    EventName: GameStart
+    EventTime: 0.013664299622178078
+  -     EventID: 1
+    EventName: MinionsSpawning
+    EventTime: 65.01764678955078
+2025-12-19 14:07:00 [ERROR] Game data request failed.
+2025-12-19 14:07:02 [INFO] Player Level: 1
+2025-12-19 14:07:02 [INFO] Current HP: 660.0 / 660.0
+2025-12-19 14:07:02 [INFO] Events:
+Events:   -     EventID: 0
+    EventName: GameStart
+    EventTime: 0.013664299622178078
+  -     EventID: 1
+    EventName: MinionsSpawning
+    EventTime: 65.01764678955078
+2025-12-19 14:07:07 [ERROR] Game data request failed.
+2025-12-19 14:07:07 [INFO] Player Level: 1
+2025-12-19 14:07:07 [INFO] Current HP: 660.0 / 660.0
+2025-12-19 14:07:07 [INFO] Events:
+Events:   -     EventID: 0
+    EventName: GameStart
+    EventTime: 0.013664299622178078
+  -     EventID: 1
+    EventName: MinionsSpawning
+    EventTime: 65.01764678955078
+2025-12-19 14:07:12 [INFO] Player Level: 1
+2025-12-19 14:07:12 [INFO] Current HP: 660.0 / 660.0
+2025-12-19 14:07:12 [INFO] Events:
+Events:   -     EventID: 0
+    EventName: GameStart
+    EventTime: 0.013664299622178078
+  -     EventID: 1
+    EventName: MinionsSpawning
+    EventTime: 65.01764678955078
+2025-12-19 14:07:14 [ERROR] Game data request failed.
+2025-12-19 14:07:17 [INFO] Player Level: 1
+2025-12-19 14:07:17 [INFO] Current HP: 660.0 / 660.0
+2025-12-19 14:07:17 [INFO] Events:
+Events:   -     EventID: 0
+    EventName: GameStart
+    EventTime: 0.013664299622178078
+  -     EventID: 1
+    EventName: MinionsSpawning
+    EventTime: 65.01764678955078
+2025-12-19 14:07:21 [ERROR] Game data request failed.
+2025-12-19 14:07:22 [INFO] Player Level: 1
+2025-12-19 14:07:22 [INFO] Current HP: 660.0 / 660.0
+2025-12-19 14:07:22 [INFO] Events:
+Events:   -     EventID: 0
+    EventName: GameStart
+    EventTime: 0.013664299622178078
+  -     EventID: 1
+    EventName: MinionsSpawning
+    EventTime: 65.01764678955078
+2025-12-19 14:07:27 [INFO] Player Level: 1
+2025-12-19 14:07:27 [INFO] Current HP: 660.0 / 660.0
+2025-12-19 14:07:27 [INFO] Events:
+Events:   -     EventID: 0
+    EventName: GameStart
+    EventTime: 0.013664299622178078
+  -     EventID: 1
+    EventName: MinionsSpawning
+    EventTime: 65.01764678955078
+2025-12-19 14:07:29 [ERROR] Game data request failed.
+2025-12-19 14:07:32 [INFO] Player Level: 1
+2025-12-19 14:07:32 [INFO] Current HP: 660.0 / 660.0
+2025-12-19 14:07:32 [INFO] Events:
+Events:   -     EventID: 0
+    EventName: GameStart
+    EventTime: 0.013664299622178078
+  -     EventID: 1
+    EventName: MinionsSpawning
+    EventTime: 65.01764678955078
+2025-12-19 14:07:36 [ERROR] Game data request failed.
+2025-12-19 14:07:37 [INFO] Player Level: 1
+2025-12-19 14:07:37 [INFO] Current HP: 660.0 / 660.0
+2025-12-19 14:07:37 [INFO] Events:
+Events:   -     EventID: 0
+    EventName: GameStart
+    EventTime: 0.013664299622178078
+  -     EventID: 1
+    EventName: MinionsSpawning
+    EventTime: 65.01764678955078
+2025-12-19 14:07:42 [INFO] Player Level: 1
+2025-12-19 14:07:42 [INFO] Current HP: 660.0 / 660.0
+2025-12-19 14:07:42 [INFO] Events:
+Events:   -     EventID: 0
+    EventName: GameStart
+    EventTime: 0.013664299622178078
+  -     EventID: 1
+    EventName: MinionsSpawning
+    EventTime: 65.01764678955078
+2025-12-19 14:07:43 [ERROR] Game data request failed.
+2025-12-19 14:07:47 [INFO] Player Level: 1
+2025-12-19 14:07:47 [INFO] Current HP: 660.0 / 660.0
+2025-12-19 14:07:47 [INFO] Events:
+Events:   -     EventID: 0
+    EventName: GameStart
+    EventTime: 0.013664299622178078
+  -     EventID: 1
+    EventName: MinionsSpawning
+    EventTime: 65.01764678955078
+2025-12-19 14:07:50 [ERROR] Game data request failed.
+2025-12-19 14:07:52 [INFO] Player Level: 1
+2025-12-19 14:07:52 [INFO] Current HP: 660.0 / 660.0
+2025-12-19 14:07:52 [INFO] Events:
+Events:   -     EventID: 0
+    EventName: GameStart
+    EventTime: 0.013664299622178078
+  -     EventID: 1
+    EventName: MinionsSpawning
+    EventTime: 65.01764678955078
+2025-12-19 14:07:57 [ERROR] Game data request failed.
+2025-12-19 14:07:57 [INFO] Player Level: 1
+2025-12-19 14:07:57 [INFO] Current HP: 660.0 / 660.0
+2025-12-19 14:07:57 [INFO] Events:
+Events:   -     EventID: 0
+    EventName: GameStart
+    EventTime: 0.013664299622178078
+  -     EventID: 1
+    EventName: MinionsSpawning
+    EventTime: 65.01764678955078
+2025-12-19 14:08:02 [INFO] Player Level: 1
+2025-12-19 14:08:02 [INFO] Current HP: 660.0 / 660.0
+2025-12-19 14:08:02 [INFO] Events:
+Events:   -     EventID: 0
+    EventName: GameStart
+    EventTime: 0.013664299622178078
+  -     EventID: 1
+    EventName: MinionsSpawning
+    EventTime: 65.01764678955078
+2025-12-19 14:08:04 [ERROR] Game data request failed.
+2025-12-19 14:08:07 [INFO] Player Level: 1
+2025-12-19 14:08:07 [INFO] Current HP: 660.0 / 660.0
+2025-12-19 14:08:07 [INFO] Events:
+Events:   -     EventID: 0
+    EventName: GameStart
+    EventTime: 0.013664299622178078
+  -     EventID: 1
+    EventName: MinionsSpawning
+    EventTime: 65.01764678955078
+2025-12-19 14:08:11 [ERROR] Game data request failed.
+2025-12-19 14:08:12 [INFO] Player Level: 1
+2025-12-19 14:08:12 [INFO] Current HP: 660.0 / 660.0
+2025-12-19 14:08:12 [INFO] Events:
+Events:   -     EventID: 0
+    EventName: GameStart
+    EventTime: 0.013664299622178078
+  -     EventID: 1
+    EventName: MinionsSpawning
+    EventTime: 65.01764678955078
+2025-12-19 14:08:17 [INFO] Player Level: 1
+2025-12-19 14:08:17 [INFO] Current HP: 660.0 / 660.0
+2025-12-19 14:08:17 [INFO] Events:
+Events:   -     EventID: 0
+    EventName: GameStart
+    EventTime: 0.013664299622178078
+  -     EventID: 1
+    EventName: MinionsSpawning
+    EventTime: 65.01764678955078
+2025-12-19 14:08:19 [ERROR] Game data request failed.
+2025-12-19 14:08:22 [INFO] Player Level: 1
+2025-12-19 14:08:22 [INFO] Current HP: 660.0 / 660.0
+2025-12-19 14:08:22 [INFO] Events:
+Events:   -     EventID: 0
+    EventName: GameStart
+    EventTime: 0.013664299622178078
+  -     EventID: 1
+    EventName: MinionsSpawning
+    EventTime: 65.01764678955078
+2025-12-19 14:08:26 [ERROR] Game data request failed.
+2025-12-19 14:08:27 [INFO] Player Level: 1
+2025-12-19 14:08:27 [INFO] Current HP: 660.0 / 660.0
+2025-12-19 14:08:27 [INFO] Events:
+Events:   -     EventID: 0
+    EventName: GameStart
+    EventTime: 0.013664299622178078
+  -     EventID: 1
+    EventName: MinionsSpawning
+    EventTime: 65.01764678955078
+2025-12-19 14:08:32 [INFO] Player Level: 1
+2025-12-19 14:08:32 [INFO] Current HP: 660.0 / 660.0
+2025-12-19 14:08:32 [INFO] Events:
+Events:   -     EventID: 0
+    EventName: GameStart
+    EventTime: 0.013664299622178078
+  -     EventID: 1
+    EventName: MinionsSpawning
+    EventTime: 65.01764678955078
+2025-12-19 14:08:33 [ERROR] Game data request failed.
+2025-12-19 14:08:37 [INFO] Player Level: 1
+2025-12-19 14:08:37 [INFO] Current HP: 660.0 / 660.0
+2025-12-19 14:08:37 [INFO] Events:
+Events:   -     EventID: 0
+    EventName: GameStart
+    EventTime: 0.013664299622178078
+  -     EventID: 1
+    EventName: MinionsSpawning
+    EventTime: 65.01764678955078
+2025-12-19 14:08:40 [ERROR] Game data request failed.
+2025-12-19 14:08:42 [INFO] Player Level: 1
+2025-12-19 14:08:42 [INFO] Current HP: 660.0 / 660.0
+2025-12-19 14:08:42 [INFO] Events:
+Events:   -     EventID: 0
+    EventName: GameStart
+    EventTime: 0.013664299622178078
+  -     EventID: 1
+    EventName: MinionsSpawning
+    EventTime: 65.01764678955078
+2025-12-19 14:08:47 [ERROR] Game data request failed.
+2025-12-19 14:08:47 [INFO] Player Level: 1
+2025-12-19 14:08:47 [INFO] Current HP: 660.0 / 660.0
+2025-12-19 14:08:47 [INFO] Events:
+Events:   -     EventID: 0
+    EventName: GameStart
+    EventTime: 0.013664299622178078
+  -     EventID: 1
+    EventName: MinionsSpawning
+    EventTime: 65.01764678955078
+2025-12-19 14:08:52 [INFO] Player Level: 1
+2025-12-19 14:08:52 [INFO] Current HP: 660.0 / 660.0
+2025-12-19 14:08:52 [INFO] Events:
+Events:   -     EventID: 0
+    EventName: GameStart
+    EventTime: 0.013664299622178078
+  -     EventID: 1
+    EventName: MinionsSpawning
+    EventTime: 65.01764678955078
+2025-12-19 14:08:54 [ERROR] Game data request failed.
+2025-12-19 14:08:57 [INFO] Player Level: 1
+2025-12-19 14:08:57 [INFO] Current HP: 660.0 / 660.0
+2025-12-19 14:08:57 [INFO] Events:
+Events:   -     EventID: 0
+    EventName: GameStart
+    EventTime: 0.013664299622178078
+  -     EventID: 1
+    EventName: MinionsSpawning
+    EventTime: 65.01764678955078
+2025-12-19 14:09:01 [ERROR] Game data request failed.
+2025-12-19 14:09:02 [INFO] Player Level: 1
+2025-12-19 14:09:02 [INFO] Current HP: 660.0 / 660.0
+2025-12-19 14:09:02 [INFO] Events:
+Events:   -     EventID: 0
+    EventName: GameStart
+    EventTime: 0.013664299622178078
+  -     EventID: 1
+    EventName: MinionsSpawning
+    EventTime: 65.01764678955078
+2025-12-19 14:09:07 [INFO] Player Level: 1
+2025-12-19 14:09:07 [INFO] Current HP: 660.0 / 660.0
+2025-12-19 14:09:07 [INFO] Events:
+Events:   -     EventID: 0
+    EventName: GameStart
+    EventTime: 0.013664299622178078
+  -     EventID: 1
+    EventName: MinionsSpawning
+    EventTime: 65.01764678955078
+2025-12-19 14:09:09 [ERROR] Game data request failed.
+2025-12-19 14:09:12 [INFO] Player Level: 1
+2025-12-19 14:09:12 [INFO] Current HP: 660.0 / 660.0
+2025-12-19 14:09:12 [INFO] Events:
+Events:   -     EventID: 0
+    EventName: GameStart
+    EventTime: 0.013664299622178078
+  -     EventID: 1
+    EventName: MinionsSpawning
+    EventTime: 65.01764678955078
+2025-12-19 14:09:16 [ERROR] Game data request failed.
+2025-12-19 14:09:17 [INFO] Player Level: 1
+2025-12-19 14:09:17 [INFO] Current HP: 660.0 / 660.0
+2025-12-19 14:09:17 [INFO] Events:
+Events:   -     EventID: 0
+    EventName: GameStart
+    EventTime: 0.013664299622178078
+  -     EventID: 1
+    EventName: MinionsSpawning
+    EventTime: 65.01764678955078
+2025-12-19 14:09:22 [INFO] Player Level: 1
+2025-12-19 14:09:22 [INFO] Current HP: 660.0 / 660.0
+2025-12-19 14:09:22 [INFO] Events:
+Events:   -     EventID: 0
+    EventName: GameStart
+    EventTime: 0.013664299622178078
+  -     EventID: 1
+    EventName: MinionsSpawning
+    EventTime: 65.01764678955078
+2025-12-19 14:09:23 [ERROR] Game data request failed.
+2025-12-19 14:09:27 [INFO] Player Level: 1
+2025-12-19 14:09:27 [INFO] Current HP: 660.0 / 660.0
+2025-12-19 14:09:27 [INFO] Events:
+Events:   -     EventID: 0
+    EventName: GameStart
+    EventTime: 0.013664299622178078
+  -     EventID: 1
+    EventName: MinionsSpawning
+    EventTime: 65.01764678955078
+2025-12-19 14:09:30 [ERROR] Game data request failed.
+2025-12-19 14:09:32 [INFO] Player Level: 1
+2025-12-19 14:09:32 [INFO] Current HP: 660.0 / 660.0
+2025-12-19 14:09:32 [INFO] Events:
+Events:   -     EventID: 0
+    EventName: GameStart
+    EventTime: 0.013664299622178078
+  -     EventID: 1
+    EventName: MinionsSpawning
+    EventTime: 65.01764678955078
+2025-12-19 14:09:37 [ERROR] Game data request failed.
+2025-12-19 14:09:37 [INFO] Player Level: 1
+2025-12-19 14:09:37 [INFO] Current HP: 660.0 / 660.0
+2025-12-19 14:09:37 [INFO] Events:
+Events:   -     EventID: 0
+    EventName: GameStart
+    EventTime: 0.013664299622178078
+  -     EventID: 1
+    EventName: MinionsSpawning
+    EventTime: 65.01764678955078
+2025-12-19 14:09:42 [INFO] Player Level: 1
+2025-12-19 14:09:42 [INFO] Current HP: 660.0 / 660.0
+2025-12-19 14:09:42 [INFO] Events:
+Events:   -     EventID: 0
+    EventName: GameStart
+    EventTime: 0.013664299622178078
+  -     EventID: 1
+    EventName: MinionsSpawning
+    EventTime: 65.01764678955078
+2025-12-19 14:09:44 [ERROR] Game data request failed.
+2025-12-19 14:09:47 [INFO] Player Level: 1
+2025-12-19 14:09:47 [INFO] Current HP: 660.0 / 660.0
+2025-12-19 14:09:47 [INFO] Events:
+Events:   -     EventID: 0
+    EventName: GameStart
+    EventTime: 0.013664299622178078
+  -     EventID: 1
+    EventName: MinionsSpawning
+    EventTime: 65.01764678955078
+2025-12-19 14:09:51 [ERROR] Game data request failed.
+2025-12-19 14:09:52 [INFO] Player Level: 1
+2025-12-19 14:09:52 [INFO] Current HP: 660.0 / 660.0
+2025-12-19 14:09:52 [INFO] Events:
+Events:   -     EventID: 0
+    EventName: GameStart
+    EventTime: 0.013664299622178078
+  -     EventID: 1
+    EventName: MinionsSpawning
+    EventTime: 65.01764678955078
+2025-12-19 14:09:57 [INFO] Player Level: 1
+2025-12-19 14:09:57 [INFO] Current HP: 660.0 / 660.0
+2025-12-19 14:09:57 [INFO] Events:
+Events:   -     EventID: 0
+    EventName: GameStart
+    EventTime: 0.013664299622178078
+  -     EventID: 1
+    EventName: MinionsSpawning
+    EventTime: 65.01764678955078
+2025-12-19 14:09:59 [ERROR] Game data request failed.
+2025-12-19 14:10:02 [INFO] Player Level: 1
+2025-12-19 14:10:02 [INFO] Current HP: 660.0 / 660.0
+2025-12-19 14:10:02 [INFO] Events:
+Events:   -     EventID: 0
+    EventName: GameStart
+    EventTime: 0.013664299622178078
+  -     EventID: 1
+    EventName: MinionsSpawning
+    EventTime: 65.01764678955078
+2025-12-19 14:10:06 [ERROR] Game data request failed.
+2025-12-19 14:10:07 [INFO] Player Level: 1
+2025-12-19 14:10:07 [INFO] Current HP: 660.0 / 660.0
+2025-12-19 14:10:07 [INFO] Events:
+Events:   -     EventID: 0
+    EventName: GameStart
+    EventTime: 0.013664299622178078
+  -     EventID: 1
+    EventName: MinionsSpawning
+    EventTime: 65.01764678955078
+2025-12-19 14:10:12 [INFO] Player Level: 1
+2025-12-19 14:10:12 [INFO] Current HP: 660.0 / 660.0
+2025-12-19 14:10:12 [INFO] Events:
+Events:   -     EventID: 0
+    EventName: GameStart
+    EventTime: 0.013664299622178078
+  -     EventID: 1
+    EventName: MinionsSpawning
+    EventTime: 65.01764678955078
+2025-12-19 14:10:13 [ERROR] Game data request failed.
+2025-12-19 14:10:17 [INFO] Player Level: 1
+2025-12-19 14:10:17 [INFO] Current HP: 660.0 / 660.0
+2025-12-19 14:10:17 [INFO] Events:
+Events:   -     EventID: 0
+    EventName: GameStart
+    EventTime: 0.013664299622178078
+  -     EventID: 1
+    EventName: MinionsSpawning
+    EventTime: 65.01764678955078
+2025-12-19 14:10:20 [ERROR] Game data request failed.
+2025-12-19 14:10:22 [INFO] Player Level: 1
+2025-12-19 14:10:22 [INFO] Current HP: 660.0 / 660.0
+2025-12-19 14:10:22 [INFO] Events:
+Events:   -     EventID: 0
+    EventName: GameStart
+    EventTime: 0.013664299622178078
+  -     EventID: 1
+    EventName: MinionsSpawning
+    EventTime: 65.01764678955078
+2025-12-19 14:10:27 [ERROR] Game data request failed.
+2025-12-19 14:10:27 [INFO] Player Level: 1
+2025-12-19 14:10:27 [INFO] Current HP: 660.0 / 660.0
+2025-12-19 14:10:27 [INFO] Events:
+Events:   -     EventID: 0
+    EventName: GameStart
+    EventTime: 0.013664299622178078
+  -     EventID: 1
+    EventName: MinionsSpawning
+    EventTime: 65.01764678955078
+2025-12-19 14:10:32 [INFO] Player Level: 1
+2025-12-19 14:10:32 [INFO] Current HP: 660.0 / 660.0
+2025-12-19 14:10:32 [INFO] Events:
+Events:   -     EventID: 0
+    EventName: GameStart
+    EventTime: 0.013664299622178078
+  -     EventID: 1
+    EventName: MinionsSpawning
+    EventTime: 65.01764678955078
+2025-12-19 14:10:34 [ERROR] Game data request failed.
+2025-12-19 14:10:37 [INFO] Player Level: 1
+2025-12-19 14:10:37 [INFO] Current HP: 660.0 / 660.0
+2025-12-19 14:10:37 [INFO] Events:
+Events:   -     EventID: 0
+    EventName: GameStart
+    EventTime: 0.013664299622178078
+  -     EventID: 1
+    EventName: MinionsSpawning
+    EventTime: 65.01764678955078
+2025-12-19 14:10:41 [ERROR] Game data request failed.
+2025-12-19 14:10:42 [INFO] Player Level: 1
+2025-12-19 14:10:42 [INFO] Current HP: 660.0 / 660.0
+2025-12-19 14:10:42 [INFO] Events:
+Events:   -     EventID: 0
+    EventName: GameStart
+    EventTime: 0.013664299622178078
+  -     EventID: 1
+    EventName: MinionsSpawning
+    EventTime: 65.01764678955078
+2025-12-19 14:10:47 [INFO] Player Level: 1
+2025-12-19 14:10:47 [INFO] Current HP: 660.0 / 660.0
+2025-12-19 14:10:47 [INFO] Events:
+Events:   -     EventID: 0
+    EventName: GameStart
+    EventTime: 0.013664299622178078
+  -     EventID: 1
+    EventName: MinionsSpawning
+    EventTime: 65.01764678955078
+2025-12-19 14:10:49 [ERROR] Game data request failed.
+2025-12-19 14:10:52 [INFO] Player Level: 1
+2025-12-19 14:10:52 [INFO] Current HP: 660.0 / 660.0
+2025-12-19 14:10:52 [INFO] Events:
+Events:   -     EventID: 0
+    EventName: GameStart
+    EventTime: 0.013664299622178078
+  -     EventID: 1
+    EventName: MinionsSpawning
+    EventTime: 65.01764678955078
+2025-12-19 14:10:56 [ERROR] Game data request failed.
+2025-12-19 14:10:57 [INFO] Player Level: 1
+2025-12-19 14:10:57 [INFO] Current HP: 660.0 / 660.0
+2025-12-19 14:10:57 [INFO] Events:
+Events:   -     EventID: 0
+    EventName: GameStart
+    EventTime: 0.013664299622178078
+  -     EventID: 1
+    EventName: MinionsSpawning
+    EventTime: 65.01764678955078
+2025-12-19 14:11:02 [INFO] Player Level: 1
+2025-12-19 14:11:02 [INFO] Current HP: 660.0 / 660.0
+2025-12-19 14:11:02 [INFO] Events:
+Events:   -     EventID: 0
+    EventName: GameStart
+    EventTime: 0.013664299622178078
+  -     EventID: 1
+    EventName: MinionsSpawning
+    EventTime: 65.01764678955078
+2025-12-19 14:11:03 [ERROR] Game data request failed.
+2025-12-19 14:11:07 [INFO] Player Level: 1
+2025-12-19 14:11:07 [INFO] Current HP: 660.0 / 660.0
+2025-12-19 14:11:07 [INFO] Events:
+Events:   -     EventID: 0
+    EventName: GameStart
+    EventTime: 0.013664299622178078
+  -     EventID: 1
+    EventName: MinionsSpawning
+    EventTime: 65.01764678955078
+2025-12-19 14:11:10 [ERROR] Game data request failed.
+2025-12-19 14:11:12 [INFO] Player Level: 1
+2025-12-19 14:11:12 [INFO] Current HP: 660.0 / 660.0
+2025-12-19 14:11:12 [INFO] Events:
+Events:   -     EventID: 0
+    EventName: GameStart
+    EventTime: 0.013664299622178078
+  -     EventID: 1
+    EventName: MinionsSpawning
+    EventTime: 65.01764678955078
+2025-12-19 14:11:17 [ERROR] Game data request failed.
+2025-12-19 14:11:17 [INFO] Player Level: 1
+2025-12-19 14:11:17 [INFO] Current HP: 660.0 / 660.0
+2025-12-19 14:11:17 [INFO] Events:
+Events:   -     EventID: 0
+    EventName: GameStart
+    EventTime: 0.013664299622178078
+  -     EventID: 1
+    EventName: MinionsSpawning
+    EventTime: 65.01764678955078
+2025-12-19 14:11:22 [INFO] Player Level: 1
+2025-12-19 14:11:22 [INFO] Current HP: 660.0 / 660.0
+2025-12-19 14:11:22 [INFO] Events:
+Events:   -     EventID: 0
+    EventName: GameStart
+    EventTime: 0.013664299622178078
+  -     EventID: 1
+    EventName: MinionsSpawning
+    EventTime: 65.01764678955078
+2025-12-19 14:11:24 [ERROR] Game data request failed.
+2025-12-19 14:11:27 [INFO] Player Level: 1
+2025-12-19 14:11:27 [INFO] Current HP: 660.0 / 660.0
+2025-12-19 14:11:27 [INFO] Events:
+Events:   -     EventID: 0
+    EventName: GameStart
+    EventTime: 0.013664299622178078
+  -     EventID: 1
+    EventName: MinionsSpawning
+    EventTime: 65.01764678955078
+2025-12-19 14:11:31 [ERROR] Game data request failed.
+2025-12-19 14:11:32 [INFO] Player Level: 1
+2025-12-19 14:11:32 [INFO] Current HP: 660.0 / 660.0
+2025-12-19 14:11:32 [INFO] Events:
+Events:   -     EventID: 0
+    EventName: GameStart
+    EventTime: 0.013664299622178078
+  -     EventID: 1
+    EventName: MinionsSpawning
+    EventTime: 65.01764678955078
+2025-12-19 14:11:37 [INFO] Player Level: 1
+2025-12-19 14:11:37 [INFO] Current HP: 660.0 / 660.0
+2025-12-19 14:11:37 [INFO] Events:
+Events:   -     EventID: 0
+    EventName: GameStart
+    EventTime: 0.013664299622178078
+  -     EventID: 1
+    EventName: MinionsSpawning
+    EventTime: 65.01764678955078
+2025-12-19 14:11:39 [ERROR] Game data request failed.
+2025-12-19 14:11:42 [INFO] Player Level: 1
+2025-12-19 14:11:42 [INFO] Current HP: 660.0 / 660.0
+2025-12-19 14:11:42 [INFO] Events:
+Events:   -     EventID: 0
+    EventName: GameStart
+    EventTime: 0.013664299622178078
+  -     EventID: 1
+    EventName: MinionsSpawning
+    EventTime: 65.01764678955078
+2025-12-19 14:11:46 [ERROR] Game data request failed.
+2025-12-19 14:11:47 [INFO] Player Level: 1
+2025-12-19 14:11:47 [INFO] Current HP: 660.0 / 660.0
+2025-12-19 14:11:47 [INFO] Events:
+Events:   -     EventID: 0
+    EventName: GameStart
+    EventTime: 0.013664299622178078
+  -     EventID: 1
+    EventName: MinionsSpawning
+    EventTime: 65.01764678955078
+2025-12-19 14:11:52 [INFO] Player Level: 1
+2025-12-19 14:11:52 [INFO] Current HP: 660.0 / 660.0
+2025-12-19 14:11:52 [INFO] Events:
+Events:   -     EventID: 0
+    EventName: GameStart
+    EventTime: 0.013664299622178078
+  -     EventID: 1
+    EventName: MinionsSpawning
+    EventTime: 65.01764678955078
+2025-12-19 14:11:53 [ERROR] Game data request failed.
+2025-12-19 14:11:57 [INFO] Player Level: 1
+2025-12-19 14:11:57 [INFO] Current HP: 660.0 / 660.0
+2025-12-19 14:11:57 [INFO] Events:
+Events:   -     EventID: 0
+    EventName: GameStart
+    EventTime: 0.013664299622178078
+  -     EventID: 1
+    EventName: MinionsSpawning
+    EventTime: 65.01764678955078
+2025-12-19 14:12:00 [ERROR] Game data request failed.
+2025-12-19 14:12:02 [INFO] Player Level: 1
+2025-12-19 14:12:02 [INFO] Current HP: 660.0 / 660.0
+2025-12-19 14:12:02 [INFO] Events:
+Events:   -     EventID: 0
+    EventName: GameStart
+    EventTime: 0.013664299622178078
+  -     EventID: 1
+    EventName: MinionsSpawning
+    EventTime: 65.01764678955078
+2025-12-19 14:12:05 [INFO] Shutting down program...
+2025-12-19 14:12:05 [INFO] [INFO] Connector has been closed.
+2025-12-19 14:12:07 [INFO] [INFO] Connector has been closed.

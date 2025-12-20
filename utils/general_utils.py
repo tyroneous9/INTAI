@@ -45,7 +45,7 @@ def fetch_live_client_data():
         return None
 
 
-def poll_live_client_data(latest_game_data_container, shutdown_event, game_data_lock, poll_time=0.1):
+def poll_live_client_data(latest_game_data_container, game_ended_event, game_data_lock, poll_time=0.1):
     """
     Continuously polls live client data and updates the provided container. Container returns None if data was not successfully retrieved.
     Exits when stop_event is set.
@@ -55,7 +55,12 @@ def poll_live_client_data(latest_game_data_container, shutdown_event, game_data_
         poll_time (int): Poll interval in seconds.
     """
     
-    while not shutdown_event.is_set():
+    # Validate event parameter
+    if game_ended_event is None or game_data_lock is None:
+        logging.error("poll_live_client_data requires valid threading parameters.")
+        return
+
+    while not game_ended_event.is_set():
         data = fetch_live_client_data()
         # If the API call failed or returned None, skip update and retry
         if data is None:
@@ -343,6 +348,23 @@ def enable_logging(log_file=None, level=logging.INFO):
             logging.StreamHandler()
         ]
     )
+
+
+def wait_for_window(window_title, timeout=60):
+    """
+    Waits for a window with the specified title to appear.
+    Returns:
+        int | None: Window handle if found, otherwise None.
+    """
+    end_time = time.time() + timeout
+    while time.time() < end_time:
+        hwnd = win32gui.FindWindow(None, window_title)
+        if hwnd:
+            return hwnd
+        time.sleep(1)
+
+    logging.warning(f"Window '{window_title}' did not appear within {timeout} seconds.")
+    return None
 
 
 def bring_window_to_front(window_title, timeout=60, retry_delay=0.5):

@@ -15,10 +15,12 @@ from utils.config_utils import load_settings
 from utils.general_utils import poll_live_client_data
 from utils.game_utils import (
     attack_enemy,
+    buy_items_list,
     find_ally_location,
     get_distance,
     is_game_ended,
     is_game_started,
+    log_game_data,
     move_to_ally,
     find_champion_location,
     buy_recommended_items,
@@ -61,8 +63,10 @@ def run_game_loop(shutdown_event):
     # Game initialization
     latest_game_data = {}
     game_data_lock = threading.Lock()
-    polling_thread = threading.Thread(target=poll_live_client_data, args=(latest_game_data, shutdown_event, game_data_lock), daemon=True)
+    game_ended_event = threading.Event()
+    polling_thread = threading.Thread(target=poll_live_client_data, args=(latest_game_data, game_ended_event, game_data_lock), daemon=True)
     polling_thread.start()
+    
     while not shutdown_event.is_set():
         if is_game_started(latest_game_data):
             break
@@ -73,18 +77,20 @@ def run_game_loop(shutdown_event):
     # Main loop
     while not shutdown_event.is_set():
         with game_data_lock:
-            current_level = latest_game_data["activePlayer"]["level"]
-            current_hp = latest_game_data["activePlayer"]["championStats"]["currentHealth"]
             game_ended = is_game_ended(latest_game_data)
-            # test data access
-            current_hp = latest_game_data["activePlayer"]["championStats"]["currentHealth"]
-            logging.info(f"Current HP: {current_hp}")
-            current_level = latest_game_data["activePlayer"]["level"]
-            logging.info(f"Current Level: {current_level}")
+            log_game_data(latest_game_data)
             
-            # Exits loop on game end
-            if game_ended:
-                logging.info("Game loop has exited.")
-                break
-        # poll time delay
+        
+        # Exits loop on game end
+        if game_ended:
+            game_ended_event.set()
+            polling_thread.join()
+            logging.info("Game loop has exited.")
+            break
+            
+        # test shop
+        # buy_items_list([""])
+
+        # test interval
+        time.sleep(5)
     

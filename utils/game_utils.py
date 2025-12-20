@@ -46,8 +46,6 @@ def find_champion_location(health_bar_bgr, tolerance=2):
                     return champion_location
 
 
-
-
 def find_ally_location():
     """
     Finds the location of an ally champion by searching for ally health bar and border colors.
@@ -89,6 +87,45 @@ def is_game_ended(game_data):
         if event["EventName"] == "GameEnd":
             return True
     return False
+
+
+def log_game_data(game_data):
+    """
+    Logs key game data for debugging purposes.
+    Args:
+        game_data (dict): Live client game data.
+    """
+    if not game_data:
+        logging.info("No game data available.")
+        return
+
+    def _format_obj(obj, indent=0):
+        pad = '  ' * indent
+        if isinstance(obj, dict):
+            lines = []
+            for k, v in obj.items():
+                lines.append(f"{pad}{k}: {_format_obj(v, indent+1)}")
+            return "\n".join(lines)
+        if isinstance(obj, list):
+            lines = []
+            for i, item in enumerate(obj):
+                lines.append(f"{pad}- {_format_obj(item, indent+1)}")
+            return "\n".join(lines)
+        return str(obj)
+    
+    current_hp = game_data["activePlayer"]["championStats"]["currentHealth"]
+    max_hp = game_data["activePlayer"]["championStats"]["maxHealth"]
+    current_level = game_data["activePlayer"]["level"]
+    events = game_data.get("events", {})
+
+    logging.info(f"Player Level: {current_level}")
+    logging.info(f"Current HP: {current_hp} / {max_hp}")
+
+    try:
+        logging.info("Events:\n%s", _format_obj(events))
+    except Exception:
+        logging.exception("Failed formatting events; logging raw repr.")
+        logging.info("Events: %s", repr(events))
 
 
 # ===========================
@@ -168,15 +205,17 @@ def buy_recommended_items():
     Opens the shop if not already open.
     Returns true if successful, otherwise false
     """
-    # Open shop if not already open
-    if find_text_location("SELL") == None:
-        keyboard.send(_keybinds.get("shop"))
-
-    # First search for shop location
     shop_location = find_text_location("SELL")
+    
+    # Open shop if not already open
     if shop_location == None:
         keyboard.send(_keybinds.get("shop"))
-        return False
+        time.sleep(0.5)
+        shop_location = find_text_location("SELL")
+        if shop_location == None:
+            time.sleep(0.5)
+            keyboard.send(_keybinds.get("shop"))
+            return False
 
     # Shop found, now buy items
     x, y = shop_location[:2]
@@ -201,33 +240,34 @@ def buy_items_list(item_list):
     Args:
         item_names (list of str): List of item names to buy.
     """
-    # Open shop if not already open
-    if find_text_location("SELL") == None:
-        keyboard.send(_keybinds.get("shop"))
-
-    # First search for shop location
     shop_location = find_text_location("SELL")
+    
+    # Open shop if not already open
     if shop_location == None:
         keyboard.send(_keybinds.get("shop"))
-        return False
+        time.sleep(0.5)
+        shop_location = find_text_location("SELL")
+        if shop_location == None:
+            time.sleep(0.5)
+            keyboard.send(_keybinds.get("shop"))
+            return False
 
     # Shop found, now buy items
     for item in item_list:
         # Focus search bar (Ctrl+L)
         keyboard.send("ctrl+l")
-        time.sleep(0.2)
+        time.sleep(0.3)
         # Type item name
         keyboard.write(item)
-        time.sleep(0.2)
+        time.sleep(0.3)
         # Attempt to buy
         keyboard.send("enter")
-        time.sleep(0.2)
+        time.sleep(0.3)
 
     # Close shop
     keyboard.send(_keybinds.get("shop"))
     return True
         
-
 
 def move_to_ally(ally_number=1):
     """
@@ -305,13 +345,12 @@ def attack_enemy():
     # Send all item keys at once (no location search)
     for item_key in ["item_1", "item_2", "item_3", "item_4", "item_5", "item_6"]:
         keyboard.send(_keybinds.get(item_key))
-    move_random_offset(*SCREEN_CENTER, 15)
     
 
 
 def vote_surrender():
     """
-    Votes to surrender by clicking the surrender button in the chat.
+    Votes to surrender by typing the surrender command in chat.
     Only proceeds if 'surrender' is set to True in the config.
     """
     if not _general.get("surrender", False):
@@ -319,11 +358,11 @@ def vote_surrender():
         return
 
     logging.info("Attempting to vote surrender...")
-    time.sleep(0.5)
+    time.sleep(1)
     keyboard.send("enter")
     time.sleep(0.5)
     keyboard.write("/ff")
-    time.sleep(0.5)
+    time.sleep(1)
     keyboard.send("enter")
     time.sleep(0.5)
 

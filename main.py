@@ -4,6 +4,7 @@ import asyncio
 import logging
 import threading
 import random
+import time
 import winsound
 from utils.config_utils import (
     disable_insecure_request_warning, get_selected_game_mode, load_config
@@ -17,7 +18,7 @@ from core.constants import (
     GAMEFLOW_PHASES,
     CHAMP_SELECT_SUBPHASES
 )
-from utils.general_utils import bring_window_to_front, enable_logging, listen_for_exit
+from utils.general_utils import bring_window_to_front, enable_logging, listen_for_exit, wait_for_window
 from lcu_driver import Connector
 from core.menu import show_menu  
 from core.bot_manager import BotManager
@@ -114,6 +115,10 @@ async def on_gameflow_phase(connection, event):
         # Stop the bot thread
         bot_manager.stop_bot()
         
+        # make sure game window is closed
+        while wait_for_window(LEAGUE_GAME_WINDOW_TITLE, timeout=30) != None:
+            time.sleep(1)
+
         # Play again (recreate lobby)
         try:
             await connection.request('post', '/lol-lobby/v2/play-again')
