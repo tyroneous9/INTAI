@@ -9,7 +9,7 @@ import logging
 import random
 
 from core.constants import (
-    HEALTH_BORDER_COLOR, ENEMY_HEALTH_BAR_COLOR, LEAGUE_GAME_WINDOW_TITLE, SCREEN_CENTER
+    HEALTH_BORDER_COLOR, ENEMY_HEALTH_INNER_COLOR, LEAGUE_GAME_WINDOW_TITLE, SCREEN_CENTER
 )
 from utils.config_utils import load_settings
 from utils.general_utils import poll_live_client_data

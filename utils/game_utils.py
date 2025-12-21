@@ -1,67 +1,16 @@
 import keyboard
 import time
-import numpy as np
-import cv2
 import logging
-from core.constants import ALLY_HEALTH_BAR_COLOR, ENEMY_HEALTH_BAR_COLOR, HEALTH_BORDER_COLOR, SCREEN_CENTER
+from core.constants import SCREEN_CENTER
 import random
 from utils.config_utils import load_settings
-from utils.general_utils import click_percent, find_text_location, get_screenshot
+from utils.general_utils import click_percent
 
 _keybinds, _general = load_settings()
 
 # ===========================
 # Game Data Utilities
 # ===========================
-
-def find_champion_location(health_bar_bgr, tolerance=2):
-    """
-    Finds the champion location by searching for health bar and border colors in the screenshot.
-    Args:
-        health_bar_bgr (tuple): BGR color of health bar.
-        tolerance (int): Color tolerance.
-    Returns:
-        tuple or None: (x, y) location if found, else None.
-    """
-    img = get_screenshot()
-
-    # Build health bar mask
-    lower_health_bar = np.array([max(c - tolerance, 0) for c in health_bar_bgr], dtype=np.uint8)
-    upper_health_bar = np.array([min(c + tolerance, 255) for c in health_bar_bgr], dtype=np.uint8)
-    mask_health_bar = cv2.inRange(img, lower_health_bar, upper_health_bar)
-
-    # Build border mark mask
-    lower_health_border = np.array([max(c - tolerance, 0) for c in HEALTH_BORDER_COLOR], dtype=np.uint8)
-    upper_health_border = np.array([min(c + tolerance, 255) for c in HEALTH_BORDER_COLOR], dtype=np.uint8)
-    mask_health_border = cv2.inRange(img, lower_health_border, upper_health_border)
-
-    height, width = mask_health_bar.shape
-
-    for y in range(height):
-        for x in range(width):
-            if mask_health_bar[y, x] > 0:
-                nx = x - 1
-                if nx >= 0 and mask_health_border[y, nx] > 0:
-                    champion_location = (x+50, y+160)
-                    return champion_location
-
-
-def find_ally_location():
-    """
-    Finds the location of an ally champion by searching for ally health bar and border colors.
-    Returns:
-        tuple or None: (x, y) location if found, else None.
-    """
-    return find_champion_location(ALLY_HEALTH_BAR_COLOR)
-
-
-def find_enemy_location():
-    """
-    Finds the location of an enemy champion by searching for enemy health bar and border colors.
-    Returns:
-        tuple or None: (x, y) location if found, else None.
-    """
-    return find_champion_location(ENEMY_HEALTH_BAR_COLOR)
 
 
 def is_game_started(game_data):
@@ -75,6 +24,7 @@ def is_game_started(game_data):
         if event.get("EventName") == "GameStart":
             return True
     return False
+
 
 def is_game_ended(game_data):
     """
@@ -160,7 +110,6 @@ def get_distance(coord1, coord2):
 # ===========================
 # Game Control Core
 # ===========================
-
 
 def move_random_offset(x, y, max_offset=15):
     """

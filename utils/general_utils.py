@@ -8,18 +8,13 @@ import win32api
 import win32con
 import time
 import keyboard
-import mss
-import numpy as np
-import cv2
 import logging
 import win32process
 from core.constants import (
-    DEFAULT_API_TIMEOUT, LIVE_CLIENT_URL, TESSERACT_PATH,
+    DEFAULT_API_TIMEOUT, LIVE_CLIENT_URL,
     DATA_DRAGON_VERSIONS_URL, DATA_DRAGON_DEFAULT_LOCALE
 )
-from PIL import Image
-import pytesseract
-pytesseract.pytesseract.tesseract_cmd = TESSERACT_PATH
+
 # ===========================
 # API Utilities
 # ===========================
@@ -121,17 +116,12 @@ def listen_for_exit(shutdown):
         """
         Listens for the exit key and then sets the shutdown_event.
         """
-        exit_listener_thread = threading.Thread(target=_listen_for_exit_thread, args=(shutdown,), daemon=True)
+        def _listener(shutdown):
+            logging.info("Press DELETE key to exit anytime.")
+            keyboard.wait("delete")
+            shutdown()
+        exit_listener_thread = threading.Thread(target=_listener, args=(shutdown,), daemon=True)
         exit_listener_thread.start()
-        return True
-    
-def _listen_for_exit_thread(shutdown):
-    """
-    Helper function for listening for exit key.
-    """
-    logging.info("Press DELETE key to exit anytime.")
-    keyboard.wait("delete")
-    shutdown()
     
 
 def click_percent(x, y, x_offset_percent=0, y_offset_percent=0, button="left"):
@@ -182,150 +172,6 @@ def click_on_cursor(button="left"):
     else:
         logging.warning(f"Unknown mouse button: {button}. Use 'left' or 'right'.")
     win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP, x, y, 0, 0)
-
-
-def test_mkb():
-    """
-    Thoroughly tests mouse and keyboard commands.
-    - Moves mouse to several screen locations.
-    - Performs left and right clicks.
-    - Types text using keyboard.
-    - Sends key presses and combinations.
-    """
-    import time
-
-    logging.info("Testing mouse movement and clicks...")
-    # Move mouse to four corners and center of the screen
-    screen_width = win32api.GetSystemMetrics(0)
-    screen_height = win32api.GetSystemMetrics(1)
-    test_points = [
-        (0, 0),  # Top-left
-        (screen_width - 1, 0),  # Top-right
-        (0, screen_height - 1),  # Bottom-left
-        (screen_width - 1, screen_height - 1),  # Bottom-right
-        (screen_width // 2, screen_height // 2),  # Center
-    ]
-    for x, y in test_points:
-        win32api.SetCursorPos((x, y))
-        time.sleep(0.5)
-        win32api.mouse_event(win32con.MOUSEEVENTF_LEFTDOWN, x, y, 0, 0)
-        win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP, x, y, 0, 0)
-        win32api.mouse_event(win32con.MOUSEEVENTF_RIGHTDOWN, x, y, 0, 0)
-        win32api.mouse_event(win32con.MOUSEEVENTF_RIGHTUP, x, y, 0, 0)
-        logging.info(f"Clicked at ({x}, {y})")
-
-    time.sleep(0.5)
-    # Send some key presses
-    for key in ["q", "w", "e", "r"]:
-        keyboard.send(key)
-        time.sleep(0.2)
-    logging.info("Character keys sent: q, w, e, r")
-
-    logging.info("Mouse/keyboard test completed.")
-
-
-# ===========================
-# Screen Utilities
-# ===========================
-
-def get_screenshot():
-    """
-    Captures a screenshot of the primary monitor.
-    Returns:
-        np.ndarray: Screenshot image (BGR).
-    """
-    with mss.mss() as sct:
-        monitor = sct.monitors[1]  # Full screen; use sct.monitors[0] for all
-        img = np.array(sct.grab(monitor))
-        # Remove alpha channel if present
-        if img.shape[2] == 4:
-            img = img[:, :, :3]
-        return img
-
-
-def extract_screen_text():
-    """
-    Extracts text from the current screen using Tesseract OCR.
-    Returns:
-        str: Extracted text.
-    """
-    img = get_screenshot()
-    img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    _, img = cv2.threshold(img, 70, 255, cv2.THRESH_BINARY)
-    cv2.imwrite("preprocessed_image.jpg", img)  
-    pil_img = Image.fromarray(img)
-    text = pytesseract.image_to_string(pil_img, config='--psm 11')
-    logging.info(text)
-    return text
-
-
-def extract_text_with_locations():
-    """
-    Extracts text and their bounding boxes from the screen using Tesseract OCR.
-    Returns:
-        dict: line_num -> list of {'text', 'box'}
-    """
-    img = get_screenshot()
-    img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    _, img = cv2.threshold(img, 70, 255, cv2.THRESH_BINARY)
-    # cv2.imwrite("preprocessed_image.jpg", img)  
-    pil_img = Image.fromarray(img)
-    text = pytesseract.image_to_string(pil_img, config='--psm 11')
-    data = pytesseract.image_to_data(pil_img, config='--psm 11', output_type=pytesseract.Output.DICT)
-
-    text_locations = []
-    n_boxes = len(data['text'])
-    for i in range(n_boxes):
-        text = data['text'][i].strip()
-        if text:
-            x, y, w, h = data['left'][i], data['top'][i], data['width'][i], data['height'][i]
-            text_locations.append({'text': text, 'box': (x, y, w, h)})
-
-    lines = {}
-    for entry in text_locations:
-        line_num = data['line_num'][text_locations.index(entry)]
-        if line_num not in lines:
-            lines[line_num] = []
-        lines[line_num].append(entry)
-
-    return lines  # Dictionary: line_num -> list of {'text', 'box'}
-
-
-def find_text_location(target_text):
-    """
-    Finds the location of the specified text on the screen using OCR.
-    Args:
-        target_text (str): Text to search for.
-    Returns:
-        tuple or None: (x, y, w, h) if found, else None.
-    """
-    lines = extract_text_with_locations()
-    for line_entries in lines.values():
-        for entry in line_entries:
-            if entry['text'].lower() == target_text.lower():
-                logging.info(f"OCR: Found text '{target_text}' at location {entry['box']}")
-                return entry['box']
-    logging.info(f"OCR: '{target_text}' not found on screen.")
-    return None
-
-
-def find_text_location_retry(target_text, max_attempts=5, delay=0.2):
-    """
-    Tries to find the location of the specified text on the screen using OCR, retrying up to max_attempts.
-    Args:
-        target_text (str): Text to search for.
-        max_attempts (int): Number of attempts before giving up.
-        delay (float): Delay in seconds between attempts.
-    Returns:
-        tuple or None: (x, y, w, h) if found, else None.
-    """
-    for attempt in range(max_attempts):
-        location = find_text_location(target_text)
-        if location:
-            return location
-        time.sleep(delay)
-    logging.info(f"OCR: '{target_text}' not found on screen after {max_attempts} attempts.")
-    return None
 
 
 def enable_logging(log_file=None, level=logging.INFO):

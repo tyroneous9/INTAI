@@ -34,9 +34,11 @@ SUPPORTED_MODES = {
 
 # Health bar colors
 HEALTH_BORDER_COLOR = (8, 4, 8) # Black
-PLAYER_HEALTH_BAR_COLOR = (66, 199, 66) # Green
-ENEMY_HEALTH_BAR_COLOR = (90, 101, 206) # Red
-ALLY_HEALTH_BAR_COLOR = (247, 186, 66)  # Blue
+PLAYER_HEALTH_INNER_COLOR = (66, 199, 66) # Green
+ENEMY_HEALTH_INNER_COLOR = (90, 101, 206) # Red
+ALLY_HEALTH_INNER_COLOR = (247, 186, 66)  # Blue
+AUGMENT_INNER_COLOR = (116, 97, 8) # Blue
+AUGMENT_BORDER_COLOR = (196, 167, 89) # Light Blue
 
 
 # ===========================
@@ -93,6 +95,11 @@ SCREEN_CENTER = (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)
 # Tesseract OCR executable path (relative to project root)
 TESSERACT_PATH = os.path.join(os.path.dirname(__file__), "..", "tesseract", "tesseract.exe")
 
+# Default threshold for image binarization
+THRESHHOLD = 70  
+
+# Page Segmentation Mode for Tesseract
+PSM = 11  
 
 
 
