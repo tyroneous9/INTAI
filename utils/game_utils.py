@@ -199,6 +199,7 @@ def level_up_abilities(order=("R", "Q", "W", "E")):
             keyboard.send(f"{hold_key}+{spell_keys[key]}")
             time.sleep(0.5)
 
+
 def buy_recommended_items():
     """
     Finds the shop location and performs recommended item purchases.
@@ -229,7 +230,6 @@ def buy_recommended_items():
     keyboard.send(_keybinds.get("shop"))
     time.sleep(0.5)
     return True
-
 
 
 def buy_items_list(item_list):
@@ -264,6 +264,41 @@ def buy_items_list(item_list):
 
     # Close shop
     keyboard.send(_keybinds.get("shop"))
+    return True
+
+
+def buy_with_augments():
+    """
+    Finds the shop location and performs recommended item purchases.
+    Opens the shop if not already open.
+    Returns true if successful, otherwise false
+    """
+    shop_location = find_text_location("SELL")
+    
+    # Open shop if not already open
+    if shop_location == None:
+        keyboard.send(_keybinds.get("shop"))
+        click_percent(SCREEN_CENTER[0], SCREEN_CENTER[1])
+        time.sleep(0.5)
+        shop_location = find_text_location("SELL")
+        if shop_location == None:
+            time.sleep(0.5)
+            keyboard.send(_keybinds.get("shop"))
+            time.sleep(0.5)
+            return False
+
+    # Shop found, now buy items
+    x, y = shop_location[:2]
+    click_percent(x, y, 0, -62, "left")
+    time.sleep(0.5)
+    click_percent(x, y, 15, -25, "right")
+    time.sleep(0.5)
+    click_percent(SCREEN_CENTER[0], SCREEN_CENTER[1])
+    time.sleep(0.5)
+    
+    # Close shop
+    keyboard.send(_keybinds.get("shop"))
+    time.sleep(0.5)
     return True
         
 

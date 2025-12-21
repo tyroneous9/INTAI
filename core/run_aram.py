@@ -15,7 +15,7 @@ from utils.config_utils import load_settings
 from utils.general_utils import click_percent, poll_live_client_data
 from utils.game_utils import (
     attack_enemy,
-    buy_recommended_items,
+    buy_with_augments,
     find_ally_location,
     find_enemy_location,
     get_distance,
@@ -24,7 +24,6 @@ from utils.game_utils import (
     move_random_offset,
     move_to_ally,
     level_up_abilities,
-    retreat,
     vote_surrender,
 )
 
@@ -55,14 +54,10 @@ def shop_phase():
     Handles the shop phase which occurs when dead or at game start
     """
     # Click screen center for augment cards
-    click_percent(SCREEN_CENTER[0], SCREEN_CENTER[1])
-    time.sleep(0.1)
-    buy_recommended_items()
-    time.sleep(0.1)
-    click_percent(SCREEN_CENTER[0], SCREEN_CENTER[1])
+    buy_with_augments()
+
     
-    
-def combat_phase(latest_game_data, game_data_lock):
+def combat_phase():
     global current_ally_index
     center_camera_key = _keybinds.get("center_camera")
     ally_location = find_ally_location()
@@ -87,9 +82,9 @@ def combat_phase(latest_game_data, game_data_lock):
     else:
         # look for ally
         current_ally_index = random.randint(0, len(ally_keys) - 1)
-        click_percent(SCREEN_CENTER[0], SCREEN_CENTER[1])
         time.sleep(0.01)
     move_to_ally(current_ally_index + 1)
+    click_percent(SCREEN_CENTER[0], SCREEN_CENTER[1])
     time.sleep(0.01)  # Sleep after moving to ally
     
 
@@ -149,4 +144,4 @@ def run_game_loop(shutdown_event):
             vote_surrender()
         else:
             logging.info("Entering combat phase.")
-            combat_phase(latest_game_data, game_data_lock)
+            combat_phase()
