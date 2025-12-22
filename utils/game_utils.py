@@ -1,12 +1,55 @@
 import keyboard
 import time
 import logging
-from core.constants import SCREEN_CENTER
+import requests
+from core.constants import DATA_DRAGON_DEFAULT_LOCALE, DATA_DRAGON_VERSIONS_URL, SCREEN_CENTER
 import random
 from utils.config_utils import load_settings
-from utils.general_utils import click_percent
+from utils.cv_utils import find_enemy_locations, find_text_location
+from utils.general_utils import click_percent, move_percent
 
 _keybinds, _general = load_settings()
+
+
+# ===========================
+# Data Dragon Utilities
+# ===========================
+
+
+def fetch_data_dragon_data(endpoint, version=None, locale=DATA_DRAGON_DEFAULT_LOCALE):
+    """
+    Fetches static data from Riot Data Dragon.
+    Args:
+        endpoint (str): The endpoint, e.g. "champion".
+        version (str, optional): Patch version. If None, fetches latest.
+        locale (str): Language code, default from constants.
+    Returns:
+        dict: The JSON data from Data Dragon, or {} on failure.
+    """
+    try:
+        if not version:
+            versions = requests.get(DATA_DRAGON_VERSIONS_URL, timeout=5).json()
+            version = versions[0]
+        url = f"https://ddragon.leagueoflegends.com/cdn/{version}/data/{locale}/{endpoint}.json"
+        resp = requests.get(url, timeout=10)
+        resp.raise_for_status()
+        return resp.json()
+    except Exception as e:
+        logging.error(f"Failed to fetch Data Dragon data for endpoint '{endpoint}': {e}")
+        return {}
+
+def get_champions_map():
+    """
+    Fetches champion data from Riot Data Dragon and returns a {id: name} mapping.
+    Returns:
+        dict: {champion_id: champion_name}
+    """
+    data = fetch_data_dragon_data("champion")
+    champions_map = {}
+    for champ in data.get("data", {}).values():
+        champions_map[int(champ["key"])] = champ["name"]
+    return champions_map
+
 
 # ===========================
 # Game Data Utilities
@@ -15,7 +58,8 @@ _keybinds, _general = load_settings()
 
 def is_game_started(game_data):
     """
-    Returns True if the GameStart event is present in live client data.
+    Returns (bool):
+        True if the GameStart event is present in live client data.
     """
     if not game_data:
         return False
@@ -28,7 +72,8 @@ def is_game_started(game_data):
 
 def is_game_ended(game_data):
     """
-    Returns True if the GameStart event is present in live client data.
+    Returns (bool):
+        True if the GameEnd event is present in live client data.
     """
     if not game_data:
         return False
@@ -108,7 +153,7 @@ def get_distance(coord1, coord2):
 
 
 # ===========================
-# Game Control Core
+# Game Control Utilities
 # ===========================
 
 def move_random_offset(x, y, max_offset=15):
@@ -149,20 +194,20 @@ def level_up_abilities(order=("R", "Q", "W", "E")):
             time.sleep(0.5)
 
 
-def buy_recommended_items():
+def buy_recommended_items(img):
     """
     Finds the shop location and performs recommended item purchases.
     Opens the shop if not already open.
     Returns true if successful, otherwise false
     """
-    shop_location = find_text_location("SELL")
+    shop_location = find_text_location(img, "SELL")
     
     # Open shop if not already open
-    if shop_location == None:
+    if not shop_location:
         keyboard.send(_keybinds.get("shop"))
         time.sleep(0.5)
-        shop_location = find_text_location("SELL")
-        if shop_location == None:
+        shop_location = find_text_location(img, "SELL")
+        if not shop_location:
             time.sleep(0.5)
             keyboard.send(_keybinds.get("shop"))
             time.sleep(0.5)
@@ -181,20 +226,20 @@ def buy_recommended_items():
     return True
 
 
-def buy_items_list(item_list):
+def buy_items_list(img, item_list):
     """
     Buys a list of items by opening the shop, searching for each item, and attempting to buy it.
     Args:
         item_names (list of str): List of item names to buy.
     """
-    shop_location = find_text_location("SELL")
+    shop_location = find_text_location(img, "SELL")
     
     # Open shop if not already open
-    if shop_location == None:
+    if not shop_location:
         keyboard.send(_keybinds.get("shop"))
         time.sleep(0.5)
-        shop_location = find_text_location("SELL")
-        if shop_location == None:
+        shop_location = find_text_location(img, "SELL")
+        if not shop_location:
             time.sleep(0.5)
             keyboard.send(_keybinds.get("shop"))
             return False
@@ -215,41 +260,6 @@ def buy_items_list(item_list):
     keyboard.send(_keybinds.get("shop"))
     return True
 
-
-def buy_with_augments():
-    """
-    Finds the shop location and performs recommended item purchases.
-    Opens the shop if not already open.
-    Returns true if successful, otherwise false
-    """
-    shop_location = find_text_location("SELL")
-    
-    # Open shop if not already open
-    if shop_location == None:
-        keyboard.send(_keybinds.get("shop"))
-        click_percent(SCREEN_CENTER[0], SCREEN_CENTER[1])
-        time.sleep(0.5)
-        shop_location = find_text_location("SELL")
-        if shop_location == None:
-            time.sleep(0.5)
-            keyboard.send(_keybinds.get("shop"))
-            time.sleep(0.5)
-            return False
-
-    # Shop found, now buy items
-    x, y = shop_location[:2]
-    click_percent(x, y, 0, -62, "left")
-    time.sleep(0.5)
-    click_percent(x, y, 15, -25, "right")
-    time.sleep(0.5)
-    click_percent(SCREEN_CENTER[0], SCREEN_CENTER[1])
-    time.sleep(0.5)
-    
-    # Close shop
-    keyboard.send(_keybinds.get("shop"))
-    time.sleep(0.5)
-    return True
-        
 
 def move_to_ally(ally_number=1):
     """
@@ -311,17 +321,21 @@ def retreat(current_coords, threat_coords, duration=0.5):
             keyboard.send(sum_2_key)
             time.sleep(0.1)
 
-def attack_enemy():
+def attack_enemy(img):
     """
     Attacks the enemy by casting spells and using items.
     Searches for enemy location before each spell.
+    Args:
+        img (np.ndarray): BGR image to search.
     """
-    for spell_key in ["spell_4", "spell_1", "spell_2", "spell_3"]:
-        enemy_location = find_enemy_location()
-        if enemy_location:
+    enemy_locations = find_enemy_locations(img)
+    for enemy_location in enemy_locations:
+        for spell_key in ["spell_4", "spell_1", "spell_2", "spell_3"]:
             keyboard.send(_keybinds.get("attack_move"))
-            click_percent(enemy_location[0], enemy_location[1], 0, 0, "left")
+            move_percent(enemy_location[0], enemy_location[1])
             keyboard.send(_keybinds.get(spell_key))
+    
+        
             
 
     # Send all item keys at once (no location search)

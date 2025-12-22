@@ -1,0 +1,59 @@
+2025-12-22 01:31:50 [INFO] Press DELETE key to exit anytime.
+2025-12-22 01:31:59 [INFO] Starting Script. Waiting for client...
+2025-12-22 01:31:59 [INFO] Connected to League client.
+2025-12-22 01:32:00 [INFO] [EVENT] Game is in progress.
+2025-12-22 01:32:00 [INFO] Starting bot for mode: core.run_aram
+2025-12-22 01:32:01 [INFO] Game loop has started.
+2025-12-22 01:32:05 [INFO] Ally spotted.
+2025-12-22 01:32:05 [INFO] [(571, 620), (1276, 655)]
+2025-12-22 01:32:05 [INFO] Enemy spotted.
+2025-12-22 01:32:08 [INFO] Ally spotted.
+2025-12-22 01:32:09 [INFO] [(445, 686), (1169, 724)]
+2025-12-22 01:32:09 [INFO] Enemy spotted.
+2025-12-22 01:32:12 [INFO] Ally spotted.
+2025-12-22 01:32:12 [INFO] [(597, 586), (1292, 620)]
+2025-12-22 01:32:12 [INFO] Enemy spotted.
+2025-12-22 01:32:15 [INFO] Ally spotted.
+2025-12-22 01:32:15 [INFO] [(637, 474), (1296, 505)]
+2025-12-22 01:32:15 [INFO] Enemy spotted.
+2025-12-22 01:32:18 [INFO] Ally spotted.
+2025-12-22 01:32:18 [INFO] [(606, 520), (1280, 551)]
+2025-12-22 01:32:18 [INFO] Enemy spotted.
+2025-12-22 01:32:21 [INFO] Ally spotted.
+2025-12-22 01:32:21 [INFO] [(688, 482), (1351, 513)]
+2025-12-22 01:32:21 [INFO] Enemy spotted.
+2025-12-22 01:32:24 [INFO] Ally spotted.
+2025-12-22 01:32:24 [INFO] [(656, 444), (1306, 473)]
+2025-12-22 01:32:24 [INFO] Enemy spotted.
+2025-12-22 01:32:27 [INFO] Ally spotted.
+2025-12-22 01:32:27 [INFO] [(497, 461), (1150, 491)]
+2025-12-22 01:32:27 [INFO] Enemy spotted.
+2025-12-22 01:32:30 [INFO] Ally spotted.
+2025-12-22 01:32:30 [INFO] [(547, 455), (1198, 485)]
+2025-12-22 01:32:30 [INFO] Enemy spotted.
+2025-12-22 01:32:33 [INFO] Ally spotted.
+2025-12-22 01:32:33 [INFO] [(567, 477), (1227, 508)]
+2025-12-22 01:32:33 [INFO] Enemy spotted.
+2025-12-22 01:32:36 [INFO] Ally spotted.
+2025-12-22 01:32:36 [INFO] [(569, 507), (1237, 539)]
+2025-12-22 01:32:36 [INFO] Enemy spotted.
+2025-12-22 01:32:39 [INFO] Ally spotted.
+2025-12-22 01:32:39 [INFO] [(505, 542), (1184, 575)]
+2025-12-22 01:32:39 [INFO] Enemy spotted.
+2025-12-22 01:32:42 [INFO] Ally spotted.
+2025-12-22 01:32:42 [INFO] [(284, 515), (951, 546)]
+2025-12-22 01:32:42 [INFO] Enemy spotted.
+2025-12-22 01:32:43 [INFO] Ally spotted.
+2025-12-22 01:32:43 [INFO] [(373, 501), (1037, 533)]
+2025-12-22 01:32:43 [INFO] Enemy spotted.
+2025-12-22 01:33:06 [INFO] Ally spotted.
+2025-12-22 01:33:06 [INFO] [(470, 508), (1138, 539)]
+2025-12-22 01:33:06 [INFO] Enemy spotted.
+2025-12-22 01:33:06 [INFO] Shutting down program...
+2025-12-22 01:33:06 [INFO] [INFO] Connector has been closed.
+2025-12-22 01:33:09 [ERROR] Polling thread is not running, failed to close
+2025-12-22 01:33:09 [INFO] Capture thread has exited.
+2025-12-22 01:33:09 [INFO] Game loop has exited.
+2025-12-22 01:33:09 [INFO] Bot thread has exited.
+2025-12-22 01:33:09 [INFO] Shut down complete.
+2025-12-22 01:33:17 [INFO] [INFO] Connector has been closed.

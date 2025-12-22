@@ -1,84 +1,16 @@
-import threading
-import time
-import logging
 import numpy as np
 import cv2
-import dxcam
 from PIL import Image
 import pytesseract
 import os
 
-from core.constants import ALLY_HEALTH_INNER_COLOR, ENEMY_HEALTH_INNER_COLOR, HEALTH_BORDER_COLOR, PSM, THRESHHOLD, TESSERACT_PATH
+from core.constants import ALLY_HEALTH_INNER_COLOR, AUGMENT_BORDER_COLOR, AUGMENT_INNER_COLOR, ENEMY_HEALTH_INNER_COLOR, HEALTH_BORDER_COLOR, PSM, THRESHHOLD, TESSERACT_PATH
 
 # Configure tesseract path
 try:
     pytesseract.pytesseract.tesseract_cmd = TESSERACT_PATH
 except Exception:
     raise ImportError("Tesseract path not configured properly")
-
-# ===========================
-# Screen Capture Utilities
-# ===========================
-
-
-class ScreenManager:
-    """
-    DXGI-based screen capture manager using `dxcam`.
-    """
-
-    def __init__(self, shutdown_event):
-        self._dxcam = None
-        self._bg_thread = None
-        self.shutdown_event = shutdown_event
-        self._frame_lock = threading.Lock()
-        self._latest_frame = None
-        try:
-            
-            self._dxcam = dxcam.create(output_color="BGR")
-        except Exception:
-            raise RuntimeError("dxcam backend not available — install dxcam for DXGI capture")
-
-
-    def start_capture_thread(self, fps=30):
-        if self._bg_thread and self._bg_thread.is_alive():
-            return True
-
-        def _loop():
-            period = 1.0 / max(1, int(fps))
-            while not self.shutdown_event.is_set():
-                try:
-                    f = self._dxcam.grab()
-                    with self._frame_lock:
-                        self._latest_frame = f
-                except Exception:
-                    logging.exception("dxcam capture error")
-                time.sleep(period)
-
-        self._bg_thread = threading.Thread(target=_loop, daemon=True)
-        self._bg_thread.start()
-        return True
-
-
-    def stop_capture_thread(self, timeout=60):
-        if self._bg_thread and self._bg_thread.is_alive():
-            try:
-                self._bg_thread.join(timeout=timeout)
-            finally:
-                    if self._bg_thread.is_alive():
-                        logging.error("Capture thread failed to exit within the given timeout.")
-                        raise RuntimeError("Capture thread failed to exit within the given timeout.")
-                    else:
-                        self._bg_thread = None
-        else:
-            logging.error("Capture thread is not running, failed to close")
-
-    # Latest-frame access (non-blocking, requires thread to be active)
-    def get_latest_frame(self):
-        return self._latest_frame
-    
-    # Single-frame capture (blocking)
-    def get_single_frame(self):
-        return self._dxcam.grab()
 
 
 # ===========================
@@ -127,80 +59,89 @@ def save_color_mask(img, color_bgr, tolerance=0):
     return out_path
 
 
-def find_champion_location(img, health_bar_bgr):
+def _find_adjacent_colors_columns(img, left_bgr, right_bgr, left_tolerance=0, right_tolerance=0, run_length=1):
     """
-    Finds the champion location by searching for health bar and border colors in the screenshot.
-    
-    Returns:
-        tuple or None: (x, y) location if found, else None.
-    """
-
-    # Adjust as necessary if color matching is too strict/loose
-    tolerance = 2
-
-    # Build health bar and border masks using helper
-    mask_health_bar = get_color_mask(img, health_bar_bgr, tolerance=tolerance)
-    mask_health_border = get_color_mask(img, HEALTH_BORDER_COLOR, tolerance=tolerance)
-
-    # Vectorized check: shift the border mask right 1 pixel
-    border_shifted = np.zeros_like(mask_health_border)
-    border_shifted[:, 1:] = mask_health_border[:, :-1]
-    hits = cv2.bitwise_and(mask_health_bar, border_shifted)
-    ys, xs = np.nonzero(hits)
-    if ys.size > 0:
-        y0, x0 = int(ys[0]), int(xs[0])
-        champion_location = (x0 + 50, y0 + 160)
-        return champion_location
-
-    return None
-
-
-def save_champion_location(img, health_bar_bgr, tolerance=2):
-    """Compute champion hits and save an overlay image showing all hit locations.
+    Find all champion locations by detecting connected groups of hits where the
+    health-inner color and health-border color align (border shifted right).
 
     Args:
         img (np.ndarray): BGR image to search.
         health_bar_bgr (tuple): BGR color of the health inner bar.
-        tolerance (int): color tolerance per channel.
 
     Returns:
-        str: path to the saved image.
+        list[tuple]: list of (x, y) locations (may be empty).
     """
-    if img is None:
-        raise ValueError("img is required for save_champion_location")
 
-    out_dir = os.path.join("temp")
-    filename = "champions_found.png"
-    mask_health_bar = get_color_mask(img, health_bar_bgr, tolerance=tolerance)
-    mask_health_border = get_color_mask(img, HEALTH_BORDER_COLOR, tolerance=tolerance)
-    border_shifted = np.zeros_like(mask_health_border)
-    border_shifted[:, 1:] = mask_health_border[:, :-1]
-    hits = cv2.bitwise_and(mask_health_bar, border_shifted)
+    # Build masks for both colors
+    mask_left_bgr = get_color_mask(img, left_bgr, tolerance=left_tolerance)
+    mask_right_bgr = get_color_mask(img, right_bgr, tolerance=right_tolerance)
+    
+    # Vectorized check: shift the left mask right 1 pixel, and get their overlap locations
+    border_shifted = np.zeros_like(mask_left_bgr)
+    border_shifted[:, 1:] = mask_left_bgr[:, :-1]
+    hits = cv2.bitwise_and(mask_right_bgr, border_shifted)
 
-    os.makedirs(out_dir, exist_ok=True)
-    out_path = os.path.join(out_dir, filename)
-    cv2.imwrite(out_path, hits)
-    return out_path
+    # Use cumulative-sum to detect vertical runs
+    if hits is None or hits.size == 0:
+        return []
+    bin_mask = (hits > 0).astype(np.int32)
+    H, W = bin_mask.shape
+    if run_length > H:
+        return []
+
+    csum = np.vstack([np.zeros((1, W), dtype=np.int32), bin_mask.cumsum(axis=0, dtype=np.int32)])
+    runs = csum[run_length:] - csum[:-run_length]
+
+    ys, xs = np.where(runs == run_length)
+    if ys.size == 0:
+        return []
+
+    locations = []
+    for y, x in zip(ys, xs):
+        locations.append((int(x), int(y)))
+
+    return locations
 
 
-def find_ally_location(img):
+def find_ally_locations(img):
     """
-    Finds the location of an ally champion by searching for ally health bar and border colors.
+    Finds the location of an ally champion by using ally health bar and border colors.
+    Args:
+        img (np.ndarray): BGR image to search.
     Returns:
-        tuple or None: (x, y) location if found, else None.
+        list of (x,y) coordinates
     """
-    return find_champion_location(img, ALLY_HEALTH_INNER_COLOR)
+    locations = _find_adjacent_colors_columns(img, HEALTH_BORDER_COLOR, ALLY_HEALTH_INNER_COLOR, left_tolerance=0, right_tolerance=0, run_length=4)
+    if not locations:
+        return []
+    return [(x + 50, y + 160) for (x, y) in locations]
 
-
-def find_enemy_location(img):
+def find_enemy_locations(img):
     """
-    Finds the location of an enemy champion by searching for enemy health bar and border colors.
+    Finds the location of an enemy champion by using enemy health bar and border colors.
+    Args:
+        img (np.ndarray): BGR image to search.
     Returns:
-        tuple or None: (x, y) location if found, else None.
+        list of (x,y) coordinates
     """
-    return find_champion_location(img, ENEMY_HEALTH_INNER_COLOR)
+    locations = _find_adjacent_colors_columns(img, HEALTH_BORDER_COLOR, ENEMY_HEALTH_INNER_COLOR, left_tolerance=0, right_tolerance=0, run_length=4)
+    if not locations:
+        return []
+    return [(x + 50, y + 160) for (x, y) in locations]
 
 
+def find_augment_location(img):
+    """
+    Finds the location of the augment by using hide augment button's inner and border colors.
+    Returns:
+        list of (x,y) coordinates
+    """
+    locations = _find_adjacent_colors_columns(img, AUGMENT_BORDER_COLOR, AUGMENT_INNER_COLOR, left_tolerance=0, right_tolerance=0, run_length=1)
+    if not locations:
+        return []
+    first_location = locations[0]
+    return (first_location[0], first_location[1] - 400)
+    
 # ===========================
 # OCR Utilities
 # ===========================
@@ -226,7 +167,8 @@ def extract_image_text(img):
 def extract_image_text_with_locations(img):
     """Extract text and bounding boxes from an image.
 
-    Returns a dict mapping line numbers to lists of {'text','box'}.
+    Returns:
+        results ({}): a dict mapping line numbers to lists of {'text','box'}.
     """
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     _, proc = cv2.threshold(gray, int(THRESHHOLD), 255, cv2.THRESH_BINARY)
@@ -244,8 +186,16 @@ def extract_image_text_with_locations(img):
     return results
 
 
-def find_text_location(target_text, img, case_sensitive=False):
-    """Find the bounding box of exact matching text in the provided image."""
+def find_text_location(img, target_text, case_sensitive=False):
+    """
+    Find the bounding box of exact matching text in the provided image.
+    Args:
+        img (np.ndarray): BGR image to search.
+        target_text (str): text to find.
+        case_sensitive (bool): whether the match is case-sensitive.
+    Returns:
+        int (x, y, w, h): bounding box of found text
+    """
     lines = extract_image_text_with_locations(img=img)
     for entries in lines.values():
         for e in entries:
@@ -256,16 +206,4 @@ def find_text_location(target_text, img, case_sensitive=False):
             else:
                 if a.lower() == target_text.lower():
                     return e["box"]
-    return None
-
-
-def find_text_location_retry(target_text, img, attempts=5, delay=0.2):
-    """Retry finding text in `img` for a number of attempts (useful for dynamic UIs)."""
-    for _ in range(attempts):
-        loc = find_text_location(target_text, img=img)
-        if loc:
-            return loc
-        time.sleep(delay)
-    return None
-
-
+    return []

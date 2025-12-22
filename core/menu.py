@@ -6,7 +6,7 @@ from utils.config_utils import (
     get_selected_game_mode, set_selected_game_mode,
     load_config, load_default_config, save_config
 )
-from utils.general_utils import get_champions_map
+from utils.game_utils import get_champions_map
 from core.constants import SUPPORTED_MODES
 
 def show_menu(run_script_callback):

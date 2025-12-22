@@ -15,7 +15,7 @@ from utils.general_utils import click_percent, find_text_location, poll_live_cli
 from utils.game_utils import (
     attack_enemy,
     buy_items_list,
-    find_enemy_location,
+    find_enemy_locations,
     get_distance,
     is_game_ended,
     is_game_started,
@@ -59,7 +59,7 @@ def combat_phase(latest_game_data, game_data_lock):
     - Finds enemy champion location and attacks w/ spells and items
     - If no enemy found, find and move toward ally
     """
-    enemy_location = find_enemy_location()
+    enemy_location = find_enemy_locations()
     if enemy_location:
         # Move to enemy
         click_percent(enemy_location[0], enemy_location[1], 0, 0, "right")

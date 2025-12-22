@@ -39,7 +39,7 @@ ENEMY_HEALTH_INNER_COLOR = (90, 101, 206) # Red
 ALLY_HEALTH_INNER_COLOR = (247, 186, 66)  # Blue
 AUGMENT_INNER_COLOR = (116, 97, 8) # Blue
 AUGMENT_BORDER_COLOR = (196, 167, 89) # Light Blue
-
+TEST_COLOR = (27, 38, 154)  # Configurable color for testing
 
 # ===========================
 # League APIs

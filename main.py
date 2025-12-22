@@ -24,8 +24,6 @@ from core.menu import show_menu
 from core.bot_manager import BotManager
 
 
-
-
 # State variables
 last_phase = None
 shutdown_event = threading.Event()
@@ -106,14 +104,14 @@ async def on_gameflow_phase(connection, event):
         bring_window_to_front(LEAGUE_GAME_WINDOW_TITLE)
 
         # Start the bot via the bot manager
-        bot_manager.run_bot()
+        bot_manager.start_bot_thread()
 
     # Clean up bot thread and play again on end of game
     if phase == GAMEFLOW_PHASES["PRE_END_OF_GAME"]:
         logging.info("[EVENT] Game ended.")
  
         # Stop the bot thread
-        bot_manager.stop_bot()
+        bot_manager.stop_bot_thread()
         
         # make sure game window is closed
         while wait_for_window(LEAGUE_GAME_WINDOW_TITLE, timeout=30) != None:
@@ -225,7 +223,7 @@ def shutdown():
     fut.result(timeout=10)
 
     # Stop bot thread
-    bot_manager.stop_bot()
+    bot_manager.stop_bot_thread()
 
     logging.info("Shut down complete.")
     winsound.Beep(500,200)
