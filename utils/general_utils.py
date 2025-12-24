@@ -95,14 +95,43 @@ def click_on_cursor(button="left"):
     """
     Simulates a mouse click at the current cursor position.
     """
-    x, y = win32api.GetCursorPos()
-    if button == "left":
-        win32api.mouse_event(win32con.MOUSEEVENTF_LEFTDOWN, x, y, 0, 0)
-    elif button == "right":
-        win32api.mouse_event(win32con.MOUSEEVENTF_RIGHTDOWN, x, y, 0, 0)
-    else:
-        logging.warning(f"Unknown mouse button: {button}. Use 'left' or 'right'.")
-    win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP, x, y, 0, 0)
+    try:
+        x, y = win32api.GetCursorPos()
+        if button == "left":
+            win32api.mouse_event(win32con.MOUSEEVENTF_LEFTDOWN, x, y, 0, 0)
+        elif button == "right":
+            win32api.mouse_event(win32con.MOUSEEVENTF_RIGHTDOWN, x, y, 0, 0)
+        else:
+            logging.warning("Unknown mouse button: %s. Use 'left' or 'right'.", button)
+        win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP, x, y, 0, 0)
+    except Exception:
+        logging.error("click_on_cursor: unexpected error while clicking (button=%s)", button)
+        raise Exception
+
+
+def long_send_key(key, press_time=0.5):
+    """
+    Sends a keyboard key press safely with retries, logging, and explicit press/release.
+
+    Args:
+        key (str): The key or key combination to send (as accepted by `keyboard`).
+        retries (int): Number of attempts.
+        press_time (float): Seconds to hold the key between press and release.
+
+    Returns:
+        bool: True if the key was sent successfully, False otherwise.
+    """
+    if not key:
+        logging.error("long_send_key called with empty key")
+        return False
+    try:
+        keyboard.press(key)
+        time.sleep(press_time)
+        keyboard.release(key)
+        return True
+    except Exception as e:
+        logging.exception("long_send_key failed for key=%s: %s", key, e)
+        return False
 
 
 # ===========================

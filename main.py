@@ -111,7 +111,7 @@ async def on_gameflow_phase(connection, event):
         logging.info("[EVENT] Game ended.")
  
         # Stop the bot thread
-        bot_manager.stop_bot_thread()
+        bot_manager.wait_for_bot_thread()
         
         # make sure game window is closed
         while wait_for_window(LEAGUE_GAME_WINDOW_TITLE, timeout=30) != None:
@@ -222,8 +222,8 @@ def shutdown():
     fut = asyncio.run_coroutine_threadsafe(connector.stop(), connector.loop)
     fut.result(timeout=10)
 
-    # Stop bot thread
-    bot_manager.stop_bot_thread()
+    # Wait for bot thread
+    bot_manager.wait_for_bot_thread()
 
     logging.info("Shut down complete.")
     winsound.Beep(500,200)

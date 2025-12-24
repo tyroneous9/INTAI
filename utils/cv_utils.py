@@ -4,7 +4,7 @@ from PIL import Image
 import pytesseract
 import os
 
-from core.constants import ALLY_HEALTH_INNER_COLOR, AUGMENT_BORDER_COLOR, AUGMENT_INNER_COLOR, ENEMY_HEALTH_INNER_COLOR, HEALTH_BORDER_COLOR, PSM, THRESHHOLD, TESSERACT_PATH
+from core.constants import ALLY_HEALTH_RIGHT_COLOR, AUGMENT_LOWER_COLOR, AUGMENT_UPPER_COLOR, ENEMY_HEALTH_RIGHT_COLOR, HEALTH_LEFT_COLOR, PSM, SHOP_LOWER_COLOR, SHOP_UPPER_COLOR, THRESHHOLD, TESSERACT_PATH
 
 # Configure tesseract path
 try:
@@ -59,48 +59,85 @@ def save_color_mask(img, color_bgr, tolerance=0):
     return out_path
 
 
-def _find_adjacent_colors_columns(img, left_bgr, right_bgr, left_tolerance=0, right_tolerance=0, run_length=1):
+def _find_adjacent_colors(
+    img,
+    bgr_1,
+    bgr_2,
+    bgr_1_tolerance=0,
+    bgr_2_tolerance=0,
+    run_length=1,
+    shift_axis='x'
+):
     """
-    Find all champion locations by detecting connected groups of hits where the
-    health-inner color and health-border color align (border shifted right).
-
+    Find all adjacent color pairs
     Args:
         img (np.ndarray): BGR image to search.
-        health_bar_bgr (tuple): BGR color of the health inner bar.
-
+        bgr_1: BGR color on the adjacent left or top side, depending on shift_axis.
+        bgr_2: BGR color on the adjacent right or bottom side, depending on shift_axis.
+        bgr_1_tolerance: tolerance for bgr_1,
+        bgr_2_tolerance: tolerance for bgr_2,
+        run_length: minimumnumber of adjacent pixels along opposite axis of shift_axis to validate a pair.
+        shift_axis: 'x' to search horizontally (adjacent columns), 'y' to search vertically (adjacent rows).
     Returns:
         list[tuple]: list of (x, y) locations (may be empty).
     """
 
     # Build masks for both colors
-    mask_left_bgr = get_color_mask(img, left_bgr, tolerance=left_tolerance)
-    mask_right_bgr = get_color_mask(img, right_bgr, tolerance=right_tolerance)
-    
-    # Vectorized check: shift the left mask right 1 pixel, and get their overlap locations
-    border_shifted = np.zeros_like(mask_left_bgr)
-    border_shifted[:, 1:] = mask_left_bgr[:, :-1]
-    hits = cv2.bitwise_and(mask_right_bgr, border_shifted)
+    mask_bgr_1 = get_color_mask(img, bgr_1, tolerance=bgr_1_tolerance)
+    mask_bgr_2 = get_color_mask(img, bgr_2, tolerance=bgr_2_tolerance)
 
-    # Use cumulative-sum to detect vertical runs
-    if hits is None or hits.size == 0:
+    if mask_bgr_1 is None or mask_bgr_2 is None:
+        raise ValueError("Two colors are required")
+
+    H, W = mask_bgr_1.shape
+    if run_length > H and shift_axis == 'x':
         return []
+    if run_length > W and shift_axis == 'y':
+        return []
+
+    # Fixed 1-pixel adjacency check (no dilation, no configurable multi-shift)
+    found_locations = []
+
+    shift = 1
+    border_shifted = np.zeros_like(mask_bgr_1)
+
+    if shift_axis == 'x':
+        # shift columns: move bgr_1 mask right by 1 pixel
+        if shift < W:
+            border_shifted[:, shift:] = mask_bgr_1[:, :-shift]
+    elif shift_axis == 'y':
+        # shift rows: move bgr_1 mask down by 1 pixel
+        if shift < H:
+            border_shifted[shift:, :] = mask_bgr_1[:-shift, :]
+    else:
+        raise ValueError(f"Invalid shift_axis: {shift_axis}")
+
+    hits = cv2.bitwise_and(mask_bgr_2, border_shifted)
     bin_mask = (hits > 0).astype(np.int32)
-    H, W = bin_mask.shape
-    if run_length > H:
+
+    # For vertical adjacency (shift_axis == 'y') transpose so run detection logic stays the same
+    proc = bin_mask if shift_axis == "x" else bin_mask.T
+    Hp, Wp = proc.shape
+    if run_length > Hp:
         return []
 
-    csum = np.vstack([np.zeros((1, W), dtype=np.int32), bin_mask.cumsum(axis=0, dtype=np.int32)])
+    csum = np.vstack([np.zeros((1, Wp), dtype=np.int32), proc.cumsum(axis=0, dtype=np.int32)])
     runs = csum[run_length:] - csum[:-run_length]
 
     ys, xs = np.where(runs == run_length)
-    if ys.size == 0:
+    for y, x in zip(ys, xs):
+        if shift_axis == 'x':
+            found_locations.append((int(x), int(y)))
+        elif shift_axis == 'y':
+            # proc is transposed: original x = y, original y = x
+            found_locations.append((int(y), int(x)))
+
+    if not found_locations:
         return []
 
-    locations = []
-    for y, x in zip(ys, xs):
-        locations.append((int(x), int(y)))
-
-    return locations
+    # De-duplicate while preserving order
+    uniq = list(dict.fromkeys(found_locations))
+    return uniq
 
 
 def find_ally_locations(img):
@@ -111,7 +148,7 @@ def find_ally_locations(img):
     Returns:
         list of (x,y) coordinates
     """
-    locations = _find_adjacent_colors_columns(img, HEALTH_BORDER_COLOR, ALLY_HEALTH_INNER_COLOR, left_tolerance=0, right_tolerance=0, run_length=4)
+    locations = _find_adjacent_colors(img, HEALTH_LEFT_COLOR, ALLY_HEALTH_RIGHT_COLOR, bgr_1_tolerance=0, bgr_2_tolerance=0, run_length=4, shift_axis='x')
     if not locations:
         return []
     return [(x + 50, y + 160) for (x, y) in locations]
@@ -124,10 +161,25 @@ def find_enemy_locations(img):
     Returns:
         list of (x,y) coordinates
     """
-    locations = _find_adjacent_colors_columns(img, HEALTH_BORDER_COLOR, ENEMY_HEALTH_INNER_COLOR, left_tolerance=0, right_tolerance=0, run_length=4)
+    locations = _find_adjacent_colors(img, HEALTH_LEFT_COLOR, ENEMY_HEALTH_RIGHT_COLOR, bgr_1_tolerance=0, bgr_2_tolerance=0, run_length=4, shift_axis='x')
     if not locations:
         return []
     return [(x + 50, y + 160) for (x, y) in locations]
+
+
+def find_player_location(img):
+    """
+    Finds the location of an enemy champion by using enemy health bar and border colors.
+    Args:
+        img (np.ndarray): BGR image to search.
+    Returns:
+        list of (x,y) coordinates
+    """
+    locations = _find_adjacent_colors(img, HEALTH_LEFT_COLOR, ENEMY_HEALTH_RIGHT_COLOR, bgr_1_tolerance=0, bgr_2_tolerance=0, run_length=4, shift_axis='x')
+    if not locations:
+        return []
+    first_location = locations[0]
+    return (first_location[0] + 50, first_location[1] + 160)
 
 
 def find_augment_location(img):
@@ -136,11 +188,25 @@ def find_augment_location(img):
     Returns:
         list of (x,y) coordinates
     """
-    locations = _find_adjacent_colors_columns(img, AUGMENT_BORDER_COLOR, AUGMENT_INNER_COLOR, left_tolerance=0, right_tolerance=0, run_length=1)
+    locations = _find_adjacent_colors(img, AUGMENT_UPPER_COLOR, AUGMENT_LOWER_COLOR, bgr_1_tolerance=0, bgr_2_tolerance=0, run_length=1, shift_axis='y')
     if not locations:
         return []
     first_location = locations[0]
     return (first_location[0], first_location[1] - 400)
+
+
+def find_shop_location(img):
+    """
+    Finds the location of the shop by using hide shop button's inner and border colors.
+    Returns:
+        list of (x,y) coordinates
+    """
+    locations = _find_adjacent_colors(img, SHOP_UPPER_COLOR, SHOP_LOWER_COLOR, bgr_1_tolerance=1, bgr_2_tolerance=0, run_length=1, shift_axis='y')
+    if not locations:
+        return []
+    first_location = locations[0]
+    return (first_location[0], first_location[1])
+
     
 # ===========================
 # OCR Utilities

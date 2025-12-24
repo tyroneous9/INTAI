@@ -37,8 +37,8 @@ def run_game_loop(shutdown_event):
         _keybinds.get("select_ally_4"),
     ]
 
-    screen_manager = ScreenManager(shutdown_event)
-    screen_manager.start_capture_thread(fps=30)
+    screen_manager = ScreenManager()
+    screen_manager.start(fps=30)
 
     latest_game_data = {}
     game_data_lock = threading.Lock()
@@ -65,7 +65,6 @@ def run_game_loop(shutdown_event):
             
         # Exits loop on game end
         if game_ended:
-            stop_event.set()
             polling_thread.join()
             logging.info("Game loop has exited.")
             break

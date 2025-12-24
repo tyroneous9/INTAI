@@ -5,8 +5,8 @@ import requests
 from core.constants import DATA_DRAGON_DEFAULT_LOCALE, DATA_DRAGON_VERSIONS_URL, SCREEN_CENTER
 import random
 from utils.config_utils import load_settings
-from utils.cv_utils import find_enemy_locations, find_text_location
-from utils.general_utils import click_percent, move_percent
+from utils.cv_utils import find_enemy_locations, find_shop_location, find_text_location
+from utils.general_utils import click_percent, long_send_key, move_percent
 
 _keybinds, _general = load_settings()
 
@@ -37,6 +37,7 @@ def fetch_data_dragon_data(endpoint, version=None, locale=DATA_DRAGON_DEFAULT_LO
     except Exception as e:
         logging.error(f"Failed to fetch Data Dragon data for endpoint '{endpoint}': {e}")
         return {}
+
 
 def get_champions_map():
     """
@@ -194,70 +195,77 @@ def level_up_abilities(order=("R", "Q", "W", "E")):
             time.sleep(0.5)
 
 
-def buy_recommended_items(img):
+def buy_recommended_items(screen_manager):
     """
     Finds the shop location and performs recommended item purchases.
     Opens the shop if not already open.
-    Returns true if successful, otherwise false
+    Returns true if shop was successfully opened and also closed after purchase.
+    Args:
+        screen_manager (ScreenManager): The screen manager instance.
+    NOTE:
+        Augment popups will automatically close the shop and also nullify interaction with it.
     """
-    shop_location = find_text_location(img, "SELL")
+    shop_location = find_shop_location(screen_manager.get_latest_frame())
     
     # Open shop if not already open
     if not shop_location:
-        keyboard.send(_keybinds.get("shop"))
+        long_send_key(_keybinds.get("shop"))
         time.sleep(0.5)
-        shop_location = find_text_location(img, "SELL")
+        shop_location = find_shop_location(screen_manager.get_latest_frame())
         if not shop_location:
-            time.sleep(0.5)
-            keyboard.send(_keybinds.get("shop"))
+            long_send_key(_keybinds.get("shop"))
             time.sleep(0.5)
             return False
 
     # Shop found, now buy items
     x, y = shop_location[:2]
-    click_percent(x, y, 0, -62, "left")
+    click_percent(x, y, 0, -64, "left")
     time.sleep(0.5)
+    click_percent(x, y, 15, -25, "right")
     click_percent(x, y, 15, -25, "right")
     time.sleep(0.5)
 
-    # Close shop
-    keyboard.send(_keybinds.get("shop"))
+    # Ensure shop is closed
+    long_send_key(_keybinds.get("shop"))
     time.sleep(0.5)
+    if find_shop_location(screen_manager.get_latest_frame()):
+        return False
     return True
 
 
-def buy_items_list(img, item_list):
+def buy_items_list(screen_manager, item_list):
     """
     Buys a list of items by opening the shop, searching for each item, and attempting to buy it.
     Args:
         item_names (list of str): List of item names to buy.
+    NOTE: Shop CANNOT be obstructed (by augment popups or other UI elements) or else chat will be opened instead.
     """
-    shop_location = find_text_location(img, "SELL")
-    
+    shop_location = find_shop_location(screen_manager.get_latest_frame())
+        
     # Open shop if not already open
     if not shop_location:
-        keyboard.send(_keybinds.get("shop"))
+        long_send_key(_keybinds.get("shop"))
         time.sleep(0.5)
-        shop_location = find_text_location(img, "SELL")
+        shop_location = find_shop_location(screen_manager.get_latest_frame())
         if not shop_location:
             time.sleep(0.5)
-            keyboard.send(_keybinds.get("shop"))
+            long_send_key(_keybinds.get("shop"))
             return False
 
     # Shop found, now buy items
     for item in item_list:
-        # Focus search bar (Ctrl+L)
-        keyboard.send("ctrl+l")
-        time.sleep(0.3)
-        # Type item name
+        long_send_key("ctrl+l")
+        time.sleep(0.5)
         keyboard.write(item)
-        time.sleep(0.3)
-        # Attempt to buy
-        keyboard.send("enter")
-        time.sleep(0.3)
+        time.sleep(0.5)
+        long_send_key("enter")
+        time.sleep(0.5)
 
-    # Close shop
-    keyboard.send(_keybinds.get("shop"))
+    # Ensure shop is closed
+    long_send_key(_keybinds.get("shop"))
+    time.sleep(0.5)
+    if find_shop_location(screen_manager.get_latest_frame()):
+        return False
     return True
 
 
@@ -350,10 +358,8 @@ def vote_surrender():
     Only proceeds if 'surrender' is set to True in the config.
     """
     if not _general.get("surrender", False):
-        logging.info("Surrender is disabled. Skipping surrender vote.")
         return
 
-    logging.info("Attempting to vote surrender...")
     time.sleep(1)
     keyboard.send("enter")
     time.sleep(0.5)

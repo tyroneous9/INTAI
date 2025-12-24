@@ -19,6 +19,7 @@ class LiveClientManager:
             lock (threading.Lock): Lock used to protect updates to the shared `latest_game_data_container`.
         """
         self.stop_event = stop_event
+        self.internal_stop_event = threading.Event()
         self.lock = lock
         self._manager_thread = None
 
@@ -31,11 +32,12 @@ class LiveClientManager:
             latest_game_data_container (dict): Container to store latest data.
             poll_time (int): Poll interval in seconds.
         """
+        self.internal_stop_event.clear()
         if self._manager_thread and self._manager_thread.is_alive():
             logging.error("Polling thread is already running.")
             raise RuntimeError("Polling thread is already running.")
         def _loop():
-            while not self.stop_event.is_set():
+            while not self.stop_event.is_set() and not self.internal_stop_event.is_set():
                 data = self.fetch_live_client_data()
                 # If the API call failed or returned None, skip update and retry
                 if data is None:
@@ -58,9 +60,9 @@ class LiveClientManager:
         """ 
         Stops the polling thread.
         """
+        self.internal_stop_event.set()
         if self._manager_thread:
             try:
-                self.stop_event.set()
                 self._manager_thread.join(timeout=timeout)
             finally:
                 if self._manager_thread.is_alive():

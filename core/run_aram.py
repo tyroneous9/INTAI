@@ -54,19 +54,19 @@ def run_game_loop(stop_event):
     live_client_manager = LiveClientManager(stop_event, game_data_lock)
     live_client_manager.start_polling_thread(latest_game_data)
 
-    screen_manager = ScreenManager(stop_event)
-    screen_manager.start_capture_thread(fps=30)
-    
+    screen_manager = ScreenManager()
+    screen_manager.start_camera(target_fps=60)
+
     # Wait for game start
     while True:
-        if stop_event.is_set():
+        if stop_event.is_set(): 
             return
         if is_game_started(latest_game_data) == True:
             break
         time.sleep(1)
 
     logging.info("Game loop has started.")
-    buy_recommended_items(screen_manager.get_latest_frame())
+    start_time = time.time()
     
     # Main game loop
     while True:
@@ -78,15 +78,24 @@ def run_game_loop(stop_event):
 
         # Exits loop on game end or shutdown
         if game_ended or stop_event.is_set():
+
             live_client_manager.stop_polling_thread()
-            screen_manager.stop_capture_thread()
-            logging.info("Game loop has exited.")
+            screen_manager.stop_camera()
+            logging.info("Game loop has ended.")
+
+            elapsed = int(time.time() - start_time)
+            hrs = elapsed // 3600
+            mins = (elapsed % 3600) // 60
+            secs = elapsed % 60
+            logging.info("Game loop duration: %02d:%02d:%02d", hrs, mins, secs)
             return
 
         # Check for augment
         augment = find_augment_location(screen_manager.get_latest_frame())
         if augment:
             click_percent(augment[0], augment[1])
+            time.sleep(0.5)
+            buy_recommended_items(screen_manager)
             time.sleep(0.5)
 
         # Level up
@@ -96,8 +105,16 @@ def run_game_loop(stop_event):
 
         # Shop if dead, else combat phase
         if current_hp == 0:
-            buy_recommended_items(screen_manager.get_latest_frame())
-            time.sleep(1)
+            end_time = time.time()
+            while not game_ended and not stop_event.is_set():
+                augment = find_augment_location(screen_manager.get_latest_frame())
+                if augment:
+                    click_percent(augment[0], augment[1])
+                if buy_recommended_items(screen_manager) == True:
+                    break
+                elif time.time() - end_time > 20:
+                    break
+                time.sleep(1)
             vote_surrender()
         else:
             center_camera_key = _keybinds.get("center_camera")

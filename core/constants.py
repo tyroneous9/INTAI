@@ -33,12 +33,14 @@ SUPPORTED_MODES = {
 # ===========================
 
 # Health bar colors
-HEALTH_BORDER_COLOR = (8, 4, 8) # Black
-PLAYER_HEALTH_INNER_COLOR = (66, 199, 66) # Green
-ENEMY_HEALTH_INNER_COLOR = (90, 101, 206) # Red
-ALLY_HEALTH_INNER_COLOR = (247, 186, 66)  # Blue
-AUGMENT_INNER_COLOR = (116, 97, 8) # Blue
-AUGMENT_BORDER_COLOR = (196, 167, 89) # Light Blue
+HEALTH_LEFT_COLOR = (8, 4, 8) # Black
+PLAYER_HEALTH_RIGHT_COLOR = (66, 199, 66) # Green
+ENEMY_HEALTH_RIGHT_COLOR = (90, 101, 206) # Red
+ALLY_HEALTH_RIGHT_COLOR = (247, 186, 66)  # Blue
+AUGMENT_UPPER_COLOR = (140, 117, 8) # Blue
+AUGMENT_LOWER_COLOR = (205, 177, 102) # Light Blue
+SHOP_UPPER_COLOR = (36,29,23) # Dark gray
+SHOP_LOWER_COLOR = (86,84,85) # Light gray
 TEST_COLOR = (27, 38, 154)  # Configurable color for testing
 
 # ===========================

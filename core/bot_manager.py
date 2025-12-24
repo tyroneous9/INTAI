@@ -47,13 +47,12 @@ class BotManager:
             logging.error(f"No entry point found for '{selected_game_mode}'.")
 
 
-    def stop_bot_thread(self, timeout=60):
+    def wait_for_bot_thread(self, timeout=60):
         """
         Stops the bot thread.
         """
         if self._manager_thread:
             try:
-                self.stop_event.set()
                 self._manager_thread.join(timeout=timeout)
             finally:
                 if self._manager_thread.is_alive():
