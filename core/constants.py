@@ -25,14 +25,19 @@ SUPPORTED_MODES = {
         "module": "core.run_test",
         "queue_id": -1
     },
-    # Add more modes as needed
+    "yuumi_sr": {
+        "module": "core.run_yuumi_sr",
+        "queue_id": -1
+    }
+    # For a list of Queue IDs, visit https://static.developer.riotgames.com/docs/lol/queues.json
 }
 
 # ===========================
 # Ingame Color Definitions (BGR)
 # ===========================
 
-# Health bar colors
+# Colors for CV detection
+TEST_COLOR = (27, 38, 154)  # Configurable color for testing
 HEALTH_LEFT_COLOR = (8, 4, 8) # Black
 PLAYER_HEALTH_RIGHT_COLOR = (66, 199, 66) # Green
 ENEMY_HEALTH_RIGHT_COLOR = (90, 101, 206) # Red
@@ -41,7 +46,11 @@ AUGMENT_UPPER_COLOR = (140, 117, 8) # Blue
 AUGMENT_LOWER_COLOR = (205, 177, 102) # Light Blue
 SHOP_UPPER_COLOR = (36,29,23) # Dark gray
 SHOP_LOWER_COLOR = (86,84,85) # Light gray
-TEST_COLOR = (27, 38, 154)  # Configurable color for testing
+ARENA_EXIT_UPPER_COLOR = (81,119,137) # gold
+ARENA_EXIT_LOWER_COLOR = (41,32,24) # dark blue
+ATTACHED_ALLY_LEFT_COLOR = (222,97,99) # light purple
+ATTACHED_ALLY_RIGHT_COLOR = (140,55,55) # dark purple
+
 
 # ===========================
 # League APIs

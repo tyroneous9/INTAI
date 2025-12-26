@@ -1,0 +1,7 @@
+2025-12-26 14:46:09 [INFO] Press DELETE key to exit anytime.
+2025-12-26 14:46:10 [INFO] Starting Script. Waiting for client...
+2025-12-26 14:46:11 [INFO] Connected to League client.
+2025-12-26 14:46:12 [INFO] [EVENT] Game is in progress.
+2025-12-26 14:46:12 [INFO] Starting bot for mode: core.run_yuumi_sr
+2025-12-26 14:46:12 [ERROR] Could not import module 'core.run_yuumi_sr': No module named 'constants'
+2025-12-26 14:47:04 [INFO] Event loop interrupted by keyboard

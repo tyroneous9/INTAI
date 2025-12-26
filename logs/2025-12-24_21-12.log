@@ -1,0 +1,15 @@
+2025-12-24 21:12:15 [INFO] Press DELETE key to exit anytime.
+2025-12-24 21:12:37 [INFO] Press DELETE key to exit anytime.
+2025-12-24 21:12:38 [INFO] Starting Script. Waiting for client...
+2025-12-24 21:12:39 [INFO] Connected to League client.
+2025-12-24 21:12:40 [INFO] [EVENT] Game is in progress.
+2025-12-24 21:12:40 [INFO] Starting bot for mode: core.run_arena
+2025-12-24 21:12:40 [INFO] Game loop has started.
+2025-12-24 21:14:30 [INFO] Shutting down program...
+2025-12-24 21:14:30 [INFO] [INFO] Connector has been closed.
+2025-12-24 21:14:30 [INFO] Polling thread has exited.
+2025-12-24 21:14:30 [INFO] Game loop has ended.
+2025-12-24 21:14:30 [INFO] Game loop duration: 00:01:45
+2025-12-24 21:14:30 [INFO] Bot thread has exited.
+2025-12-24 21:14:30 [INFO] Shut down complete.
+2025-12-24 21:14:30 [INFO] [INFO] Connector has been closed.

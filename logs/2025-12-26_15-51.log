@@ -1,0 +1,8 @@
+2025-12-26 15:51:54 [INFO] Press DELETE key to exit anytime.
+2025-12-26 15:51:55 [INFO] Starting Script. Waiting for client...
+2025-12-26 15:51:55 [INFO] Connected to League client.
+2025-12-26 15:51:56 [INFO] [EVENT] Game is in progress.
+2025-12-26 15:51:56 [INFO] Starting bot for mode: core.run_yuumi_sr
+2025-12-26 15:51:56 [INFO] Game loop has started.
+2025-12-26 15:52:00 [ERROR] Invalid key parameter: e. Must be Q, W, E, or R.
+2025-12-26 15:52:27 [INFO] Event loop interrupted by keyboard

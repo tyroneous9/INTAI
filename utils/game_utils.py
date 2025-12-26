@@ -5,8 +5,8 @@ import requests
 from core.constants import DATA_DRAGON_DEFAULT_LOCALE, DATA_DRAGON_VERSIONS_URL, SCREEN_CENTER
 import random
 from utils.config_utils import load_settings
-from utils.cv_utils import find_enemy_locations, find_shop_location, find_text_location
-from utils.general_utils import click_percent, long_send_key, move_percent
+from utils.cv_utils import find_shop_location
+from utils.general_utils import click_percent, long_send_key, move_mouse_percent
 
 _keybinds, _general = load_settings()
 
@@ -41,14 +41,14 @@ def fetch_data_dragon_data(endpoint, version=None, locale=DATA_DRAGON_DEFAULT_LO
 
 def get_champions_map():
     """
-    Fetches champion data from Riot Data Dragon and returns a {id: name} mapping.
+    Fetches champion data from Riot Data Dragon and returns a {name: id} mapping.
     Returns:
-        dict: {champion_id: champion_name}
+        dict: {champion_name: champion_id}
     """
     data = fetch_data_dragon_data("champion")
     champions_map = {}
     for champ in data.get("data", {}).values():
-        champions_map[int(champ["key"])] = champ["name"]
+        champions_map[champ["name"]] = int(champ["key"])
     return champions_map
 
 
@@ -170,29 +170,53 @@ def move_random_offset(x, y, max_offset=15):
     click_percent(x, y, offset_x, offset_y, "right")
 
 
-def level_up_abilities(order=("R", "Q", "W", "E")):
+def level_up_abilities(order=('R', 'Q', 'W', 'E')):
     """
-    Levels up all abilities using the cached keybinds in the specified order.
+    Levels up all abilities in the specified order.
     Always levels 'R' first by default.
     Args:
-        order (tuple): The order in which to level up spells. Default is ("R", "Q", "W", "E").
+        order (tuple): The order in which to level up spells. Default is ('R', 'Q', 'W', 'E').
     """
-    time.sleep(0.5)  # Wait a moment to ensure level up is available
     hold_key = _keybinds.get("hold_to_level")
     spell_keys = {
-        "Q": _keybinds.get("spell_1"),
-        "W": _keybinds.get("spell_2"),
-        "E": _keybinds.get("spell_3"),
-        "R": _keybinds.get("spell_4"),
+        'Q': _keybinds.get("spell_1"),
+        'W': _keybinds.get("spell_2"),
+        'E': _keybinds.get("spell_3"),
+        'R': _keybinds.get("spell_4"),
     }
     if hold_key and all(spell_keys.values()):
         for key in order:
             key = key.upper()
             if key not in spell_keys:
-                logging.error(f"Invalid spell key: {key}. Must be 'Q', 'W', 'E', or 'R'.")
+                logging.error(f"Invalid key parameter: {key}. Must be Q, W, E, or R.")
                 continue
             keyboard.send(f"{hold_key}+{spell_keys[key]}")
-            time.sleep(0.5)
+    else:
+        logging.error("Missing keybinds for leveling abilities.")
+
+
+def level_up_ability(ability='R'):
+    """
+    Levels up a single ability.
+    Always levels 'R' first by default.
+    Args:
+        ability (char): The ability to level up. Default is 'R'.
+    """
+    hold_key = _keybinds.get("hold_to_level")
+    spell_keys = {
+        'Q': _keybinds.get("spell_1"),
+        'W': _keybinds.get("spell_2"),
+        'E': _keybinds.get("spell_3"),
+        'R': _keybinds.get("spell_4"),
+    }
+    if hold_key and all(spell_keys.values()):
+        key = spell_keys.get(ability)
+        key = key.upper()
+        if key not in spell_keys:
+            logging.error(f"Invalid key parameter: {key}. Must be Q, W, E, or R.")
+        keyboard.send(f"{hold_key}+{spell_keys[key]}")
+    else:
+        logging.error("Missing keybinds for leveling abilities.")
 
 
 def buy_recommended_items(screen_manager):
@@ -269,27 +293,28 @@ def buy_items_list(screen_manager, item_list):
     return True
 
 
-def move_to_ally(ally_number=1):
+def pan_to_ally(ally_number=1):
     """
     Pans camera to the specified ally and moves cursor to their location.
     Args:
         ally_number (int): The ally number to select (e.g., 1, 2, 3, 4).
     """
-
-    ally_keys = {
-        1: _keybinds.get("select_ally_1"),
-        2: _keybinds.get("select_ally_2"),
-        3: _keybinds.get("select_ally_3"),
-        4: _keybinds.get("select_ally_4"),
-    }
-    ally_key = ally_keys.get(ally_number)
-    keyboard.send(ally_key)
-    time.sleep(0.3)
-    # Move randomly near ally
-    offset_x = random.randint(-15, 15)  # percent offset
-    offset_y = random.randint(-15, 15)  # percent offset
-    click_percent(SCREEN_CENTER[0], SCREEN_CENTER[1], offset_x, offset_y, "right")
-    time.sleep(0.1)
+    # Switch-like mapping for ally selection (explicit for clarity)
+    if ally_number == 1:
+        key = _keybinds.get("select_ally_1")
+    elif ally_number == 2:
+        key = _keybinds.get("select_ally_2")
+    elif ally_number == 3:
+        key = _keybinds.get("select_ally_3")
+    elif ally_number == 4:
+        key = _keybinds.get("select_ally_4")
+    else:
+        logging.error(f"Invalid ally number: {ally_number}. Must be 1, 2, 3, or 4.")
+        return
+    keyboard.press(key)
+    time.sleep(0.01)
+    keyboard.release(key)
+    
 
 def retreat(current_coords, threat_coords, duration=0.5):
     """
@@ -329,22 +354,21 @@ def retreat(current_coords, threat_coords, duration=0.5):
             keyboard.send(sum_2_key)
             time.sleep(0.1)
 
-def attack_enemy(img):
+def attack_enemy(enemy_coords):
     """
     Attacks the enemy by casting spells and using items.
     Searches for enemy location before each spell.
     Args:
-        img (np.ndarray): BGR image to search.
+        enemy_coords (tuple): (x, y) coordinates of the enemy.
     """
-    enemy_locations = find_enemy_locations(img)
-    for enemy_location in enemy_locations:
-        for spell_key in ["spell_4", "spell_1", "spell_2", "spell_3"]:
-            keyboard.send(_keybinds.get("attack_move"))
-            move_percent(enemy_location[0], enemy_location[1])
-            keyboard.send(_keybinds.get(spell_key))
     
+    for spell_key in ["spell_4", "spell_1", "spell_2", "spell_3"]:
+        keyboard.send(_keybinds.get("attack_move"))
+        move_mouse_percent(enemy_coords[0], enemy_coords[1])
+        keyboard.send(_keybinds.get("sum_1"))
+        keyboard.send(_keybinds.get("sum_2"))
+        keyboard.send(_keybinds.get(spell_key))
         
-            
 
     # Send all item keys at once (no location search)
     for item_key in ["item_1", "item_2", "item_3", "item_4", "item_5", "item_6"]:

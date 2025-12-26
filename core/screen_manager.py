@@ -41,8 +41,11 @@ class ScreenManager:
         """
         Stops the capture thread and releases resources.
         """
-        self._camera.stop()
-        del self._camera
+        if self._camera:
+            self._camera.stop()
+            del self._camera
+        else:
+            logging.info("ScreenManager camera is not running, nothing to stop.")
 
 
     def get_latest_frame(self):

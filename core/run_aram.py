@@ -1,16 +1,18 @@
-# ==========================================================
-# Arena Mode Automation Script
-# ==========================================================
+""" 
+ARAM Mode Automation Script
+
+Compatibility: ARAM, ARAM Mayhem
+
+Setup: No special setup required
+"""
+
 
 import time
 import threading
 import keyboard
 import logging
 import random
-
-from core.constants import (
-    SCREEN_CENTER
-)
+from constants import SCREEN_CENTER
 from core.live_client_manager import LiveClientManager
 from core.screen_manager import ScreenManager
 from utils.config_utils import load_settings
@@ -22,11 +24,11 @@ from utils.game_utils import (
     is_game_ended,
     is_game_started,
     move_random_offset,
-    move_to_ally,
+    pan_to_ally,
     level_up_abilities,
     vote_surrender,
 )
-from utils.cv_utils import find_ally_locations, find_augment_location, find_enemy_locations
+from utils.cv_utils import find_ally_locations, find_augment_location, find_enemy_locations, find_player_location
 
 # ===========================
 # Main Bot Loop
@@ -39,14 +41,10 @@ def run_game_loop(stop_event):
 
     # Initialization
     _keybinds, _general = load_settings()
-    ally_keys = [
-        _keybinds.get("select_ally_1"),
-        _keybinds.get("select_ally_2"),
-        _keybinds.get("select_ally_3"),
-        _keybinds.get("select_ally_4"),
-    ]
+    center_camera_key = _keybinds.get("center_camera")
 
-    current_ally_index = 0
+    ally_priority_list = [4, 1, 2, 3]
+    current_ally_number = 1
     prev_level = 0
 
     game_data_lock = threading.Lock()
@@ -103,43 +101,46 @@ def run_game_loop(stop_event):
             level_up_abilities()
             prev_level = current_level
 
-        # Shop if dead, else combat phase
+        # Shop if dead, continue otherwise
         if current_hp == 0:
-            end_time = time.time()
+            end_time = 20 + time.monotonic()
             while not game_ended and not stop_event.is_set():
                 augment = find_augment_location(screen_manager.get_latest_frame())
                 if augment:
                     click_percent(augment[0], augment[1])
                 if buy_recommended_items(screen_manager) == True:
                     break
-                elif time.time() - end_time > 20:
+                elif time.monotonic() > end_time:
                     break
                 time.sleep(1)
             vote_surrender()
-        else:
-            center_camera_key = _keybinds.get("center_camera")
-            ally_locations = find_ally_locations(screen_manager.get_latest_frame())
-            if ally_locations:
-                # check enemy location
-                enemy_locations = find_enemy_locations(screen_manager.get_latest_frame())
-                if enemy_locations:
-                    # check enemy relative location
-                    keyboard.press(center_camera_key)
-                    time.sleep(0.01)
-                    enemy_locations = find_enemy_locations(screen_manager.get_latest_frame())
-                    if enemy_locations: 
-                        distance_to_enemy = get_distance(SCREEN_CENTER, enemy_locations[0])
-                        if distance_to_enemy < 600:
-                            attack_enemy(screen_manager.get_latest_frame())
-                            move_random_offset(*SCREEN_CENTER, 15)
-                    keyboard.release(center_camera_key)
-                else:
-                    # No enemy found, switch to another ally
-                    current_ally_index = random.randint(0, len(ally_keys) - 1)
-                    time.sleep(0.01)
-            else:
-                # look for ally
-                current_ally_index = random.randint(0, len(ally_keys) - 1)
+            continue
+
+        # Combat phase
+        ally_locations = find_ally_locations(screen_manager.get_latest_frame())
+        if ally_locations:
+            # check enemy location
+            enemy_locations = find_enemy_locations(screen_manager.get_latest_frame())
+            if enemy_locations:
+                # check enemy relative location
+                keyboard.press(center_camera_key)
                 time.sleep(0.01)
-            move_to_ally(current_ally_index + 1)
-            time.sleep(0.01)  # Sleep after moving to ally
+                keyboard.release(center_camera_key) 
+                enemy_locations = find_enemy_locations(screen_manager.get_latest_frame())
+                player_location = find_player_location(screen_manager.get_latest_frame())
+                if player_location:
+                    for enemy_location in enemy_locations: 
+                        distance_to_enemy = get_distance(player_location, enemy_location)
+                        if distance_to_enemy < 600:
+                            attack_enemy(enemy_location)
+                            move_random_offset(player_location[0], player_location[1], 15)
+                            break
+            else:
+                # No enemy found, switch to the next ally
+                current_ally_number = ally_priority_list[(ally_priority_list.index(current_ally_number) + 1) % len(ally_priority_list)]
+                time.sleep(0.01)
+        else:
+            # look for ally
+            current_ally_number = ally_priority_list[(ally_priority_list.index(current_ally_number) + 1) % len(ally_priority_list)]
+            time.sleep(0.01)
+        time.sleep(0.01) 

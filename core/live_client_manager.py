@@ -2,6 +2,7 @@ import logging
 import threading
 import time
 import requests
+import urllib3
 from core.constants import DEFAULT_API_TIMEOUT, LIVE_CLIENT_URL
 
 
@@ -22,6 +23,7 @@ class LiveClientManager:
         self.internal_stop_event = threading.Event()
         self.lock = lock
         self._manager_thread = None
+        urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 
     def start_polling_thread(self, latest_game_data_container, poll_time=0.1):
@@ -72,7 +74,7 @@ class LiveClientManager:
                     self._manager_thread = None
                     logging.info("Polling thread has exited.")
         else:
-            logging.error("Polling thread is not running, failed to close")
+            logging.info("Polling thread is not running, nothing to stop.")
         
     
     def fetch_live_client_data(self):

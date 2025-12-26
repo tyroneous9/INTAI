@@ -49,9 +49,6 @@ def click_percent(x, y, x_offset_percent=0, y_offset_percent=0, button="left"):
     new_x = x + int(window_width * (x_offset_percent / 100.0))
     new_y = y + int(window_height * (y_offset_percent / 100.0))
 
-    win32gui.ShowWindow(hwnd, win32con.SW_RESTORE)
-    win32gui.SetForegroundWindow(hwnd)
-    time.sleep(0.2)
     win32api.SetCursorPos((new_x, new_y))
     if button == "left":
         win32api.mouse_event(win32con.MOUSEEVENTF_LEFTDOWN, new_x, new_y, 0, 0)
@@ -65,7 +62,7 @@ def click_percent(x, y, x_offset_percent=0, y_offset_percent=0, button="left"):
         logging.warning(f"Unknown mouse button: {button}. Use 'left' or 'right'.")
 
 
-def move_percent(x, y, x_offset_percent=0, y_offset_percent=0):
+def move_mouse_percent(x, y, x_offset_percent=0, y_offset_percent=0):
     """
     Move the mouse cursor to (x, y) plus an optional offset specified as
     percent of the current foreground window size.
@@ -83,9 +80,6 @@ def move_percent(x, y, x_offset_percent=0, y_offset_percent=0):
     new_x = x + int(window_width * (x_offset_percent / 100.0))
     new_y = y + int(window_height * (y_offset_percent / 100.0))
 
-    win32gui.ShowWindow(hwnd, win32con.SW_RESTORE)
-    win32gui.SetForegroundWindow(hwnd)
-    time.sleep(0.2)
     win32api.SetCursorPos((new_x, new_y))
 
     return (new_x, new_y)

@@ -23,10 +23,6 @@ def save_config(config, path=CONFIG_PATH):
 def get_config_paths():
     return CONFIG_PATH, DEFAULT_CONFIG_PATH
 
-def disable_insecure_request_warning():
-    """Disable urllib3 InsecureRequestWarning for unverified HTTPS requests."""
-    urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
-
 def load_settings():
     config = load_config()
     return config.get("Keybinds", {}), config.get("General", {})

@@ -1,0 +1,15 @@
+2025-12-26 13:54:28 [INFO] Press DELETE key to exit anytime.
+2025-12-26 13:54:28 [INFO] Starting Script. Waiting for client...
+2025-12-26 13:54:29 [INFO] Connected to League client.
+2025-12-26 13:54:30 [INFO] [EVENT] Game is in progress.
+2025-12-26 13:54:30 [INFO] Starting bot for mode: core.run_yuumi_sr
+2025-12-26 13:54:30 [INFO] Game loop has started.
+2025-12-26 13:55:04 [INFO] Attached ally gone, detaching.
+2025-12-26 13:55:12 [INFO] Shutting down program...
+2025-12-26 13:55:12 [INFO] [INFO] Connector has been closed.
+2025-12-26 13:55:14 [INFO] Polling thread has exited.
+2025-12-26 13:55:14 [INFO] Game loop has ended.
+2025-12-26 13:55:14 [INFO] Game loop duration: 00:00:44
+2025-12-26 13:55:14 [INFO] Bot thread has exited.
+2025-12-26 13:55:14 [INFO] Shut down complete.
+2025-12-26 13:55:29 [INFO] [INFO] Connector has been closed.

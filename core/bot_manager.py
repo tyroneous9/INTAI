@@ -62,5 +62,5 @@ class BotManager:
                     self._manager_thread = None
                     logging.info("Bot thread has exited.")
         else:
-            logging.error("Bot thread is not running, failed to close")
+            logging.info("Bot thread is not running, nothing to stop.")
         

@@ -4,7 +4,7 @@ from PIL import Image
 import pytesseract
 import os
 
-from core.constants import ALLY_HEALTH_RIGHT_COLOR, AUGMENT_LOWER_COLOR, AUGMENT_UPPER_COLOR, ENEMY_HEALTH_RIGHT_COLOR, HEALTH_LEFT_COLOR, PSM, SHOP_LOWER_COLOR, SHOP_UPPER_COLOR, THRESHHOLD, TESSERACT_PATH
+from core.constants import ALLY_HEALTH_RIGHT_COLOR, ARENA_EXIT_LOWER_COLOR, ARENA_EXIT_UPPER_COLOR, ATTACHED_ALLY_LEFT_COLOR, ATTACHED_ALLY_LEFT_COLOR, ATTACHED_ALLY_RIGHT_COLOR, AUGMENT_LOWER_COLOR, AUGMENT_UPPER_COLOR, ENEMY_HEALTH_RIGHT_COLOR, HEALTH_LEFT_COLOR, PLAYER_HEALTH_RIGHT_COLOR, PSM, SHOP_LOWER_COLOR, SHOP_UPPER_COLOR, THRESHHOLD, TESSERACT_PATH
 
 # Configure tesseract path
 try:
@@ -169,13 +169,28 @@ def find_enemy_locations(img):
 
 def find_player_location(img):
     """
+    Finds the location of the player champion by using enemy health bar and border colors.
+    Args:
+        img (np.ndarray): BGR image to search.
+    Returns:
+        list of (x,y) coordinates
+    """
+    locations = _find_adjacent_colors(img, HEALTH_LEFT_COLOR, PLAYER_HEALTH_RIGHT_COLOR, bgr_1_tolerance=0, bgr_2_tolerance=0, run_length=4, shift_axis='x')
+    if not locations:
+        return []
+    first_location = locations[0]
+    return (first_location[0] + 50, first_location[1] + 160)
+
+
+def find_attached_ally_location(img):
+    """
     Finds the location of an enemy champion by using enemy health bar and border colors.
     Args:
         img (np.ndarray): BGR image to search.
     Returns:
         list of (x,y) coordinates
     """
-    locations = _find_adjacent_colors(img, HEALTH_LEFT_COLOR, ENEMY_HEALTH_RIGHT_COLOR, bgr_1_tolerance=0, bgr_2_tolerance=0, run_length=4, shift_axis='x')
+    locations = _find_adjacent_colors(img, ATTACHED_ALLY_LEFT_COLOR, ATTACHED_ALLY_RIGHT_COLOR, bgr_1_tolerance=0, bgr_2_tolerance=0, run_length=4, shift_axis='x')
     if not locations:
         return []
     first_location = locations[0]
@@ -202,6 +217,19 @@ def find_shop_location(img):
         list of (x,y) coordinates
     """
     locations = _find_adjacent_colors(img, SHOP_UPPER_COLOR, SHOP_LOWER_COLOR, bgr_1_tolerance=1, bgr_2_tolerance=0, run_length=1, shift_axis='y')
+    if not locations:
+        return []
+    first_location = locations[0]
+    return (first_location[0], first_location[1])
+
+
+def find_arena_exit_location(img):
+    """
+    Finds the location of the shop by using hide shop button's inner and border colors.
+    Returns:
+        list of (x,y) coordinates
+    """
+    locations = _find_adjacent_colors(img, ARENA_EXIT_UPPER_COLOR, ARENA_EXIT_LOWER_COLOR, bgr_1_tolerance=1, bgr_2_tolerance=0, run_length=1, shift_axis='y')
     if not locations:
         return []
     first_location = locations[0]
