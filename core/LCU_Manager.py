@@ -1,6 +1,5 @@
 import asyncio
 import logging
-import threading
 import random
 import time
 
@@ -23,8 +22,8 @@ from core.bot_manager import BotManager
 class LCUManager:
     """Encapsulates the lcu_driver Connector and its event handlers."""
 
-    def __init__(self, shutdown_event: threading.Event = None):
-        self.shutdown_event = shutdown_event or threading.Event()
+    def __init__(self, shutdown_event):
+        self.shutdown_event = shutdown_event
         self.connector = Connector()
         self.bot_manager = BotManager(self.shutdown_event)
         self.last_phase = None
@@ -194,6 +193,4 @@ class LCUManager:
     def stop(self, timeout: int = 10):
         fut = asyncio.run_coroutine_threadsafe(self.connector.stop(), self.connector.loop)
         fut.result(timeout=timeout)
-
-
-__all__ = ["LCUManager"]
+        self.bot_manager.wait_for_bot_thread()

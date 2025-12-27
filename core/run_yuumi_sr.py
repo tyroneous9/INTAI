@@ -23,7 +23,6 @@ from utils.game_utils import (
     is_game_started,
     level_up_abilities,
     level_up_ability,
-    move_random_offset,
     pan_to_ally,
     vote_surrender,
 )
@@ -54,7 +53,7 @@ def run_game_loop(stop_event):
     # Target ally is the preferred ally to attach to while the current ally is the one currently attached to, Ally 5 is generally the ADC
     ally_priority_list = [4, 1, 2, 3]  # Order to try attaching
     attached = False
-    attach_timeout = 4
+    attach_timeout = 2
     prev_level = 0
 
 
@@ -124,34 +123,36 @@ def run_game_loop(stop_event):
         if not attached:
             # Attach to target ally if alive, other allies if dead
             # NOTE: position field in game data may help verify ADC role
-            for ally_number in ally_priority_list:
+            end_time = time.time() + attach_timeout
+            ally_number = ally_priority_list[0]
+            while not game_ended and not stop_event.is_set():
+                # Check if dead
+                with game_data_lock:
+                    current_hp = latest_game_data["activePlayer"]["championStats"]["currentHealth"]
+                if current_hp == 0:
+                    logging.info("Died while trying to attach.")
+                    break
+                # Check if attached successfully
+                attached_ally_location = find_attached_ally_location(screen_manager.get_latest_frame())
+                if attached_ally_location:
+                    logging.info("Successfully attached.")
+                    attached = True
+                    break
+                # Attempt to attach
                 pan_to_ally(ally_number)
-                time.sleep(1)
-                allies = find_ally_locations(screen_manager.get_latest_frame())
-                if allies:
+                if find_ally_locations(screen_manager.get_latest_frame()):
+                    move_mouse_percent(SCREEN_CENTER[0], SCREEN_CENTER[1])
+                    keyboard.send(spell_keys[1])
+                    time.sleep(3)
                     end_time = time.time() + attach_timeout
-                    while not game_ended and not stop_event.is_set():
-                        pan_to_ally(ally_number)
-                        if find_ally_locations(screen_manager.get_latest_frame()):
-                            move_mouse_percent(SCREEN_CENTER[0], SCREEN_CENTER[1])
-                            keyboard.send(spell_keys[1])
-                            end_time = time.time() + attach_timeout
-                        attached_ally_location = find_attached_ally_location(screen_manager.get_latest_frame())
-                        if attached_ally_location:
-                            attached = True
-                            time.sleep(1)
-                            break
-                        if time.time() > end_time:
-                            logging.info("Attach window timed out.")
-                            break
-                        time.sleep(2)
-                if attached:
+                if time.time() > end_time:
+                    logging.info("Attach window timed out.")
                     break
             if not attached:
-                logging.info("Attach window timed out.")
+                logging.info("No allies found, recalling.")
                 keyboard.send(recall_key) 
                 time.sleep(9)
-                buy_recommended_items(screen_manager) 
+                buy_recommended_items(screen_manager)
         elif attached:
             time.sleep(0.1)
             #  Periodically check if currently attached ally is dead
@@ -159,16 +160,9 @@ def run_game_loop(stop_event):
             time.sleep(0.01)
             keyboard.release(center_camera_key) 
             if not find_attached_ally_location(screen_manager.get_latest_frame()):
-                move_random_offset(SCREEN_CENTER[0], SCREEN_CENTER[1],  50)
-                move_mouse_percent(SCREEN_CENTER[0], SCREEN_CENTER[1])
-                time.sleep(3)
-                keyboard.press(center_camera_key)
-                time.sleep(0.01)
-                keyboard.release(center_camera_key) 
-                if not find_attached_ally_location(screen_manager.get_latest_frame()):
-                    attached = False
-                    time.sleep(1)
-                    logging.info("Attached ally gone, detaching.")
+                attached = False
+                logging.info("Attached ally gone, detaching.")
+                continue
             # Attached ally logic
             enemy_locations = find_enemy_locations(screen_manager.get_latest_frame())
             if enemy_locations:

@@ -1,8 +1,0 @@
-2025-12-25 15:52:26 [INFO] Press DELETE key to exit anytime.
-2025-12-25 15:52:30 [INFO] Game mode set to 'yuumi_sr'.
-2025-12-25 15:52:47 [INFO] Starting Script. Waiting for client...
-2025-12-25 15:52:47 [INFO] Connected to League client.
-2025-12-25 15:52:51 [INFO] [EVENT] Game is in progress.
-2025-12-25 15:52:53 [INFO] Starting bot for mode: core.run_yuumi_sr
-2025-12-25 15:52:53 [ERROR] Could not import module 'core.run_yuumi_sr': No module named 'core.run_yuumi_sr'
-2025-12-25 15:53:26 [INFO] Event loop interrupted by keyboard

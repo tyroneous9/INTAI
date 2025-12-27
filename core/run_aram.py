@@ -11,8 +11,7 @@ import time
 import threading
 import keyboard
 import logging
-import random
-from constants import SCREEN_CENTER
+from core.constants import SCREEN_CENTER
 from core.live_client_manager import LiveClientManager
 from core.screen_manager import ScreenManager
 from utils.config_utils import load_settings
@@ -43,8 +42,8 @@ def run_game_loop(stop_event):
     _keybinds, _general = load_settings()
     center_camera_key = _keybinds.get("center_camera")
 
-    ally_priority_list = [4, 1, 2, 3]
-    current_ally_number = 1
+    ally_priority_list = [1,2,3,4]
+    current_ally_index = 0
     prev_level = 0
 
     game_data_lock = threading.Lock()
@@ -64,6 +63,17 @@ def run_game_loop(stop_event):
         time.sleep(1)
 
     logging.info("Game loop has started.")
+
+    # Initialize champion data
+    with game_data_lock:
+        attack_range = latest_game_data["activePlayer"]["championStats"]["attackRange"]
+    if attack_range <= 350:
+        logging.info("Detected melee champion.")
+        attack_range = attack_range + 300
+    else:
+        logging.info("Detected ranged champion.")
+        attack_range = attack_range
+
     start_time = time.time()
     
     # Main game loop
@@ -117,30 +127,36 @@ def run_game_loop(stop_event):
             continue
 
         # Combat phase
+        pan_to_ally(ally_priority_list[current_ally_index])
+        move_random_offset(SCREEN_CENTER[0], SCREEN_CENTER[1])
         ally_locations = find_ally_locations(screen_manager.get_latest_frame())
         if ally_locations:
             # check enemy location
             enemy_locations = find_enemy_locations(screen_manager.get_latest_frame())
             if enemy_locations:
-                # check enemy relative location
+                # pan on self with necessary pause to allow camera to update
                 keyboard.press(center_camera_key)
-                time.sleep(0.01)
-                keyboard.release(center_camera_key) 
+                time.sleep(0.5)
                 enemy_locations = find_enemy_locations(screen_manager.get_latest_frame())
                 player_location = find_player_location(screen_manager.get_latest_frame())
                 if player_location:
                     for enemy_location in enemy_locations: 
                         distance_to_enemy = get_distance(player_location, enemy_location)
-                        if distance_to_enemy < 600:
+                        if distance_to_enemy < attack_range:
                             attack_enemy(enemy_location)
-                            move_random_offset(player_location[0], player_location[1], 15)
                             break
+                keyboard.release(center_camera_key) 
             else:
-                # No enemy found, switch to the next ally
-                current_ally_number = ally_priority_list[(ally_priority_list.index(current_ally_number) + 1) % len(ally_priority_list)]
-                time.sleep(0.01)
+                # ally but no enemy, try next ally
+                current_ally_index = (current_ally_index + 1) % len(ally_priority_list)
+            time.sleep(1)
+            
+
         else:
             # look for ally
-            current_ally_number = ally_priority_list[(ally_priority_list.index(current_ally_number) + 1) % len(ally_priority_list)]
-            time.sleep(0.01)
+            for i in range(len(ally_priority_list)):
+                pan_to_ally(ally_priority_list[i])
+                if find_ally_locations(screen_manager.get_latest_frame()):
+                    current_ally_index = i
+                    break
         time.sleep(0.01) 

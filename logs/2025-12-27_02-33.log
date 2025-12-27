@@ -1,0 +1,1798 @@
+2025-12-27 02:33:59 [INFO] Press DELETE key to exit anytime.
+2025-12-27 02:34:01 [INFO] Starting Script. Waiting for client...
+2025-12-27 02:34:01 [INFO] Starting LCU connector...
+2025-12-27 02:34:02 [INFO] Connected to League client.
+2025-12-27 02:34:03 [INFO] [EVENT] Starting queue.
+2025-12-27 02:34:03 [INFO] Picking random champion ID: 45
+2025-12-27 02:34:04 [INFO] Processes started by connector (name,pid,mem): {('svchost.exe', '7492', '11,460 K'), ('StartMenuExperienceHost.exe', '12932', '153,456 K'), ('svchost.exe', '18952', '22,288 K'), ('msedge.exe', '23384', '46,604 K'), ('LeagueClientUx.exe', '5908', '88,028 K'), ('python.exe', '15164', '77,448 K'), ('svchost.exe', '2120', '7,920 K'), ('Memory Compression', '3656', '258,772 K'), ('msedge.exe', '23456', '21,724 K'), ('lsass.exe', '1600', '33,564 K'), ('GameBarFTServer.exe', '6672', '34,668 K'), ('msedge.exe', '23376', '80,384 K'), ('audiodg.exe', '21796', '26,936 K'), ('steamwebhelper.exe', '18792', '278,992 K'), ('msedgewebview2.exe', '1448', '8,452 K'), ('services.exe', '1532', '18,604 K'), ('msedge.exe', '22932', '280,668 K'), ('svchost.exe', '3516', '18,628 K'), ('msedge.exe', '14916', '59,396 K'), ('XboxGameBarWidgets.exe', '11556', '116,780 K'), ('svchost.exe', '8852', '10,868 K'), ('MsMpEng.exe', '5708', '310,612 K'), ('WmiPrvSE.exe', '3500', '15,772 K'), ('svchost.exe', '1676', '14,700 K'), ('svchost.exe', '2552', '20,276 K'), ('svchost.exe', '1948', '13,676 K'), ('svchost.exe', '3712', '27,172 K'), ('svchost.exe', '1888', '19,392 K'), ('svchost.exe', '7528', '27,688 K'), ('svchost.exe', '12244', '13,616 K'), ('svchost.exe', '2892', '24,256 K'), ('svchost.exe', '4392', '21,928 K'), ('svchost.exe', '5488', '56,732 K'), ('msedge.exe', '14180', '135,460 K'), ('dwm.exe', '2008', '103,840 K'), ('svchost.exe', '9704', '17,900 K'), ('WmiPrvSE.exe', '18868', '16,600 K'), ('firefox.exe', '25428', '108,064 K'), ('firefox.exe', '27108', '148,832 K'), ('msedge.exe', '25920', '97,256 K'), ('taskhostw.exe', '11820', '23,272 K'), ('tasklist.exe', '22252', '12,324 K'), ('SearchIndexer.exe', '15028', '54,832 K'), ('Code.exe', '4380', '48,052 K'), ('LeagueClientUxRender.exe', '13420', '530,340 K'), ('LeagueClient.exe', '18928', '1,018,556 K'), ('svchost.exe', '5496', '22,304 K'), ('msedge.exe', '25780', '21,636 K'), ('svchost.exe', '5560', '25,904 K'), ('steamwebhelper.exe', '19320', '33,964 K'), ('Code.exe', '18480', '164,400 K'), ('steamwebhelper.exe', '3544', '444,484 K'), ('svchost.exe', '2956', '11,676 K'), ('TextInputHost.exe', '19108', '84,164 K'), ('svchost.exe', '9056', '40,272 K'), ('SearchHost.exe', '12880', '132,448 K'), ('Registry', '280', '53,392 K'), ('csrss.exe', '1460', '7,324 K'), ('atieclxx.exe', '3552', '20,388 K'), ('msedge.exe', '27092', '29,328 K'), ('firefox.exe', '27196', '433,640 K'), ('svchost.exe', '22316', '13,084 K'), ('SystemSettings.exe', '18776', '2,968 K'), ('RuntimeBroker.exe', '22512', '29,172 K'), ('msedge.exe', '4464', '98,664 K'), ('NVDisplay.Container.exe', '3128', '39,736 K'), ('svchost.exe', '3588', '25,544 K'), ('explorer.exe', '12076', '334,576 K'), ('RuntimeBroker.exe', '2580', '48,532 K'), ('svchost.exe', '19460', '15,624 K'), ('Code.exe', '17700', '121,208 K'), ('svchost.exe', '9572', '10,544 K'), ('AggregatorHost.exe', '9820', '14,740 K'), ('CrossDeviceResume.exe', '11292', '55,704 K'), ('sihost.exe', '11096', '48,692 K'), ('csrss.exe', '1272', '5,904 K'), ('svchost.exe', '3740', '17,724 K'), ('svchost.exe', '1760', '35,088 K'), ('msedge.exe', '11796', '65,048 K'), ('svchost.exe', '4416', '9,900 K'), ('msedge.exe', '23164', '10,128 K'), ('msedge.exe', '27412', '19,524 K'), ('Code.exe', '5728', '402,624 K'), ('svchost.exe', '11332', '28,748 K'), ('Code.exe', '6576', '100,752 K'), ('vgc.exe', '17128', '112,012 K'), ('svchost.exe', '3192', '16,560 K'), ('GameBar.exe', '11708', '129,140 K'), ('svchost.exe', '22284', '10,496 K'), ('svchost.exe', '6312', '37,252 K'), ('svchost.exe', '8596', '9,752 K'), ('msedge.exe', '27428', '17,452 K'), ('nvcontainer.exe', '11132', '88,320 K'), ('svchost.exe', '3576', '20,136 K'), ('msedge.exe', '10868', '171,556 K'), ('identity_helper.exe', '27480', '36,372 K'), ('gameoverlayui64.exe', '2092', '33,232 K'), ('svchost.exe', '9780', '62,220 K'), ('Code.exe', '16008', '154,108 K'), ('svchost.exe', '3512', '7,252 K'), ('svchost.exe', '4160', '25,828 K'), ('svchost.exe', '19568', '32,780 K'), ('firefox.exe', '25856', '176,304 K'), ('EdgeGameAssist.exe', '22104', '86,600 K'), ('svchost.exe', '2464', '10,784 K'), ('LeagueClientUxRender.exe', '12092', '199,776 K'), ('msedge.exe', '25628', '34,924 K'), ('Warframe.x64.exe', '26040', '3,087,100 K'), ('LeagueClientUxRender.exe', '19116', '37,044 K'), ('GameBarPresenceWriter.exe', '7136', '25,652 K'), ('ctfmon.exe', '9084', '38,268 K'), ('gamingservices.exe', '8348', '50,104 K'), ('svchost.exe', '8292', '22,672 K'), ('Code.exe', '15384', '164,692 K'), ('Code.exe', '3764', '411,352 K'), ('svchost.exe', '2392', '22,408 K'), ('XboxPcAppFT.exe', '22312', '54,112 K')}
+2025-12-27 02:34:04 [ERROR] Failed to get psutil info for PID 7492
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 775, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 673, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 691, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 778, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=False)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\Users\Wesley\Documents\GitHub\INTAI\core\lcu_manager.py", line 252, in start
+    'cmdline': p.cmdline(),
+               ^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\__init__.py", line 739, in cmdline
+    return self._proc.cmdline()
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 675, in wrapper
+    raise convert_oserror(err, pid=self.pid, name=self._name) from err
+psutil.AccessDenied: (pid=7492, name='svchost.exe')
+2025-12-27 02:34:04 [INFO] Detailed process info: {'name': 'StartMenuExperienceHost.exe', 'pid': 12932, 'ppid': 1760, 'cmdline': ['C:\\WINDOWS\\SystemApps\\Microsoft.Windows.StartMenuExperienceHost_cw5n1h2txyewy\\StartMenuExperienceHost.exe', '-ServerName:FullTrustApp.AppXykjsye98af63ez2annt9djke8trg8stn.mca'], 'create_time': 1766822885.736972, 'parent_chain': [(1760, 'svchost.exe'), (1532, 'services.exe'), (1452, 'wininit.exe')]}
+2025-12-27 02:34:04 [ERROR] Failed to get psutil info for PID 18952
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 775, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 673, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 691, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 778, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=False)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\Users\Wesley\Documents\GitHub\INTAI\core\lcu_manager.py", line 252, in start
+    'cmdline': p.cmdline(),
+               ^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\__init__.py", line 739, in cmdline
+    return self._proc.cmdline()
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 675, in wrapper
+    raise convert_oserror(err, pid=self.pid, name=self._name) from err
+psutil.AccessDenied: (pid=18952, name='svchost.exe')
+2025-12-27 02:34:04 [INFO] Detailed process info: {'name': 'msedge.exe', 'pid': 23384, 'ppid': 22932, 'cmdline': ['C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe', '--type=utility', '--utility-sub-type=network.mojom.NetworkService', '--lang=en-US', '--service-sandbox-type=none', '--no-pre-read-main-dll', '--startup-read-main-dll', '--metrics-shmem-handle=2528,i,18066515625224040007,1412319242591067157,524288', '--field-trial-handle=2132,i,15642027540660536941,15856721530817603959,262144', '--variations-seed-version', '--trace-process-track-uuid=3190708989122997041', '--mojo-platform-channel-handle=2392', '/prefetch:11'], 'create_time': 1766823541.1295145, 'parent_chain': [(22932, 'msedge.exe'), (12076, 'explorer.exe')]}
+2025-12-27 02:34:04 [INFO] Detailed process info: {'name': 'LeagueClientUx.exe', 'pid': 5908, 'ppid': 18928, 'cmdline': ['C:/Riot Games/League of Legends/LeagueClientUx.exe', '--riotclient-auth-token=4YAQvzc5VeRy2PQD0AXR9w', '--riotclient-app-port=59332', '--no-rads', '--disable-self-update', '--region=NA', '--locale=en_US', '--client-config-url=https://clientconfig.rpg.riotgames.com', '--riotgamesapi-standalone', '--riotgamesapi-settings=eyJjbGllbnQtY29uZmlnIjp7InVybCI6Imh0dHBzOi8vY2xpZW50Y29uZmlnLnJwZy5yaW90Z2FtZXMuY29tIn0sImRlZmF1bHRfcmVnaW9uIjoiTkEiLCJnbG9iYWxzIjp7InNlc3Npb24taWQiOiJhZGUxN2U1OS00NjM5LWRlNDQtYjljMy1kZDYyYTFlYjE1MjEifSwicGF0Y2hsaW5lX2lkIjoibGl2ZSIsInByb2R1Y3QtaW50ZWdyYXRpb24iOnsiYXBwLXVwZGF0ZS1zdGF0dXMiOiJDOi9Qcm9ncmFtRGF0YS9SaW90IEdhbWVzL01ldGFkYXRhL2xlYWd1ZV9vZl9sZWdlbmRzLmxpdmUvbGVhZ3VlX29mX2xlZ2VuZHMubGl2ZS51cGRhdGUtc3RhdHVzLmpzb24iLCJoZWFydGJlYXQiOiJDOi9Vc2Vycy9XZXNsZXkvQXBwRGF0YS9Mb2NhbC9SaW90IEdhbWVzL1Jpb3QgQ2xpZW50L0RhdGEvU2Vzc2lvbnMvYWRlMTdlNTktNDYzOS1kZTQ0LWI5YzMtZGQ2MmExZWIxNTIxLzRZQVF2emM1VmVSeTJQUUQwQVhSOXcuaGVhcnRiZWF0Lmpzb24iLCJsb2NrZmlsZSI6IkM6L1Byb2dyYW1EYXRhL1Jpb3QgR2FtZXMvTWV0YWRhdGEvbGVhZ3VlX29mX2xlZ2VuZHMubGl2ZS9sZWFndWVfb2ZfbGVnZW5kcy5saXZlLmxvY2tmaWxlIiwic2V0dGluZ3MiOiJDOi9Qcm9ncmFtRGF0YS9SaW90IEdhbWVzL01ldGFkYXRhL2xlYWd1ZV9vZl9sZWdlbmRzLmxpdmUvbGVhZ3VlX29mX2xlZ2VuZHMubGl2ZS5wcm9kdWN0X3NldHRpbmdzLnlhbWwifSwicHJvZHVjdF9pZCI6ImxlYWd1ZV9vZl9sZWdlbmRzIiwicHVibGlzaGVyIjoicmlvdCIsInJlZ2lvbl9kYXRhIjp7Ik5BIjp7ImF2YWlsYWJsZV9sb2NhbGVzIjpbImFyX0FFIiwiaWRfSUQiLCJjc19DWiIsImRlX0RFIiwiZWxfR1IiLCJlbl9BVSIsImVuX0dCIiwiZW5fUEgiLCJlbl9TRyIsImVuX1VTIiwiZXNfQVIiLCJlc19FUyIsImVzX01YIiwiZnJfRlIiLCJodV9IVSIsIml0X0lUIiwiamFfSlAiLCJrb19LUiIsInBsX1BMIiwicHRfQlIiLCJyb19STyIsInJ1X1JVIiwidGhfVEgiLCJ0cl9UUiIsInZpX1ZOIiwiemhfTVkiLCJ6aF9UVyJdLCJkZWZhdWx0X2xvY2FsZSI6ImVuX1VTIiwicnNvIjp7ImNsaWVudCI6ImxvbCJ9fX0sInJpb3RjbGllbnQiOnsiYXBwLXBvcnQiOiI1OTMzMiIsImF1dGgtdG9rZW4iOiI0WUFRdnpjNVZlUnkyUFFEMEFYUjl3In0sInJpb3RnYW1lc2FwaSI6eyJwZXJzaXN0ZW5jZS1wYXRoIjoiQzovVXNlcnMvV2VzbGV5L0FwcERhdGEvTG9jYWwvUmlvdCBHYW1lcy9MZWFndWUgb2YgTGVnZW5kcyJ9LCJyc29fYXV0aCI6eyJhdXRob3JpemF0aW9uLWtleSI6ImV3MEtJQ0FnSUNKamIyUmxJam9nSW1SWVkzaFBiRlV4VkZac2RHRnROV2xpTUVwSFdXMVNhazVYTVV0TVZWSkdWRE5qZFZZd1VrdGpTRll4VkRGc2JrOVdielJTVkdoWllYa3hkMkpxUmxCYWR6MDlJaXdOQ2lBZ0lDQWlZMjlrWlY5MlpYSnBabWxsY2lJNklDSXdiR3RwUTI5MWFqWkNWV281V1RFM01taGlkelZ6Tlc1NmQwVkVhalZ0VkVKUVdYcDRkVWhLUjB4eVYyc3hjRkI2TFhwbGJGZzRiREJKY2tsbmJITnRaa2h0ZUY5eU5YTjRVemwzWTFsdlJWYzVZVkV5WnlJTkNuMD0ifX0=', '--rga-lite', '--remoting-auth-token=SHGmiVsxUxTmdqEUNGXiDw', '--respawn-command=LeagueClient.exe', '--respawn-display-name=League of Legends', '--app-port=59434', '--install-directory=C:\\Riot Games\\League of Legends', '--app-name=LeagueClient', '--ux-name=LeagueClientUx', '--ux-helper-name=LeagueClientUxHelper', '--log-dir=LeagueClient Logs', '--crash-reporting=crashpad', '--crash-environment=NA1', '--crash-pipe=\\\\.\\pipe\\crashpad_18928_VUWOXVUGNFLQPZPQ', '--app-log-file-path=C:/Riot Games/League of Legends/Logs/LeagueClient Logs/2025-12-27T02-18-51_18928_LeagueClient.log', '--app-pid=18928', '--output-base-dir=C:\\Riot Games\\League of Legends', '--no-proxy-server', '--ignore-certificate-errors'], 'create_time': 1766823531.479125, 'parent_chain': [(18928, 'LeagueClient.exe'), (16984, 'RiotClientServices.exe'), (12076, 'explorer.exe')]}
+2025-12-27 02:34:04 [INFO] Detailed process info: {'name': 'python.exe', 'pid': 15164, 'ppid': 11084, 'cmdline': ['C:\\Users\\Wesley\\AppData\\Local\\Programs\\Python\\Python311\\python.exe', 'c:/Users/Wesley/Documents/GitHub/INTAI/main.py'], 'create_time': 1766824439.3277574, 'parent_chain': [(11084, 'cmd.exe'), (17700, 'Code.exe'), (15384, 'Code.exe'), (12076, 'explorer.exe')]}
+2025-12-27 02:34:04 [ERROR] Failed to get psutil info for PID 2120
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 775, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 673, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 691, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 778, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=False)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\Users\Wesley\Documents\GitHub\INTAI\core\lcu_manager.py", line 252, in start
+    'cmdline': p.cmdline(),
+               ^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\__init__.py", line 739, in cmdline
+    return self._proc.cmdline()
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 675, in wrapper
+    raise convert_oserror(err, pid=self.pid, name=self._name) from err
+psutil.AccessDenied: (pid=2120, name='svchost.exe')
+2025-12-27 02:34:04 [ERROR] Failed to get psutil info for PID 3656
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 775, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 673, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 691, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 778, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=False)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\Users\Wesley\Documents\GitHub\INTAI\core\lcu_manager.py", line 252, in start
+    'cmdline': p.cmdline(),
+               ^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\__init__.py", line 739, in cmdline
+    return self._proc.cmdline()
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 675, in wrapper
+    raise convert_oserror(err, pid=self.pid, name=self._name) from err
+psutil.AccessDenied: (pid=3656, name='MemCompression')
+2025-12-27 02:34:04 [INFO] Detailed process info: {'name': 'msedge.exe', 'pid': 23456, 'ppid': 22932, 'cmdline': ['C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe', '--type=utility', '--utility-sub-type=storage.mojom.StorageService', '--lang=en-US', '--service-sandbox-type=service', '--no-pre-read-main-dll', '--startup-read-main-dll', '--metrics-shmem-handle=2848,i,86676278881359395,6720072407060848690,524288', '--field-trial-handle=2132,i,15642027540660536941,15856721530817603959,262144', '--variations-seed-version', '--trace-process-track-uuid=3190708990060038890', '--mojo-platform-channel-handle=2864', '/prefetch:13'], 'create_time': 1766823541.1888623, 'parent_chain': [(22932, 'msedge.exe'), (12076, 'explorer.exe')]}
+2025-12-27 02:34:04 [ERROR] Failed to get psutil info for PID 1600
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 775, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 673, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 691, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 778, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=False)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\Users\Wesley\Documents\GitHub\INTAI\core\lcu_manager.py", line 252, in start
+    'cmdline': p.cmdline(),
+               ^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\__init__.py", line 739, in cmdline
+    return self._proc.cmdline()
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 675, in wrapper
+    raise convert_oserror(err, pid=self.pid, name=self._name) from err
+psutil.AccessDenied: (pid=1600, name='lsass.exe')
+2025-12-27 02:34:04 [INFO] Detailed process info: {'name': 'GameBarFTServer.exe', 'pid': 6672, 'ppid': 1760, 'cmdline': ['C:\\Program Files\\WindowsApps\\Microsoft.XboxGamingOverlay_7.325.11061.0_x64__8wekyb3d8bbwe\\GameBarFTServer.exe', '-Embedding'], 'create_time': 1766824442.3182576, 'parent_chain': [(1760, 'svchost.exe'), (1532, 'services.exe'), (1452, 'wininit.exe')]}
+2025-12-27 02:34:04 [INFO] Detailed process info: {'name': 'msedge.exe', 'pid': 23376, 'ppid': 22932, 'cmdline': ['C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe', '--type=gpu-process', '--no-pre-read-main-dll', '--gpu-preferences=SAAAAAAAAADgAAAEAAAAAAAAAAAAAGAAAQAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAQAAAAAAAAABAAAAAAAAAACAAAAAAAAAAIAAAAAAAAAA==', '--startup-read-main-dll', '--metrics-shmem-handle=2128,i,6540128456983832287,3021071698485134937,262144', '--field-trial-handle=2132,i,15642027540660536941,15856721530817603959,262144', '--variations-seed-version', '--trace-process-track-uuid=3190708988185955192', '--mojo-platform-channel-handle=2184', '/prefetch:2'], 'create_time': 1766823541.1288273, 'parent_chain': [(22932, 'msedge.exe'), (12076, 'explorer.exe')]}
+2025-12-27 02:34:04 [INFO] Detailed process info: {'name': 'audiodg.exe', 'pid': 21796, 'ppid': 3740, 'cmdline': ['C:\\WINDOWS\\system32\\AUDIODG.EXE', '0x0000000000000658'], 'create_time': 1766823540.1852596, 'parent_chain': [(3740, 'svchost.exe'), (1532, 'services.exe'), (1452, 'wininit.exe')]}
+2025-12-27 02:34:04 [INFO] Detailed process info: {'name': 'steamwebhelper.exe', 'pid': 18792, 'ppid': 2760, 'cmdline': ['C:\\Steam\\bin\\cef\\cef.win64\\steamwebhelper.exe', '-nocrashdialog', '-lang=en_US', '-cachedir=C:\\Users\\Wesley\\AppData\\Local\\Steam\\htmlcache', '-steampid=2760', '-buildid=1766451605', '-steamid=0', '-logdir=C:\\Steam\\logs', '-uimode=7', '-startcount=0', '-steamuniverse=Public', '-realm=Global', '-clientui=C:\\Steam\\clientui', '-steampath=C:\\Steam\\steam.exe', '-launcher=0', '--valve-initial-threadpool-size=4', '--valve-enable-site-isolation', '--enable-smooth-scrolling', '--log-file=C:\\Steam\\logs\\cef_log.txt', '--disable-quick-menu', '--disable-component-update', '--gaia-url=http://disabled.invalid', '--enable-features=PlatformHEVCDecoderSupport', '--disable-features=WinRetrieveSuggestionsOnlyOnDemand,SpareRendererForSitePerProcess,DcheckIsFatal,BlockPromptsIfIgnoredOften,ValveFFmpegAllowLowDelayHEVC'], 'create_time': 1766823538.012998, 'parent_chain': [(2760, 'steam.exe'), (12076, 'explorer.exe')]}
+2025-12-27 02:34:04 [INFO] Accepted ready check.
+2025-12-27 02:34:04 [INFO] Detailed process info: {'name': 'msedgewebview2.exe', 'pid': 1448, 'ppid': 11556, 'cmdline': ['C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\143.0.3650.96\\msedgewebview2.exe', '--embedded-browser-webview=1', '--webview-exe-name=XboxGameBarWidgets.exe', '--webview-exe-version=2512.1001.34.0', '--user-data-dir=C:\\Users\\Wesley\\AppData\\Local\\Packages\\Microsoft.GamingApp_8wekyb3d8bbwe\\LocalState\\EBWebView', '--noerrdialogs', '--lang=en-US', '--mojo-named-platform-channel-pipe=11556.26084.17383290665654992494', '/pfhostedapp:66929e67afdc50a8fa3dbdafa50c6a05d49f1e1e'], 'create_time': 1766824443.921101, 'parent_chain': [(11556, 'XboxGameBarWidgets.exe'), (1760, 'svchost.exe'), (1532, 'services.exe'), (1452, 'wininit.exe')]}
+2025-12-27 02:34:04 [ERROR] Failed to get psutil info for PID 1532
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 775, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 673, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 691, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 778, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=False)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\Users\Wesley\Documents\GitHub\INTAI\core\lcu_manager.py", line 252, in start
+    'cmdline': p.cmdline(),
+               ^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\__init__.py", line 739, in cmdline
+    return self._proc.cmdline()
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 675, in wrapper
+    raise convert_oserror(err, pid=self.pid, name=self._name) from err
+psutil.AccessDenied: (pid=1532, name='services.exe')
+2025-12-27 02:34:04 [INFO] Detailed process info: {'name': 'msedge.exe', 'pid': 22932, 'ppid': 12076, 'cmdline': ['C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe', '--embedded-browser-edgeview=1', '--edge-webview-host-pid=22104', '--embedded-browser-edgeview-handle=2612'], 'create_time': 1766823540.9090428, 'parent_chain': [(12076, 'explorer.exe')]}
+2025-12-27 02:34:04 [ERROR] Failed to get psutil info for PID 3516
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 775, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 673, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 691, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 778, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=False)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\Users\Wesley\Documents\GitHub\INTAI\core\lcu_manager.py", line 252, in start
+    'cmdline': p.cmdline(),
+               ^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\__init__.py", line 739, in cmdline
+    return self._proc.cmdline()
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 675, in wrapper
+    raise convert_oserror(err, pid=self.pid, name=self._name) from err
+psutil.AccessDenied: (pid=3516, name='svchost.exe')
+2025-12-27 02:34:04 [INFO] Detailed process info: {'name': 'msedge.exe', 'pid': 14916, 'ppid': 22932, 'cmdline': ['C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe', '--type=renderer', '--extension-process', '--renderer-sub-type=extension', '--pdf-upsell-enabled', '--dma-cps-flags=2048', '--no-pre-read-main-dll', '--video-capture-use-gpu-memory-buffer', '--lang=en-US', '--js-flags', '--device-scale-factor=1', '--num-raster-threads=4', '--enable-main-frame-before-activation', '--renderer-client-id=51', '--time-ticks-at-unix-epoch=-1766822855132003', '--launch-time-ticks=1587659573', '--skip-read-main-dll', '--metrics-shmem-handle=1664,i,8381207208347226378,10418435289469093246,2097152', '--field-trial-handle=2132,i,15642027540660536941,15856721530817603959,262144', '--variations-seed-version', '--trace-process-track-uuid=3190709034101005793', '--mojo-platform-channel-handle=5332', '/prefetch:9'], 'create_time': 1766824442.7939682, 'parent_chain': [(22932, 'msedge.exe'), (12076, 'explorer.exe')]}
+2025-12-27 02:34:04 [INFO] Detailed process info: {'name': 'XboxGameBarWidgets.exe', 'pid': 11556, 'ppid': 1760, 'cmdline': ['C:\\Program Files\\WindowsApps\\Microsoft.GamingApp_2512.1001.34.0_x64__8wekyb3d8bbwe\\XboxGameBarWidgets.exe', '-ServerName:Microsoft.Xbox.WidgetsApp.AppXvmd054fy0d5ktfeay7jt5w8kg32dxk24.mca'], 'create_time': 1766824442.713552, 'parent_chain': [(1760, 'svchost.exe'), (1532, 'services.exe'), (1452, 'wininit.exe')]}
+2025-12-27 02:34:04 [INFO] Detailed process info: {'name': 'svchost.exe', 'pid': 8852, 'ppid': 1532, 'cmdline': ['C:\\WINDOWS\\system32\\svchost.exe', '-k', 'LocalSystemNetworkRestricted', '-p', '-s', 'webthreatdefusersvc'], 'create_time': 1766822882.0920312, 'parent_chain': [(1532, 'services.exe'), (1452, 'wininit.exe')]}
+2025-12-27 02:34:04 [ERROR] Failed to get psutil info for PID 5708
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 775, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 673, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 691, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 778, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=False)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\Users\Wesley\Documents\GitHub\INTAI\core\lcu_manager.py", line 252, in start
+    'cmdline': p.cmdline(),
+               ^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\__init__.py", line 739, in cmdline
+    return self._proc.cmdline()
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 675, in wrapper
+    raise convert_oserror(err, pid=self.pid, name=self._name) from err
+psutil.AccessDenied: (pid=5708, name='MsMpEng.exe')
+2025-12-27 02:34:04 [ERROR] Failed to get psutil info for PID 3500
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 775, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 673, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 691, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 778, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=False)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\Users\Wesley\Documents\GitHub\INTAI\core\lcu_manager.py", line 252, in start
+    'cmdline': p.cmdline(),
+               ^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\__init__.py", line 739, in cmdline
+    return self._proc.cmdline()
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 675, in wrapper
+    raise convert_oserror(err, pid=self.pid, name=self._name) from err
+psutil.AccessDenied: (pid=3500, name='WmiPrvSE.exe')
+2025-12-27 02:34:04 [ERROR] Failed to get psutil info for PID 1676
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 775, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 673, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 691, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 778, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=False)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\Users\Wesley\Documents\GitHub\INTAI\core\lcu_manager.py", line 252, in start
+    'cmdline': p.cmdline(),
+               ^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\__init__.py", line 739, in cmdline
+    return self._proc.cmdline()
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 675, in wrapper
+    raise convert_oserror(err, pid=self.pid, name=self._name) from err
+psutil.AccessDenied: (pid=1676, name='svchost.exe')
+2025-12-27 02:34:04 [ERROR] Failed to get psutil info for PID 2552
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 775, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 673, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 691, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 778, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=False)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\Users\Wesley\Documents\GitHub\INTAI\core\lcu_manager.py", line 252, in start
+    'cmdline': p.cmdline(),
+               ^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\__init__.py", line 739, in cmdline
+    return self._proc.cmdline()
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 675, in wrapper
+    raise convert_oserror(err, pid=self.pid, name=self._name) from err
+psutil.AccessDenied: (pid=2552, name='svchost.exe')
+2025-12-27 02:34:04 [ERROR] Failed to get psutil info for PID 1948
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 775, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 673, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 691, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 778, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=False)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\Users\Wesley\Documents\GitHub\INTAI\core\lcu_manager.py", line 252, in start
+    'cmdline': p.cmdline(),
+               ^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\__init__.py", line 739, in cmdline
+    return self._proc.cmdline()
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 675, in wrapper
+    raise convert_oserror(err, pid=self.pid, name=self._name) from err
+psutil.AccessDenied: (pid=1948, name='svchost.exe')
+2025-12-27 02:34:04 [ERROR] Failed to get psutil info for PID 3712
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 775, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 673, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 691, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 778, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=False)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\Users\Wesley\Documents\GitHub\INTAI\core\lcu_manager.py", line 252, in start
+    'cmdline': p.cmdline(),
+               ^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\__init__.py", line 739, in cmdline
+    return self._proc.cmdline()
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 675, in wrapper
+    raise convert_oserror(err, pid=self.pid, name=self._name) from err
+psutil.AccessDenied: (pid=3712, name='svchost.exe')
+2025-12-27 02:34:05 [ERROR] Failed to get psutil info for PID 1888
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 775, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 673, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 691, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 778, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=False)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\Users\Wesley\Documents\GitHub\INTAI\core\lcu_manager.py", line 252, in start
+    'cmdline': p.cmdline(),
+               ^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\__init__.py", line 739, in cmdline
+    return self._proc.cmdline()
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 675, in wrapper
+    raise convert_oserror(err, pid=self.pid, name=self._name) from err
+psutil.AccessDenied: (pid=1888, name='svchost.exe')
+2025-12-27 02:34:05 [ERROR] Failed to get psutil info for PID 7528
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 775, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 673, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 691, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 778, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=False)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\Users\Wesley\Documents\GitHub\INTAI\core\lcu_manager.py", line 252, in start
+    'cmdline': p.cmdline(),
+               ^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\__init__.py", line 739, in cmdline
+    return self._proc.cmdline()
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 675, in wrapper
+    raise convert_oserror(err, pid=self.pid, name=self._name) from err
+psutil.AccessDenied: (pid=7528, name='svchost.exe')
+2025-12-27 02:34:05 [ERROR] Failed to get psutil info for PID 12244
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 775, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 673, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 691, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 778, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=False)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\Users\Wesley\Documents\GitHub\INTAI\core\lcu_manager.py", line 252, in start
+    'cmdline': p.cmdline(),
+               ^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\__init__.py", line 739, in cmdline
+    return self._proc.cmdline()
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 675, in wrapper
+    raise convert_oserror(err, pid=self.pid, name=self._name) from err
+psutil.AccessDenied: (pid=12244, name='svchost.exe')
+2025-12-27 02:34:05 [ERROR] Failed to get psutil info for PID 2892
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 775, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 673, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 691, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 778, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=False)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\Users\Wesley\Documents\GitHub\INTAI\core\lcu_manager.py", line 252, in start
+    'cmdline': p.cmdline(),
+               ^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\__init__.py", line 739, in cmdline
+    return self._proc.cmdline()
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 675, in wrapper
+    raise convert_oserror(err, pid=self.pid, name=self._name) from err
+psutil.AccessDenied: (pid=2892, name='svchost.exe')
+2025-12-27 02:34:05 [ERROR] Failed to get psutil info for PID 4392
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 775, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 673, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 691, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 778, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=False)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\Users\Wesley\Documents\GitHub\INTAI\core\lcu_manager.py", line 252, in start
+    'cmdline': p.cmdline(),
+               ^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\__init__.py", line 739, in cmdline
+    return self._proc.cmdline()
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 675, in wrapper
+    raise convert_oserror(err, pid=self.pid, name=self._name) from err
+psutil.AccessDenied: (pid=4392, name='svchost.exe')
+2025-12-27 02:34:05 [ERROR] Failed to get psutil info for PID 5488
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 775, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 673, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 691, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 778, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=False)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\Users\Wesley\Documents\GitHub\INTAI\core\lcu_manager.py", line 252, in start
+    'cmdline': p.cmdline(),
+               ^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\__init__.py", line 739, in cmdline
+    return self._proc.cmdline()
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 675, in wrapper
+    raise convert_oserror(err, pid=self.pid, name=self._name) from err
+psutil.AccessDenied: (pid=5488, name='svchost.exe')
+2025-12-27 02:34:05 [INFO] Detailed process info: {'name': 'msedge.exe', 'pid': 14180, 'ppid': 22932, 'cmdline': ['C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe', '--type=renderer', '--pdf-upsell-enabled', '--dma-cps-flags=2048', '--no-pre-read-main-dll', '--video-capture-use-gpu-memory-buffer', '--lang=en-US', '--js-flags', '--device-scale-factor=1', '--num-raster-threads=4', '--enable-main-frame-before-activation', '--renderer-client-id=59', '--time-ticks-at-unix-epoch=-1766822855132003', '--launch-time-ticks=1587708385', '--skip-read-main-dll', '--metrics-shmem-handle=5996,i,6252191703848881092,816676867005026794,2097152', '--field-trial-handle=2132,i,15642027540660536941,15856721530817603959,262144', '--variations-seed-version', '--trace-process-track-uuid=3190709041597340585', '--mojo-platform-channel-handle=4860', '/prefetch:1'], 'create_time': 1766824442.8536868, 'parent_chain': [(22932, 'msedge.exe'), (12076, 'explorer.exe')]}
+2025-12-27 02:34:05 [ERROR] Failed to get psutil info for PID 2008
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 775, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 673, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 691, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 778, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=False)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\Users\Wesley\Documents\GitHub\INTAI\core\lcu_manager.py", line 252, in start
+    'cmdline': p.cmdline(),
+               ^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\__init__.py", line 739, in cmdline
+    return self._proc.cmdline()
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 675, in wrapper
+    raise convert_oserror(err, pid=self.pid, name=self._name) from err
+psutil.AccessDenied: (pid=2008, name='dwm.exe')
+2025-12-27 02:34:05 [ERROR] Failed to get psutil info for PID 9704
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 775, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 673, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 691, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 778, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=False)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\Users\Wesley\Documents\GitHub\INTAI\core\lcu_manager.py", line 252, in start
+    'cmdline': p.cmdline(),
+               ^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\__init__.py", line 739, in cmdline
+    return self._proc.cmdline()
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 675, in wrapper
+    raise convert_oserror(err, pid=self.pid, name=self._name) from err
+psutil.AccessDenied: (pid=9704, name='svchost.exe')
+2025-12-27 02:34:05 [ERROR] Failed to get psutil info for PID 18868
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 775, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 673, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 691, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 778, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=False)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\Users\Wesley\Documents\GitHub\INTAI\core\lcu_manager.py", line 252, in start
+    'cmdline': p.cmdline(),
+               ^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\__init__.py", line 739, in cmdline
+    return self._proc.cmdline()
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 675, in wrapper
+    raise convert_oserror(err, pid=self.pid, name=self._name) from err
+psutil.AccessDenied: (pid=18868, name='WmiPrvSE.exe')
+2025-12-27 02:34:05 [INFO] Detailed process info: {'name': 'firefox.exe', 'pid': 25428, 'ppid': 27196, 'cmdline': ['C:\\Program Files\\Mozilla Firefox\\firefox.exe', '-contentproc', '-parentBuildID', '20251217121356', '-prefsHandle', '2104:40043', '-prefMapHandle', '2108:288118', '-ipcHandle', '2128', '-initialChannelId', '{a478ec6e-c2c2-4b4e-903e-43723f96d0c4}', '-parentPid', '27196', '-crashReporter', '\\\\.\\pipe\\gecko-crash-server-pipe.27196', '-crashHelper', '2156', '-appDir', 'C:\\Program Files\\Mozilla Firefox\\browser', '-', '1', 'gpu'], 'create_time': 1766824419.6052592, 'parent_chain': [(27196, 'firefox.exe')]}
+2025-12-27 02:34:05 [INFO] Detailed process info: {'name': 'firefox.exe', 'pid': 27108, 'ppid': 27196, 'cmdline': ['C:\\Program Files\\Mozilla Firefox\\firefox.exe', '-contentproc', '-isForBrowser', '-prefsHandle', '3588:40146', '-prefMapHandle', '3592:288118', '-jsInitHandle', '3596:223356', '-parentBuildID', '20251217121356', '-ipcHandle', '3604', '-initialChannelId', '{ff9c8ef0-793e-4454-a3cf-44cfd6913324}', '-parentPid', '27196', '-crashReporter', '\\\\.\\pipe\\gecko-crash-server-pipe.27196', '-crashHelper', '3620', '-win32kLockedDown', '-appDir', 'C:\\Program Files\\Mozilla Firefox\\browser', '-', '3', 'tab'], 'create_time': 1766824419.9331424, 'parent_chain': [(27196, 'firefox.exe')]}
+2025-12-27 02:34:05 [INFO] Detailed process info: {'name': 'msedge.exe', 'pid': 25920, 'ppid': 22932, 'cmdline': ['C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe', '--type=renderer', '--extension-process', '--renderer-sub-type=extension', '--pdf-upsell-enabled', '--dma-cps-flags=2048', '--no-pre-read-main-dll', '--video-capture-use-gpu-memory-buffer', '--lang=en-US', '--js-flags', '--device-scale-factor=1', '--num-raster-threads=4', '--enable-main-frame-before-activation', '--renderer-client-id=54', '--time-ticks-at-unix-epoch=-1766822855132003', '--launch-time-ticks=1587678337', '--skip-read-main-dll', '--metrics-shmem-handle=9176,i,9434503366189306978,11253646199787605838,2097152', '--field-trial-handle=2132,i,15642027540660536941,15856721530817603959,262144', '--variations-seed-version', '--trace-process-track-uuid=3190709036912131340', '--mojo-platform-channel-handle=9024', '/prefetch:9'], 'create_time': 1766824442.8251977, 'parent_chain': [(22932, 'msedge.exe'), (12076, 'explorer.exe')]}
+2025-12-27 02:34:05 [INFO] Detailed process info: {'name': 'taskhostw.exe', 'pid': 11820, 'ppid': 2176, 'cmdline': ['taskhostw.exe', '{222A245B-E637-4AE9-A93F-A59CA119A75E}'], 'create_time': 1766822882.4456728, 'parent_chain': [(2176, 'svchost.exe'), (1532, 'services.exe'), (1452, 'wininit.exe')]}
+2025-12-27 02:34:05 [ERROR] Failed to get psutil info for PID 22252
+Traceback (most recent call last):
+  File "c:\Users\Wesley\Documents\GitHub\INTAI\core\lcu_manager.py", line 247, in start
+    p = psutil.Process(pid)
+        ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\__init__.py", line 317, in __init__
+    self._init(pid)
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\__init__.py", line 363, in _init
+    raise NoSuchProcess(pid, msg=msg) from None
+psutil.NoSuchProcess: process PID not found (pid=22252)
+2025-12-27 02:34:05 [ERROR] Failed to get psutil info for PID 15028
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 775, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 673, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 691, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 778, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=False)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\Users\Wesley\Documents\GitHub\INTAI\core\lcu_manager.py", line 252, in start
+    'cmdline': p.cmdline(),
+               ^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\__init__.py", line 739, in cmdline
+    return self._proc.cmdline()
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 675, in wrapper
+    raise convert_oserror(err, pid=self.pid, name=self._name) from err
+psutil.AccessDenied: (pid=15028, name='SearchIndexer.exe')
+2025-12-27 02:34:05 [INFO] Detailed process info: {'name': 'Code.exe', 'pid': 4380, 'ppid': 15384, 'cmdline': ['C:\\Users\\Wesley\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe', '--type=utility', '--utility-sub-type=network.mojom.NetworkService', '--lang=en-US', '--service-sandbox-type=none', '--user-data-dir=C:\\Users\\Wesley\\AppData\\Roaming\\Code', '--standard-schemes=vscode-webview,vscode-file', '--enable-sandbox', '--secure-schemes=vscode-webview,vscode-file', '--cors-schemes=vscode-webview,vscode-file', '--fetch-schemes=vscode-webview,vscode-file', '--service-worker-schemes=vscode-webview', '--code-cache-schemes=vscode-webview,vscode-file', '--field-trial-handle=1784,i,595860880891780596,9683399954541231546,262144', '--enable-features=DocumentPolicyIncludeJSCallStacksInCrashReports,EarlyEstablishGpuChannel,EnableTransparentHwndEnlargement,EstablishGpuChannelAsync', '--disable-features=CalculateNativeWinOcclusion,LocalNetworkAccessChecks,ScreenAIOCREnabled,SpareRendererForSitePerProcess,TraceSiteInstanceGetProcessCreation', '--variations-seed-version', '--trace-process-track-uuid=3190708989122997041', '--mojo-platform-channel-handle=2016', '/prefetch:11'], 'create_time': 1766823082.9276676, 'parent_chain': [(15384, 'Code.exe'), (12076, 'explorer.exe')]}
+2025-12-27 02:34:05 [INFO] Detailed process info: {'name': 'LeagueClientUxRender.exe', 'pid': 13420, 'ppid': 5908, 'cmdline': ['C:\\Riot Games\\League of Legends\\LeagueClientUxRender.exe', '--type=renderer', '--log-severity=warning', '--user-agent-product=LeagueOfLegendsClient/15.24.734.7485 (CEF 108)', '--disable-spell-checking', '--user-data-dir=C:\\Users\\Wesley\\AppData\\Local\\CEF\\User Data', '--no-sandbox', '--autoplay-policy=no-user-gesture-required', '--force-device-scale-factor=1', '--log-file=C:\\Riot Games\\League of Legends\\debug.log', '--max-active-webgl-contexts=20', '--lang=en-US', '--device-scale-factor=1', '--num-raster-threads=4', '--enable-main-frame-before-activation', '--renderer-client-id=5', '--time-ticks-at-unix-epoch=-1766822855122812', '--launch-time-ticks=683747482', '--mojo-platform-channel-handle=2608', '--field-trial-handle=1680,i,13357573928952193370,6732948374483681019,131072', '--disable-features=HardwareMediaKeyHandling', '--app-name=LeagueClient', '--ux-name=LeagueClientUx', '--ux-helper-name=LeagueClientUxHelper', '--log-dir=LeagueClient Logs', '--app-port=59434', '--output-base-dir=C:\\Riot Games\\League of Legends', '--crash-reporting=crashpad', '--crash-environment=NA1', '--crash-pipe=\\\\.\\pipe\\crashpad_18928_VUWOXVUGNFLQPZPQ', '--app-log-file-path=C:/Riot Games/League of Legends/Logs/LeagueClient Logs/2025-12-27T02-18-51_18928_LeagueClient.log', '--primary-ux-log-file-path=C:/Riot Games/League of Legends/Logs/LeagueClient Logs/2025-12-27T02-18-51_5908_LeagueClientUx.log', '/prefetch:1'], 'create_time': 1766823538.8798306, 'parent_chain': [(5908, 'LeagueClientUx.exe'), (18928, 'LeagueClient.exe'), (16984, 'RiotClientServices.exe'), (12076, 'explorer.exe')]}
+2025-12-27 02:34:05 [INFO] Detailed process info: {'name': 'LeagueClient.exe', 'pid': 18928, 'ppid': 16984, 'cmdline': ['C:/Riot Games/League of Legends/LeagueClient.exe', '--riotclient-auth-token=4YAQvzc5VeRy2PQD0AXR9w', '--riotclient-app-port=59332', '--no-rads', '--disable-self-update', '--region=NA', '--locale=en_US', '--client-config-url=https://clientconfig.rpg.riotgames.com', '--riotgamesapi-standalone', '--riotgamesapi-settings=eyJjbGllbnQtY29uZmlnIjp7InVybCI6Imh0dHBzOi8vY2xpZW50Y29uZmlnLnJwZy5yaW90Z2FtZXMuY29tIn0sImRlZmF1bHRfcmVnaW9uIjoiTkEiLCJnbG9iYWxzIjp7InNlc3Npb24taWQiOiJhZGUxN2U1OS00NjM5LWRlNDQtYjljMy1kZDYyYTFlYjE1MjEifSwicGF0Y2hsaW5lX2lkIjoibGl2ZSIsInByb2R1Y3QtaW50ZWdyYXRpb24iOnsiYXBwLXVwZGF0ZS1zdGF0dXMiOiJDOi9Qcm9ncmFtRGF0YS9SaW90IEdhbWVzL01ldGFkYXRhL2xlYWd1ZV9vZl9sZWdlbmRzLmxpdmUvbGVhZ3VlX29mX2xlZ2VuZHMubGl2ZS51cGRhdGUtc3RhdHVzLmpzb24iLCJoZWFydGJlYXQiOiJDOi9Vc2Vycy9XZXNsZXkvQXBwRGF0YS9Mb2NhbC9SaW90IEdhbWVzL1Jpb3QgQ2xpZW50L0RhdGEvU2Vzc2lvbnMvYWRlMTdlNTktNDYzOS1kZTQ0LWI5YzMtZGQ2MmExZWIxNTIxLzRZQVF2emM1VmVSeTJQUUQwQVhSOXcuaGVhcnRiZWF0Lmpzb24iLCJsb2NrZmlsZSI6IkM6L1Byb2dyYW1EYXRhL1Jpb3QgR2FtZXMvTWV0YWRhdGEvbGVhZ3VlX29mX2xlZ2VuZHMubGl2ZS9sZWFndWVfb2ZfbGVnZW5kcy5saXZlLmxvY2tmaWxlIiwic2V0dGluZ3MiOiJDOi9Qcm9ncmFtRGF0YS9SaW90IEdhbWVzL01ldGFkYXRhL2xlYWd1ZV9vZl9sZWdlbmRzLmxpdmUvbGVhZ3VlX29mX2xlZ2VuZHMubGl2ZS5wcm9kdWN0X3NldHRpbmdzLnlhbWwifSwicHJvZHVjdF9pZCI6ImxlYWd1ZV9vZl9sZWdlbmRzIiwicHVibGlzaGVyIjoicmlvdCIsInJlZ2lvbl9kYXRhIjp7Ik5BIjp7ImF2YWlsYWJsZV9sb2NhbGVzIjpbImFyX0FFIiwiaWRfSUQiLCJjc19DWiIsImRlX0RFIiwiZWxfR1IiLCJlbl9BVSIsImVuX0dCIiwiZW5fUEgiLCJlbl9TRyIsImVuX1VTIiwiZXNfQVIiLCJlc19FUyIsImVzX01YIiwiZnJfRlIiLCJodV9IVSIsIml0X0lUIiwiamFfSlAiLCJrb19LUiIsInBsX1BMIiwicHRfQlIiLCJyb19STyIsInJ1X1JVIiwidGhfVEgiLCJ0cl9UUiIsInZpX1ZOIiwiemhfTVkiLCJ6aF9UVyJdLCJkZWZhdWx0X2xvY2FsZSI6ImVuX1VTIiwicnNvIjp7ImNsaWVudCI6ImxvbCJ9fX0sInJpb3RjbGllbnQiOnsiYXBwLXBvcnQiOiI1OTMzMiIsImF1dGgtdG9rZW4iOiI0WUFRdnpjNVZlUnkyUFFEMEFYUjl3In0sInJpb3RnYW1lc2FwaSI6eyJwZXJzaXN0ZW5jZS1wYXRoIjoiQzovVXNlcnMvV2VzbGV5L0FwcERhdGEvTG9jYWwvUmlvdCBHYW1lcy9MZWFndWUgb2YgTGVnZW5kcyJ9LCJyc29fYXV0aCI6eyJhdXRob3JpemF0aW9uLWtleSI6ImV3MEtJQ0FnSUNKamIyUmxJam9nSW1SWVkzaFBiRlV4VkZac2RHRnROV2xpTUVwSFdXMVNhazVYTVV0TVZWSkdWRE5qZFZZd1VrdGpTRll4VkRGc2JrOVdielJTVkdoWllYa3hkMkpxUmxCYWR6MDlJaXdOQ2lBZ0lDQWlZMjlrWlY5MlpYSnBabWxsY2lJNklDSXdiR3RwUTI5MWFqWkNWV281V1RFM01taGlkelZ6Tlc1NmQwVkVhalZ0VkVKUVdYcDRkVWhLUjB4eVYyc3hjRkI2TFhwbGJGZzRiREJKY2tsbmJITnRaa2h0ZUY5eU5YTjRVemwzWTFsdlJWYzVZVkV5WnlJTkNuMD0ifX0=', '--rga-lite'], 'create_time': 1766823530.8175013, 'parent_chain': [(16984, 'RiotClientServices.exe'), (12076, 'explorer.exe')]}
+2025-12-27 02:34:05 [ERROR] Failed to get psutil info for PID 5496
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 775, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 673, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 691, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 778, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=False)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\Users\Wesley\Documents\GitHub\INTAI\core\lcu_manager.py", line 252, in start
+    'cmdline': p.cmdline(),
+               ^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\__init__.py", line 739, in cmdline
+    return self._proc.cmdline()
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 675, in wrapper
+    raise convert_oserror(err, pid=self.pid, name=self._name) from err
+psutil.AccessDenied: (pid=5496, name='svchost.exe')
+2025-12-27 02:34:05 [INFO] Detailed process info: {'name': 'msedge.exe', 'pid': 25780, 'ppid': 22932, 'cmdline': ['C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe', '--type=utility', '--utility-sub-type=asset_store.mojom.AssetStoreService', '--lang=en-US', '--service-sandbox-type=asset_store_service', '--video-capture-use-gpu-memory-buffer', '--no-pre-read-main-dll', '--skip-read-main-dll', '--metrics-shmem-handle=3664,i,7977950076439166031,2471919679184863656,524288', '--field-trial-handle=2132,i,15642027540660536941,15856721530817603959,262144', '--variations-seed-version', '--trace-process-track-uuid=3190709043471424283', '--mojo-platform-channel-handle=9008', '/prefetch:14'], 'create_time': 1766824442.9255147, 'parent_chain': [(22932, 'msedge.exe'), (12076, 'explorer.exe')]}
+2025-12-27 02:34:05 [ERROR] Failed to get psutil info for PID 5560
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 775, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 673, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 691, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 778, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=False)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\Users\Wesley\Documents\GitHub\INTAI\core\lcu_manager.py", line 252, in start
+    'cmdline': p.cmdline(),
+               ^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\__init__.py", line 739, in cmdline
+    return self._proc.cmdline()
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 675, in wrapper
+    raise convert_oserror(err, pid=self.pid, name=self._name) from err
+psutil.AccessDenied: (pid=5560, name='svchost.exe')
+2025-12-27 02:34:05 [INFO] Detailed process info: {'name': 'steamwebhelper.exe', 'pid': 19320, 'ppid': 18792, 'cmdline': ['C:\\Steam\\bin\\cef\\cef.win64\\steamwebhelper.exe', '--type=utility', '--utility-sub-type=network.mojom.NetworkService', '--lang=en-US', '--service-sandbox-type=none', '--start-stack-profiler', '--enable-chrome-runtime', '--user-data-dir=C:\\Users\\Wesley\\AppData\\Local\\Steam\\htmlcache', '--user-agent-product=Valve Steam Client', '--buildid=1766451605', '--steamid=0', '--valve-initial-threadpool-size=4', '--field-trial-handle=2136,i,9424492602804654148,8253837175833701686,262144', '--enable-features=PlatformHEVCDecoderSupport', '--disable-features=BlockPromptsIfIgnoredOften,DcheckIsFatal,SpareRendererForSitePerProcess,ValveFFmpegAllowLowDelayHEVC,WinRetrieveSuggestionsOnlyOnDemand', '--variations-seed-version', '--enable-logging=handle', '--log-file=2208', '--mojo-platform-channel-handle=2204', '/prefetch:11'], 'create_time': 1766823538.6292603, 'parent_chain': [(18792, 'steamwebhelper.exe'), (2760, 'steam.exe'), (12076, 'explorer.exe')]}
+2025-12-27 02:34:05 [INFO] Detailed process info: {'name': 'Code.exe', 'pid': 18480, 'ppid': 15384, 'cmdline': ['C:\\Users\\Wesley\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe', '--type=utility', '--utility-sub-type=node.mojom.NodeService', '--lang=en-US', '--service-sandbox-type=none', '--video-capture-use-gpu-memory-buffer', '--user-data-dir=C:\\Users\\Wesley\\AppData\\Roaming\\Code', '--standard-schemes=vscode-webview,vscode-file', '--enable-sandbox', '--secure-schemes=vscode-webview,vscode-file', '--cors-schemes=vscode-webview,vscode-file', '--fetch-schemes=vscode-webview,vscode-file', '--service-worker-schemes=vscode-webview', '--code-cache-schemes=vscode-webview,vscode-file', '--field-trial-handle=1784,i,595860880891780596,9683399954541231546,262144', '--enable-features=DocumentPolicyIncludeJSCallStacksInCrashReports,EarlyEstablishGpuChannel,EnableTransparentHwndEnlargement,EstablishGpuChannelAsync', '--disable-features=CalculateNativeWinOcclusion,LocalNetworkAccessChecks,ScreenAIOCREnabled,SpareRendererForSitePerProcess,TraceSiteInstanceGetProcessCreation', '--variations-seed-version', '--trace-process-track-uuid=3190708991934122588', '--mojo-platform-channel-handle=3840', '/prefetch:14'], 'create_time': 1766823084.0821056, 'parent_chain': [(15384, 'Code.exe'), (12076, 'explorer.exe')]}
+2025-12-27 02:34:05 [INFO] Detailed process info: {'name': 'steamwebhelper.exe', 'pid': 3544, 'ppid': 18792, 'cmdline': ['C:\\Steam\\bin\\cef\\cef.win64\\steamwebhelper.exe', '--type=renderer', '--enable-dinosaur-easter-egg-alt-images', '--enable-chrome-runtime', '--user-data-dir=C:\\Users\\Wesley\\AppData\\Local\\Steam\\htmlcache', '--user-agent-product=Valve Steam Client', '--buildid=1766451605', '--steamid=0', '--valve-initial-threadpool-size=4', '--gaia-url=http://disabled.invalid', '--lang=en-US', '--device-scale-factor=1', '--num-raster-threads=4', '--enable-main-frame-before-activation', '--renderer-client-id=5', '--time-ticks-at-unix-epoch=-1766822855128433', '--launch-time-ticks=684508424', '--field-trial-handle=4148,i,9424492602804654148,8253837175833701686,262144', '--enable-features=PlatformHEVCDecoderSupport', '--disable-features=BlockPromptsIfIgnoredOften,DcheckIsFatal,SpareRendererForSitePerProcess,ValveFFmpegAllowLowDelayHEVC,WinRetrieveSuggestionsOnlyOnDemand', '--variations-seed-version', '--enable-logging=handle', '--log-file=4160', '--mojo-platform-channel-handle=4156', '/prefetch:1'], 'create_time': 1766823539.6414425, 'parent_chain': [(18792, 'steamwebhelper.exe'), (2760, 'steam.exe'), (12076, 'explorer.exe')]}
+2025-12-27 02:34:05 [ERROR] Failed to get psutil info for PID 2956
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 775, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 673, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 691, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 778, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=False)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\Users\Wesley\Documents\GitHub\INTAI\core\lcu_manager.py", line 252, in start
+    'cmdline': p.cmdline(),
+               ^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\__init__.py", line 739, in cmdline
+    return self._proc.cmdline()
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 675, in wrapper
+    raise convert_oserror(err, pid=self.pid, name=self._name) from err
+psutil.AccessDenied: (pid=2956, name='svchost.exe')
+2025-12-27 02:34:05 [INFO] Detailed process info: {'name': 'TextInputHost.exe', 'pid': 19108, 'ppid': 1760, 'cmdline': ['C:\\WINDOWS\\SystemApps\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy\\TextInputHost.exe', '-ServerName:InputApp.AppXk0k6mrh4r2q0ct33a9wgbez0x7v9cz5y.mca'], 'create_time': 1766822895.6673772, 'parent_chain': [(1760, 'svchost.exe'), (1532, 'services.exe'), (1452, 'wininit.exe')]}
+2025-12-27 02:34:05 [INFO] Detailed process info: {'name': 'svchost.exe', 'pid': 9056, 'ppid': 1532, 'cmdline': ['C:\\WINDOWS\\system32\\svchost.exe', '-k', 'UnistackSvcGroup', '-s', 'WpnUserService'], 'create_time': 1766822882.1009994, 'parent_chain': [(1532, 'services.exe'), (1452, 'wininit.exe')]}
+2025-12-27 02:34:05 [INFO] Detailed process info: {'name': 'SearchHost.exe', 'pid': 12880, 'ppid': 1760, 'cmdline': ['C:\\WINDOWS\\SystemApps\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy\\SearchHost.exe', '-ServerName:CortanaUIFullTrustApp.AppXqe55xpfenh3k6gvsbjaqb6bkfgy5pkbf.mca'], 'create_time': 1766822885.7355769, 'parent_chain': [(1760, 'svchost.exe'), (1532, 'services.exe'), (1452, 'wininit.exe')]}
+2025-12-27 02:34:05 [ERROR] Failed to get psutil info for PID 280
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 775, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 673, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 691, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 778, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=False)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\Users\Wesley\Documents\GitHub\INTAI\core\lcu_manager.py", line 252, in start
+    'cmdline': p.cmdline(),
+               ^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\__init__.py", line 739, in cmdline
+    return self._proc.cmdline()
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 675, in wrapper
+    raise convert_oserror(err, pid=self.pid, name=self._name) from err
+psutil.AccessDenied: (pid=280, name='Registry')
+2025-12-27 02:34:05 [ERROR] Failed to get psutil info for PID 1460
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 775, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 673, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 691, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 778, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=False)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\Users\Wesley\Documents\GitHub\INTAI\core\lcu_manager.py", line 252, in start
+    'cmdline': p.cmdline(),
+               ^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\__init__.py", line 739, in cmdline
+    return self._proc.cmdline()
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 675, in wrapper
+    raise convert_oserror(err, pid=self.pid, name=self._name) from err
+psutil.AccessDenied: (pid=1460, name='csrss.exe')
+2025-12-27 02:34:05 [ERROR] Failed to get psutil info for PID 3552
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 775, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 673, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 691, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 778, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=False)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\Users\Wesley\Documents\GitHub\INTAI\core\lcu_manager.py", line 252, in start
+    'cmdline': p.cmdline(),
+               ^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\__init__.py", line 739, in cmdline
+    return self._proc.cmdline()
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 675, in wrapper
+    raise convert_oserror(err, pid=self.pid, name=self._name) from err
+psutil.AccessDenied: (pid=3552, name='atieclxx.exe')
+2025-12-27 02:34:05 [INFO] Detailed process info: {'name': 'msedge.exe', 'pid': 27092, 'ppid': 22932, 'cmdline': ['C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe', '--type=utility', '--utility-sub-type=edge_search_indexer.mojom.SearchIndexerInterfaceBroker', '--lang=en-US', '--service-sandbox-type=search_indexer', '--message-loop-type-ui', '--video-capture-use-gpu-memory-buffer', '--no-pre-read-main-dll', '--skip-read-main-dll', '--metrics-shmem-handle=7336,i,5799769562943064246,1053908276823517830,524288', '--field-trial-handle=2132,i,15642027540660536941,15856721530817603959,262144', '--variations-seed-version', '--trace-process-track-uuid=3190709007863834021', '--mojo-platform-channel-handle=1640', '/prefetch:14'], 'create_time': 1766823601.1977887, 'parent_chain': [(22932, 'msedge.exe'), (12076, 'explorer.exe')]}
+2025-12-27 02:34:05 [INFO] Detailed process info: {'name': 'firefox.exe', 'pid': 27196, 'ppid': 24320, 'cmdline': ['C:\\Program Files\\Mozilla Firefox\\firefox.exe'], 'create_time': 1766824419.4896488, 'parent_chain': []}
+2025-12-27 02:34:05 [ERROR] Failed to get psutil info for PID 22316
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 775, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 673, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 691, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 778, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=False)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\Users\Wesley\Documents\GitHub\INTAI\core\lcu_manager.py", line 252, in start
+    'cmdline': p.cmdline(),
+               ^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\__init__.py", line 739, in cmdline
+    return self._proc.cmdline()
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 675, in wrapper
+    raise convert_oserror(err, pid=self.pid, name=self._name) from err
+psutil.AccessDenied: (pid=22316, name='svchost.exe')
+2025-12-27 02:34:05 [INFO] Detailed process info: {'name': 'SystemSettings.exe', 'pid': 18776, 'ppid': 1760, 'cmdline': ['C:\\Windows\\ImmersiveControlPanel\\SystemSettings.exe', '-ServerName:microsoft.windows.immersivecontrolpanel'], 'create_time': 1766823314.0404568, 'parent_chain': [(1760, 'svchost.exe'), (1532, 'services.exe'), (1452, 'wininit.exe')]}
+2025-12-27 02:34:05 [INFO] Detailed process info: {'name': 'RuntimeBroker.exe', 'pid': 22512, 'ppid': 1760, 'cmdline': ['C:\\Windows\\System32\\RuntimeBroker.exe', '-Embedding'], 'create_time': 1766823540.607818, 'parent_chain': [(1760, 'svchost.exe'), (1532, 'services.exe'), (1452, 'wininit.exe')]}
+2025-12-27 02:34:05 [INFO] Detailed process info: {'name': 'msedge.exe', 'pid': 4464, 'ppid': 22932, 'cmdline': ['C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe', '--type=renderer', '--pdf-upsell-enabled', '--dma-cps-flags=2048', '--no-pre-read-main-dll', '--video-capture-use-gpu-memory-buffer', '--lang=en-US', '--js-flags', '--device-scale-factor=1', '--num-raster-threads=4', '--enable-main-frame-before-activation', '--renderer-client-id=58', '--time-ticks-at-unix-epoch=-1766822855132003', '--launch-time-ticks=1587710481', '--skip-read-main-dll', '--metrics-shmem-handle=3552,i,5383541407514013910,10173447176775662498,2097152', '--field-trial-handle=2132,i,15642027540660536941,15856721530817603959,262144', '--variations-seed-version', '--trace-process-track-uuid=3190709040660298736', '--mojo-platform-channel-handle=3116', '/prefetch:1'], 'create_time': 1766824442.8472388, 'parent_chain': [(22932, 'msedge.exe'), (12076, 'explorer.exe')]}
+2025-12-27 02:34:05 [ERROR] Failed to get psutil info for PID 3128
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 775, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 673, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 691, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 778, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=False)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\Users\Wesley\Documents\GitHub\INTAI\core\lcu_manager.py", line 252, in start
+    'cmdline': p.cmdline(),
+               ^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\__init__.py", line 739, in cmdline
+    return self._proc.cmdline()
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 675, in wrapper
+    raise convert_oserror(err, pid=self.pid, name=self._name) from err
+psutil.AccessDenied: (pid=3128, name='NVDisplay.Container.exe')
+2025-12-27 02:34:05 [ERROR] Failed to get psutil info for PID 3588
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 775, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 673, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 691, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 778, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=False)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\Users\Wesley\Documents\GitHub\INTAI\core\lcu_manager.py", line 252, in start
+    'cmdline': p.cmdline(),
+               ^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\__init__.py", line 739, in cmdline
+    return self._proc.cmdline()
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 675, in wrapper
+    raise convert_oserror(err, pid=self.pid, name=self._name) from err
+psutil.AccessDenied: (pid=3588, name='svchost.exe')
+2025-12-27 02:34:05 [INFO] Detailed process info: {'name': 'explorer.exe', 'pid': 12076, 'ppid': 12048, 'cmdline': ['C:\\WINDOWS\\Explorer.EXE'], 'create_time': 1766822882.7480664, 'parent_chain': []}
+2025-12-27 02:34:05 [INFO] Detailed process info: {'name': 'RuntimeBroker.exe', 'pid': 2580, 'ppid': 1760, 'cmdline': ['C:\\Windows\\System32\\RuntimeBroker.exe', '-Embedding'], 'create_time': 1766824442.3199105, 'parent_chain': [(1760, 'svchost.exe'), (1532, 'services.exe'), (1452, 'wininit.exe')]}
+2025-12-27 02:34:05 [ERROR] Failed to get psutil info for PID 19460
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 775, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 673, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 691, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 778, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=False)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\Users\Wesley\Documents\GitHub\INTAI\core\lcu_manager.py", line 252, in start
+    'cmdline': p.cmdline(),
+               ^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\__init__.py", line 739, in cmdline
+    return self._proc.cmdline()
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 675, in wrapper
+    raise convert_oserror(err, pid=self.pid, name=self._name) from err
+psutil.AccessDenied: (pid=19460, name='svchost.exe')
+2025-12-27 02:34:05 [INFO] Detailed process info: {'name': 'Code.exe', 'pid': 17700, 'ppid': 15384, 'cmdline': ['C:\\Users\\Wesley\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe', '--type=utility', '--utility-sub-type=node.mojom.NodeService', '--lang=en-US', '--service-sandbox-type=none', '--video-capture-use-gpu-memory-buffer', '--user-data-dir=C:\\Users\\Wesley\\AppData\\Roaming\\Code', '--standard-schemes=vscode-webview,vscode-file', '--enable-sandbox', '--secure-schemes=vscode-webview,vscode-file', '--cors-schemes=vscode-webview,vscode-file', '--fetch-schemes=vscode-webview,vscode-file', '--service-worker-schemes=vscode-webview', '--code-cache-schemes=vscode-webview,vscode-file', '--field-trial-handle=1784,i,595860880891780596,9683399954541231546,262144', '--enable-features=DocumentPolicyIncludeJSCallStacksInCrashReports,EarlyEstablishGpuChannel,EnableTransparentHwndEnlargement,EstablishGpuChannelAsync', '--disable-features=CalculateNativeWinOcclusion,LocalNetworkAccessChecks,ScreenAIOCREnabled,SpareRendererForSitePerProcess,TraceSiteInstanceGetProcessCreation', '--variations-seed-version', '--trace-process-track-uuid=3190708990997080739', '--mojo-platform-channel-handle=3512', '/prefetch:14'], 'create_time': 1766823084.0323403, 'parent_chain': [(15384, 'Code.exe'), (12076, 'explorer.exe')]}
+2025-12-27 02:34:05 [ERROR] Failed to get psutil info for PID 9572
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 775, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 673, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 691, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 778, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=False)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\Users\Wesley\Documents\GitHub\INTAI\core\lcu_manager.py", line 252, in start
+    'cmdline': p.cmdline(),
+               ^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\__init__.py", line 739, in cmdline
+    return self._proc.cmdline()
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 675, in wrapper
+    raise convert_oserror(err, pid=self.pid, name=self._name) from err
+psutil.AccessDenied: (pid=9572, name='svchost.exe')
+2025-12-27 02:34:05 [ERROR] Failed to get psutil info for PID 9820
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 775, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 673, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 691, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 778, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=False)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\Users\Wesley\Documents\GitHub\INTAI\core\lcu_manager.py", line 252, in start
+    'cmdline': p.cmdline(),
+               ^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\__init__.py", line 739, in cmdline
+    return self._proc.cmdline()
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 675, in wrapper
+    raise convert_oserror(err, pid=self.pid, name=self._name) from err
+psutil.AccessDenied: (pid=9820, name='AggregatorHost.exe')
+2025-12-27 02:34:05 [INFO] Detailed process info: {'name': 'CrossDeviceResume.exe', 'pid': 11292, 'ppid': 11096, 'cmdline': ['C:\\WINDOWS\\SystemApps\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy\\CrossDeviceResume.exe', '/tileid', 'MicrosoftWindows.Client.CBS_cw5n1h2txyewy!CrossDeviceResumeApp'], 'create_time': 1766822883.042712, 'parent_chain': [(11096, 'sihost.exe'), (2392, 'svchost.exe'), (1532, 'services.exe'), (1452, 'wininit.exe')]}
+2025-12-27 02:34:05 [INFO] Detailed process info: {'name': 'sihost.exe', 'pid': 11096, 'ppid': 2392, 'cmdline': ['sihost.exe'], 'create_time': 1766822882.0309978, 'parent_chain': [(2392, 'svchost.exe'), (1532, 'services.exe'), (1452, 'wininit.exe')]}
+2025-12-27 02:34:05 [ERROR] Failed to get psutil info for PID 1272
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 775, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 673, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 691, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 778, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=False)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\Users\Wesley\Documents\GitHub\INTAI\core\lcu_manager.py", line 252, in start
+    'cmdline': p.cmdline(),
+               ^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\__init__.py", line 739, in cmdline
+    return self._proc.cmdline()
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 675, in wrapper
+    raise convert_oserror(err, pid=self.pid, name=self._name) from err
+psutil.AccessDenied: (pid=1272, name='csrss.exe')
+2025-12-27 02:34:05 [ERROR] Failed to get psutil info for PID 3740
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 775, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 673, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 691, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 778, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=False)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\Users\Wesley\Documents\GitHub\INTAI\core\lcu_manager.py", line 252, in start
+    'cmdline': p.cmdline(),
+               ^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\__init__.py", line 739, in cmdline
+    return self._proc.cmdline()
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 675, in wrapper
+    raise convert_oserror(err, pid=self.pid, name=self._name) from err
+psutil.AccessDenied: (pid=3740, name='svchost.exe')
+2025-12-27 02:34:05 [ERROR] Failed to get psutil info for PID 1760
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 775, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 673, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 691, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 778, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=False)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\Users\Wesley\Documents\GitHub\INTAI\core\lcu_manager.py", line 252, in start
+    'cmdline': p.cmdline(),
+               ^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\__init__.py", line 739, in cmdline
+    return self._proc.cmdline()
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 675, in wrapper
+    raise convert_oserror(err, pid=self.pid, name=self._name) from err
+psutil.AccessDenied: (pid=1760, name='svchost.exe')
+2025-12-27 02:34:05 [INFO] Detailed process info: {'name': 'msedge.exe', 'pid': 11796, 'ppid': 22932, 'cmdline': ['C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe', '--type=renderer', '--extension-process', '--renderer-sub-type=extension', '--pdf-upsell-enabled', '--dma-cps-flags=2048', '--no-pre-read-main-dll', '--video-capture-use-gpu-memory-buffer', '--lang=en-US', '--js-flags', '--device-scale-factor=1', '--num-raster-threads=4', '--enable-main-frame-before-activation', '--renderer-client-id=53', '--time-ticks-at-unix-epoch=-1766822855132003', '--launch-time-ticks=1587665103', '--skip-read-main-dll', '--metrics-shmem-handle=4128,i,11802753128357933234,6621354246003294192,2097152', '--field-trial-handle=2132,i,15642027540660536941,15856721530817603959,262144', '--variations-seed-version', '--trace-process-track-uuid=3190709035975089491', '--mojo-platform-channel-handle=3632', '/prefetch:9'], 'create_time': 1766824442.806376, 'parent_chain': [(22932, 'msedge.exe'), (12076, 'explorer.exe')]}
+2025-12-27 02:34:05 [ERROR] Failed to get psutil info for PID 4416
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 775, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 673, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 691, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 778, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=False)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\Users\Wesley\Documents\GitHub\INTAI\core\lcu_manager.py", line 252, in start
+    'cmdline': p.cmdline(),
+               ^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\__init__.py", line 739, in cmdline
+    return self._proc.cmdline()
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 675, in wrapper
+    raise convert_oserror(err, pid=self.pid, name=self._name) from err
+psutil.AccessDenied: (pid=4416, name='svchost.exe')
+2025-12-27 02:34:05 [INFO] Detailed process info: {'name': 'msedge.exe', 'pid': 23164, 'ppid': 22932, 'cmdline': ['C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe', '--type=crashpad-handler', '--user-data-dir=C:\\Users\\Wesley\\AppData\\Local\\Microsoft\\Edge\\User Data', '/prefetch:4', '--monitor-self-annotation=ptype=crashpad-handler', '--database=C:\\Users\\Wesley\\AppData\\Local\\Microsoft\\Edge\\User Data\\Crashpad', '--metrics-dir=C:\\Users\\Wesley\\AppData\\Local\\Microsoft\\Edge\\User Data', '--annotation=IsOfficialBuild=1', '--annotation=channel=', '--annotation=chromium-version=143.0.7499.147', '--annotation=exe=C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe', '--annotation=plat=Win64', '--annotation=prod=Edge', '--annotation=ver=143.0.3650.96', '--initial-client-data=0x268,0x26c,0x270,0x264,0x278,0x7ff9f91462b8,0x7ff9f91462c4,0x7ff9f91462d0'], 'create_time': 1766823541.067896, 'parent_chain': [(22932, 'msedge.exe'), (12076, 'explorer.exe')]}
+2025-12-27 02:34:05 [INFO] Detailed process info: {'name': 'msedge.exe', 'pid': 27412, 'ppid': 22932, 'cmdline': ['C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe', '--type=utility', '--utility-sub-type=entity_extraction_service.mojom.Extractor', '--lang=en-US', '--service-sandbox-type=entity_extraction', '--onnx-enabled-for-ee', '--video-capture-use-gpu-memory-buffer', '--no-pre-read-main-dll', '--skip-read-main-dll', '--metrics-shmem-handle=6584,i,7270032323099021652,7367235050624567712,524288', '--field-trial-handle=2132,i,15642027540660536941,15856721530817603959,262144', '--variations-seed-version', '--trace-process-track-uuid=3190709037849173189', '--mojo-platform-channel-handle=3820', '/prefetch:14'], 'create_time': 1766824442.8285224, 'parent_chain': [(22932, 'msedge.exe'), (12076, 'explorer.exe')]}
+2025-12-27 02:34:05 [INFO] Detailed process info: {'name': 'Code.exe', 'pid': 5728, 'ppid': 15384, 'cmdline': ['C:\\Users\\Wesley\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe', '--type=utility', '--utility-sub-type=node.mojom.NodeService', '--lang=en-US', '--service-sandbox-type=none', '--dns-result-order=ipv4first', '--experimental-network-inspection', '--inspect-port=0', '--video-capture-use-gpu-memory-buffer', '--user-data-dir=C:\\Users\\Wesley\\AppData\\Roaming\\Code', '--standard-schemes=vscode-webview,vscode-file', '--enable-sandbox', '--secure-schemes=vscode-webview,vscode-file', '--cors-schemes=vscode-webview,vscode-file', '--fetch-schemes=vscode-webview,vscode-file', '--service-worker-schemes=vscode-webview', '--code-cache-schemes=vscode-webview,vscode-file', '--field-trial-handle=1784,i,595860880891780596,9683399954541231546,262144', '--enable-features=DocumentPolicyIncludeJSCallStacksInCrashReports,EarlyEstablishGpuChannel,EnableTransparentHwndEnlargement,EstablishGpuChannelAsync', '--disable-features=CalculateNativeWinOcclusion,LocalNetworkAccessChecks,ScreenAIOCREnabled,SpareRendererForSitePerProcess,TraceSiteInstanceGetProcessCreation', '--variations-seed-version', '--trace-process-track-uuid=3190708993808206286', '--mojo-platform-channel-handle=3884', '/prefetch:14'], 'create_time': 1766823084.0971484, 'parent_chain': [(15384, 'Code.exe'), (12076, 'explorer.exe')]}
+2025-12-27 02:34:05 [ERROR] Failed to get psutil info for PID 11332
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 775, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 673, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 691, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 778, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=False)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\Users\Wesley\Documents\GitHub\INTAI\core\lcu_manager.py", line 252, in start
+    'cmdline': p.cmdline(),
+               ^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\__init__.py", line 739, in cmdline
+    return self._proc.cmdline()
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 675, in wrapper
+    raise convert_oserror(err, pid=self.pid, name=self._name) from err
+psutil.AccessDenied: (pid=11332, name='svchost.exe')
+2025-12-27 02:34:05 [INFO] Detailed process info: {'name': 'Code.exe', 'pid': 6576, 'ppid': 15384, 'cmdline': ['C:\\Users\\Wesley\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe', '--type=utility', '--utility-sub-type=node.mojom.NodeService', '--lang=en-US', '--service-sandbox-type=none', '--video-capture-use-gpu-memory-buffer', '--user-data-dir=C:\\Users\\Wesley\\AppData\\Roaming\\Code', '--standard-schemes=vscode-webview,vscode-file', '--enable-sandbox', '--secure-schemes=vscode-webview,vscode-file', '--cors-schemes=vscode-webview,vscode-file', '--fetch-schemes=vscode-webview,vscode-file', '--service-worker-schemes=vscode-webview', '--code-cache-schemes=vscode-webview,vscode-file', '--field-trial-handle=1784,i,595860880891780596,9683399954541231546,262144', '--enable-features=DocumentPolicyIncludeJSCallStacksInCrashReports,EarlyEstablishGpuChannel,EnableTransparentHwndEnlargement,EstablishGpuChannelAsync', '--disable-features=CalculateNativeWinOcclusion,LocalNetworkAccessChecks,ScreenAIOCREnabled,SpareRendererForSitePerProcess,TraceSiteInstanceGetProcessCreation', '--variations-seed-version', '--trace-process-track-uuid=3190708992871164437', '--mojo-platform-channel-handle=3604', '/prefetch:14'], 'create_time': 1766823084.0897925, 'parent_chain': [(15384, 'Code.exe'), (12076, 'explorer.exe')]}
+2025-12-27 02:34:05 [ERROR] Failed to get psutil info for PID 17128
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 775, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 673, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 691, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 778, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=False)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\Users\Wesley\Documents\GitHub\INTAI\core\lcu_manager.py", line 252, in start
+    'cmdline': p.cmdline(),
+               ^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\__init__.py", line 739, in cmdline
+    return self._proc.cmdline()
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 675, in wrapper
+    raise convert_oserror(err, pid=self.pid, name=self._name) from err
+psutil.AccessDenied: (pid=17128, name='vgc.exe')
+2025-12-27 02:34:05 [ERROR] Failed to get psutil info for PID 3192
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 775, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 673, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 691, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 778, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=False)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\Users\Wesley\Documents\GitHub\INTAI\core\lcu_manager.py", line 252, in start
+    'cmdline': p.cmdline(),
+               ^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\__init__.py", line 739, in cmdline
+    return self._proc.cmdline()
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 675, in wrapper
+    raise convert_oserror(err, pid=self.pid, name=self._name) from err
+psutil.AccessDenied: (pid=3192, name='svchost.exe')
+2025-12-27 02:34:05 [INFO] Detailed process info: {'name': 'GameBar.exe', 'pid': 11708, 'ppid': 1760, 'cmdline': ['C:\\Program Files\\WindowsApps\\Microsoft.XboxGamingOverlay_7.325.11061.0_x64__8wekyb3d8bbwe\\GameBar.exe', '-ServerName:App.AppXbdkk0yrkwpcgeaem8zk81k8py1eaahny.mca'], 'create_time': 1766824442.225111, 'parent_chain': [(1760, 'svchost.exe'), (1532, 'services.exe'), (1452, 'wininit.exe')]}
+2025-12-27 02:34:06 [ERROR] Failed to get psutil info for PID 22284
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 775, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 673, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 691, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 778, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=False)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\Users\Wesley\Documents\GitHub\INTAI\core\lcu_manager.py", line 252, in start
+    'cmdline': p.cmdline(),
+               ^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\__init__.py", line 739, in cmdline
+    return self._proc.cmdline()
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 675, in wrapper
+    raise convert_oserror(err, pid=self.pid, name=self._name) from err
+psutil.AccessDenied: (pid=22284, name='svchost.exe')
+2025-12-27 02:34:06 [ERROR] Failed to get psutil info for PID 6312
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 775, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 673, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 691, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 778, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=False)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\Users\Wesley\Documents\GitHub\INTAI\core\lcu_manager.py", line 252, in start
+    'cmdline': p.cmdline(),
+               ^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\__init__.py", line 739, in cmdline
+    return self._proc.cmdline()
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 675, in wrapper
+    raise convert_oserror(err, pid=self.pid, name=self._name) from err
+psutil.AccessDenied: (pid=6312, name='svchost.exe')
+2025-12-27 02:34:06 [ERROR] Failed to get psutil info for PID 8596
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 775, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 673, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 691, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 778, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=False)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\Users\Wesley\Documents\GitHub\INTAI\core\lcu_manager.py", line 252, in start
+    'cmdline': p.cmdline(),
+               ^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\__init__.py", line 739, in cmdline
+    return self._proc.cmdline()
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 675, in wrapper
+    raise convert_oserror(err, pid=self.pid, name=self._name) from err
+psutil.AccessDenied: (pid=8596, name='svchost.exe')
+2025-12-27 02:34:06 [INFO] Detailed process info: {'name': 'msedge.exe', 'pid': 27428, 'ppid': 22932, 'cmdline': ['C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe', '--type=utility', '--utility-sub-type=edge_collections.mojom.CollectionsDataManager', '--lang=en-US', '--service-sandbox-type=collections', '--video-capture-use-gpu-memory-buffer', '--no-pre-read-main-dll', '--skip-read-main-dll', '--metrics-shmem-handle=7220,i,95710781468014132,16321242251644002508,524288', '--field-trial-handle=2132,i,15642027540660536941,15856721530817603959,262144', '--variations-seed-version', '--trace-process-track-uuid=3190709039723256887', '--mojo-platform-channel-handle=1620', '/prefetch:14'], 'create_time': 1766824442.8317368, 'parent_chain': [(22932, 'msedge.exe'), (12076, 'explorer.exe')]}
+2025-12-27 02:34:06 [INFO] Detailed process info: {'name': 'nvcontainer.exe', 'pid': 11132, 'ppid': 5604, 'cmdline': ['C:\\Program Files\\NVIDIA Corporation\\NvContainer\\nvcontainer.exe', '-f', 'C:\\ProgramData\\NVIDIA Corporation\\NVIDIA App\\NvContainer\\NvContainerUser%d.log', '-d', 'C:\\Program Files\\NVIDIA Corporation\\NvContainer\\plugins\\User', '-r', '-l', '3', '-p', '30000', '-c'], 'create_time': 1766822882.041695, 'parent_chain': [(5604, 'nvcontainer.exe'), (1532, 'services.exe'), (1452, 'wininit.exe')]}
+2025-12-27 02:34:06 [INFO] Detailed process info: {'name': 'svchost.exe', 'pid': 3576, 'ppid': 1532, 'cmdline': ['C:\\WINDOWS\\system32\\svchost.exe', '-k', 'LocalService', '-p', '-s', 'NPSMSvc'], 'create_time': 1766823079.2491171, 'parent_chain': [(1532, 'services.exe'), (1452, 'wininit.exe')]}
+2025-12-27 02:34:06 [INFO] Detailed process info: {'name': 'msedge.exe', 'pid': 10868, 'ppid': 22932, 'cmdline': ['C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe', '--type=renderer', '--extension-process', '--renderer-sub-type=extension', '--pdf-upsell-enabled', '--dma-cps-flags=2048', '--no-pre-read-main-dll', '--video-capture-use-gpu-memory-buffer', '--lang=en-US', '--js-flags', '--device-scale-factor=1', '--num-raster-threads=4', '--enable-main-frame-before-activation', '--renderer-client-id=52', '--time-ticks-at-unix-epoch=-1766822855132003', '--launch-time-ticks=1587661894', '--skip-read-main-dll', '--metrics-shmem-handle=4572,i,4382203606196180245,2169292781656708069,2097152', '--field-trial-handle=2132,i,15642027540660536941,15856721530817603959,262144', '--variations-seed-version', '--trace-process-track-uuid=3190709035038047642', '--mojo-platform-channel-handle=1488', '/prefetch:9'], 'create_time': 1766824442.7956345, 'parent_chain': [(22932, 'msedge.exe'), (12076, 'explorer.exe')]}
+2025-12-27 02:34:06 [INFO] Detailed process info: {'name': 'identity_helper.exe', 'pid': 27480, 'ppid': 22932, 'cmdline': ['C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\143.0.3650.96\\identity_helper.exe', '--type=utility', '--utility-sub-type=winrt_app_id.mojom.WinrtAppIdService', '--lang=en-US', '--service-sandbox-type=none', '--video-capture-use-gpu-memory-buffer', '--no-pre-read-main-dll', '--skip-read-main-dll', '--metrics-shmem-handle=6360,i,7996687010678715761,7922756884184063499,524288', '--field-trial-handle=2132,i,15642027540660536941,15856721530817603959,262144', '--variations-seed-version', '--trace-process-track-uuid=3190709038786215038', '--mojo-platform-channel-handle=2904', '/prefetch:14'], 'create_time': 1766824442.9209096, 'parent_chain': [(22932, 'msedge.exe'), (12076, 'explorer.exe')]}
+2025-12-27 02:34:06 [INFO] Detailed process info: {'name': 'gameoverlayui64.exe', 'pid': 2092, 'ppid': 2760, 'cmdline': ['C:\\Steam\\gameoverlayui64.exe', '-pid', '26040', '-steampid', '2760', '-manuallyclearframes', '0', '-gameid', '230410'], 'create_time': 1766824040.5801532, 'parent_chain': [(2760, 'steam.exe'), (12076, 'explorer.exe')]}
+2025-12-27 02:34:06 [INFO] Detailed process info: {'name': 'svchost.exe', 'pid': 9780, 'ppid': 1532, 'cmdline': ['C:\\WINDOWS\\system32\\svchost.exe', '-k', 'BcastDVRUserService', '-s', 'BcastDVRUserService'], 'create_time': 1766823540.0093129, 'parent_chain': [(1532, 'services.exe'), (1452, 'wininit.exe')]}
+2025-12-27 02:34:06 [INFO] Detailed process info: {'name': 'Code.exe', 'pid': 16008, 'ppid': 15384, 'cmdline': ['C:\\Users\\Wesley\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe', '--type=gpu-process', '--user-data-dir=C:\\Users\\Wesley\\AppData\\Roaming\\Code', '--gpu-preferences=SAAAAAAAAADgAAAEAAAAAAAAAAAAAGAAAQAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAQAAAAAAAAABAAAAAAAAAACAAAAAAAAAAIAAAAAAAAAA==', '--field-trial-handle=1784,i,595860880891780596,9683399954541231546,262144', '--enable-features=DocumentPolicyIncludeJSCallStacksInCrashReports,EarlyEstablishGpuChannel,EnableTransparentHwndEnlargement,EstablishGpuChannelAsync', '--disable-features=CalculateNativeWinOcclusion,LocalNetworkAccessChecks,ScreenAIOCREnabled,SpareRendererForSitePerProcess,TraceSiteInstanceGetProcessCreation', '--variations-seed-version', '--trace-process-track-uuid=3190708988185955192', '--mojo-platform-channel-handle=1780', '/prefetch:2'], 'create_time': 1766823082.8440912, 'parent_chain': [(15384, 'Code.exe'), (12076, 'explorer.exe')]}
+2025-12-27 02:34:06 [ERROR] Failed to get psutil info for PID 3512
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 775, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 673, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 691, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 778, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=False)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\Users\Wesley\Documents\GitHub\INTAI\core\lcu_manager.py", line 252, in start
+    'cmdline': p.cmdline(),
+               ^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\__init__.py", line 739, in cmdline
+    return self._proc.cmdline()
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 675, in wrapper
+    raise convert_oserror(err, pid=self.pid, name=self._name) from err
+psutil.AccessDenied: (pid=3512, name='svchost.exe')
+2025-12-27 02:34:06 [ERROR] Failed to get psutil info for PID 4160
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 775, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 673, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 691, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 778, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=False)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\Users\Wesley\Documents\GitHub\INTAI\core\lcu_manager.py", line 252, in start
+    'cmdline': p.cmdline(),
+               ^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\__init__.py", line 739, in cmdline
+    return self._proc.cmdline()
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 675, in wrapper
+    raise convert_oserror(err, pid=self.pid, name=self._name) from err
+psutil.AccessDenied: (pid=4160, name='svchost.exe')
+2025-12-27 02:34:06 [ERROR] Failed to get psutil info for PID 19568
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 775, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 673, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 691, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 778, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=False)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\Users\Wesley\Documents\GitHub\INTAI\core\lcu_manager.py", line 252, in start
+    'cmdline': p.cmdline(),
+               ^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\__init__.py", line 739, in cmdline
+    return self._proc.cmdline()
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 675, in wrapper
+    raise convert_oserror(err, pid=self.pid, name=self._name) from err
+psutil.AccessDenied: (pid=19568, name='svchost.exe')
+2025-12-27 02:34:06 [INFO] Detailed process info: {'name': 'firefox.exe', 'pid': 25856, 'ppid': 27196, 'cmdline': ['C:\\Program Files\\Mozilla Firefox\\firefox.exe', '-contentproc', '-isForBrowser', '-prefsHandle', '6660:45704', '-prefMapHandle', '7112:288118', '-jsInitHandle', '7108:223356', '-parentBuildID', '20251217121356', '-ipcHandle', '6920', '-initialChannelId', '{25657158-22e3-48f5-91e1-9a98c8859d27}', '-parentPid', '27196', '-crashReporter', '\\\\.\\pipe\\gecko-crash-server-pipe.27196', '-crashHelper', '7036', '-win32kLockedDown', '-appDir', 'C:\\Program Files\\Mozilla Firefox\\browser', '-', '8', 'tab'], 'create_time': 1766824420.983478, 'parent_chain': [(27196, 'firefox.exe')]}
+2025-12-27 02:34:06 [INFO] Detailed process info: {'name': 'EdgeGameAssist.exe', 'pid': 22104, 'ppid': 1760, 'cmdline': ['C:\\Program Files\\WindowsApps\\Microsoft.Edge.GameAssist_1.0.3590.0_x64__8wekyb3d8bbwe\\EdgeGameAssist.exe', '-ServerName:App.AppXjs7v3smdq2xg9r0emdwc70mxxcrc31jq.mca'], 'create_time': 1766823540.4787767, 'parent_chain': [(1760, 'svchost.exe'), (1532, 'services.exe'), (1452, 'wininit.exe')]}
+2025-12-27 02:34:06 [ERROR] Failed to get psutil info for PID 2464
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 775, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 673, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 691, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 778, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=False)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\Users\Wesley\Documents\GitHub\INTAI\core\lcu_manager.py", line 252, in start
+    'cmdline': p.cmdline(),
+               ^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\__init__.py", line 739, in cmdline
+    return self._proc.cmdline()
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 675, in wrapper
+    raise convert_oserror(err, pid=self.pid, name=self._name) from err
+psutil.AccessDenied: (pid=2464, name='svchost.exe')
+2025-12-27 02:34:06 [INFO] Detailed process info: {'name': 'LeagueClientUxRender.exe', 'pid': 12092, 'ppid': 5908, 'cmdline': ['C:\\Riot Games\\League of Legends\\LeagueClientUxRender.exe', '--type=gpu-process', '--no-sandbox', '--log-severity=warning', '--user-agent-product=LeagueOfLegendsClient/15.24.734.7485 (CEF 108)', '--lang=en-US', '--user-data-dir=C:\\Users\\Wesley\\AppData\\Local\\CEF\\User Data', '--gpu-preferences=UAAAAAAAAADgACgYAAAAAAAAAAAAAAAAAABgAAAAAAAwAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAEgAAAAAAAAASAAAAAAAAAAYAAAAAgAAABAAAAAAAAAAGAAAAAAAAAAQAAAAAAAAAAAAAAAOAAAAEAAAAAAAAAABAAAADgAAAAgAAAAAAAAACAAAAAAAAAA=', '--log-file=C:\\Riot Games\\League of Legends\\debug.log', '--mojo-platform-channel-handle=1656', '--field-trial-handle=1680,i,13357573928952193370,6732948374483681019,131072', '--disable-features=HardwareMediaKeyHandling', '/prefetch:2', '--app-name=LeagueClient', '--ux-name=LeagueClientUx', '--ux-helper-name=LeagueClientUxHelper', '--log-dir=LeagueClient Logs', '--app-port=59434', '--output-base-dir=C:\\Riot Games\\League of Legends', '--crash-reporting=crashpad', '--crash-environment=NA1', '--crash-pipe=\\\\.\\pipe\\crashpad_18928_VUWOXVUGNFLQPZPQ', '--app-log-file-path=C:/Riot Games/League of Legends/Logs/LeagueClient Logs/2025-12-27T02-18-51_18928_LeagueClient.log', '--primary-ux-log-file-path=C:/Riot Games/League of Legends/Logs/LeagueClient Logs/2025-12-27T02-18-51_5908_LeagueClientUx.log'], 'create_time': 1766823531.6339324, 'parent_chain': [(5908, 'LeagueClientUx.exe'), (18928, 'LeagueClient.exe'), (16984, 'RiotClientServices.exe'), (12076, 'explorer.exe')]}
+2025-12-27 02:34:06 [INFO] Detailed process info: {'name': 'msedge.exe', 'pid': 25628, 'ppid': 22932, 'cmdline': ['C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe', '--type=renderer', '--pdf-upsell-enabled', '--dma-cps-flags=2048', '--no-pre-read-main-dll', '--video-capture-use-gpu-memory-buffer', '--lang=en-US', '--js-flags', '--device-scale-factor=1', '--num-raster-threads=4', '--enable-main-frame-before-activation', '--renderer-client-id=60', '--time-ticks-at-unix-epoch=-1766822855132003', '--launch-time-ticks=1587720189', '--skip-read-main-dll', '--metrics-shmem-handle=3700,i,1910370304197979681,6756381279513786759,2097152', '--field-trial-handle=2132,i,15642027540660536941,15856721530817603959,262144', '--variations-seed-version', '--trace-process-track-uuid=3190709042534382434', '--mojo-platform-channel-handle=6048', '/prefetch:1'], 'create_time': 1766824442.858405, 'parent_chain': [(22932, 'msedge.exe'), (12076, 'explorer.exe')]}
+2025-12-27 02:34:06 [INFO] Detailed process info: {'name': 'Warframe.x64.exe', 'pid': 26040, 'ppid': 6388, 'cmdline': ['C:\\Steam\\steamapps\\common\\Warframe\\Warframe.x64.exe', '-windowMode:2', '-shaderCache:1', '-graphicsDriver:dx11', '-gpuPreference:2', '-cluster:public', '-language:en', '-clienttype:Steam', '-relaunch:IgBDADoAXABTAHQAZQBhAG0AXABzAHQAZQBhAG0AYQBwAHAAcwBcAGMAbwBtAG0AbwBuAFwAVwBhAHIAZgByAGEAbQBlAFwAVABvAG8AbABzAFwATABhAHUAbgBjAGgAZQByAC4AZQB4AGUAIgAgAEMAOgBcAFMAdABlAGEAbQBcAHMAdABlAGEAbQBhAHAAcABzAFwAYwBvAG0AbQBvAG4AXABXAGEAcgBmAHIAYQBtAGUAXABUAG8AbwBsAHMAXABMAGEAdQBuAGMAaABlAHIALgBlAHgAZQAgAC0AYwBsAHUAcwB0AGUAcgA6AHAAdQBiAGwAaQBjACAALQByAGUAZwBpAHMAdAByAHkAOgBTAHQAZQBhAG0A'], 'create_time': 1766824035.3507977, 'parent_chain': []}
+2025-12-27 02:34:06 [INFO] Detailed process info: {'name': 'LeagueClientUxRender.exe', 'pid': 19116, 'ppid': 5908, 'cmdline': ['C:\\Riot Games\\League of Legends\\LeagueClientUxRender.exe', '--type=utility', '--utility-sub-type=network.mojom.NetworkService', '--lang=en-US', '--service-sandbox-type=none', '--no-sandbox', '--ignore-certificate-errors', '--ignore-certificate-errors', '--log-severity=warning', '--user-agent-product=LeagueOfLegendsClient/15.24.734.7485 (CEF 108)', '--lang=en-US', '--user-data-dir=C:\\Users\\Wesley\\AppData\\Local\\CEF\\User Data', '--log-file=C:\\Riot Games\\League of Legends\\debug.log', '--mojo-platform-channel-handle=2356', '--field-trial-handle=1680,i,13357573928952193370,6732948374483681019,131072', '--disable-features=HardwareMediaKeyHandling', '/prefetch:8', '--app-name=LeagueClient', '--ux-name=LeagueClientUx', '--ux-helper-name=LeagueClientUxHelper', '--log-dir=LeagueClient Logs', '--app-port=59434', '--output-base-dir=C:\\Riot Games\\League of Legends', '--crash-reporting=crashpad', '--crash-environment=NA1', '--crash-pipe=\\\\.\\pipe\\crashpad_18928_VUWOXVUGNFLQPZPQ', '--app-log-file-path=C:/Riot Games/League of Legends/Logs/LeagueClient Logs/2025-12-27T02-18-51_18928_LeagueClient.log', '--primary-ux-log-file-path=C:/Riot Games/League of Legends/Logs/LeagueClient Logs/2025-12-27T02-18-51_5908_LeagueClientUx.log'], 'create_time': 1766823538.7409604, 'parent_chain': [(5908, 'LeagueClientUx.exe'), (18928, 'LeagueClient.exe'), (16984, 'RiotClientServices.exe'), (12076, 'explorer.exe')]}
+2025-12-27 02:34:06 [INFO] Detailed process info: {'name': 'GameBarPresenceWriter.exe', 'pid': 7136, 'ppid': 1760, 'cmdline': ['C:\\Windows\\System32\\GameBarPresenceWriter.exe', '-ServerName:Windows.Gaming.GameBar.Internal.PresenceWriterServer'], 'create_time': 1766823539.786548, 'parent_chain': [(1760, 'svchost.exe'), (1532, 'services.exe'), (1452, 'wininit.exe')]}
+2025-12-27 02:34:06 [INFO] Detailed process info: {'name': 'ctfmon.exe', 'pid': 9084, 'ppid': 3772, 'cmdline': ['/QuitInfo:0000000000000350;0000000000000354;'], 'create_time': 1766822892.1491704, 'parent_chain': [(3772, 'svchost.exe'), (1532, 'services.exe'), (1452, 'wininit.exe')]}
+2025-12-27 02:34:06 [ERROR] Failed to get psutil info for PID 8348
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 775, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 673, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 691, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 778, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=False)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\Users\Wesley\Documents\GitHub\INTAI\core\lcu_manager.py", line 252, in start
+    'cmdline': p.cmdline(),
+               ^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\__init__.py", line 739, in cmdline
+    return self._proc.cmdline()
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 675, in wrapper
+    raise convert_oserror(err, pid=self.pid, name=self._name) from err
+psutil.AccessDenied: (pid=8348, name='gamingservices.exe')
+2025-12-27 02:34:06 [ERROR] Failed to get psutil info for PID 8292
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 775, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 673, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 691, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 778, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=False)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\Users\Wesley\Documents\GitHub\INTAI\core\lcu_manager.py", line 252, in start
+    'cmdline': p.cmdline(),
+               ^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\__init__.py", line 739, in cmdline
+    return self._proc.cmdline()
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 675, in wrapper
+    raise convert_oserror(err, pid=self.pid, name=self._name) from err
+psutil.AccessDenied: (pid=8292, name='svchost.exe')
+2025-12-27 02:34:06 [INFO] Detailed process info: {'name': 'Code.exe', 'pid': 15384, 'ppid': 12076, 'cmdline': ['C:\\Users\\Wesley\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe'], 'create_time': 1766823082.345826, 'parent_chain': [(12076, 'explorer.exe')]}
+2025-12-27 02:34:06 [INFO] Detailed process info: {'name': 'Code.exe', 'pid': 3764, 'ppid': 15384, 'cmdline': ['C:\\Users\\Wesley\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe', '--type=renderer', '--user-data-dir=C:\\Users\\Wesley\\AppData\\Roaming\\Code', '--standard-schemes=vscode-webview,vscode-file', '--enable-sandbox', '--secure-schemes=vscode-webview,vscode-file', '--cors-schemes=vscode-webview,vscode-file', '--fetch-schemes=vscode-webview,vscode-file', '--service-worker-schemes=vscode-webview', '--code-cache-schemes=vscode-webview,vscode-file', '--app-user-model-id=Microsoft.VisualStudioCode', '--app-path=C:\\Users\\Wesley\\AppData\\Local\\Programs\\Microsoft VS Code\\resources\\app', '--enable-sandbox', '--enable-blink-features=HighlightAPI', '--disable-blink-features=FontMatchingCTMigration,StandardizedBrowserZoom,', '--video-capture-use-gpu-memory-buffer', '--lang=en-US', '--device-scale-factor=1', '--num-raster-threads=4', '--enable-main-frame-before-activation', '--renderer-client-id=4', '--time-ticks-at-unix-epoch=-1766822855132004', '--launch-time-ticks=228017469', '--field-trial-handle=1784,i,595860880891780596,9683399954541231546,262144', '--enable-features=DocumentPolicyIncludeJSCallStacksInCrashReports,EarlyEstablishGpuChannel,EnableTransparentHwndEnlargement,EstablishGpuChannelAsync', '--disable-features=CalculateNativeWinOcclusion,LocalNetworkAccessChecks,ScreenAIOCREnabled,SpareRendererForSitePerProcess,TraceSiteInstanceGetProcessCreation', '--variations-seed-version', '--trace-process-track-uuid=3190708990060038890', '--mojo-platform-channel-handle=3136', '--vscode-window-config=vscode:5b083863-9bcf-4552-8a82-e29ce5f2ddd2', '/prefetch:1'], 'create_time': 1766823083.1539454, 'parent_chain': [(15384, 'Code.exe'), (12076, 'explorer.exe')]}
+2025-12-27 02:34:06 [ERROR] Failed to get psutil info for PID 2392
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 775, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 673, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 691, in wrapper
+    return fun(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 778, in cmdline
+    return cext.proc_cmdline(self.pid, use_peb=False)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: '(originated from OpenProcess)'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\Users\Wesley\Documents\GitHub\INTAI\core\lcu_manager.py", line 252, in start
+    'cmdline': p.cmdline(),
+               ^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\__init__.py", line 739, in cmdline
+    return self._proc.cmdline()
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_pswindows.py", line 675, in wrapper
+    raise convert_oserror(err, pid=self.pid, name=self._name) from err
+psutil.AccessDenied: (pid=2392, name='svchost.exe')
+2025-12-27 02:34:06 [INFO] Detailed process info: {'name': 'XboxPcAppFT.exe', 'pid': 22312, 'ppid': 1760, 'cmdline': ['C:\\Program Files\\WindowsApps\\Microsoft.GamingApp_2512.1001.34.0_x64__8wekyb3d8bbwe\\XboxPcAppFT.exe', '-Embedding'], 'create_time': 1766823540.6713972, 'parent_chain': [(1760, 'svchost.exe'), (1532, 'services.exe'), (1452, 'wininit.exe')]}
