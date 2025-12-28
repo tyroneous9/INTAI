@@ -327,6 +327,7 @@ def retreat(current_coords, threat_coords, duration=0.5):
     length = get_distance(current_coords, threat_coords)
     if length == 0:
         # Invalid coordinates, cannot retreat
+        logging.error("Cannot retreat: current coordinates are the same as threat coordinates.")
         return
 
     dx = current_coords[0] - threat_coords[0]
@@ -335,9 +336,8 @@ def retreat(current_coords, threat_coords, duration=0.5):
     retreat_x = int(current_coords[0] + (dx / length) * 600)
     retreat_y = int(current_coords[1] + (dy / length) * 600)
 
-    # Move cursor to retreat location and right-click
+    # Move toward calculated retreat location
     click_percent(retreat_x, retreat_y, 0, 0, "right")
-    time.sleep(duration)
 
     # Randomly use summoner spells
     press_sum_1 = random.choice([True, False])
@@ -353,6 +353,8 @@ def retreat(current_coords, threat_coords, duration=0.5):
         if sum_2_key:
             keyboard.send(sum_2_key)
             time.sleep(0.1)
+
+    time.sleep(duration)
 
 def attack_enemy(enemy_coords):
     """

@@ -23,10 +23,12 @@ from utils.game_utils import (
     is_game_started,
     level_up_abilities,
     level_up_ability,
+    move_random_offset,
     pan_to_ally,
+    retreat,
     vote_surrender,
 )
-from utils.general_utils import move_mouse_percent
+from utils.general_utils import click_percent, move_mouse_percent
 
 # ===========================
 # Main Bot Loop
@@ -75,6 +77,7 @@ def run_game_loop(stop_event):
 
     logging.info("Game loop has started.")
     start_time = time.time()
+    time.sleep(10) # Wait for allies to leave spawn so you can properly pan camera to attach
     buy_recommended_items(screen_manager) 
     
     # Main game loop
@@ -121,10 +124,9 @@ def run_game_loop(stop_event):
             continue
 
         if not attached:
-            # Attach to target ally if alive, other allies if dead
+            # On a timer, attach to an ally according to the priority list. If the ally is found, the timer is reset, else look for the next ally.
             # NOTE: position field in game data may help verify ADC role
-            end_time = time.time() + attach_timeout
-            ally_number = ally_priority_list[0]
+            ally_index = 0
             while not game_ended and not stop_event.is_set():
                 # Check if dead
                 with game_data_lock:
@@ -139,20 +141,26 @@ def run_game_loop(stop_event):
                     attached = True
                     break
                 # Attempt to attach
-                pan_to_ally(ally_number)
+                pan_to_ally(ally_priority_list[ally_index])
+                time.sleep(0.5) # Allow frame update
+                pan_to_ally(ally_priority_list[ally_index])
                 if find_ally_locations(screen_manager.get_latest_frame()):
-                    move_mouse_percent(SCREEN_CENTER[0], SCREEN_CENTER[1])
+                    # move_mouse_percent(SCREEN_CENTER[0], SCREEN_CENTER[1])
+                    click_percent(SCREEN_CENTER[0], SCREEN_CENTER[1], button="right")
                     keyboard.send(spell_keys[1])
-                    time.sleep(3)
-                    end_time = time.time() + attach_timeout
-                if time.time() > end_time:
-                    logging.info("Attach window timed out.")
-                    break
-            if not attached:
-                logging.info("No allies found, recalling.")
-                keyboard.send(recall_key) 
-                time.sleep(9)
-                buy_recommended_items(screen_manager)
+                    time.sleep(2) # Wait for attach animation
+                # Try next ally if not found
+                else:
+                    logging.info(f"Ally {ally_priority_list[ally_index]} not found, trying next ally.")
+                    ally_index += 1
+                    # No allies found, just recall
+                    if ally_index == len(ally_priority_list):
+                        logging.info("No allies found, recalling.")
+                        keyboard.send(recall_key) 
+                        time.sleep(9)
+                        buy_recommended_items(screen_manager)
+                        break
+                    time.sleep(1) # Allow frame update
         elif attached:
             time.sleep(0.1)
             #  Periodically check if currently attached ally is dead
@@ -161,8 +169,16 @@ def run_game_loop(stop_event):
             keyboard.release(center_camera_key) 
             if not find_attached_ally_location(screen_manager.get_latest_frame()):
                 attached = False
-                logging.info("Attached ally gone, detaching.")
-                continue
+                logging.info("Detached from ally.")
+                # Logic after detaching due to ally death or ally recall
+                enemy = find_enemy_locations(screen_manager.get_latest_frame())
+                if enemy:
+                    retreat(SCREEN_CENTER, enemy[0], 2)
+                else:
+                    buy_recommended_items(screen_manager)
+                    # Move out of ally if they haven't moved yet
+                    move_random_offset(SCREEN_CENTER[0], SCREEN_CENTER[1], 20)
+                    time.sleep(1)
             # Attached ally logic
             enemy_locations = find_enemy_locations(screen_manager.get_latest_frame())
             if enemy_locations:
@@ -184,7 +200,13 @@ def run_game_loop(stop_event):
                             keyboard.send(spell_keys[5])
                             for item_key in ["item_1", "item_2", "item_3", "item_4", "item_5", "item_6"]:
                                 keyboard.send(_keybinds.get(item_key))
+                            # Track Q
+                            time.sleep(0.5)
+                            enemy_locations = find_enemy_locations(screen_manager.get_latest_frame())
+                            if enemy_locations:
+                                move_mouse_percent(enemy_locations[0][0], enemy_locations[0][1])
                             break
+                            time.sleep(1)
 
             
         

@@ -23,7 +23,7 @@
         "attack_move": "a"
     },
     "General": {
-        "selected_game_mode": "aram",
+        "selected_game_mode": "yuumi_sr",
         "preferred_champion": {
             "id": 350,
             "name": "Yuumi"

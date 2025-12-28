@@ -1,0 +1,45 @@
+2025-12-28 15:12:16 [INFO] Press DELETE key to exit anytime.
+2025-12-28 15:12:19 [INFO] Starting Script. Waiting for client...
+2025-12-28 15:12:19 [INFO] Starting LCU connector...
+2025-12-28 15:12:19 [INFO] Connected to League client.
+2025-12-28 15:12:20 [INFO] [EVENT] Game is in progress.
+2025-12-28 15:12:20 [INFO] Starting bot for mode: core.run_yuumi_sr
+2025-12-28 15:12:21 [INFO] Game loop has started.
+2025-12-28 15:12:42 [INFO] Ally 4 not found, trying next ally.
+2025-12-28 15:13:26 [INFO] Successfully attached.
+2025-12-28 15:13:49 [INFO] Detached from ally.
+2025-12-28 15:13:52 [INFO] Successfully attached.
+2025-12-28 15:15:02 [INFO] Detached from ally.
+2025-12-28 15:15:39 [INFO] Successfully attached.
+2025-12-28 15:17:56 [INFO] Detached from ally.
+2025-12-28 15:17:56 [INFO] Successfully attached.
+2025-12-28 15:17:57 [INFO] Detached from ally.
+2025-12-28 15:17:57 [INFO] Successfully attached.
+2025-12-28 15:18:43 [INFO] Detached from ally.
+2025-12-28 15:18:48 [INFO] Ally 4 not found, trying next ally.
+2025-12-28 15:18:53 [INFO] Ally 1 not found, trying next ally.
+2025-12-28 15:18:55 [INFO] Ally 2 not found, trying next ally.
+2025-12-28 15:19:20 [INFO] Successfully attached.
+2025-12-28 15:19:25 [INFO] Detached from ally.
+2025-12-28 15:20:01 [INFO] Successfully attached.
+2025-12-28 15:20:03 [INFO] Detached from ally.
+2025-12-28 15:20:03 [INFO] Successfully attached.
+2025-12-28 15:21:58 [INFO] Detached from ally.
+2025-12-28 15:22:00 [INFO] Ally 4 not found, trying next ally.
+2025-12-28 15:22:04 [INFO] Died while trying to attach.
+2025-12-28 15:23:10 [INFO] Successfully attached.
+2025-12-28 15:23:10 [INFO] Detached from ally.
+2025-12-28 15:23:13 [INFO] Successfully attached.
+2025-12-28 15:23:49 [INFO] Detached from ally.
+2025-12-28 15:23:51 [INFO] Ally 4 not found, trying next ally.
+2025-12-28 15:23:55 [INFO] Died while trying to attach.
+2025-12-28 15:24:53 [INFO] Ally 4 not found, trying next ally.
+2025-12-28 15:24:55 [INFO] Ally 1 not found, trying next ally.
+2025-12-28 15:24:55 [INFO] Shutting down program...
+2025-12-28 15:24:55 [INFO] [INFO] Connector has been closed.
+2025-12-28 15:24:56 [INFO] Polling thread has exited.
+2025-12-28 15:24:56 [INFO] Game loop has ended.
+2025-12-28 15:24:56 [INFO] Game loop duration: 00:12:35
+2025-12-28 15:24:56 [INFO] Bot thread has exited.
+2025-12-28 15:24:56 [INFO] Shut down complete.
+2025-12-28 15:24:57 [INFO] [INFO] Connector has been closed.
