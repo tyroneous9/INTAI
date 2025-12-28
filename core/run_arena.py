@@ -16,7 +16,7 @@ from constants import SCREEN_CENTER
 from core.live_client_manager import LiveClientManager
 from core.screen_manager import ScreenManager
 from utils.config_utils import load_settings
-from utils.cv_utils import find_augment_location, find_enemy_locations, find_player_location
+from utils.cv_utils import find_arena_exit_location, find_augment_location, find_enemy_locations, find_player_location
 from utils.game_utils import (
     attack_enemy,
     buy_recommended_items,
@@ -117,8 +117,13 @@ def run_game_loop(stop_event):
             while not stop_event.is_set():
                 if time.monotonic() > end_time:
                     # TODO: EXIT BUTTON DETECTION
-                    logging.info("Death timer exceeded, exiting game.")
-                    break
+                    logging.info("Death timer exceeded, looking for exit.")
+                    exit_button = find_arena_exit_location(screen_manager.get_latest_frame())
+                    if exit_button:
+                        click_percent(exit_button[0], exit_button[1])
+                        logging.info("Exited arena successfully.")
+                        time.sleep(5)
+                        break
                 else:
                     with game_data_lock:
                         current_hp = latest_game_data["activePlayer"]["championStats"]["currentHealth"]

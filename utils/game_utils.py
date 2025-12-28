@@ -74,10 +74,10 @@ def is_game_started(game_data):
 def is_game_ended(game_data):
     """
     Returns (bool):
-        True if the GameEnd event is present in live client data.
+        True if the GameEnd event is present in live client data or there is no more game data.
     """
     if not game_data:
-        return False
+        return True
     events = game_data["events"]["Events"]
     for event in events:
         if event["EventName"] == "GameEnd":
