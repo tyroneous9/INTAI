@@ -15,7 +15,7 @@ from core.constants import SCREEN_CENTER
 from core.live_client_manager import LiveClientManager
 from core.screen_manager import ScreenManager
 from utils.config_utils import load_settings
-from utils.general_utils import click_percent
+from utils.general_utils import click_percent, move_mouse_percent
 from utils.game_utils import (
     attack_enemy,
     buy_recommended_items,
@@ -25,6 +25,7 @@ from utils.game_utils import (
     move_random_offset,
     pan_to_ally,
     level_up_abilities,
+    retreat,
     vote_surrender,
 )
 from utils.cv_utils import find_ally_locations, find_augment_location, find_enemy_locations, find_player_location
@@ -62,16 +63,14 @@ def run_game_loop(stop_event):
             break
         time.sleep(1)
 
-    logging.info("Game loop has started.")
+    logging.info("Game loop has started")
 
     # Initialize champion data
     with game_data_lock:
         attack_range = latest_game_data["activePlayer"]["championStats"]["attackRange"]
     if attack_range <= 350:
-        logging.info("Detected melee champion.")
         attack_range = attack_range + 300
     else:
-        logging.info("Detected ranged champion.")
         attack_range = attack_range
 
     start_time = time.time()
@@ -89,7 +88,6 @@ def run_game_loop(stop_event):
 
             live_client_manager.stop_polling_thread()
             screen_manager.stop_camera()
-            logging.info("Game loop has ended.")
 
             elapsed = int(time.time() - start_time)
             hrs = elapsed // 3600
@@ -127,36 +125,62 @@ def run_game_loop(stop_event):
             continue
 
         # Combat phase
-        pan_to_ally(ally_priority_list[current_ally_index])
-        move_random_offset(SCREEN_CENTER[0], SCREEN_CENTER[1])
         ally_locations = find_ally_locations(screen_manager.get_latest_frame())
-        if ally_locations:
-            # check enemy location
-            enemy_locations = find_enemy_locations(screen_manager.get_latest_frame())
-            if enemy_locations:
-                # pan on self with necessary pause to allow camera to update
-                keyboard.press(center_camera_key)
-                time.sleep(0.5)
-                enemy_locations = find_enemy_locations(screen_manager.get_latest_frame())
-                player_location = find_player_location(screen_manager.get_latest_frame())
-                if player_location:
-                    for enemy_location in enemy_locations: 
-                        distance_to_enemy = get_distance(player_location, enemy_location)
-                        if distance_to_enemy < attack_range:
-                            attack_enemy(enemy_location)
-                            break
-                keyboard.release(center_camera_key) 
-            else:
-                # ally but no enemy, try next ally
-                current_ally_index = (current_ally_index + 1) % len(ally_priority_list)
-            time.sleep(1)
-            
+        enemy_locations = find_enemy_locations(screen_manager.get_latest_frame())
 
-        else:
-            # look for ally
-            for i in range(len(ally_priority_list)):
-                pan_to_ally(ally_priority_list[i])
-                if find_ally_locations(screen_manager.get_latest_frame()):
-                    current_ally_index = i
-                    break
+        if ally_locations and enemy_locations: #TT
+            # move around ally
+            move_random_offset(ally_locations[0][0], ally_locations[0][1], 10)
+            # fight enemy
+            keyboard.press(center_camera_key)
+            time.sleep(0.2)
+            keyboard.release(center_camera_key) 
+            enemy_locations = find_enemy_locations(screen_manager.get_latest_frame())
+            player_location = find_player_location(screen_manager.get_latest_frame())
+            if player_location:
+                for enemy_location in enemy_locations: 
+                    distance_to_enemy = get_distance(player_location, enemy_location)
+                    if distance_to_enemy < attack_range:
+                        attack_enemy(enemy_location)
+                        time.sleep(0.1)
+                        retreat(player_location, enemy_location, attack_range * 0.002)
+                        break
+
+        elif ally_locations and not enemy_locations: #TF
+            # look for a different ally and follow
+            current_ally_index = (current_ally_index + 1) % len(ally_priority_list)
+            pan_to_ally(ally_priority_list[current_ally_index])
+            time.sleep(0.5)
+            move_random_offset(SCREEN_CENTER[0], SCREEN_CENTER[1], 10)
+
+        elif not ally_locations and enemy_locations: #FT
+            # retreat from enemy, and fight if too close
+            keyboard.press(center_camera_key)
+            time.sleep(0.2)
+            keyboard.release(center_camera_key)
+            enemy_locations = find_enemy_locations(screen_manager.get_latest_frame())
+            player_location = find_player_location(screen_manager.get_latest_frame())
+            if player_location:
+                for enemy_location in enemy_locations: 
+                    distance_to_enemy = get_distance(player_location, enemy_location)
+                    if distance_to_enemy < 200:
+                        attack_enemy(enemy_location)
+                        time.sleep(0.1)
+                    retreat(player_location, enemy_locations[0], 2)
+
+        else: #FF
+            # look for current ally
+            pan_to_ally(ally_priority_list[current_ally_index])
+            move_mouse_percent(SCREEN_CENTER[0], SCREEN_CENTER[1])
+            time.sleep(0.5)
+            # not found, try other allies
+            if not find_ally_locations(screen_manager.get_latest_frame()):
+                for i in range(len(ally_priority_list)):
+                    pan_to_ally(ally_priority_list[i])
+                    time.sleep(0.5)
+                    if find_ally_locations(screen_manager.get_latest_frame()):
+                        current_ally_index = i
+                        break
+        
         time.sleep(0.01) 
+        

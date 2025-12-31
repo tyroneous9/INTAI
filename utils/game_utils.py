@@ -41,14 +41,18 @@ def fetch_data_dragon_data(endpoint, version=None, locale=DATA_DRAGON_DEFAULT_LO
 
 def get_champions_map():
     """
-    Fetches champion data from Riot Data Dragon and returns a {name: id} mapping.
+    Fetches champion data from Riot Data Dragon and returns a {id: name} mapping.
     Returns:
-        dict: {champion_name: champion_id}
+        dict: {champion_id: champion_name}
     """
     data = fetch_data_dragon_data("champion")
     champions_map = {}
     for champ in data.get("data", {}).values():
-        champions_map[champ["name"]] = int(champ["key"])
+        try:
+            cid = int(champ.get("key"))
+        except Exception:
+            continue
+        champions_map[cid] = champ.get("name")
     return champions_map
 
 
@@ -316,30 +320,41 @@ def pan_to_ally(ally_number=1):
     keyboard.release(key)
     
 
-def retreat(current_coords, threat_coords, duration=0.5):
+def retreat(current_coords, threat_coords, retreat_distance_modifier=1.0):
     """
-    Moves the player away from the threat location for a specified duration.
+    Moves the player away from the threat location by a distance proportional to the
+    current separation multiplied by `retreat_distance_modifier`.
+
     Args:
         current_coords (tuple): Current (x, y) coordinates of the player.
         threat_coords (tuple): (x, y) coordinates of the threat/enemy.
-        duration (float): Time in seconds to wait after retreat click (default: 0.5).
+        retreat_distance_modifier (float): Multiplier applied to the current distance
+            between player and threat to compute how far to move away. For example,
+            a value of 1.2 will move to 120% of the current separation in the
+            opposite direction. (Default: 1.0)
     """
     length = get_distance(current_coords, threat_coords)
     if length == 0:
-        # Invalid coordinates, cannot retreat
         logging.error("Cannot retreat: current coordinates are the same as threat coordinates.")
         return
 
     dx = current_coords[0] - threat_coords[0]
     dy = current_coords[1] - threat_coords[1]
-    # Normalize and scale (fixed offset)
-    retreat_x = int(current_coords[0] + (dx / length) * 600)
-    retreat_y = int(current_coords[1] + (dy / length) * 600)
+
+    # Determine retreat distance proportional to current separation
+    retreat_distance = int(length * retreat_distance_modifier)
+    # Fallback to a sensible minimum so very small distances still move
+    if retreat_distance < 50:
+        retreat_distance = 50
+
+    # Normalize direction and scale by retreat_distance
+    retreat_x = int(current_coords[0] + (dx / length) * retreat_distance)
+    retreat_y = int(current_coords[1] + (dy / length) * retreat_distance)
 
     # Move toward calculated retreat location
     click_percent(retreat_x, retreat_y, 0, 0, "right")
 
-    # Randomly use summoner spells
+    # Randomly use summoner spells (same behavior as before)
     press_sum_1 = random.choice([True, False])
     press_sum_2 = random.choice([True, False])
 
@@ -354,7 +369,8 @@ def retreat(current_coords, threat_coords, duration=0.5):
             keyboard.send(sum_2_key)
             time.sleep(0.1)
 
-    time.sleep(duration)
+    # Small fixed pause to let retreat action complete
+    time.sleep(0.1)
 
 def attack_enemy(enemy_coords):
     """

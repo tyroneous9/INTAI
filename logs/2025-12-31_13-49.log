@@ -1,0 +1,11 @@
+2025-12-31 13:49:42 [INFO] Press DELETE key to exit anytime.
+2025-12-31 13:49:45 [INFO] Starting Script. Waiting for client...
+2025-12-31 13:49:45 [INFO] Starting LCU connector...
+2025-12-31 13:49:45 [INFO] Connected to League client.
+2025-12-31 13:49:46 [INFO] [EVENT] Starting queue.
+2025-12-31 13:49:48 [INFO] Accepted ready check.
+2025-12-31 13:49:49 [INFO] Shutting down program...
+2025-12-31 13:49:49 [INFO] [INFO] Connector has been closed.
+2025-12-31 13:49:49 [INFO] Bot thread is not running, nothing to stop.
+2025-12-31 13:49:49 [INFO] Shut down complete.
+2025-12-31 13:49:50 [INFO] [INFO] Connector has been closed.

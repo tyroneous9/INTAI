@@ -124,11 +124,11 @@ class LCUManager:
         actions = session_data.get('actions', [])
         local_cell_id = session_data.get('localPlayerCellId')
 
+        config = load_config()
+        preferred_champion_obj = config.get("General", {}).get("preferred_champion", {})
+        preferred_champ_id = preferred_champion_obj.get("id") if isinstance(preferred_champion_obj, dict) else None
+        
         if champ_phase == CHAMP_SELECT_SUBPHASES["BAN_PICK"]:
-            config = load_config()
-            preferred_champion_obj = config.get("General", {}).get("preferred_champion", {})
-            preferred_champ_id = preferred_champion_obj.get("id") if isinstance(preferred_champion_obj, dict) else None
-
             for action_group in actions:
                 for action in action_group:
                     # Ban phase
@@ -175,13 +175,27 @@ class LCUManager:
                         # Try random champion
                         if owned_or_free_champs:
                             champ_id = random.choice(owned_or_free_champs)
-                            logging.info(f"Picking random champion ID: {champ_id}")
                             await connection.request(
                                 'patch',
                                 f'/lol-champ-select/v1/session/actions/{action_id}',
                                 data={"championId": champ_id, "completed": True}
                             )
+                        
                         return
+        
+        # Log whether a champion has been chosen via the current-champion endpoint
+        try:
+            resp = await connection.request('get', '/lol-champ-select/v1/current-champion')
+            cur = await resp.json()
+            champ_id = None
+            if isinstance(cur, dict):
+                champ_id = cur.get('championId')
+            # Consider positive championId as a selection
+            if champ_id:
+                logging.info(f"Champion selected via current-champion endpoint: id={champ_id}")
+        except Exception as e:
+            logging.error(f"Failed to query current-champion endpoint: {e}")
+
 
     async def _on_disconnect(self, connection):
         logging.info("[INFO] Connector has been closed.")

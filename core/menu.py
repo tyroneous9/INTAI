@@ -73,12 +73,10 @@ def show_menu(run_script_callback):
         general = config.get("General", {})
         preferred_champion_obj = general.get("preferred_champion", {})
 
-        champions_map = get_champions_map()  # {name: id}
-        champ_names = sorted(champions_map.keys())
-        champ_ids = [champions_map[name] for name in champ_names]
-
-        # Add "None" option at the top
-        champ_display = [("None", -1)] + [(name, cid) for cid, name in zip(champ_ids, champ_names)]
+        champions_map = get_champions_map()  # {id: name}
+        # Sort lexicographically by champion name and produce list of (name, id)
+        sorted_entries = sorted(champions_map.items(), key=lambda kv: kv[1])  # [(id, name)...]
+        champ_display = [("None", -1)] + [(name, cid) for cid, name in sorted_entries]
 
         # Determine initial selection
         if isinstance(preferred_champion_obj, dict):
