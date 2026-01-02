@@ -1,0 +1,12 @@
+2026-01-02 01:59:12 [INFO] Press DELETE key to exit anytime.
+2026-01-02 01:59:14 [INFO] Shutting down program...
+2026-01-02 01:59:24 [ERROR] Error while stopping LCU manager
+Traceback (most recent call last):
+  File "c:\Users\Wesley\Documents\GitHub\INTAI\main.py", line 31, in shutdown
+    lcu_manager.stop()
+  File "c:\Users\Wesley\Documents\GitHub\INTAI\core\lcu_manager.py", line 217, in stop
+    fut.result(timeout=timeout)
+  File "C:\Users\Wesley\AppData\Local\Programs\Python\Python311\Lib\concurrent\futures\_base.py", line 458, in result
+    raise TimeoutError()
+TimeoutError
+2026-01-02 01:59:24 [INFO] Shut down complete.

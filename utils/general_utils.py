@@ -146,7 +146,7 @@ def wait_for_window(window_title, timeout=60):
             return hwnd
         time.sleep(1)
 
-    logging.warning(f"Window '{window_title}' did not appear within {timeout} seconds.")
+    logging.info(f"Window '{window_title}' is closed.")
     return None
 
 

@@ -150,7 +150,7 @@ def run_game_loop(stop_event):
             # look for a different ally and follow
             current_ally_index = (current_ally_index + 1) % len(ally_priority_list)
             pan_to_ally(ally_priority_list[current_ally_index])
-            time.sleep(0.5)
+            time.sleep(0.1)
             move_random_offset(SCREEN_CENTER[0], SCREEN_CENTER[1], 10)
 
         elif not ally_locations and enemy_locations: #FT
@@ -172,12 +172,12 @@ def run_game_loop(stop_event):
             # look for current ally
             pan_to_ally(ally_priority_list[current_ally_index])
             move_mouse_percent(SCREEN_CENTER[0], SCREEN_CENTER[1])
-            time.sleep(0.5)
+            time.sleep(0.3)
             # not found, try other allies
             if not find_ally_locations(screen_manager.get_latest_frame()):
                 for i in range(len(ally_priority_list)):
                     pan_to_ally(ally_priority_list[i])
-                    time.sleep(0.5)
+                    time.sleep(0.3)
                     if find_ally_locations(screen_manager.get_latest_frame()):
                         current_ally_index = i
                         break

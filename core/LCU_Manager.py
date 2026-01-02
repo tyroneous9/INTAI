@@ -7,6 +7,7 @@ from lcu_driver import Connector
 
 from utils.config_utils import get_selected_game_mode, load_config
 from utils.general_utils import bring_window_to_front, wait_for_window
+from utils.game_utils import get_champions_map
 from core.constants import (
     LEAGUE_GAME_WINDOW_TITLE,
     SUPPORTED_MODES,
@@ -18,7 +19,6 @@ from core.constants import (
 )
 from core.bot_manager import BotManager
 
-
 class LCUManager:
     """Encapsulates the lcu_driver Connector and its event handlers."""
 
@@ -27,26 +27,42 @@ class LCUManager:
         self.connector = Connector()
         self.bot_manager = BotManager(self.shutdown_event)
         self.last_phase = None
-
-        # register handlers on the connector
+        self.champions_map = get_champions_map()
+        # Event used to pause/resume handlers; set => handlers can run, clear => handlers paused
+        self.handlers_can_run = asyncio.Event()
+        self.handlers_can_run.set()
         self._register_handlers()
 
     def _register_handlers(self):
-        @self.connector.ready
+        # Helper to wrap handlers so they await the resume Event automatically
+        def _wrap_handler(fn):
+            async def _wrapped(connection, event):
+                await self.handlers_can_run.wait()
+                return await fn(connection, event)
+            return _wrapped
+
         async def _connect(connection):
             await self._on_connect(connection)
 
-        @self.connector.ws.register(LCU_GAMEFLOW_PHASE, event_types=("UPDATE",))
+        # register wrapped handlers (avoids modifying handler bodies)
+        self.connector.ready(_wrap_handler(_connect))
+
         async def _on_gameflow_phase(connection, event):
             await self.on_gameflow_phase(connection, event)
+        self.connector.ws.register(LCU_GAMEFLOW_PHASE, event_types=("UPDATE",))(_wrap_handler(_on_gameflow_phase))
 
-        @self.connector.ws.register(LCU_CHAMP_SELECT_SESSION, event_types=("CREATE", "UPDATE",))
         async def _on_champ_select_session(connection, event):
             await self.on_champ_select_session(connection, event)
+        self.connector.ws.register(LCU_CHAMP_SELECT_SESSION, event_types=("CREATE", "UPDATE",))(_wrap_handler(_on_champ_select_session))
 
-        @self.connector.close
+        async def _on_current_champion(connection, event):
+            champ_name = self.champions_map.get(event.data, "Unknown champ id")
+            logging.info("Champion picked: %s", champ_name)
+        self.connector.ws.register('/lol-champ-select/v1/current-champion', event_types=("CREATE", "UPDATE",))(_wrap_handler(_on_current_champion))
+
         async def _disconnect(connection):
             await self._on_disconnect(connection)
+        self.connector.close(_wrap_handler(_disconnect))
 
     async def _on_connect(self, connection):
         self.connector.loop = asyncio.get_running_loop()
@@ -83,7 +99,7 @@ class LCUManager:
         if phase == GAMEFLOW_PHASES["LOBBY"]:
             try:
                 await connection.request('post', '/lol-lobby/v2/lobby/matchmaking/search')
-                logging.info("[EVENT] Starting queue.")
+                logging.info("Starting queue.")
             except Exception as e:
                 logging.error(f"Failed to start queue: {e}")
 
@@ -97,19 +113,25 @@ class LCUManager:
 
         # Start bot loop thread on game start
         if phase == GAMEFLOW_PHASES["IN_PROGRESS"]:
-            logging.info("[EVENT] Game is in progress.")
+            logging.info("Game is in progress.")
             bring_window_to_front(LEAGUE_GAME_WINDOW_TITLE)
             self.bot_manager.start_bot_thread()
 
         # Clean up bot thread and play again on end of game
         if phase == GAMEFLOW_PHASES["PRE_END_OF_GAME"]:
-            logging.info("[EVENT] Game ended.")
+            logging.info("Game ended.")
+            self.handlers_can_run.clear()
             self.bot_manager.wait_for_bot_thread()
-
-            # make sure game window is closed
-            while wait_for_window(LEAGUE_GAME_WINDOW_TITLE, timeout=30) != None:
-                time.sleep(1)
-
+            # make sure game window is closed, timeout after certain duration (game may have crashed)
+            end_time = time.time() + 60
+            while wait_for_window(LEAGUE_GAME_WINDOW_TITLE, timeout=10) != None:
+                if time.time() > end_time:
+                    logging.error("Game did not close correctly. Shutting down program.")
+                    self.shutdown_event.set()
+                    self.stop()
+                    return
+                await asyncio.sleep(1)
+            self.handlers_can_run.set()
             # Play again (recreate lobby)
             try:
                 await connection.request('post', '/lol-lobby/v2/play-again')
@@ -182,23 +204,9 @@ class LCUManager:
                             )
                         
                         return
-        
-        # Log whether a champion has been chosen via the current-champion endpoint
-        try:
-            resp = await connection.request('get', '/lol-champ-select/v1/current-champion')
-            cur = await resp.json()
-            champ_id = None
-            if isinstance(cur, dict):
-                champ_id = cur.get('championId')
-            # Consider positive championId as a selection
-            if champ_id:
-                logging.info(f"Champion selected via current-champion endpoint: id={champ_id}")
-        except Exception as e:
-            logging.error(f"Failed to query current-champion endpoint: {e}")
-
 
     async def _on_disconnect(self, connection):
-        logging.info("[INFO] Connector has been closed.")
+        logging.info("Connector has been closed.")
 
     def start(self):
         logging.info("Starting LCU connector...")
