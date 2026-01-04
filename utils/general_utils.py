@@ -92,39 +92,102 @@ def click_on_cursor(button="left"):
     try:
         x, y = win32api.GetCursorPos()
         if button == "left":
-            win32api.mouse_event(win32con.MOUSEEVENTF_LEFTDOWN, x, y, 0, 0)
+            down = win32con.MOUSEEVENTF_LEFTDOWN
+            up = win32con.MOUSEEVENTF_LEFTUP
         elif button == "right":
-            win32api.mouse_event(win32con.MOUSEEVENTF_RIGHTDOWN, x, y, 0, 0)
+            down = win32con.MOUSEEVENTF_RIGHTDOWN
+            up = win32con.MOUSEEVENTF_RIGHTUP
+        elif button in ("middle", "mmb", "mouse_middle"):
+            down = getattr(win32con, 'MOUSEEVENTF_MIDDLEDOWN', None)
+            up = getattr(win32con, 'MOUSEEVENTF_MIDDLEUP', None)
+            if down is None or up is None:
+                logging.warning("Middle button not supported on this platform.")
+                return
         else:
-            logging.warning("Unknown mouse button: %s. Use 'left' or 'right'.", button)
-        win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP, x, y, 0, 0)
+            logging.warning("Unknown mouse button: %s. Use 'left', 'right', or 'middle'.", button)
+            return
+        win32api.mouse_event(down, x, y, 0, 0)
+        time.sleep(0.01)
+        win32api.mouse_event(up, x, y, 0, 0)
     except Exception:
         logging.error("click_on_cursor: unexpected error while clicking (button=%s)", button)
         raise Exception
 
 
-def long_send_key(key, press_time=0.5):
-    """
-    Sends a keyboard key press safely with retries, logging, and explicit press/release.
+def get_binding(event_name, keybinds):
+    """Resolve a single binding for `event_name` from the `keybinds` map.
 
-    Args:
-        key (str): The key or key combination to send (as accepted by `keyboard`).
-        retries (int): Number of attempts.
-        press_time (float): Seconds to hold the key between press and release.
-
-    Returns:
-        bool: True if the key was sent successfully, False otherwise.
+    - `keybinds` should be the `Keybinds` mapping from the config.
+    - Backwards-compat: if the stored value is a list, the first entry is used.
+    Returns the binding (dict or string) or None if not found/empty.
     """
-    if not key:
-        logging.error("long_send_key called with empty key")
-        return False
+    # Assume `keybinds` is a dict of event -> list (0 or 1) of parsed dicts.
+    b = keybinds.get(event_name)
+    if not b:
+        return None
+    # b is a non-empty list; return its first (and only) binding dict
+    return b[0]
+
+
+def _send_keybind(binding, press_time=0):
+    """Send a binding dict in the guaranteed parsed format.
+
+    Expected binding dict shape:
+      {"type": "key"|"mouse", "key": "q", "mouse": "left", "modifiers": [..], "raw": "..."}
+
+    This function assumes `binding` is a dict in that form and performs
+    the input action. It does minimal validation and is intentionally
+    lightweight.
+    """
     try:
-        keyboard.press(key)
-        time.sleep(press_time)
-        keyboard.release(key)
+        keybind_type = binding['type']
+        modifiers = [m.lower() for m in binding.get('modifiers', [])]
+        if keybind_type == 'mouse':
+            btn = binding.get('mouse', 'left').lower()
+            # press modifiers, click, release modifiers
+            for m in modifiers:
+                keyboard.press('ctrl' if m == 'control' else ('win' if m in ('win','windows') else m))
+            if 'right' in btn or '2' in btn or 'button2' in btn:
+                click_on_cursor('right')
+            elif 'middle' in btn or '3' in btn or 'button3' in btn:
+                click_on_cursor('middle')
+            else:
+                click_on_cursor('left')
+            for m in modifiers:
+                keyboard.release('ctrl' if m == 'control' else ('win' if m in ('win','windows') else m))
+            return True
+        
+        key = binding.get('key', '').lower()
+        for m in modifiers:
+            keyboard.press('ctrl' if m == 'control' else ('win' if m in ('win','windows') else m))
+        if key:
+            keyboard.press(key)
+            time.sleep(press_time)
+            keyboard.release(key)
+        else:
+            time.sleep(press_time)
+        for m in modifiers:
+            keyboard.release('ctrl' if m == 'control' else ('win' if m in ('win','windows') else m))
         return True
+
+    except Exception:
+        logging.exception("send_keybind: invalid binding format or send failed: %s", binding)
+        return False
+
+
+def send_keybind(event_name, keybinds, press_time=0.01):
+    """Resolve and send the binding for `event_name` using the provided `keybinds` map.
+
+    This is a wrapper around `get_binding` + `_send_keybind`.
+    """
+    try:
+        binding = get_binding(event_name, keybinds)
+        if binding is None:
+            logging.debug("send_keybind: no binding for %s", event_name)
+            return False
+        return _send_keybind(binding, press_time)
     except Exception as e:
-        logging.exception("long_send_key failed for key=%s: %s", key, e)
+        logging.exception("send_keybind failed for %s: %s", event_name, e)
         return False
 
 

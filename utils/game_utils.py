@@ -6,7 +6,7 @@ from core.constants import DATA_DRAGON_DEFAULT_LOCALE, DATA_DRAGON_VERSIONS_URL,
 import random
 from utils.config_utils import load_settings
 from utils.cv_utils import find_shop_location
-from utils.general_utils import click_percent, long_send_key, move_mouse_percent
+from utils.general_utils import click_percent, send_keybind, move_mouse_percent
 
 _keybinds, _general = load_settings()
 
@@ -181,22 +181,19 @@ def level_up_abilities(order=('R', 'Q', 'W', 'E')):
     Args:
         order (tuple): The order in which to level up spells. Default is ('R', 'Q', 'W', 'E').
     """
-    hold_key = _keybinds.get("hold_to_level")
-    spell_keys = {
-        'Q': _keybinds.get("spell_1"),
-        'W': _keybinds.get("spell_2"),
-        'E': _keybinds.get("spell_3"),
-        'R': _keybinds.get("spell_4"),
+    event_map = {
+        'Q': 'evtLevelSpell1',
+        'W': 'evtLevelSpell2',
+        'E': 'evtLevelSpell3',
+        'R': 'evtLevelSpell4',
     }
-    if hold_key and all(spell_keys.values()):
-        for key in order:
-            key = key.upper()
-            if key not in spell_keys:
-                logging.error(f"Invalid key parameter: {key}. Must be Q, W, E, or R.")
-                continue
-            keyboard.send(f"{hold_key}+{spell_keys[key]}")
-    else:
-        logging.error("Missing keybinds for leveling abilities.")
+    for key in order:
+        k = key.upper()
+        evt = event_map.get(k)
+        if not evt:
+            logging.error(f"Invalid key parameter: {k}. Must be Q, W, E, or R.")
+            continue
+        send_keybind(evt, _keybinds)
 
 
 def level_up_ability(ability='R'):
@@ -206,21 +203,18 @@ def level_up_ability(ability='R'):
     Args:
         ability (char): The ability to level up. Default is 'R'.
     """
-    hold_key = _keybinds.get("hold_to_level")
-    spell_keys = {
-        'Q': _keybinds.get("spell_1"),
-        'W': _keybinds.get("spell_2"),
-        'E': _keybinds.get("spell_3"),
-        'R': _keybinds.get("spell_4"),
+    event_map = {
+        'Q': 'evtLevelSpell1',
+        'W': 'evtLevelSpell2',
+        'E': 'evtLevelSpell3',
+        'R': 'evtLevelSpell4',
     }
-    if hold_key and all(spell_keys.values()):
-        key = spell_keys.get(ability)
-        key = key.upper()
-        if key not in spell_keys:
-            logging.error(f"Invalid key parameter: {key}. Must be Q, W, E, or R.")
-        keyboard.send(f"{hold_key}+{spell_keys[key]}")
-    else:
-        logging.error("Missing keybinds for leveling abilities.")
+    k = ability.upper()
+    evt = event_map.get(k)
+    if not evt:
+        logging.error(f"Invalid ability parameter: {ability}. Must be Q, W, E, or R.")
+        return
+    send_keybind(evt, _keybinds)
 
 
 def buy_recommended_items(screen_manager):
@@ -237,11 +231,11 @@ def buy_recommended_items(screen_manager):
     
     # Open shop if not already open
     if not shop_location:
-        long_send_key(_keybinds.get("shop"))
+        send_keybind("evtOpenShop", _keybinds)
         time.sleep(0.5)
         shop_location = find_shop_location(screen_manager.get_latest_frame())
         if not shop_location:
-            long_send_key(_keybinds.get("shop"))
+            send_keybind("evtOpenShop", _keybinds)
             time.sleep(0.5)
             return False
 
@@ -254,7 +248,7 @@ def buy_recommended_items(screen_manager):
     time.sleep(0.5)
 
     # Ensure shop is closed
-    long_send_key(_keybinds.get("shop"))
+    send_keybind("evtOpenShop", _keybinds)
     time.sleep(0.5)
     if find_shop_location(screen_manager.get_latest_frame()):
         return False
@@ -272,25 +266,25 @@ def buy_items_list(screen_manager, item_list):
         
     # Open shop if not already open
     if not shop_location:
-        long_send_key(_keybinds.get("shop"))
+        send_keybind("evtOpenShop", _keybinds)
         time.sleep(0.5)
         shop_location = find_shop_location(screen_manager.get_latest_frame())
         if not shop_location:
             time.sleep(0.5)
-            long_send_key(_keybinds.get("shop"))
+            send_keybind("evtOpenShop", _keybinds)
             return False
 
     # Shop found, now buy items
     for item in item_list:
-        long_send_key("ctrl+l")
+        keyboard.send("ctrl+l")
         time.sleep(0.5)
         keyboard.write(item)
         time.sleep(0.5)
-        long_send_key("enter")
+        keyboard.send("enter")
         time.sleep(0.5)
 
     # Ensure shop is closed
-    long_send_key(_keybinds.get("shop"))
+    send_keybind("evtOpenShop", _keybinds)
     time.sleep(0.5)
     if find_shop_location(screen_manager.get_latest_frame()):
         return False
@@ -303,21 +297,16 @@ def pan_to_ally(ally_number=1):
     Args:
         ally_number (int): The ally number to select (e.g., 1, 2, 3, 4).
     """
-    # Switch-like mapping for ally selection (explicit for clarity)
     if ally_number == 1:
-        key = _keybinds.get("select_ally_1")
+        send_keybind("evtSelectAlly1", _keybinds, press_time=0.01)
     elif ally_number == 2:
-        key = _keybinds.get("select_ally_2")
+        send_keybind("evtSelectAlly2", _keybinds, press_time=0.01)
     elif ally_number == 3:
-        key = _keybinds.get("select_ally_3")
+        send_keybind("evtSelectAlly3", _keybinds, press_time=0.01)
     elif ally_number == 4:
-        key = _keybinds.get("select_ally_4")
+        send_keybind("evtSelectAlly4", _keybinds, press_time=0.01)
     else:
         logging.error(f"Invalid ally number: {ally_number}. Must be 1, 2, 3, or 4.")
-        return
-    keyboard.press(key)
-    time.sleep(0.01)
-    keyboard.release(key)
     
 
 def retreat(current_coords, threat_coords, retreat_distance_modifier=1.0):
@@ -354,43 +343,29 @@ def retreat(current_coords, threat_coords, retreat_distance_modifier=1.0):
     # Move toward calculated retreat location
     click_percent(retreat_x, retreat_y, 0, 0, "right")
 
-    # Randomly use summoner spells (same behavior as before)
-    press_sum_1 = random.choice([True, False])
-    press_sum_2 = random.choice([True, False])
-
-    if press_sum_1:
-        sum_1_key = _keybinds.get("sum_1")
-        if sum_1_key:
-            keyboard.send(sum_1_key)
-            time.sleep(0.1)
-    if press_sum_2:
-        sum_2_key = _keybinds.get("sum_2")
-        if sum_2_key:
-            keyboard.send(sum_2_key)
-            time.sleep(0.1)
-
     # Small fixed pause to let retreat action complete
     time.sleep(0.1)
 
 def attack_enemy(enemy_coords):
     """
     Attacks the enemy by casting spells and using items.
-    Searches for enemy location before each spell.
     Args:
         enemy_coords (tuple): (x, y) coordinates of the enemy.
     """
-    
-    for spell_key in ["spell_4", "spell_1", "spell_2", "spell_3"]:
-        keyboard.send(_keybinds.get("attack_move"))
-        move_mouse_percent(enemy_coords[0], enemy_coords[1])
-        keyboard.send(_keybinds.get("sum_1"))
-        keyboard.send(_keybinds.get("sum_2"))
-        keyboard.send(_keybinds.get(spell_key))
-        
-
-    # Send all item keys at once (no location search)
-    for item_key in ["item_1", "item_2", "item_3", "item_4", "item_5", "item_6"]:
-        keyboard.send(_keybinds.get(item_key))
+    move_mouse_percent(enemy_coords[0], enemy_coords[1])
+    send_keybind("evtPlayerAttackMoveClick", _keybinds)
+    send_keybind("evtCastSpell1", _keybinds)
+    send_keybind("evtCastSpell2", _keybinds)
+    send_keybind("evtCastSpell3", _keybinds)
+    send_keybind("evtCastSpell4", _keybinds)
+    send_keybind("evtSelfCastAvatarSpell1", _keybinds)
+    send_keybind("evtSelfCastAvatarSpell2", _keybinds)
+    send_keybind("evtUseItem1", _keybinds)
+    send_keybind("evtUseItem2", _keybinds)
+    send_keybind("evtUseItem3", _keybinds)
+    send_keybind("evtUseItem4", _keybinds)
+    send_keybind("evtUseItem5", _keybinds)
+    send_keybind("evtUseItem6", _keybinds)
     
 
 

@@ -1,10 +1,9 @@
 import logging
 import tkinter as tk
 from tkinter import messagebox
-import keyboard  # Requires local install
 from utils.config_utils import (
     get_selected_game_mode, set_selected_game_mode,
-    load_config, load_default_config, save_config
+    load_config, save_config
 )
 from utils.game_utils import get_champions_map
 from core.constants import SUPPORTED_MODES
@@ -99,48 +98,7 @@ def show_menu(run_script_callback):
         main_frame = tk.Frame(settings_frame)
         main_frame.pack(padx=10, pady=10, fill="both", expand=True)
 
-        # Left: Keybinds
-        left_frame = tk.Frame(main_frame)
-        left_frame.pack(side="left", fill="y", padx=(0, 20))
-
-        tk.Label(left_frame, text="Keybinds (click box, then press key):").pack(pady=5)
-
-        vars = {}
-        entries = {}
-        current_hook = {"id": None, "entry": None}
-
-        def capture_key(entry_widget, var):
-            if current_hook["id"]:
-                keyboard.unhook(current_hook["id"])
-                current_hook["id"] = None
-            if current_hook["entry"]:
-                current_hook["entry"].config(state="readonly", bg="SystemButtonFace")
-            entry_widget.config(state="disabled", bg="#ffd966")
-            current_hook["entry"] = entry_widget
-
-            def on_key(e):
-                var.set(e.name)
-                entry_widget.config(state="normal")
-                entry_widget.delete(0, tk.END)
-                entry_widget.insert(0, e.name)
-                entry_widget.config(state="readonly", bg="SystemButtonFace")
-                if current_hook["id"]:
-                    keyboard.unhook(current_hook["id"])
-                    current_hook["id"] = None
-                current_hook["entry"] = None
-
-            current_hook["id"] = keyboard.hook(on_key)
-
-        for key, val in keybinds.items():
-            row = tk.Frame(left_frame)
-            row.pack(fill="x", pady=2)
-            tk.Label(row, text=key, width=20, anchor="w").pack(side="left")
-            var = tk.StringVar(value=str(val))
-            entry = tk.Entry(row, textvariable=var, width=20, state="readonly")
-            entry.pack(side="left", fill="x", expand=True)
-            entry.bind("<Button-1>", lambda e, w=entry, v=var: capture_key(w, v))
-            vars[key] = var
-            entries[key] = entry
+        # (Keybinds UI removed — keybinds are now managed via in-game LCU settings)
 
         # Right: Champion selection
         right_frame = tk.Frame(main_frame)
@@ -183,9 +141,6 @@ def show_menu(run_script_callback):
         surrender_checkbox.pack(side="left", padx=5)
 
         def save_and_exit():
-            for key in vars:
-                keybinds[key] = vars[key].get().strip()
-            config["Keybinds"] = keybinds
             config.setdefault("General", {})
             selected_name = champ_var.get()
             if selected_name == "None":
@@ -201,25 +156,12 @@ def show_menu(run_script_callback):
             save_config(config)
             show_frame(menu_frame)
 
-        def reset_to_default():
-            default_config = load_default_config()
-            default_keybinds = default_config.get("Keybinds", {})
-            for key in vars:
-                val = default_keybinds.get(key, "")
-                vars[key].set(val)
-                entries[key].config(state="normal")
-                entries[key].delete(0, tk.END)
-                entries[key].insert(0, val)
-                entries[key].config(state="readonly", bg="SystemButtonFace")
-            champ_listbox.selection_clear(0, tk.END)
-            champ_var.set("None")  # Set preferred champion to "None"
-            surrender_var.set(False)  # Reset surrender to False
+        # Reset to default removed: default config file no longer used
 
         # Buttons at the bottom (no "Back to Menu" here)
         btn_frame = tk.Frame(settings_frame)
         btn_frame.pack(pady=10)
         tk.Button(btn_frame, text="Save", command=save_and_exit).pack(side="left", padx=5)
-        tk.Button(btn_frame, text="Reset to Default", command=reset_to_default).pack(side="left", padx=5)
 
         settings_frame.update_idletasks()
         show_frame(settings_frame)

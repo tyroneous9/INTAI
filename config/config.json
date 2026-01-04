@@ -1,30 +1,867 @@
 {
-    "Keybinds": {
-        "center_camera": "space",
-        "hold_to_level": "shift",
-        "item_1": "1",
-        "item_2": "2",
-        "item_3": "3",
-        "item_4": "5",
-        "item_5": "6",
-        "item_6": "7",
-        "recall": "b",
-        "select_ally_1": "f1",
-        "select_ally_2": "f2",
-        "select_ally_3": "f3",
-        "select_ally_4": "f4",
-        "shop": "p",
-        "spell_1": "q",
-        "spell_2": "w",
-        "spell_3": "e",
-        "spell_4": "r",
-        "sum_1": "d",
-        "sum_2": "f",
-        "attack_move": "a"
-    },
     "General": {
-        "selected_game_mode": "aram",
+        "selected_game_mode": "test",
         "preferred_champion": {},
         "surrender": false
+    },
+    "Keybinds": {
+        "evntPlayerPing": [
+            {
+                "type": "mouse",
+                "mouse": "left",
+                "modifiers": [
+                    "alt"
+                ],
+                "raw": "[Alt][Button 1]"
+            }
+        ],
+        "evntPlayerPingCursor": [
+            {
+                "type": "key",
+                "key": "g",
+                "modifiers": [],
+                "raw": "[g]"
+            }
+        ],
+        "evntPlayerPingCursorDanger": [
+            {
+                "type": "key",
+                "key": "v",
+                "modifiers": [],
+                "raw": "[v]"
+            }
+        ],
+        "evntPlayerPingDanger": [
+            {
+                "type": "mouse",
+                "mouse": "left",
+                "modifiers": [
+                    "ctrl"
+                ],
+                "raw": "[Ctrl][Button 1]"
+            }
+        ],
+        "evtCameraLockToggle": [
+            {
+                "type": "key",
+                "key": "y",
+                "modifiers": [],
+                "raw": "[y]"
+            }
+        ],
+        "evtCameraSnap": [
+            {
+                "type": "key",
+                "key": "space",
+                "modifiers": [],
+                "raw": "[Space]"
+            }
+        ],
+        "evtCastAvatarSpell1": [
+            {
+                "type": "key",
+                "key": "d",
+                "modifiers": [],
+                "raw": "[d]"
+            }
+        ],
+        "evtCastAvatarSpell2": [
+            {
+                "type": "key",
+                "key": "f",
+                "modifiers": [],
+                "raw": "[f]"
+            }
+        ],
+        "evtCastSpell1": [
+            {
+                "type": "key",
+                "key": "q",
+                "modifiers": [],
+                "raw": "[q]"
+            }
+        ],
+        "evtCastSpell2": [
+            {
+                "type": "key",
+                "key": "w",
+                "modifiers": [],
+                "raw": "[w]"
+            }
+        ],
+        "evtCastSpell3": [
+            {
+                "type": "key",
+                "key": "e",
+                "modifiers": [],
+                "raw": "[e]"
+            }
+        ],
+        "evtCastSpell4": [
+            {
+                "type": "key",
+                "key": "r",
+                "modifiers": [],
+                "raw": "[r]"
+            }
+        ],
+        "evtChampMasteryDisplay": [
+            {
+                "type": "key",
+                "key": "6",
+                "modifiers": [
+                    "ctrl"
+                ],
+                "raw": "[Ctrl][6]"
+            }
+        ],
+        "evtChampionOnly": [],
+        "evtChatHistory": [
+            {
+                "type": "key",
+                "key": "z",
+                "modifiers": [],
+                "raw": "[z]"
+            }
+        ],
+        "evtDragScrollLock": [],
+        "evtDrawHud": [],
+        "evtEmoteDance": [
+            {
+                "type": "key",
+                "key": "3",
+                "modifiers": [
+                    "ctrl"
+                ],
+                "raw": "[Ctrl][3]"
+            }
+        ],
+        "evtEmoteJoke": [
+            {
+                "type": "key",
+                "key": "1",
+                "modifiers": [
+                    "ctrl"
+                ],
+                "raw": "[Ctrl][1]"
+            }
+        ],
+        "evtEmoteLaugh": [
+            {
+                "type": "key",
+                "key": "4",
+                "modifiers": [
+                    "ctrl"
+                ],
+                "raw": "[Ctrl][4]"
+            }
+        ],
+        "evtEmoteTaunt": [
+            {
+                "type": "key",
+                "key": "2",
+                "modifiers": [
+                    "ctrl"
+                ],
+                "raw": "[Ctrl][2]"
+            }
+        ],
+        "evtEmoteToggle": [
+            {
+                "type": "key",
+                "key": "5",
+                "modifiers": [
+                    "ctrl"
+                ],
+                "raw": "[Ctrl][5]"
+            }
+        ],
+        "evtLevelSpell1": [
+            {
+                "type": "key",
+                "key": "q",
+                "modifiers": [
+                    "shift"
+                ],
+                "raw": "[Shift][q]"
+            }
+        ],
+        "evtLevelSpell2": [
+            {
+                "type": "key",
+                "key": "w",
+                "modifiers": [
+                    "shift"
+                ],
+                "raw": "[Shift][w]"
+            }
+        ],
+        "evtLevelSpell3": [
+            {
+                "type": "key",
+                "key": "e",
+                "modifiers": [
+                    "shift"
+                ],
+                "raw": "[Shift][e]"
+            }
+        ],
+        "evtLevelSpell4": [
+            {
+                "type": "key",
+                "key": "r",
+                "modifiers": [
+                    "shift"
+                ],
+                "raw": "[Shift][r]"
+            }
+        ],
+        "evtNormalCastAvatarSpell1": [],
+        "evtNormalCastAvatarSpell2": [],
+        "evtNormalCastItem1": [],
+        "evtNormalCastItem2": [],
+        "evtNormalCastItem3": [],
+        "evtNormalCastItem4": [],
+        "evtNormalCastItem5": [],
+        "evtNormalCastItem6": [],
+        "evtNormalCastSpell1": [],
+        "evtNormalCastSpell2": [],
+        "evtNormalCastSpell3": [],
+        "evtNormalCastSpell4": [],
+        "evtNormalCastVisionItem": [],
+        "evtOnUIMouse4Pan": [
+            {
+                "type": "mouse",
+                "mouse": "middle",
+                "modifiers": [],
+                "raw": "[Button 3]"
+            }
+        ],
+        "evtOpenShop": [
+            {
+                "type": "key",
+                "key": "p",
+                "modifiers": [],
+                "raw": "[p]"
+            },
+            {
+                "type": "key",
+                "key": "`",
+                "modifiers": [],
+                "raw": "[`]"
+            }
+        ],
+        "evtPetMoveClick": [
+            {
+                "type": "mouse",
+                "mouse": "right",
+                "modifiers": [
+                    "alt"
+                ],
+                "raw": "[Alt] [Button 2]"
+            },
+            {
+                "type": "mouse",
+                "mouse": "right",
+                "modifiers": [
+                    "ctrl"
+                ],
+                "raw": "[Ctrl] [Button 2]"
+            }
+        ],
+        "evtPlayerAttackMove": [
+            {
+                "type": "key",
+                "key": "u",
+                "modifiers": [],
+                "raw": "[u]"
+            },
+            {
+                "type": "key",
+                "key": "x",
+                "modifiers": [],
+                "raw": "[x]"
+            }
+        ],
+        "evtPlayerAttackMoveClick": [
+            {
+                "type": "key",
+                "key": "a",
+                "modifiers": [],
+                "raw": "[a]"
+            }
+        ],
+        "evtPlayerAttackOnlyClick": [],
+        "evtPlayerHoldPosition": [
+            {
+                "type": "key",
+                "key": "j",
+                "modifiers": [],
+                "raw": "[j]"
+            }
+        ],
+        "evtPlayerMoveClick": [
+            {
+                "type": "mouse",
+                "mouse": "right",
+                "modifiers": [],
+                "raw": "[Button 2]"
+            }
+        ],
+        "evtPlayerPingAllIn": [],
+        "evtPlayerPingComeHere": [],
+        "evtPlayerPingMIA": [],
+        "evtPlayerPingOMW": [],
+        "evtPlayerPingPush": [],
+        "evtPlayerPingRadialDanger": [],
+        "evtPlayerPingVisionNeeded": [],
+        "evtPlayerStopPosition": [
+            {
+                "type": "key",
+                "key": "s",
+                "modifiers": [],
+                "raw": "[s]"
+            }
+        ],
+        "evtPushToTalk": [],
+        "evtRadialEmoteInstantOpen": [
+            {
+                "type": "key",
+                "key": "t",
+                "modifiers": [],
+                "raw": "[t]"
+            }
+        ],
+        "evtRadialEmoteOpen": [],
+        "evtRadialEmotePlaySlot0": [],
+        "evtRadialEmotePlaySlot1": [],
+        "evtRadialEmotePlaySlot2": [],
+        "evtRadialEmotePlaySlot3": [],
+        "evtRadialEmotePlaySlot4": [],
+        "evtRadialEmotePlaySlot5": [],
+        "evtRadialEmotePlaySlot6": [],
+        "evtRadialEmotePlaySlot7": [],
+        "evtRadialEmotePlaySlot8": [],
+        "evtReciprocityMyBadTrigger": [
+            {
+                "type": "key",
+                "key": "i",
+                "modifiers": [],
+                "raw": "[i]"
+            }
+        ],
+        "evtReciprocityTrigger": [],
+        "evtScrollDown": [
+            {
+                "type": "key",
+                "key": "down",
+                "modifiers": [],
+                "raw": "[Down Arrow]"
+            }
+        ],
+        "evtScrollLeft": [
+            {
+                "type": "key",
+                "key": "left",
+                "modifiers": [],
+                "raw": "[Left Arrow]"
+            }
+        ],
+        "evtScrollRight": [
+            {
+                "type": "key",
+                "key": "right",
+                "modifiers": [],
+                "raw": "[Right Arrow]"
+            }
+        ],
+        "evtScrollUp": [
+            {
+                "type": "key",
+                "key": "up",
+                "modifiers": [],
+                "raw": "[Up Arrow]"
+            }
+        ],
+        "evtSelectAlly1": [
+            {
+                "type": "key",
+                "key": "f1",
+                "modifiers": [],
+                "raw": "[F1]"
+            }
+        ],
+        "evtSelectAlly2": [
+            {
+                "type": "key",
+                "key": "f2",
+                "modifiers": [],
+                "raw": "[F2]"
+            }
+        ],
+        "evtSelectAlly3": [
+            {
+                "type": "key",
+                "key": "f3",
+                "modifiers": [],
+                "raw": "[F3]"
+            }
+        ],
+        "evtSelectAlly4": [
+            {
+                "type": "key",
+                "key": "f4",
+                "modifiers": [],
+                "raw": "[F4]"
+            }
+        ],
+        "evtSelectSelf": [],
+        "evtSelfCastAvatarSpell1": [
+            {
+                "type": "key",
+                "key": "d",
+                "modifiers": [
+                    "alt"
+                ],
+                "raw": "[Alt][d]"
+            }
+        ],
+        "evtSelfCastAvatarSpell2": [
+            {
+                "type": "key",
+                "key": "f",
+                "modifiers": [
+                    "alt"
+                ],
+                "raw": "[Alt][f]"
+            }
+        ],
+        "evtSelfCastItem1": [
+            {
+                "type": "key",
+                "key": "1",
+                "modifiers": [
+                    "alt"
+                ],
+                "raw": "[Alt][1]"
+            }
+        ],
+        "evtSelfCastItem2": [
+            {
+                "type": "key",
+                "key": "2",
+                "modifiers": [
+                    "alt"
+                ],
+                "raw": "[Alt][2]"
+            }
+        ],
+        "evtSelfCastItem3": [
+            {
+                "type": "key",
+                "key": "3",
+                "modifiers": [
+                    "alt"
+                ],
+                "raw": "[Alt][3]"
+            }
+        ],
+        "evtSelfCastItem4": [
+            {
+                "type": "key",
+                "key": "5",
+                "modifiers": [
+                    "alt"
+                ],
+                "raw": "[Alt][5]"
+            }
+        ],
+        "evtSelfCastItem5": [
+            {
+                "type": "key",
+                "key": "6",
+                "modifiers": [
+                    "alt"
+                ],
+                "raw": "[Alt][6]"
+            }
+        ],
+        "evtSelfCastItem6": [
+            {
+                "type": "key",
+                "key": "7",
+                "modifiers": [
+                    "alt"
+                ],
+                "raw": "[Alt][7]"
+            }
+        ],
+        "evtSelfCastSpell1": [
+            {
+                "type": "key",
+                "key": "q",
+                "modifiers": [
+                    "alt"
+                ],
+                "raw": "[Alt][q]"
+            }
+        ],
+        "evtSelfCastSpell2": [
+            {
+                "type": "key",
+                "key": "w",
+                "modifiers": [
+                    "alt"
+                ],
+                "raw": "[Alt][w]"
+            }
+        ],
+        "evtSelfCastSpell3": [
+            {
+                "type": "key",
+                "key": "e",
+                "modifiers": [
+                    "alt"
+                ],
+                "raw": "[Alt][e]"
+            }
+        ],
+        "evtSelfCastSpell4": [
+            {
+                "type": "key",
+                "key": "r",
+                "modifiers": [
+                    "alt"
+                ],
+                "raw": "[Alt][r]"
+            }
+        ],
+        "evtSelfCastVisionItem": [
+            {
+                "type": "key",
+                "key": "4",
+                "modifiers": [
+                    "alt"
+                ],
+                "raw": "[Alt][4]"
+            }
+        ],
+        "evtShowCharacterMenu": [
+            {
+                "type": "key",
+                "key": "c",
+                "modifiers": [],
+                "raw": "[c]"
+            }
+        ],
+        "evtShowHealthBars": [],
+        "evtShowScoreBoard": [
+            {
+                "type": "key",
+                "key": "o",
+                "modifiers": [],
+                "raw": "[o]"
+            }
+        ],
+        "evtShowSummonerNames": [],
+        "evtShowVoicePanel": [
+            {
+                "type": "key",
+                "key": "m",
+                "modifiers": [],
+                "raw": "[m]"
+            }
+        ],
+        "evtSmartCastAvatarSpell1": [
+            {
+                "type": "key",
+                "key": "d",
+                "modifiers": [
+                    "shift"
+                ],
+                "raw": "[Shift][d]"
+            }
+        ],
+        "evtSmartCastAvatarSpell2": [
+            {
+                "type": "key",
+                "key": "f",
+                "modifiers": [
+                    "shift"
+                ],
+                "raw": "[Shift][f]"
+            }
+        ],
+        "evtSmartCastItem1": [
+            {
+                "type": "key",
+                "key": "1",
+                "modifiers": [
+                    "shift"
+                ],
+                "raw": "[Shift][1]"
+            }
+        ],
+        "evtSmartCastItem2": [
+            {
+                "type": "key",
+                "key": "2",
+                "modifiers": [
+                    "shift"
+                ],
+                "raw": "[Shift][2]"
+            }
+        ],
+        "evtSmartCastItem3": [
+            {
+                "type": "key",
+                "key": "3",
+                "modifiers": [
+                    "shift"
+                ],
+                "raw": "[Shift][3]"
+            }
+        ],
+        "evtSmartCastItem4": [
+            {
+                "type": "key",
+                "key": "5",
+                "modifiers": [
+                    "shift"
+                ],
+                "raw": "[Shift][5]"
+            }
+        ],
+        "evtSmartCastItem5": [
+            {
+                "type": "key",
+                "key": "6",
+                "modifiers": [
+                    "shift"
+                ],
+                "raw": "[Shift][6]"
+            }
+        ],
+        "evtSmartCastItem6": [
+            {
+                "type": "key",
+                "key": "7",
+                "modifiers": [
+                    "shift"
+                ],
+                "raw": "[Shift][7]"
+            }
+        ],
+        "evtSmartCastSpell1": [],
+        "evtSmartCastSpell2": [],
+        "evtSmartCastSpell3": [],
+        "evtSmartCastSpell4": [],
+        "evtSmartCastVisionItem": [
+            {
+                "type": "key",
+                "key": "4",
+                "modifiers": [
+                    "shift"
+                ],
+                "raw": "[Shift][4]"
+            }
+        ],
+        "evtSmartCastWithIndicatorAvatarSpell1": [],
+        "evtSmartCastWithIndicatorAvatarSpell2": [],
+        "evtSmartCastWithIndicatorItem1": [],
+        "evtSmartCastWithIndicatorItem2": [],
+        "evtSmartCastWithIndicatorItem3": [],
+        "evtSmartCastWithIndicatorItem4": [],
+        "evtSmartCastWithIndicatorItem5": [],
+        "evtSmartCastWithIndicatorItem6": [],
+        "evtSmartCastWithIndicatorSpell1": [],
+        "evtSmartCastWithIndicatorSpell2": [],
+        "evtSmartCastWithIndicatorSpell3": [],
+        "evtSmartCastWithIndicatorSpell4": [],
+        "evtSmartCastWithIndicatorVisionItem": [],
+        "evtSmartPlusSelfCastAvatarSpell1": [],
+        "evtSmartPlusSelfCastAvatarSpell2": [],
+        "evtSmartPlusSelfCastItem1": [],
+        "evtSmartPlusSelfCastItem2": [],
+        "evtSmartPlusSelfCastItem3": [],
+        "evtSmartPlusSelfCastItem4": [],
+        "evtSmartPlusSelfCastItem5": [],
+        "evtSmartPlusSelfCastItem6": [],
+        "evtSmartPlusSelfCastSpell1": [],
+        "evtSmartPlusSelfCastSpell2": [],
+        "evtSmartPlusSelfCastSpell3": [],
+        "evtSmartPlusSelfCastSpell4": [],
+        "evtSmartPlusSelfCastVisionItem": [],
+        "evtSmartPlusSelfCastWithIndicatorAvatarSpell1": [],
+        "evtSmartPlusSelfCastWithIndicatorAvatarSpell2": [],
+        "evtSmartPlusSelfCastWithIndicatorItem1": [],
+        "evtSmartPlusSelfCastWithIndicatorItem2": [],
+        "evtSmartPlusSelfCastWithIndicatorItem3": [],
+        "evtSmartPlusSelfCastWithIndicatorItem4": [],
+        "evtSmartPlusSelfCastWithIndicatorItem5": [],
+        "evtSmartPlusSelfCastWithIndicatorItem6": [],
+        "evtSmartPlusSelfCastWithIndicatorSpell1": [],
+        "evtSmartPlusSelfCastWithIndicatorSpell2": [],
+        "evtSmartPlusSelfCastWithIndicatorSpell3": [],
+        "evtSmartPlusSelfCastWithIndicatorSpell4": [],
+        "evtSmartPlusSelfCastWithIndicatorVisionItem": [],
+        "evtSysMenu": [
+            {
+                "type": "key",
+                "key": "esc",
+                "modifiers": [],
+                "raw": "[Esc]"
+            }
+        ],
+        "evtToggleMinionHealthBars": [],
+        "evtUseItem1": [
+            {
+                "type": "key",
+                "key": "1",
+                "modifiers": [],
+                "raw": "[1]"
+            }
+        ],
+        "evtUseItem2": [
+            {
+                "type": "key",
+                "key": "2",
+                "modifiers": [],
+                "raw": "[2]"
+            }
+        ],
+        "evtUseItem3": [
+            {
+                "type": "key",
+                "key": "3",
+                "modifiers": [],
+                "raw": "[3]"
+            }
+        ],
+        "evtUseItem4": [
+            {
+                "type": "key",
+                "key": "5",
+                "modifiers": [],
+                "raw": "[5]"
+            }
+        ],
+        "evtUseItem5": [
+            {
+                "type": "key",
+                "key": "6",
+                "modifiers": [],
+                "raw": "[6]"
+            }
+        ],
+        "evtUseItem6": [
+            {
+                "type": "key",
+                "key": "7",
+                "modifiers": [],
+                "raw": "[7]"
+            }
+        ],
+        "evtUseItem7": [
+            {
+                "type": "key",
+                "key": "b",
+                "modifiers": [],
+                "raw": "[b]"
+            }
+        ],
+        "evtUseVisionItem": [
+            {
+                "type": "key",
+                "key": "4",
+                "modifiers": [],
+                "raw": "[4]"
+            }
+        ],
+        "evtHoldShowScoreBoard": [
+            {
+                "type": "key",
+                "key": "tab",
+                "modifiers": [],
+                "raw": "[Tab]"
+            }
+        ],
+        "evtToggleDeathRecapShowcase": [
+            {
+                "type": "key",
+                "key": "n",
+                "modifiers": [],
+                "raw": "[n]"
+            }
+        ],
+        "evtToggleFPSAndLatency": [
+            {
+                "type": "key",
+                "key": "f",
+                "modifiers": [
+                    "ctrl"
+                ],
+                "raw": "[Ctrl] [f]"
+            }
+        ],
+        "evtToggleMouseClip": [
+            {
+                "type": "key",
+                "key": "f9",
+                "modifiers": [],
+                "raw": "[F9]"
+            }
+        ],
+        "evtTogglePlayerStats": [
+            {
+                "type": "key",
+                "key": "c",
+                "modifiers": [
+                    "ctrl"
+                ],
+                "raw": "[Ctrl][c]"
+            }
+        ],
+        "evtCastAvatarSpell1smart": [],
+        "evtCastAvatarSpell2smart": [],
+        "evtCastSpell1smart": [],
+        "evtCastSpell2smart": [],
+        "evtCastSpell3smart": [],
+        "evtCastSpell4smart": [],
+        "evtUseItem1smart": [],
+        "evtUseItem2smart": [],
+        "evtUseItem3smart": [],
+        "evtUseItem4smart": [],
+        "evtUseItem5smart": [],
+        "evtUseItem6smart": [],
+        "evtUseVisionItemsmart": [],
+        "evtShopFocusSearch": [
+            {
+                "type": "key",
+                "key": "l",
+                "modifiers": [
+                    "ctrl"
+                ],
+                "raw": "[Ctrl] [l]"
+            },
+            {
+                "type": "key",
+                "key": "enter",
+                "modifiers": [
+                    "ctrl"
+                ],
+                "raw": "[Ctrl] [Return]"
+            }
+        ],
+        "evtShopSwitchTabs": [
+            {
+                "type": "key",
+                "key": "tab",
+                "modifiers": [
+                    "ctrl"
+                ],
+                "raw": "[Ctrl] [TAB]"
+            }
+        ]
     }
 }

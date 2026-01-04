@@ -28,7 +28,7 @@ from utils.game_utils import (
     retreat,
     vote_surrender,
 )
-from utils.general_utils import click_percent, move_mouse_percent
+from utils.general_utils import click_percent, move_mouse_percent, send_keybind
 
 # ===========================
 # Main Bot Loop
@@ -41,21 +41,10 @@ def run_game_loop(stop_event):
 
     # Initialization
     _keybinds, _general = load_settings()
-    spell_keys = [
-        _keybinds.get("spell_1"),
-        _keybinds.get("spell_2"),
-        _keybinds.get("spell_3"),
-        _keybinds.get("spell_4"),
-        _keybinds.get("sum_1"),
-        _keybinds.get("sum_2")
-    ]
-    recall_key = _keybinds.get("recall")
-    center_camera_key = _keybinds.get("center_camera")
 
     # Target ally is the preferred ally to attach to while the current ally is the one currently attached to, Ally 5 is generally the ADC
-    ally_priority_list = [4, 1, 2, 3]  # Order to try attaching
+    ally_priority_list = [4, 1, 2, 3]  # Fixed order to try attaching
     attached = False
-    attach_timeout = 2
     prev_level = 0
 
 
@@ -147,7 +136,7 @@ def run_game_loop(stop_event):
                 if find_ally_locations(screen_manager.get_latest_frame()):
                     # move_mouse_percent(SCREEN_CENTER[0], SCREEN_CENTER[1])
                     click_percent(SCREEN_CENTER[0], SCREEN_CENTER[1], button="right")
-                    keyboard.send(spell_keys[1])
+                    send_keybind("evtCastSpell2", _keybinds)
                     time.sleep(2) # Wait for attach animation
                 # Try next ally if not found
                 else:
@@ -156,7 +145,7 @@ def run_game_loop(stop_event):
                     # No allies found, just recall
                     if ally_index == len(ally_priority_list):
                         logging.info("No allies found, recalling.")
-                        keyboard.send(recall_key) 
+                        send_keybind("evtUseItem7", _keybinds)
                         time.sleep(9)
                         buy_recommended_items(screen_manager)
                         break
@@ -164,16 +153,14 @@ def run_game_loop(stop_event):
         elif attached:
             time.sleep(0.1)
             #  Periodically check if currently attached ally is dead
-            keyboard.press(center_camera_key)
-            time.sleep(0.01)
-            keyboard.release(center_camera_key) 
+            send_keybind("evtCameraSnap", _keybinds, press_time=0.01)
             if not find_attached_ally_location(screen_manager.get_latest_frame()):
                 attached = False
                 logging.info("Detached from ally.")
                 # Logic after detaching due to ally death or ally recall
                 enemy = find_enemy_locations(screen_manager.get_latest_frame())
                 if enemy:
-                    retreat(SCREEN_CENTER, enemy[0], 2)
+                    retreat(SCREEN_CENTER, enemy[0], 1000)
                 else:
                     buy_recommended_items(screen_manager)
                     # Move out of ally if they haven't moved yet
@@ -183,9 +170,7 @@ def run_game_loop(stop_event):
             enemy_locations = find_enemy_locations(screen_manager.get_latest_frame())
             if enemy_locations:
                 # check enemy relative location
-                keyboard.press(center_camera_key)
-                time.sleep(0.01)
-                keyboard.release(center_camera_key) 
+                send_keybind("evtCameraLockToggle", _keybinds)
                 enemy_locations = find_enemy_locations(screen_manager.get_latest_frame())
                 attached_ally_location = find_attached_ally_location(screen_manager.get_latest_frame())
                 if attached_ally_location:
@@ -193,20 +178,20 @@ def run_game_loop(stop_event):
                         distance_to_enemy = get_distance(attached_ally_location, enemy_location)
                         if distance_to_enemy < 600:
                             move_mouse_percent(enemy_location[0], enemy_location[1])
-                            keyboard.send(spell_keys[0])
-                            keyboard.send(spell_keys[2])
-                            keyboard.send(spell_keys[3])
-                            keyboard.send(spell_keys[4])
-                            keyboard.send(spell_keys[5])
-                            for item_key in ["item_1", "item_2", "item_3", "item_4", "item_5", "item_6"]:
-                                keyboard.send(_keybinds.get(item_key))
+                            send_keybind("evtCastSpell1", _keybinds)
+                            send_keybind("evtCastSpell3", _keybinds)
+                            send_keybind("evtCastSpell4", _keybinds)
+                            send_keybind("evtCastAvatarSpell1", _keybinds)
+                            send_keybind("evtCastAvatarSpell2", _keybinds)
+                            for item_key in ["evtUseItem1", "evtUseItem2", "evtUseItem3", "evtUseItem4", "evtUseItem5", "evtUseItem6"]:
+                                send_keybind(item_key, _keybinds)
                             # Track Q
                             time.sleep(0.5)
                             enemy_locations = find_enemy_locations(screen_manager.get_latest_frame())
                             if enemy_locations:
                                 move_mouse_percent(enemy_locations[0][0], enemy_locations[0][1])
                             break
-                            time.sleep(1)
+                send_keybind("evtCameraLockToggle", _keybinds)
 
             
         

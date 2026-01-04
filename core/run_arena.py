@@ -10,8 +10,6 @@ Setup: Optionally set preferred champion in settings
 import time
 import threading
 import logging
-
-import keyboard
 from constants import SCREEN_CENTER
 from core.live_client_manager import LiveClientManager
 from core.screen_manager import ScreenManager
@@ -28,7 +26,7 @@ from utils.game_utils import (
     pan_to_ally,
     vote_surrender,
 )
-from utils.general_utils import click_percent, move_mouse_percent
+from utils.general_utils import click_percent, move_mouse_percent, send_keybind
 
 
 # ===========================
@@ -133,8 +131,7 @@ def run_game_loop(stop_event):
         # Combat phase
         enemy_locations = find_enemy_locations(screen_manager.get_latest_frame())
         if enemy_locations:
-            keyboard.press(center_camera_key)
-            time.sleep(0.01)
+            send_keybind("evtCameraLockToggle", _keybinds)
             enemy_locations = find_enemy_locations(screen_manager.get_latest_frame())
             player_location = find_player_location(screen_manager.get_latest_frame())
             if player_location:
@@ -146,9 +143,9 @@ def run_game_loop(stop_event):
                         break
                     else:
                         move_mouse_percent(enemy_location[0], enemy_location[1])
-                        keyboard.send(attack_move_key)
+                        send_keybind("evtAttackMove", _keybinds)
                         time.sleep(0.01)
-            keyboard.release(center_camera_key) 
+            send_keybind("evtCameraLockToggle", _keybinds)
         else:
             # Move to ally
             pan_to_ally(target_ally_number)

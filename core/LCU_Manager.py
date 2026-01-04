@@ -5,7 +5,8 @@ import time
 
 from lcu_driver import Connector
 
-from utils.config_utils import get_selected_game_mode, load_config
+from utils.config_utils import get_selected_game_mode, load_config, parse_lcu_input_settings, save_parsed_keybinds
+import inspect
 from utils.general_utils import bring_window_to_front, wait_for_window
 from utils.game_utils import get_champions_map
 from core.constants import (
@@ -34,40 +35,52 @@ class LCUManager:
         self._register_handlers()
 
     def _register_handlers(self):
-        # Helper to wrap handlers so they await the resume Event automatically
-        def _wrap_handler(fn):
-            async def _wrapped(connection, event):
-                await self.handlers_can_run.wait()
-                return await fn(connection, event)
-            return _wrapped
+        # Register handlers that respect the `handlers_can_run` event themselves.
 
         async def _connect(connection):
+            await self.handlers_can_run.wait()
             await self._on_connect(connection)
 
-        # register wrapped handlers (avoids modifying handler bodies)
-        self.connector.ready(_wrap_handler(_connect))
+        self.connector.ready(_connect)
 
         async def _on_gameflow_phase(connection, event):
+            await self.handlers_can_run.wait()
             await self.on_gameflow_phase(connection, event)
-        self.connector.ws.register(LCU_GAMEFLOW_PHASE, event_types=("UPDATE",))(_wrap_handler(_on_gameflow_phase))
+        self.connector.ws.register(LCU_GAMEFLOW_PHASE, event_types=("UPDATE",))(_on_gameflow_phase)
 
         async def _on_champ_select_session(connection, event):
+            await self.handlers_can_run.wait()
             await self.on_champ_select_session(connection, event)
-        self.connector.ws.register(LCU_CHAMP_SELECT_SESSION, event_types=("CREATE", "UPDATE",))(_wrap_handler(_on_champ_select_session))
+        self.connector.ws.register(LCU_CHAMP_SELECT_SESSION, event_types=("CREATE", "UPDATE",))(_on_champ_select_session)
 
         async def _on_current_champion(connection, event):
+            await self.handlers_can_run.wait()
             champ_name = self.champions_map.get(event.data, "Unknown champ id")
             logging.info("Champion picked: %s", champ_name)
-        self.connector.ws.register('/lol-champ-select/v1/current-champion', event_types=("CREATE", "UPDATE",))(_wrap_handler(_on_current_champion))
+        self.connector.ws.register('/lol-champ-select/v1/current-champion', event_types=("CREATE", "UPDATE",))(_on_current_champion)
 
         async def _disconnect(connection):
+            await self.handlers_can_run.wait()
             await self._on_disconnect(connection)
-        self.connector.close(_wrap_handler(_disconnect))
+        self.connector.close(_disconnect)
 
     async def _on_connect(self, connection):
         self.connector.loop = asyncio.get_running_loop()
         bring_window_to_front(LEAGUE_CLIENT_WINDOW_TITLE)
         logging.info("Connected to League client.")
+
+        # Try to fetch input settings from LCU and save parsed keybinds
+        try:
+            settings_resp = await connection.request('get', '/lol-game-settings/v1/input-settings')
+            settings_json = await settings_resp.json()
+            parsed = parse_lcu_input_settings(settings_json)
+            if parsed:
+                save_parsed_keybinds(parsed)
+                logging.info("Loaded and saved parsed LCU input settings.")
+            else:
+                logging.info("LCU input settings parsed but no bindings found.")
+        except Exception as e:
+            logging.debug(f"Could not fetch/parse LCU input settings: {e}")
 
         try:
             phase_resp = await connection.request('get', '/lol-gameflow/v1/gameflow-phase')

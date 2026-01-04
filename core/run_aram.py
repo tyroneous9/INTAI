@@ -9,13 +9,12 @@ Setup: No special setup required
 
 import time
 import threading
-import keyboard
 import logging
 from core.constants import SCREEN_CENTER
 from core.live_client_manager import LiveClientManager
 from core.screen_manager import ScreenManager
 from utils.config_utils import load_settings
-from utils.general_utils import click_percent, move_mouse_percent
+from utils.general_utils import click_percent, move_mouse_percent, send_keybind, send_keybind
 from utils.game_utils import (
     attack_enemy,
     buy_recommended_items,
@@ -41,10 +40,8 @@ def run_game_loop(stop_event):
 
     # Initialization
     _keybinds, _general = load_settings()
-    center_camera_key = _keybinds.get("center_camera")
 
-    ally_priority_list = [1,2,3,4]
-    current_ally_index = 0
+    ally_priority_list = [1,2,3,4] # Adaptive order to follow most active allies
     prev_level = 0
 
     game_data_lock = threading.Lock()
@@ -132,9 +129,7 @@ def run_game_loop(stop_event):
             # move around ally
             move_random_offset(ally_locations[0][0], ally_locations[0][1], 10)
             # fight enemy
-            keyboard.press(center_camera_key)
-            time.sleep(0.2)
-            keyboard.release(center_camera_key) 
+            send_keybind("evtCameraLockToggle", _keybinds)
             enemy_locations = find_enemy_locations(screen_manager.get_latest_frame())
             player_location = find_player_location(screen_manager.get_latest_frame())
             if player_location:
@@ -143,21 +138,21 @@ def run_game_loop(stop_event):
                     if distance_to_enemy < attack_range:
                         attack_enemy(enemy_location)
                         time.sleep(0.1)
-                        retreat(player_location, enemy_location, attack_range * 0.002)
+                        retreat(player_location, enemy_location, attack_range - distance_to_enemy)
                         break
+            time.sleep(0.2)
+            send_keybind("evtCameraLockToggle", _keybinds)
 
         elif ally_locations and not enemy_locations: #TF
-            # look for a different ally and follow
-            current_ally_index = (current_ally_index + 1) % len(ally_priority_list)
-            pan_to_ally(ally_priority_list[current_ally_index])
+            # look for a different ally and follow — rotate priorities so next ally becomes head
+            ally_priority_list.append(ally_priority_list.pop(0))
+            pan_to_ally(ally_priority_list[0])
             time.sleep(0.1)
             move_random_offset(SCREEN_CENTER[0], SCREEN_CENTER[1], 10)
 
         elif not ally_locations and enemy_locations: #FT
             # retreat from enemy, and fight if too close
-            keyboard.press(center_camera_key)
-            time.sleep(0.2)
-            keyboard.release(center_camera_key)
+            send_keybind("evtCameraLockToggle", _keybinds)
             enemy_locations = find_enemy_locations(screen_manager.get_latest_frame())
             player_location = find_player_location(screen_manager.get_latest_frame())
             if player_location:
@@ -166,20 +161,26 @@ def run_game_loop(stop_event):
                     if distance_to_enemy < 200:
                         attack_enemy(enemy_location)
                         time.sleep(0.1)
-                    retreat(player_location, enemy_locations[0], 2)
+                    retreat(player_location, enemy_location, attack_range - distance_to_enemy)
+            time.sleep(0.2)
+            send_keybind("evtCameraLockToggle", _keybinds)
 
         else: #FF
-            # look for current ally
-            pan_to_ally(ally_priority_list[current_ally_index])
+            # look for current ally (highest-priority is at front)
+            pan_to_ally(ally_priority_list[0])
             move_mouse_percent(SCREEN_CENTER[0], SCREEN_CENTER[1])
             time.sleep(0.3)
-            # not found, try other allies
+            # not found, try other allies — move found ally to front for faster future hits
             if not find_ally_locations(screen_manager.get_latest_frame()):
-                for i in range(len(ally_priority_list)):
-                    pan_to_ally(ally_priority_list[i])
+                n = len(ally_priority_list)
+                # probe remaining allies in order after the front
+                for offset in range(1, n):
+                    i = offset
+                    ally = ally_priority_list[i]
+                    pan_to_ally(ally)
                     time.sleep(0.3)
                     if find_ally_locations(screen_manager.get_latest_frame()):
-                        current_ally_index = i
+                        ally_priority_list.insert(0, ally_priority_list.pop(i))
                         break
         
         time.sleep(0.01) 
