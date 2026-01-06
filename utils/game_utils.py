@@ -2,12 +2,12 @@ import keyboard
 import time
 import logging
 import requests
-from core.constants import DATA_DRAGON_DEFAULT_LOCALE, DATA_DRAGON_VERSIONS_URL, SCREEN_CENTER
 import random
+import math
+from core.constants import DATA_DRAGON_DEFAULT_LOCALE, DATA_DRAGON_VERSIONS_URL, SCREEN_HEIGHT, SCREEN_WIDTH
 from utils.config_utils import load_settings
-from utils.cv_utils import find_shop_location
+from utils.cv_utils import find_shop_location, find_player_location
 from utils.general_utils import click_percent, send_keybind, move_mouse_percent
-
 _keybinds, _general = load_settings()
 
 
@@ -156,6 +156,57 @@ def get_distance(coord1, coord2):
     x2, y2 = coord2
     return ((x2 - x1) ** 2 + (y2 - y1) ** 2) ** 0.5
 
+
+def get_game_distance(coord1, coord2):
+    """Estimate in-game distance (units) between two screen coordinates.
+
+    Uses hardcoded anisotropic parameters and bias (no config lookups).
+    Returns a single float: estimated game units.
+    """
+
+    px, py = float(coord1[0]), float(coord1[1])
+    tx, ty = float(coord2[0]), float(coord2[1])
+
+    vertical_factor_top = 0.41
+    vertical_factor_bottom = -0.09
+    wiggle_coeff = -0.05
+    unit_scale = 1.142737888580297
+
+    dx = px - tx
+    dy = py - ty
+    pixel_dist = math.hypot(dx, dy)
+    if pixel_dist == 0:
+        return 0.0
+
+    # Determine normalized player Y position in [-1,1].
+    # Use the player's screen Y (coord1) only: -1 = top, +1 = bottom.
+    norm_y = (py - (SCREEN_HEIGHT / 2.0)) / (SCREEN_HEIGHT / 2.0)
+    norm_y = max(-1.0, min(1.0, norm_y))
+
+    # Interpolate vertical factor smoothly between top and bottom using player Y.
+    t = (norm_y + 1.0) / 2.0
+    v = vertical_factor_top * (1.0 - t) + vertical_factor_bottom * t
+
+    # small cubic 'wiggle' to soften the curve
+    wiggle = wiggle_coeff * (norm_y ** 3)
+
+    # Position-based multiplier: interpolate top->bottom (v already interpolated)
+    # so top (v negative) reduces multiplier and bottom (v positive) increases it.
+    pos_multiplier = 1.0 + v + wiggle
+    pos_multiplier = max(0.15, pos_multiplier)
+
+    # Separation-based correction: boost distance when separation is mostly vertical.
+    # sep_ratio = abs(dy) / pixel_dist  (0..1)
+    # sep_multiplier = 1 + k * sep_ratio
+    # Clamp to avoid runaway scaling.
+    k_sep = 0.3302259527161402
+    max_sep_mult = 1.33
+    sep_ratio = abs(dy) / pixel_dist
+    sep_multiplier = 1.0 + (k_sep * sep_ratio)
+    sep_multiplier = min(max_sep_mult, sep_multiplier)
+
+    units = pixel_dist * unit_scale * pos_multiplier * sep_multiplier
+    return float(units)
 
 # ===========================
 # Game Control Utilities
@@ -345,6 +396,63 @@ def retreat(current_coords, threat_coords, retreat_distance_modifier=1.0):
 
     # Small fixed pause to let retreat action complete
     time.sleep(0.1)
+
+
+def tether_offset(player_coords, target_coords, tether_distance):
+    """Move player to be at `tether_distance` (in game units) from target_coords.
+
+    Simplified: computes the pixel vector for the requested tether distance
+    using hardcoded anisotropic parameters. `tether_distance` must be provided.
+    """
+
+    px, py = float(player_coords[0]), float(player_coords[1])
+    tx, ty = float(target_coords[0]), float(target_coords[1])
+
+    # Use the same player-Y based position multiplier and separation-based
+    # correction as `get_game_distance`, then invert to find required pixel
+    # offset for the requested `tether_distance`.
+    vertical_factor_top = 0.41
+    vertical_factor_bottom = -0.09
+    wiggle_coeff = -0.05
+    unit_scale = 1.142737888580297
+
+    dx = px - tx
+    dy = py - ty
+    pixel_dist = math.hypot(dx, dy)
+    if pixel_dist == 0:
+        return
+
+    # player Y based multiplier
+    norm_y = (py - (SCREEN_HEIGHT / 2.0)) / (SCREEN_HEIGHT / 2.0)
+    norm_y = max(-1.0, min(1.0, norm_y))
+    t = (norm_y + 1.0) / 2.0
+    v = vertical_factor_top * (1.0 - t) + vertical_factor_bottom * t
+    wiggle = wiggle_coeff * (norm_y ** 3)
+    pos_multiplier = 1.0 + v + wiggle
+    pos_multiplier = max(0.15, pos_multiplier)
+
+    # separation-based correction (based on current orientation)
+    k_sep = 0.3302259527161402
+    max_sep_mult = 1.33
+    sep_ratio = abs(dy) / pixel_dist
+    sep_multiplier = 1.0 + (k_sep * sep_ratio)
+    sep_multiplier = min(max_sep_mult, sep_multiplier)
+
+    # desired pixel distance from the target along the direction to player
+    pixel_needed = float(tether_distance) / (unit_scale * pos_multiplier * sep_multiplier)
+    if not math.isfinite(pixel_needed) or pixel_needed <= 0:
+        return
+
+    theta = math.atan2(py - ty, px - tx)
+    ux = math.cos(theta)
+    uy = math.sin(theta)
+    pv = (pixel_needed * ux, pixel_needed * uy)
+
+    click_x = int(tx + pv[0])
+    click_y = int(ty + pv[1])
+    click_percent(click_x, click_y, 0, 0, "right")
+    return
+
 
 def attack_enemy(enemy_coords):
     """

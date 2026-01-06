@@ -70,6 +70,9 @@ def show_menu(run_script_callback):
         config = load_config()
         keybinds = config.get("Keybinds", {})
         general = config.get("General", {})
+        game_res = general.get("game_resolution", {})
+        res_w = int(game_res.get("width", 1920))
+        res_h = int(game_res.get("height", 1080))
         preferred_champion_obj = general.get("preferred_champion", {})
 
         champions_map = get_champions_map()  # {id: name}
@@ -140,6 +143,19 @@ def show_menu(run_script_callback):
         surrender_checkbox = tk.Checkbutton(surrender_frame, variable=surrender_var)
         surrender_checkbox.pack(side="left", padx=5)
 
+        # Game resolution input
+        res_frame = tk.Frame(right_frame)
+        res_frame.pack(anchor="w", pady=(10, 0))
+        tk.Label(res_frame, text="Game Resolution:").grid(row=0, column=0, columnspan=4, sticky="w")
+        tk.Label(res_frame, text="Width:").grid(row=1, column=0, sticky="e")
+        width_var = tk.StringVar(value=str(res_w))
+        width_entry = tk.Entry(res_frame, textvariable=width_var, width=7)
+        width_entry.grid(row=1, column=1, padx=(4,10))
+        tk.Label(res_frame, text="Height:").grid(row=1, column=2, sticky="e")
+        height_var = tk.StringVar(value=str(res_h))
+        height_entry = tk.Entry(res_frame, textvariable=height_var, width=7)
+        height_entry.grid(row=1, column=3, padx=(4,0))
+
         def save_and_exit():
             config.setdefault("General", {})
             selected_name = champ_var.get()
@@ -153,6 +169,15 @@ def show_menu(run_script_callback):
                         break
             # Save surrender option
             config["General"]["surrender"] = surrender_var.get()
+            # Save game resolution
+            try:
+                w = int(width_var.get())
+                h = int(height_var.get())
+                config.setdefault("General", {})
+                config["General"]["game_resolution"] = {"width": w, "height": h}
+            except Exception:
+                # ignore invalid entries
+                pass
             save_config(config)
             show_frame(menu_frame)
 

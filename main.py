@@ -5,6 +5,7 @@ import winsound
 from utils.general_utils import enable_logging, listen_for_exit
 from core.menu import show_menu  
 from core.lcu_manager import LCUManager
+from utils.coordinate_projection import get_model
 
 # State variables
 shutdown_event = threading.Event()
@@ -45,6 +46,12 @@ if __name__ == "__main__":
     Handles menu navigation and starts the connector.
     """
     enable_logging()
+    # Preload projection model so startup fails fast if missing/invalid
+    try:
+        get_model()
+    except Exception as e:
+        logging.exception("Failed to preload projection model: %s", e)
+        raise
     listen_for_exit(shutdown)
     show_menu(run_script)
 

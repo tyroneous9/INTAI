@@ -25,6 +25,7 @@ from utils.game_utils import (
     pan_to_ally,
     level_up_abilities,
     retreat,
+    tether_offset,
     vote_surrender,
 )
 from utils.cv_utils import find_ally_locations, find_augment_location, find_enemy_locations, find_player_location
@@ -138,7 +139,8 @@ def run_game_loop(stop_event):
                     if distance_to_enemy < attack_range:
                         attack_enemy(enemy_location)
                         time.sleep(0.1)
-                        retreat(player_location, enemy_location, attack_range - distance_to_enemy)
+                        # kite so attack range is maintained
+                        tether_offset(player_location, enemy_location, attack_range)
                         break
             time.sleep(0.2)
             send_keybind("evtCameraLockToggle", _keybinds)
@@ -161,7 +163,7 @@ def run_game_loop(stop_event):
                     if distance_to_enemy < 200:
                         attack_enemy(enemy_location)
                         time.sleep(0.1)
-                    retreat(player_location, enemy_location, attack_range - distance_to_enemy)
+                    retreat(player_location, enemy_location, 1000)
             time.sleep(0.2)
             send_keybind("evtCameraLockToggle", _keybinds)
 

@@ -54,6 +54,12 @@ class ScreenManager:
         """
         return self._camera.get_latest_frame()
     
+    def grab(self):
+        """
+        Captures and returns the current frame without needing to start the camera.
+        """
+        return self._camera.grab()
+    
 
     def save_screenshot(self, file_name="screenshot"):
         """

@@ -2,7 +2,11 @@
     "General": {
         "selected_game_mode": "test",
         "preferred_champion": {},
-        "surrender": false
+        "surrender": false,
+        "game_resolution": {
+            "width": 1920,
+            "height": 1080
+        }
     },
     "Keybinds": {
         "evntPlayerPing": [
