@@ -113,5 +113,16 @@ THRESHHOLD = 70
 # Page Segmentation Mode for Tesseract
 PSM = 11  
 
+# Parameters for the hybrid pixel->game units predictor (kept as constants for stability)
+GAME_DISTANCE_PARAMS = {
+    "unit_scale": 1.1272789362463531,
+    "v_top": 0.40579309745655007,
+    "v_bottom": -0.18471266892028299,
+    "wiggle_coeff": 0.0,
+    "k_sep": 0.2766888164988386,
+    "max_sep_mult": 1.3276067468392727,
+    "pos_multiplier_min": 0.15,
+}
+
 
 

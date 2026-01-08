@@ -4,7 +4,7 @@ import logging
 import requests
 import random
 import math
-from core.constants import DATA_DRAGON_DEFAULT_LOCALE, DATA_DRAGON_VERSIONS_URL, SCREEN_HEIGHT, SCREEN_WIDTH
+from core.constants import DATA_DRAGON_DEFAULT_LOCALE, DATA_DRAGON_VERSIONS_URL, SCREEN_HEIGHT, SCREEN_WIDTH, GAME_DISTANCE_PARAMS
 from utils.config_utils import load_settings
 from utils.cv_utils import find_shop_location, find_player_location
 from utils.general_utils import click_percent, send_keybind, move_mouse_percent
@@ -77,8 +77,10 @@ def is_game_started(game_data):
 
 def is_game_ended(game_data):
     """
+    Checks if the game has ended based on live client data. Does not lock the game data.
     Returns (bool):
         True if the GameEnd event is present in live client data or there is no more game data.
+    
     """
     if not game_data:
         return True
@@ -143,7 +145,7 @@ def sleep_random(min_seconds, max_seconds):
     time.sleep(duration)
 
 
-def get_distance(coord1, coord2):
+def get_pixel_distance(coord1, coord2):
     """
     Calculates the Euclidean distance between two (x, y) coordinates.
     Args:
@@ -167,10 +169,10 @@ def get_game_distance(coord1, coord2):
     px, py = float(coord1[0]), float(coord1[1])
     tx, ty = float(coord2[0]), float(coord2[1])
 
-    vertical_factor_top = 0.41
-    vertical_factor_bottom = -0.09
-    wiggle_coeff = -0.05
-    unit_scale = 1.142737888580297
+    unit_scale = GAME_DISTANCE_PARAMS["unit_scale"]
+    vertical_factor_top = GAME_DISTANCE_PARAMS["v_top"]
+    vertical_factor_bottom = GAME_DISTANCE_PARAMS["v_bottom"]
+    wiggle_coeff = GAME_DISTANCE_PARAMS.get("wiggle_coeff", 0.0)
 
     dx = px - tx
     dy = py - ty
@@ -193,14 +195,14 @@ def get_game_distance(coord1, coord2):
     # Position-based multiplier: interpolate top->bottom (v already interpolated)
     # so top (v negative) reduces multiplier and bottom (v positive) increases it.
     pos_multiplier = 1.0 + v + wiggle
-    pos_multiplier = max(0.15, pos_multiplier)
+    pos_multiplier = max(GAME_DISTANCE_PARAMS["pos_multiplier_min"], pos_multiplier)
 
     # Separation-based correction: boost distance when separation is mostly vertical.
     # sep_ratio = abs(dy) / pixel_dist  (0..1)
     # sep_multiplier = 1 + k * sep_ratio
     # Clamp to avoid runaway scaling.
-    k_sep = 0.3302259527161402
-    max_sep_mult = 1.33
+    k_sep = GAME_DISTANCE_PARAMS["k_sep"]
+    max_sep_mult = GAME_DISTANCE_PARAMS["max_sep_mult"]
     sep_ratio = abs(dy) / pixel_dist
     sep_multiplier = 1.0 + (k_sep * sep_ratio)
     sep_multiplier = min(max_sep_mult, sep_multiplier)
@@ -327,7 +329,7 @@ def buy_items_list(screen_manager, item_list):
 
     # Shop found, now buy items
     for item in item_list:
-        keyboard.send("ctrl+l")
+        send_keybind("evtShopFocusSearch", _keybinds)
         time.sleep(0.5)
         keyboard.write(item)
         time.sleep(0.5)
@@ -360,7 +362,7 @@ def pan_to_ally(ally_number=1):
         logging.error(f"Invalid ally number: {ally_number}. Must be 1, 2, 3, or 4.")
     
 
-def retreat(current_coords, threat_coords, retreat_distance_modifier=1.0):
+def retreat(current_coords, threat_coords):
     """
     Moves the player away from the threat location by a distance proportional to the
     current separation multiplied by `retreat_distance_modifier`.
@@ -373,29 +375,66 @@ def retreat(current_coords, threat_coords, retreat_distance_modifier=1.0):
             a value of 1.2 will move to 120% of the current separation in the
             opposite direction. (Default: 1.0)
     """
-    length = get_distance(current_coords, threat_coords)
+    length = get_game_distance(current_coords, threat_coords)
     if length == 0:
         logging.error("Cannot retreat: current coordinates are the same as threat coordinates.")
         return
 
-    dx = current_coords[0] - threat_coords[0]
-    dy = current_coords[1] - threat_coords[1]
+    dx = float(current_coords[0]) - float(threat_coords[0])
+    dy = float(current_coords[1]) - float(threat_coords[1])
 
-    # Determine retreat distance proportional to current separation
-    retreat_distance = int(length * retreat_distance_modifier)
-    # Fallback to a sensible minimum so very small distances still move
-    if retreat_distance < 50:
-        retreat_distance = 50
+    # Unit direction away from threat
+    vec_len = math.hypot(dx, dy)
+    if vec_len == 0:
+        logging.error("Cannot retreat: zero-length direction vector.")
+        return
+    ux = dx / vec_len
+    uy = dy / vec_len
 
-    # Normalize direction and scale by retreat_distance
-    retreat_x = int(current_coords[0] + (dx / length) * retreat_distance)
-    retreat_y = int(current_coords[1] + (dy / length) * retreat_distance)
+    # Screen-inset bounds (pixels) - final click will be at most this far along the ray
+    margin = 50
+    min_x = margin
+    max_x = SCREEN_WIDTH - margin
+    min_y = margin
+    max_y = SCREEN_HEIGHT - margin
 
-    # Move toward calculated retreat location
-    click_percent(retreat_x, retreat_y, 0, 0, "right")
+    cx = float(current_coords[0])
+    cy = float(current_coords[1])
 
-    # Small fixed pause to let retreat action complete
-    time.sleep(0.1)
+    # Compute t values where the ray (cx,cy) + t*(ux,uy) intersects the four inset boundaries
+    t_candidates = []
+    eps = 1e-8
+    if abs(ux) > eps:
+        if ux > 0:
+            t_candidates.append((max_x - cx) / ux)
+        else:
+            t_candidates.append((min_x - cx) / ux)
+    if abs(uy) > eps:
+        if uy > 0:
+            t_candidates.append((max_y - cy) / uy)
+        else:
+            t_candidates.append((min_y - cy) / uy)
+
+    # Keep only positive intersection distances
+    t_pos = [t for t in t_candidates if t > 0]
+    if not t_pos:
+        logging.error("Retreat direction does not intersect screen bounds; aborting retreat.")
+        return
+
+    # First intersection is where the ray exits the inset rectangle; that's the farthest valid point
+    t_hit = min(t_pos)
+
+    click_x = int(round(cx + ux * t_hit))
+    click_y = int(round(cy + uy * t_hit))
+
+    # Clamp to be safe
+    click_x = max(min_x, min(max_x, click_x))
+    click_y = max(min_y, min(max_y, click_y))
+
+    click_percent(click_x, click_y, 0, 0, "right")
+    send_keybind("evtSelfCastAvatarSpell1", _keybinds)
+    send_keybind("evtSelfCastAvatarSpell2", _keybinds)
+    time.sleep(0.5)
 
 
 def tether_offset(player_coords, target_coords, tether_distance):
@@ -411,10 +450,10 @@ def tether_offset(player_coords, target_coords, tether_distance):
     # Use the same player-Y based position multiplier and separation-based
     # correction as `get_game_distance`, then invert to find required pixel
     # offset for the requested `tether_distance`.
-    vertical_factor_top = 0.41
-    vertical_factor_bottom = -0.09
-    wiggle_coeff = -0.05
-    unit_scale = 1.142737888580297
+    vertical_factor_top = GAME_DISTANCE_PARAMS["v_top"]
+    vertical_factor_bottom = GAME_DISTANCE_PARAMS["v_bottom"]
+    wiggle_coeff = GAME_DISTANCE_PARAMS.get("wiggle_coeff", 0.0)
+    unit_scale = GAME_DISTANCE_PARAMS["unit_scale"]
 
     dx = px - tx
     dy = py - ty
@@ -429,11 +468,11 @@ def tether_offset(player_coords, target_coords, tether_distance):
     v = vertical_factor_top * (1.0 - t) + vertical_factor_bottom * t
     wiggle = wiggle_coeff * (norm_y ** 3)
     pos_multiplier = 1.0 + v + wiggle
-    pos_multiplier = max(0.15, pos_multiplier)
+    pos_multiplier = max(GAME_DISTANCE_PARAMS["pos_multiplier_min"], pos_multiplier)
 
     # separation-based correction (based on current orientation)
-    k_sep = 0.3302259527161402
-    max_sep_mult = 1.33
+    k_sep = GAME_DISTANCE_PARAMS["k_sep"]
+    max_sep_mult = GAME_DISTANCE_PARAMS["max_sep_mult"]
     sep_ratio = abs(dy) / pixel_dist
     sep_multiplier = 1.0 + (k_sep * sep_ratio)
     sep_multiplier = min(max_sep_mult, sep_multiplier)
@@ -451,29 +490,71 @@ def tether_offset(player_coords, target_coords, tether_distance):
     click_x = int(tx + pv[0])
     click_y = int(ty + pv[1])
     click_percent(click_x, click_y, 0, 0, "right")
+
+    # Estimate how long the player will take to move to the final position
+    current_game_distance = get_game_distance((px, py), (tx, ty))
+    travel_distance = float(tether_distance)
+    travel_units = abs(current_game_distance - travel_distance)
+    # player average speed in game units per second
+    player_speed = 350.0
+    # base duration (seconds) plus small safety margin
+    duration = travel_units / player_speed
+    # clamp reasonable bounds so we don't sleep too little or too long
+    duration = max(0.05, min(duration, 4.0))
+    time.sleep(duration)
     return
 
 
-def attack_enemy(enemy_coords):
+def attack_enemy(player_location, enemy_location, game_data):
     """
-    Attacks the enemy by casting spells and using items.
+    Attacks the enemy according to the champion's strengths. Does not lock the game data.
     Args:
         enemy_coords (tuple): (x, y) coordinates of the enemy.
     """
-    move_mouse_percent(enemy_coords[0], enemy_coords[1])
-    send_keybind("evtPlayerAttackMoveClick", _keybinds)
+    attack_range = game_data["activePlayer"]["championStats"]["attackRange"]
+    isRanged = False if attack_range <= 350 else True
+    distance_to_enemy = get_game_distance(player_location, enemy_location)
+
+    if isRanged:
+        # Maintain safe distance for ranged champions
+        if distance_to_enemy < 200:
+            retreat(player_location, enemy_location)
+        elif distance_to_enemy > attack_range:
+            move_mouse_percent(enemy_location[0], enemy_location[1])
+            send_keybind("evtPlayerAttackMoveClick", _keybinds)
+            time.sleep(0.2)
+            move_random_offset(enemy_location[0], enemy_location[1], 20)
+            return
+        else:
+            tether_offset(player_location, enemy_location, attack_range)
+            move_mouse_percent(enemy_location[0], enemy_location[1])
+    else:
+        # Engage if within flash engage range for melee champions
+        if distance_to_enemy > attack_range + 400:
+            move_mouse_percent(enemy_location[0], enemy_location[1])
+            send_keybind("evtPlayerAttackMoveClick", _keybinds)
+            time.sleep(0.2)
+            return
+        if distance_to_enemy <= attack_range + 400 and distance_to_enemy > attack_range + 200:
+            move_mouse_percent(enemy_location[0], enemy_location[1])
+            send_keybind("evtSelfCastAvatarSpell1", _keybinds)
+            send_keybind("evtSelfCastAvatarSpell2", _keybinds)    
+
+    move_mouse_percent(enemy_location[0], enemy_location[1])
     send_keybind("evtCastSpell1", _keybinds)
     send_keybind("evtCastSpell2", _keybinds)
     send_keybind("evtCastSpell3", _keybinds)
     send_keybind("evtCastSpell4", _keybinds)
-    send_keybind("evtSelfCastAvatarSpell1", _keybinds)
-    send_keybind("evtSelfCastAvatarSpell2", _keybinds)
     send_keybind("evtUseItem1", _keybinds)
     send_keybind("evtUseItem2", _keybinds)
     send_keybind("evtUseItem3", _keybinds)
     send_keybind("evtUseItem4", _keybinds)
     send_keybind("evtUseItem5", _keybinds)
     send_keybind("evtUseItem6", _keybinds)
+    send_keybind("evtPlayerAttackMoveClick", _keybinds)
+    time.sleep(0.2)
+    
+
     
 
 
