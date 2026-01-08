@@ -18,14 +18,14 @@ from utils.config_utils import load_settings
 from utils.cv_utils import find_ally_locations, find_attached_ally_location, find_attached_ally_location, find_enemy_locations
 from utils.game_utils import (
     buy_recommended_items,
-    get_distance,
+    get_game_distance,
     is_game_ended,
     is_game_started,
     level_up_abilities,
     level_up_ability,
     move_random_offset,
     pan_to_ally,
-    retreat,
+    tether_offset,
     vote_surrender,
 )
 from utils.general_utils import click_percent, move_mouse_percent, send_keybind
@@ -43,7 +43,7 @@ def run_game_loop(stop_event):
     _keybinds, _general = load_settings()
 
     # Target ally is the preferred ally to attach to while the current ally is the one currently attached to, Ally 5 is generally the ADC
-    ally_priority_list = [4, 1, 2, 3]  # Fixed order to try attaching
+    ally_priority_list = [4, 2, 3, 1]  # Fixed order to try attaching
     attached = False
     prev_level = 0
 
@@ -153,14 +153,14 @@ def run_game_loop(stop_event):
         elif attached:
             time.sleep(0.1)
             #  Periodically check if currently attached ally is dead
-            send_keybind("evtCameraSnap", _keybinds, press_time=0.01)
+            send_keybind("evtCameraSnap", _keybinds, press_time=0.2)
             if not find_attached_ally_location(screen_manager.get_latest_frame()):
                 attached = False
                 logging.info("Detached from ally.")
                 # Logic after detaching due to ally death or ally recall
                 enemy = find_enemy_locations(screen_manager.get_latest_frame())
                 if enemy:
-                    retreat(SCREEN_CENTER, enemy[0], 1000)
+                    tether_offset(SCREEN_CENTER, enemy[0], 1000)
                 else:
                     buy_recommended_items(screen_manager)
                     # Move out of ally if they haven't moved yet
@@ -175,7 +175,7 @@ def run_game_loop(stop_event):
                 attached_ally_location = find_attached_ally_location(screen_manager.get_latest_frame())
                 if attached_ally_location:
                     for enemy_location in enemy_locations: 
-                        distance_to_enemy = get_distance(attached_ally_location, enemy_location)
+                        distance_to_enemy = get_game_distance(attached_ally_location, enemy_location)
                         if distance_to_enemy < 600:
                             move_mouse_percent(enemy_location[0], enemy_location[1])
                             send_keybind("evtCastSpell1", _keybinds)

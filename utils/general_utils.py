@@ -125,23 +125,30 @@ def get_binding(event_name, keybinds):
     b = keybinds.get(event_name)
     if not b:
         return None
-    # b is a non-empty list; return its first (and only) binding dict
+    # Return the first binding
     return b[0]
 
 
-def _send_keybind(binding, press_time=0):
-    """Send a binding dict in the guaranteed parsed format.
+def send_keybind(event_name, keybinds, press_time=0.01):
+    """Resolve and send the binding for `event_name` using the provided `keybinds` map.
 
-    Expected binding dict shape:
-      {"type": "key"|"mouse", "key": "q", "mouse": "left", "modifiers": [..], "raw": "..."}
-
-    This function assumes `binding` is a dict in that form and performs
-    the input action. It does minimal validation and is intentionally
-    lightweight.
+    'keybinds' must refer to the dict holding the keybinds obtained via live data.
     """
     try:
+        # Backwards-compatible path: callers may pass a pre-resolved binding
+        if isinstance(keybinds, dict) and keybinds.get('__internal__'):
+            binding = event_name
+        else:
+            binding = get_binding(event_name, keybinds)
+
+        if binding is None:
+            logging.debug("send_keybind: no binding for %s", event_name)
+            return False
+
+        # Core send logic (previously in _send_keybind)
         keybind_type = binding['type']
         modifiers = [m.lower() for m in binding.get('modifiers', [])]
+
         if keybind_type == 'mouse':
             btn = binding.get('mouse', 'left').lower()
             # press modifiers, click, release modifiers
@@ -156,7 +163,7 @@ def _send_keybind(binding, press_time=0):
             for m in modifiers:
                 keyboard.release('ctrl' if m == 'control' else ('win' if m in ('win','windows') else m))
             return True
-        
+
         key = binding.get('key', '').lower()
         for m in modifiers:
             keyboard.press('ctrl' if m == 'control' else ('win' if m in ('win','windows') else m))
@@ -170,22 +177,6 @@ def _send_keybind(binding, press_time=0):
             keyboard.release('ctrl' if m == 'control' else ('win' if m in ('win','windows') else m))
         return True
 
-    except Exception:
-        logging.exception("send_keybind: invalid binding format or send failed: %s", binding)
-        return False
-
-
-def send_keybind(event_name, keybinds, press_time=0.01):
-    """Resolve and send the binding for `event_name` using the provided `keybinds` map.
-
-    This is a wrapper around `get_binding` + `_send_keybind`.
-    """
-    try:
-        binding = get_binding(event_name, keybinds)
-        if binding is None:
-            logging.debug("send_keybind: no binding for %s", event_name)
-            return False
-        return _send_keybind(binding, press_time)
     except Exception as e:
         logging.exception("send_keybind failed for %s: %s", event_name, e)
         return False

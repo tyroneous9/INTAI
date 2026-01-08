@@ -1,6 +1,6 @@
 {
     "General": {
-        "selected_game_mode": "test",
+        "selected_game_mode": "arena",
         "preferred_champion": {},
         "surrender": false,
         "game_resolution": {
@@ -112,14 +112,21 @@
         "evtChampMasteryDisplay": [
             {
                 "type": "key",
-                "key": "6",
+                "key": "5",
                 "modifiers": [
-                    "ctrl"
+                    "alt"
                 ],
-                "raw": "[Ctrl][6]"
+                "raw": "[Alt][5]"
             }
         ],
-        "evtChampionOnly": [],
+        "evtChampionOnly": [
+            {
+                "type": "mouse",
+                "mouse": "middle",
+                "modifiers": [],
+                "raw": "[Button 3]"
+            }
+        ],
         "evtChatHistory": [
             {
                 "type": "key",
@@ -135,9 +142,9 @@
                 "type": "key",
                 "key": "3",
                 "modifiers": [
-                    "ctrl"
+                    "alt"
                 ],
-                "raw": "[Ctrl][3]"
+                "raw": "[Alt][3]"
             }
         ],
         "evtEmoteJoke": [
@@ -145,9 +152,9 @@
                 "type": "key",
                 "key": "1",
                 "modifiers": [
-                    "ctrl"
+                    "alt"
                 ],
-                "raw": "[Ctrl][1]"
+                "raw": "[Alt][1]"
             }
         ],
         "evtEmoteLaugh": [
@@ -155,9 +162,9 @@
                 "type": "key",
                 "key": "4",
                 "modifiers": [
-                    "ctrl"
+                    "alt"
                 ],
-                "raw": "[Ctrl][4]"
+                "raw": "[Alt][4]"
             }
         ],
         "evtEmoteTaunt": [
@@ -165,9 +172,9 @@
                 "type": "key",
                 "key": "2",
                 "modifiers": [
-                    "ctrl"
+                    "alt"
                 ],
-                "raw": "[Ctrl][2]"
+                "raw": "[Alt][2]"
             }
         ],
         "evtEmoteToggle": [
@@ -233,14 +240,7 @@
         "evtNormalCastSpell3": [],
         "evtNormalCastSpell4": [],
         "evtNormalCastVisionItem": [],
-        "evtOnUIMouse4Pan": [
-            {
-                "type": "mouse",
-                "mouse": "middle",
-                "modifiers": [],
-                "raw": "[Button 3]"
-            }
-        ],
+        "evtOnUIMouse4Pan": [],
         "evtOpenShop": [
             {
                 "type": "key",
@@ -262,7 +262,7 @@
                 "modifiers": [
                     "alt"
                 ],
-                "raw": "[Alt] [Button 2]"
+                "raw": "[Alt][Button 2]"
             },
             {
                 "type": "mouse",
@@ -270,16 +270,10 @@
                 "modifiers": [
                     "ctrl"
                 ],
-                "raw": "[Ctrl] [Button 2]"
+                "raw": "[Ctrl][Button 2]"
             }
         ],
         "evtPlayerAttackMove": [
-            {
-                "type": "key",
-                "key": "u",
-                "modifiers": [],
-                "raw": "[u]"
-            },
             {
                 "type": "key",
                 "key": "x",
@@ -299,9 +293,9 @@
         "evtPlayerHoldPosition": [
             {
                 "type": "key",
-                "key": "j",
+                "key": "h",
                 "modifiers": [],
-                "raw": "[j]"
+                "raw": "[h]"
             }
         ],
         "evtPlayerMoveClick": [
@@ -354,7 +348,14 @@
                 "raw": "[i]"
             }
         ],
-        "evtReciprocityTrigger": [],
+        "evtReciprocityTrigger": [
+            {
+                "type": "key",
+                "key": "u",
+                "modifiers": [],
+                "raw": "[u]"
+            }
+        ],
         "evtScrollDown": [
             {
                 "type": "key",
@@ -440,46 +441,10 @@
                 "raw": "[Alt][f]"
             }
         ],
-        "evtSelfCastItem1": [
-            {
-                "type": "key",
-                "key": "1",
-                "modifiers": [
-                    "alt"
-                ],
-                "raw": "[Alt][1]"
-            }
-        ],
-        "evtSelfCastItem2": [
-            {
-                "type": "key",
-                "key": "2",
-                "modifiers": [
-                    "alt"
-                ],
-                "raw": "[Alt][2]"
-            }
-        ],
-        "evtSelfCastItem3": [
-            {
-                "type": "key",
-                "key": "3",
-                "modifiers": [
-                    "alt"
-                ],
-                "raw": "[Alt][3]"
-            }
-        ],
-        "evtSelfCastItem4": [
-            {
-                "type": "key",
-                "key": "5",
-                "modifiers": [
-                    "alt"
-                ],
-                "raw": "[Alt][5]"
-            }
-        ],
+        "evtSelfCastItem1": [],
+        "evtSelfCastItem2": [],
+        "evtSelfCastItem3": [],
+        "evtSelfCastItem4": [],
         "evtSelfCastItem5": [
             {
                 "type": "key",
@@ -540,16 +505,7 @@
                 "raw": "[Alt][r]"
             }
         ],
-        "evtSelfCastVisionItem": [
-            {
-                "type": "key",
-                "key": "4",
-                "modifiers": [
-                    "alt"
-                ],
-                "raw": "[Alt][4]"
-            }
-        ],
+        "evtSelfCastVisionItem": [],
         "evtShowCharacterMenu": [
             {
                 "type": "key",
@@ -805,7 +761,7 @@
                 "modifiers": [
                     "ctrl"
                 ],
-                "raw": "[Ctrl] [f]"
+                "raw": "[Ctrl][f]"
             }
         ],
         "evtToggleMouseClip": [
@@ -846,7 +802,7 @@
                 "modifiers": [
                     "ctrl"
                 ],
-                "raw": "[Ctrl] [l]"
+                "raw": "[Ctrl][l]"
             },
             {
                 "type": "key",
@@ -854,7 +810,7 @@
                 "modifiers": [
                     "ctrl"
                 ],
-                "raw": "[Ctrl] [Return]"
+                "raw": "[Ctrl][Return]"
             }
         ],
         "evtShopSwitchTabs": [
@@ -864,7 +820,7 @@
                 "modifiers": [
                     "ctrl"
                 ],
-                "raw": "[Ctrl] [TAB]"
+                "raw": "[Ctrl][Tab]"
             }
         ]
     }

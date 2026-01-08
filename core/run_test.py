@@ -17,13 +17,15 @@ from utils.config_utils import load_settings
 from utils.general_utils import click_percent, move_mouse_percent, send_keybind, send_keybind
 from utils.game_utils import (
     attack_enemy,
+    buy_items_list,
     buy_recommended_items,
-    get_distance,
+    get_pixel_distance,
     is_game_ended,
     is_game_started,
     move_random_offset,
     pan_to_ally,
     level_up_abilities,
+    retreat,
     tether_offset,
     vote_surrender,
 )
@@ -62,26 +64,26 @@ def run_game_loop(stop_event):
 
     logging.info("Game loop has started")
 
-    # Warm the camera
-    time.sleep(1)
-    distances = [725]
+    # Main game loop
+    while True:
+        # Fetch data
+        with game_data_lock:
+            current_level = latest_game_data["activePlayer"]["level"]
+            current_hp = latest_game_data["activePlayer"]["championStats"]["currentHealth"]
+            max_hp = latest_game_data["activePlayer"]["championStats"]["maxHealth"]
+            game_ended = is_game_ended(latest_game_data)
 
-    for input_distance in distances:
-        player = find_player_location(screen_manager.get_latest_frame())
-        enemies = find_enemy_locations(screen_manager.get_latest_frame())
-        tether_offset(player, enemies[0], input_distance)
-        # give the game a moment to process the move and update screen
-        time.sleep(2)
-        player = find_player_location(screen_manager.get_latest_frame())
-        enemies = find_enemy_locations(screen_manager.get_latest_frame())
-        actual = get_distance(player, enemies[0])
-        diff = actual - input_distance
-        logging.info("Requested=%d Measured=%.2f Diff=%.2f", input_distance, actual, diff)
-        # update player for the next iteration
+        # Exits loop on game end or shutdown
+        if game_ended or stop_event.is_set():
+            live_client_manager.stop_polling_thread()
+            screen_manager.stop_camera()
+            return
+        
+        # enemy_locations = find_enemy_locations(screen_manager.get_latest_frame())
+        # player_location = find_player_location(screen_manager.get_latest_frame())
+        # if player_location:
+        #     for enemy_location in enemy_locations:
+        #         attack_enemy(player_location, enemy_location, latest_game_data)
 
-    # Cleanup and exit test
-    live_client_manager.stop_polling_thread()
-    screen_manager.stop_camera()
-    logging.info("Tether tests complete")
-    return
-
+        buy_items_list(screen_manager, [""])
+        time.sleep(1)
