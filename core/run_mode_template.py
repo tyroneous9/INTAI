@@ -30,14 +30,6 @@ def run_game_loop(stop_event):
 
     # Initialization
     _keybinds, _general = load_settings()
-    ally_keys = [
-        _keybinds.get("select_ally_1"),
-        _keybinds.get("select_ally_2"),
-        _keybinds.get("select_ally_3"),
-        _keybinds.get("select_ally_4"),
-    ]
-
-    current_ally_index = 0
     prev_level = 0
 
     game_data_lock = threading.Lock()
@@ -64,7 +56,6 @@ def run_game_loop(stop_event):
         # Fetch data
         with game_data_lock:
             current_level = latest_game_data["activePlayer"]["level"]
-            current_hp = latest_game_data["activePlayer"]["championStats"]["currentHealth"]
             game_ended = is_game_ended(latest_game_data)
 
         # Exits loop on game end or shutdown

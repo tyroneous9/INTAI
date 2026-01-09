@@ -148,7 +148,7 @@ def find_ally_locations(img):
     Returns:
         list of (x,y) coordinates
     """
-    locations = _find_adjacent_colors(img, HEALTH_LEFT_COLOR, ALLY_HEALTH_RIGHT_COLOR, bgr_1_tolerance=0, bgr_2_tolerance=0, run_length=4, shift_axis='x')
+    locations = _find_adjacent_colors(img, HEALTH_LEFT_COLOR, ALLY_HEALTH_RIGHT_COLOR, bgr_1_tolerance=3, bgr_2_tolerance=3, run_length=4, shift_axis='x')
     if not locations:
         return []
     return [(x + 50, y + 160) for (x, y) in locations]
@@ -161,7 +161,7 @@ def find_enemy_locations(img):
     Returns:
         list of (x,y) coordinates
     """
-    locations = _find_adjacent_colors(img, HEALTH_LEFT_COLOR, ENEMY_HEALTH_RIGHT_COLOR, bgr_1_tolerance=0, bgr_2_tolerance=0, run_length=4, shift_axis='x')
+    locations = _find_adjacent_colors(img, HEALTH_LEFT_COLOR, ENEMY_HEALTH_RIGHT_COLOR, bgr_1_tolerance=3, bgr_2_tolerance=3, run_length=4, shift_axis='x')
     if not locations:
         return []
     return [(x + 50, y + 160) for (x, y) in locations]
@@ -175,7 +175,7 @@ def find_player_location(img):
     Returns:
         list of (x,y) coordinates
     """
-    locations = _find_adjacent_colors(img, HEALTH_LEFT_COLOR, PLAYER_HEALTH_RIGHT_COLOR, bgr_1_tolerance=0, bgr_2_tolerance=0, run_length=4, shift_axis='x')
+    locations = _find_adjacent_colors(img, HEALTH_LEFT_COLOR, PLAYER_HEALTH_RIGHT_COLOR, bgr_1_tolerance=3, bgr_2_tolerance=3, run_length=4, shift_axis='x')
     if not locations:
         return []
     first_location = locations[0]
@@ -190,7 +190,7 @@ def find_attached_ally_location(img):
     Returns:
         list of (x,y) coordinates
     """
-    locations = _find_adjacent_colors(img, ATTACHED_ALLY_LEFT_COLOR, ATTACHED_ALLY_RIGHT_COLOR, bgr_1_tolerance=0, bgr_2_tolerance=0, run_length=4, shift_axis='x')
+    locations = _find_adjacent_colors(img, ATTACHED_ALLY_LEFT_COLOR, ATTACHED_ALLY_RIGHT_COLOR, bgr_1_tolerance=3, bgr_2_tolerance=3, run_length=4, shift_axis='x')
     if not locations:
         return []
     first_location = locations[0]
@@ -203,7 +203,7 @@ def find_augment_location(img):
     Returns:
         list of (x,y) coordinates
     """
-    locations = _find_adjacent_colors(img, AUGMENT_UPPER_COLOR, AUGMENT_LOWER_COLOR, bgr_1_tolerance=0, bgr_2_tolerance=0, run_length=1, shift_axis='y')
+    locations = _find_adjacent_colors(img, AUGMENT_UPPER_COLOR, AUGMENT_LOWER_COLOR, bgr_1_tolerance=3, bgr_2_tolerance=3, run_length=1, shift_axis='y')
     if not locations:
         return []
     first_location = locations[0]
@@ -216,7 +216,7 @@ def find_shop_location(img):
     Returns:
         list of (x,y) coordinates
     """
-    locations = _find_adjacent_colors(img, SHOP_UPPER_COLOR, SHOP_LOWER_COLOR, bgr_1_tolerance=1, bgr_2_tolerance=0, run_length=1, shift_axis='y')
+    locations = _find_adjacent_colors(img, SHOP_UPPER_COLOR, SHOP_LOWER_COLOR, bgr_1_tolerance=2, bgr_2_tolerance=5, run_length=1, shift_axis='y')
     if not locations:
         return []
     first_location = locations[0]
@@ -229,7 +229,7 @@ def find_arena_exit_location(img):
     Returns:
         list of (x,y) coordinates
     """
-    locations = _find_adjacent_colors(img, ARENA_EXIT_UPPER_COLOR, ARENA_EXIT_LOWER_COLOR, bgr_1_tolerance=1, bgr_2_tolerance=0, run_length=1, shift_axis='y')
+    locations = _find_adjacent_colors(img, ARENA_EXIT_UPPER_COLOR, ARENA_EXIT_LOWER_COLOR, bgr_1_tolerance=3, bgr_2_tolerance=3, run_length=1, shift_axis='y')
     if not locations:
         return []
     first_location = locations[0]

@@ -17,6 +17,7 @@ from core.screen_manager import ScreenManager
 from utils.config_utils import load_settings
 from utils.cv_utils import find_ally_locations, find_attached_ally_location, find_attached_ally_location, find_enemy_locations
 from utils.game_utils import (
+    buy_items_list,
     buy_recommended_items,
     get_game_distance,
     is_game_ended,
@@ -67,7 +68,7 @@ def run_game_loop(stop_event):
     logging.info("Game loop has started.")
     start_time = time.time()
     time.sleep(10) # Wait for allies to leave spawn so you can properly pan camera to attach
-    buy_recommended_items(screen_manager) 
+    buy_items_list(screen_manager, [""])
     
     # Main game loop
     while True:
@@ -104,7 +105,7 @@ def run_game_loop(stop_event):
         if current_hp == 0:
             end_time = 20 + time.monotonic()
             while not game_ended and not stop_event.is_set():
-                if buy_recommended_items(screen_manager) == True:
+                if buy_items_list(screen_manager, [""]) == True:
                     break
                 elif time.monotonic() > end_time:
                     break
@@ -124,20 +125,18 @@ def run_game_loop(stop_event):
                     logging.info("Died while trying to attach.")
                     break
                 # Check if attached successfully
+                pan_to_ally(ally_priority_list[ally_index], 1)
                 attached_ally_location = find_attached_ally_location(screen_manager.get_latest_frame())
                 if attached_ally_location:
                     logging.info("Successfully attached.")
                     attached = True
                     break
                 # Attempt to attach
-                pan_to_ally(ally_priority_list[ally_index])
-                time.sleep(0.5) # Allow frame update
-                pan_to_ally(ally_priority_list[ally_index])
                 if find_ally_locations(screen_manager.get_latest_frame()):
                     # move_mouse_percent(SCREEN_CENTER[0], SCREEN_CENTER[1])
                     click_percent(SCREEN_CENTER[0], SCREEN_CENTER[1], button="right")
                     send_keybind("evtCastSpell2", _keybinds)
-                    time.sleep(2) # Wait for attach animation
+                    time.sleep(3) # Wait for attach animation
                 # Try next ally if not found
                 else:
                     logging.info(f"Ally {ally_priority_list[ally_index]} not found, trying next ally.")
@@ -147,7 +146,7 @@ def run_game_loop(stop_event):
                         logging.info("No allies found, recalling.")
                         send_keybind("evtUseItem7", _keybinds)
                         time.sleep(9)
-                        buy_recommended_items(screen_manager)
+                        buy_items_list(screen_manager, [""])
                         break
                     time.sleep(1) # Allow frame update
         elif attached:
@@ -162,7 +161,7 @@ def run_game_loop(stop_event):
                 if enemy:
                     tether_offset(SCREEN_CENTER, enemy[0], 1000)
                 else:
-                    buy_recommended_items(screen_manager)
+                    buy_items_list(screen_manager, [""])
                     # Move out of ally if they haven't moved yet
                     move_random_offset(SCREEN_CENTER[0], SCREEN_CENTER[1], 20)
                     time.sleep(1)
@@ -170,7 +169,7 @@ def run_game_loop(stop_event):
             enemy_locations = find_enemy_locations(screen_manager.get_latest_frame())
             if enemy_locations:
                 # check enemy relative location
-                send_keybind("evtCameraLockToggle", _keybinds)
+                send_keybind("evtCameraSnap", _keybinds, press_time=0.2)
                 enemy_locations = find_enemy_locations(screen_manager.get_latest_frame())
                 attached_ally_location = find_attached_ally_location(screen_manager.get_latest_frame())
                 if attached_ally_location:
@@ -191,7 +190,3 @@ def run_game_loop(stop_event):
                             if enemy_locations:
                                 move_mouse_percent(enemy_locations[0][0], enemy_locations[0][1])
                             break
-                send_keybind("evtCameraLockToggle", _keybinds)
-
-            
-        

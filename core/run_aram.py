@@ -17,6 +17,7 @@ from utils.config_utils import load_settings
 from utils.general_utils import click_percent, move_mouse_percent, send_keybind, send_keybind
 from utils.game_utils import (
     attack_enemy,
+    buy_items_list,
     buy_recommended_items,
     get_game_distance,
     is_game_ended,
@@ -97,7 +98,7 @@ def run_game_loop(stop_event):
         if augment:
             click_percent(augment[0], augment[1])
             time.sleep(0.5)
-            buy_recommended_items(screen_manager)
+            buy_items_list(screen_manager, [""])
             time.sleep(0.5)
 
         # Level up
@@ -112,7 +113,7 @@ def run_game_loop(stop_event):
                 augment = find_augment_location(screen_manager.get_latest_frame())
                 if augment:
                     click_percent(augment[0], augment[1])
-                if buy_recommended_items(screen_manager) == True:
+                if buy_items_list(screen_manager, [""]) == True:
                     break
                 elif time.monotonic() > end_time:
                     break
@@ -133,23 +134,20 @@ def run_game_loop(stop_event):
             player_location = find_player_location(screen_manager.get_latest_frame())
             if player_location:
                 for enemy_location in enemy_locations: 
-                    attack_enemy(enemy_location)
+                    attack_enemy(player_location, enemy_location, latest_game_data)
                     break
             
 
         elif ally_locations and not enemy_locations: #TF
             # look for a different ally and follow — rotate priorities so next ally becomes head
             ally_priority_list.append(ally_priority_list.pop(0))
-            pan_to_ally(ally_priority_list[0])
-            time.sleep(0.2)
+            pan_to_ally(ally_priority_list[0], press_time=0.2)
             send_keybind("evtPlayerAttackMoveClick", _keybinds)
 
 
         elif not ally_locations and enemy_locations: #FT
             # kite away from enemy, and fight if too close
-            send_keybind("evtCameraLockToggle", _keybinds)
-            time.sleep(0.2)
-            send_keybind("evtCameraLockToggle", _keybinds)
+            send_keybind("evtCameraSnap", _keybinds, press_time=0.2)
             enemy_locations = find_enemy_locations(screen_manager.get_latest_frame())
             player_location = find_player_location(screen_manager.get_latest_frame())
             if player_location:
@@ -160,10 +158,8 @@ def run_game_loop(stop_event):
 
         else: #FF
             # look for current ally (highest-priority is at front)
-            pan_to_ally(ally_priority_list[0])
+            pan_to_ally(ally_priority_list[0], press_time=0.2)
             move_mouse_percent(SCREEN_CENTER[0], SCREEN_CENTER[1])
-            send_keybind("evtPlayerAttackMoveClick", _keybinds)
-            time.sleep(0.3)
             # not found, try other allies — move found ally to front for faster future hits
             if not find_ally_locations(screen_manager.get_latest_frame()):
                 n = len(ally_priority_list)
@@ -171,8 +167,7 @@ def run_game_loop(stop_event):
                 for offset in range(1, n):
                     i = offset
                     ally = ally_priority_list[i]
-                    pan_to_ally(ally)
-                    time.sleep(0.3)
+                    pan_to_ally(ally, press_time=0.3)
                     if find_ally_locations(screen_manager.get_latest_frame()):
                         ally_priority_list.insert(0, ally_priority_list.pop(i))
                         break

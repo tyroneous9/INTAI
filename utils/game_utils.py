@@ -344,20 +344,21 @@ def buy_items_list(screen_manager, item_list):
     return True
 
 
-def pan_to_ally(ally_number=1):
+def pan_to_ally(ally_number=1, press_time=0.01):
     """
     Pans camera to the specified ally and moves cursor to their location.
     Args:
         ally_number (int): The ally number to select (e.g., 1, 2, 3, 4).
+        press_time (float): Duration to hold the key press. Default is 0.01 seconds.
     """
     if ally_number == 1:
-        send_keybind("evtSelectAlly1", _keybinds, press_time=0.01)
+        send_keybind("evtSelectAlly1", _keybinds, press_time=press_time)
     elif ally_number == 2:
-        send_keybind("evtSelectAlly2", _keybinds, press_time=0.01)
+        send_keybind("evtSelectAlly2", _keybinds, press_time=press_time)
     elif ally_number == 3:
-        send_keybind("evtSelectAlly3", _keybinds, press_time=0.01)
+        send_keybind("evtSelectAlly3", _keybinds, press_time=press_time)
     elif ally_number == 4:
-        send_keybind("evtSelectAlly4", _keybinds, press_time=0.01)
+        send_keybind("evtSelectAlly4", _keybinds, press_time=press_time)
     else:
         logging.error(f"Invalid ally number: {ally_number}. Must be 1, 2, 3, or 4.")
     
@@ -541,10 +542,10 @@ def attack_enemy(player_location, enemy_location, game_data):
             send_keybind("evtSelfCastAvatarSpell2", _keybinds)    
 
     move_mouse_percent(enemy_location[0], enemy_location[1])
+    send_keybind("evtCastSpell4", _keybinds)
     send_keybind("evtCastSpell1", _keybinds)
     send_keybind("evtCastSpell2", _keybinds)
     send_keybind("evtCastSpell3", _keybinds)
-    send_keybind("evtCastSpell4", _keybinds)
     send_keybind("evtUseItem1", _keybinds)
     send_keybind("evtUseItem2", _keybinds)
     send_keybind("evtUseItem3", _keybinds)

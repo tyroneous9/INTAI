@@ -1,6 +1,6 @@
 {
     "General": {
-        "selected_game_mode": "arena",
+        "selected_game_mode": "yuumi_sr",
         "preferred_champion": {},
         "surrender": false,
         "game_resolution": {
@@ -27,14 +27,7 @@
                 "raw": "[g]"
             }
         ],
-        "evntPlayerPingCursorDanger": [
-            {
-                "type": "key",
-                "key": "v",
-                "modifiers": [],
-                "raw": "[v]"
-            }
-        ],
+        "evntPlayerPingCursorDanger": [],
         "evntPlayerPingDanger": [
             {
                 "type": "mouse",
@@ -136,7 +129,14 @@
             }
         ],
         "evtDragScrollLock": [],
-        "evtDrawHud": [],
+        "evtDrawHud": [
+            {
+                "type": "key",
+                "key": "h",
+                "modifiers": [],
+                "raw": "[h]"
+            }
+        ],
         "evtEmoteDance": [
             {
                 "type": "key",
@@ -290,14 +290,7 @@
             }
         ],
         "evtPlayerAttackOnlyClick": [],
-        "evtPlayerHoldPosition": [
-            {
-                "type": "key",
-                "key": "h",
-                "modifiers": [],
-                "raw": "[h]"
-            }
-        ],
+        "evtPlayerHoldPosition": [],
         "evtPlayerMoveClick": [
             {
                 "type": "mouse",

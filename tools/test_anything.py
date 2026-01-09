@@ -17,12 +17,10 @@ while True:
     keyboard.wait('v')
     frame = sm.get_latest_frame()
 
-    if arena_exit_location := find_arena_exit_location(frame):
-        move_mouse_percent(*arena_exit_location)
-    
-    # player_location = find_player_location(frame)
-    # enemy_locations = find_enemy_locations(frame)
-    # if player_location and enemy_locations:
-    #     enemy = enemy_locations[0]
+    player_location = find_player_location(frame)
+    enemy_locations = find_enemy_locations(frame)
+    if player_location and enemy_locations:
+        enemy = enemy_locations[0]
+        tether_offset(player_location, enemy, 550)
             
     winsound.Beep(1000, 100)

@@ -129,8 +129,7 @@ def run_game_loop(stop_event):
                     attack_enemy(player_location, enemy_location, latest_game_data)
         else:
             # Move to ally
-            pan_to_ally(target_ally_number)
-            time.sleep(0.2)
+            pan_to_ally(target_ally_number, press_time=0.2)
             move_random_offset(SCREEN_CENTER[0], SCREEN_CENTER[1], 15)
             send_keybind("evtPlayerAttackMoveClick", _keybinds)
             time.sleep(0.2)
