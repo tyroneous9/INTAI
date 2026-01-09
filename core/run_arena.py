@@ -102,7 +102,7 @@ def run_game_loop(stop_event):
                 augment = find_augment_location(screen_manager.get_latest_frame())
                 if augment:
                     click_percent(augment[0], augment[1])
-                if buy_items_list(screen_manager, [""]) == True:
+                if buy_recommended_items(screen_manager) == True:
                     break
                 elif time.monotonic() > end_time:
                     break

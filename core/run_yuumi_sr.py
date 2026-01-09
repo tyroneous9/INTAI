@@ -11,7 +11,7 @@ import threading
 import logging
 
 import keyboard
-from core.constants import SCREEN_CENTER
+from core.constants import SCREEN_CENTER, AFK_TIMEOUT
 from core.live_client_manager import LiveClientManager
 from core.screen_manager import ScreenManager
 from utils.config_utils import load_settings
@@ -67,8 +67,9 @@ def run_game_loop(stop_event):
 
     logging.info("Game loop has started.")
     start_time = time.time()
+    last_afk_check_time = time.time()
     time.sleep(10) # Wait for allies to leave spawn so you can properly pan camera to attach
-    buy_items_list(screen_manager, [""])
+    buy_recommended_items(screen_manager)
     
     # Main game loop
     while True:
@@ -77,6 +78,14 @@ def run_game_loop(stop_event):
             current_level = latest_game_data["activePlayer"]["level"]
             current_hp = latest_game_data["activePlayer"]["championStats"]["currentHealth"]
             game_ended = is_game_ended(latest_game_data)
+
+        # Check for AFK every AFK_TIMEOUT seconds to prevent attaching to an AFK ally. This timer is also reset when enemies are detected
+        if time.time() - last_afk_check_time >= AFK_TIMEOUT:
+            if attached:
+                send_keybind("evtCastSpell2", _keybinds)
+                ally_priority_list.append(ally_priority_list.pop(0))
+                attached = False
+            last_afk_check_time = time.time()
 
         # Exits loop on game end or shutdown
         if game_ended or stop_event.is_set():
@@ -105,7 +114,7 @@ def run_game_loop(stop_event):
         if current_hp == 0:
             end_time = 20 + time.monotonic()
             while not game_ended and not stop_event.is_set():
-                if buy_items_list(screen_manager, [""]) == True:
+                if buy_recommended_items(screen_manager) == True:
                     break
                 elif time.monotonic() > end_time:
                     break
@@ -114,8 +123,7 @@ def run_game_loop(stop_event):
             continue
 
         if not attached:
-            # On a timer, attach to an ally according to the priority list. If the ally is found, the timer is reset, else look for the next ally.
-            # NOTE: position field in game data may help verify ADC role
+            # Attach to an ally according to the priority list.
             ally_index = 0
             while not game_ended and not stop_event.is_set():
                 # Check if dead
@@ -133,7 +141,6 @@ def run_game_loop(stop_event):
                     break
                 # Attempt to attach
                 if find_ally_locations(screen_manager.get_latest_frame()):
-                    # move_mouse_percent(SCREEN_CENTER[0], SCREEN_CENTER[1])
                     click_percent(SCREEN_CENTER[0], SCREEN_CENTER[1], button="right")
                     send_keybind("evtCastSpell2", _keybinds)
                     time.sleep(3) # Wait for attach animation
@@ -146,7 +153,7 @@ def run_game_loop(stop_event):
                         logging.info("No allies found, recalling.")
                         send_keybind("evtUseItem7", _keybinds)
                         time.sleep(9)
-                        buy_items_list(screen_manager, [""])
+                        buy_recommended_items(screen_manager)
                         break
                     time.sleep(1) # Allow frame update
         elif attached:
@@ -161,7 +168,7 @@ def run_game_loop(stop_event):
                 if enemy:
                     tether_offset(SCREEN_CENTER, enemy[0], 1000)
                 else:
-                    buy_items_list(screen_manager, [""])
+                    buy_recommended_items(screen_manager)
                     # Move out of ally if they haven't moved yet
                     move_random_offset(SCREEN_CENTER[0], SCREEN_CENTER[1], 20)
                     time.sleep(1)
@@ -174,6 +181,7 @@ def run_game_loop(stop_event):
                 attached_ally_location = find_attached_ally_location(screen_manager.get_latest_frame())
                 if attached_ally_location:
                     for enemy_location in enemy_locations: 
+                        last_afk_check_time = time.time()
                         distance_to_enemy = get_game_distance(attached_ally_location, enemy_location)
                         if distance_to_enemy < 600:
                             move_mouse_percent(enemy_location[0], enemy_location[1])

@@ -85,5 +85,5 @@ def run_game_loop(stop_event):
         #     for enemy_location in enemy_locations:
         #         attack_enemy(player_location, enemy_location, latest_game_data)
 
-        buy_items_list(screen_manager, [""])
+        buy_recommended_items(screen_manager)
         time.sleep(1)

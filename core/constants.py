@@ -32,6 +32,9 @@ SUPPORTED_MODES = {
     # For a list of Queue IDs, visit https://static.developer.riotgames.com/docs/lol/queues.json
 }
 
+# AFK timeout (seconds)
+AFK_TIMEOUT = 60
+
 # ===========================
 # Ingame Color Definitions (BGR)
 # ===========================
@@ -69,8 +72,6 @@ LCU_GAMEFLOW_PHASE = "/lol-gameflow/v1/gameflow-phase"
 LCU_SUMMONER = "/lol-summoner/v1/current-summoner"
 LCU_CHAMPIONS_MINIMAL = "/lol-champions/v1/inventories/{summoner_id}/champions-minimal"
 
-
-
 GAMEFLOW_PHASES = {
     "NONE": "None",
     "LOBBY": "Lobby",
@@ -91,14 +92,16 @@ DATA_DRAGON_DEFAULT_LOCALE = "en_US"
 
 
 # ===========================
-# Screen Geometry
+# Screen Information
 # ===========================
+
+# Tolerance for color masking
+THRESHHOLD = 70
 
 # Get screen dimensions using win32api
 SCREEN_WIDTH = win32api.GetSystemMetrics(0)
 SCREEN_HEIGHT = win32api.GetSystemMetrics(1)
 SCREEN_CENTER = (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)
-
 
 # Parameters for the hybrid pixel->game units predictor (kept as constants for stability)
 GAME_DISTANCE_PARAMS = {

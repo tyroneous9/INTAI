@@ -67,7 +67,7 @@ def _find_adjacent_colors(
         bgr_2: BGR color on the adjacent right or bottom side, depending on shift_axis.
         bgr_1_tolerance: tolerance for bgr_1,
         bgr_2_tolerance: tolerance for bgr_2,
-        run_length: minimumnumber of adjacent pixels along opposite axis of shift_axis to validate a pair.
+        run_length: minimum number of adjacent pixels along opposite axis of shift_axis to validate a pair.
         shift_axis: 'x' to search horizontally (adjacent columns), 'y' to search vertically (adjacent rows).
     Returns:
         list[tuple]: list of (x, y) locations (may be empty).
@@ -81,12 +81,7 @@ def _find_adjacent_colors(
         raise ValueError("Two colors are required")
 
     H, W = mask_bgr_1.shape
-    if run_length > H and shift_axis == 'x':
-        return []
-    if run_length > W and shift_axis == 'y':
-        return []
 
-    # Fixed 1-pixel adjacency check (no dilation, no configurable multi-shift)
     found_locations = []
 
     shift = 1
