@@ -15,14 +15,13 @@ Key files & entry points (start here)
 - `core/` — main runtime components; see `core/bot_manager.py`, `core/run_aram.py`, `core/run_arena.py`, `core/run_test.py` for mode-specific logic.
 - `utils/` — helper modules (e.g., `utils/config_utils.py`, `utils/game_utils.py`) used across the app.
 - `config/` — runtime and default configuration; update `config/config.json` for changes.
-- `tesseract/` — bundled Tesseract data/config; OCR integration and language models live here.
-- `logs/` — runtime logs; check here for debugging output.
+`logs/` — runtime logs; check here for debugging output.
 
 Architecture & data flow (high level)
 - `main.py` reads configuration and delegates to the `core` package.
 - `core.bot_manager` orchestrates bot lifecycle and invokes mode-specific runners in `core/run_*.py`.
 - Utility modules in `utils/` provide stateless helpers (configuration parsing, game utilities, general helpers) — prefer adding shared logic here rather than globals.
-- External integration points: Tesseract (local `tesseract/` folder) and League Client API data referenced in `docs/` and `tests/` (see `tests/dump_lcu_data.py`).
+External integration points: League Client API data referenced in `docs/` and `tests/` (see `tests/dump_lcu_data.py`).
 
 Project-specific conventions
 - Runtimes live in `core/` with filenames `run_<mode>.py` (e.g., `run_aram.py`) — add new modes following this convention.
@@ -40,8 +39,7 @@ Debugging & logs
 - For packaging issues inspect `build/INTAI/warn-INTAI.txt` and `build/INTAI/EXE-00.toc` produced by PyInstaller.
 
 External dependencies & environment notes
-- The repo bundles Tesseract data under `tesseract/` — ensure `tesseract` binary on PATH or adapt `tesseract` lookup if testing on other systems.
-- Packaging assumes Windows (the workspace contains `build.bat`). Adjust scripts for other OSes only when absolutely necessary.
+Packaging assumes Windows (the workspace contains `build.bat`). Adjust scripts for other OSes only when absolutely necessary.
 
 Examples (common edits)
 - Add a new game mode: create `core/run_my_mode.py`, implement `run()` or `main()` consistent with other `run_*.py`, and register how `main.py` chooses it (follow existing selection logic in `main.py`).
@@ -53,6 +51,6 @@ Where to look first when investigating bugs
 - `core/bot_manager.py` and the `core/run_*.py` files for behavior orchestration
 
 When to ask maintainers
-- If you need to change packaging targets, modify `build.bat`/`INTAI.spec`, or add external OS-level dependencies (e.g., different Tesseract installs), ask before changing the build flow.
+- If you need to change packaging targets, modify `build.bat`/`INTAI.spec`, or add external OS-level dependencies, ask before changing the build flow.
 
 If anything here is unclear or you need more examples from real files, say so and I will expand the instructions or merge additional content from repository files.

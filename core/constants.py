@@ -100,19 +100,6 @@ SCREEN_HEIGHT = win32api.GetSystemMetrics(1)
 SCREEN_CENTER = (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)
 
 
-# ===========================
-# OCR Configuration
-# ===========================
-
-# Tesseract OCR executable path (relative to project root)
-TESSERACT_PATH = os.path.join(os.path.dirname(__file__), "..", "tesseract", "tesseract.exe")
-
-# Default threshold for image binarization
-THRESHHOLD = 70  
-
-# Page Segmentation Mode for Tesseract
-PSM = 11  
-
 # Parameters for the hybrid pixel->game units predictor (kept as constants for stability)
 GAME_DISTANCE_PARAMS = {
     "unit_scale": 1.1272789362463531,

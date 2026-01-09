@@ -5,7 +5,7 @@ a = Analysis(
     ['main.py'],
     pathex=[],
     binaries=[],
-    datas=[('config/config.json', 'config'), ('tesseract/tesseract.exe', 'tesseract'), ('tesseract/tessdata', 'tesseract/tessdata')],
+    datas=[('config/config.json', 'config')],
     hiddenimports=['core.run_arena', 'core.run_aram', 'core.run_test', 'core.run_yuumi_sr'],
     hookspath=[],
     hooksconfig={},

@@ -1,16 +1,7 @@
 import numpy as np
 import cv2
-from PIL import Image
-import pytesseract
 import os
-
-from core.constants import ALLY_HEALTH_RIGHT_COLOR, ARENA_EXIT_LOWER_COLOR, ARENA_EXIT_UPPER_COLOR, ATTACHED_ALLY_LEFT_COLOR, ATTACHED_ALLY_LEFT_COLOR, ATTACHED_ALLY_RIGHT_COLOR, AUGMENT_LOWER_COLOR, AUGMENT_UPPER_COLOR, ENEMY_HEALTH_RIGHT_COLOR, HEALTH_LEFT_COLOR, PLAYER_HEALTH_RIGHT_COLOR, PSM, SHOP_LOWER_COLOR, SHOP_UPPER_COLOR, THRESHHOLD, TESSERACT_PATH
-
-# Configure tesseract path
-try:
-    pytesseract.pytesseract.tesseract_cmd = TESSERACT_PATH
-except Exception:
-    raise ImportError("Tesseract path not configured properly")
+from core.constants import ALLY_HEALTH_RIGHT_COLOR, ARENA_EXIT_LOWER_COLOR, ARENA_EXIT_UPPER_COLOR, ATTACHED_ALLY_LEFT_COLOR, ATTACHED_ALLY_LEFT_COLOR, ATTACHED_ALLY_RIGHT_COLOR, AUGMENT_LOWER_COLOR, AUGMENT_UPPER_COLOR, ENEMY_HEALTH_RIGHT_COLOR, HEALTH_LEFT_COLOR, PLAYER_HEALTH_RIGHT_COLOR, SHOP_LOWER_COLOR, SHOP_UPPER_COLOR, THRESHHOLD
 
 
 # ===========================
@@ -234,70 +225,3 @@ def find_arena_exit_location(img):
         return []
     first_location = locations[0]
     return (first_location[0], first_location[1])
-
-    
-# ===========================
-# OCR Utilities
-# ===========================
-
-
-def extract_image_text(img):
-    """Extract text from an image using Tesseract.
-
-    Args:
-        img (np.ndarray): BGR image to run OCR on (required).
-        thresh (int): binary threshold value.
-        psm (int): tesseract page segmentation mode.
-
-    Returns:
-        str: extracted text.
-    """
-    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    _, proc = cv2.threshold(gray, int(THRESHHOLD), 255, cv2.THRESH_BINARY)
-    pil_img = Image.fromarray(proc)
-    return pytesseract.image_to_string(pil_img, config=f"--psm {PSM}")
-
-
-def extract_image_text_with_locations(img):
-    """Extract text and bounding boxes from an image.
-
-    Returns:
-        results ({}): a dict mapping line numbers to lists of {'text','box'}.
-    """
-    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    _, proc = cv2.threshold(gray, int(THRESHHOLD), 255, cv2.THRESH_BINARY)
-    pil_img = Image.fromarray(proc)
-    data = pytesseract.image_to_data(pil_img, config=f"--psm {PSM}", output_type=pytesseract.Output.DICT)
-    results = {}
-    n = len(data.get("text", []))
-    for i in range(n):
-        txt = data["text"][i].strip()
-        if not txt:
-            continue
-        x, y, w, h = data["left"][i], data["top"][i], data["width"][i], data["height"][i]
-        line = data.get("line_num", [0])[i] or 0
-        results.setdefault(line, []).append({"text": txt, "box": (x, y, w, h)})
-    return results
-
-
-def find_text_location(img, target_text, case_sensitive=False):
-    """
-    Find the bounding box of exact matching text in the provided image.
-    Args:
-        img (np.ndarray): BGR image to search.
-        target_text (str): text to find.
-        case_sensitive (bool): whether the match is case-sensitive.
-    Returns:
-        int (x, y, w, h): bounding box of found text
-    """
-    lines = extract_image_text_with_locations(img=img)
-    for entries in lines.values():
-        for e in entries:
-            a = e["text"]
-            if case_sensitive:
-                if a == target_text:
-                    return e["box"]
-            else:
-                if a.lower() == target_text.lower():
-                    return e["box"]
-    return []
