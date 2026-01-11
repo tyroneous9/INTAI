@@ -9,6 +9,7 @@ Setup: Pregame instructions here
 import time
 import threading
 import logging
+from constants import AFK_TIMEOUT
 from core.live_client_manager import LiveClientManager
 from core.screen_manager import ScreenManager
 from utils.config_utils import load_settings
@@ -28,10 +29,7 @@ def run_game_loop(stop_event):
     Main loop called by the connector
     """
 
-    # Initialization
-    _keybinds, _general = load_settings()
-    prev_level = 0
-
+    # Telemetry initialization
     game_data_lock = threading.Lock()
     latest_game_data = {}
     live_client_manager = LiveClientManager(stop_event, game_data_lock)
@@ -48,29 +46,37 @@ def run_game_loop(stop_event):
             break
         time.sleep(1)
 
+    # Game start initialization
     logging.info("Game loop has started.")
+    _keybinds, _general = load_settings()
+    attack_range = latest_game_data["activePlayer"]["championStats"]["attackRange"]
+    prev_level = 0
     start_time = time.time()
+    last_afk_check_time = time.time()
+    time.sleep(5)
     
     # Main game loop
     while True:
         # Fetch data
         with game_data_lock:
-            current_level = latest_game_data["activePlayer"]["level"]
             game_ended = is_game_ended(latest_game_data)
+            current_level = latest_game_data["activePlayer"]["level"]
 
         # Exits loop on game end or shutdown
         if game_ended or stop_event.is_set():
-
             live_client_manager.stop_polling_thread()
             screen_manager.stop_camera()
             logging.info("Game loop has ended.")
-
             elapsed = int(time.time() - start_time)
             hrs = elapsed // 3600
             mins = (elapsed % 3600) // 60
             secs = elapsed % 60
             logging.info("Game loop duration: %02d:%02d:%02d", hrs, mins, secs)
             return
+
+        # Check for AFK frequently to prevent following an AFK ally. This timer is also reset when enemies are detected.
+        if time.time() - last_afk_check_time >= AFK_TIMEOUT:
+            last_afk_check_time = time.time()
 
         # Level up
         if current_level > prev_level:

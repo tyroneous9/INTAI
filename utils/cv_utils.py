@@ -215,7 +215,7 @@ def find_arena_exit_location(img):
     Returns:
         list of (x,y) coordinates
     """
-    locations = _find_adjacent_colors(img, ARENA_EXIT_UPPER_COLOR, ARENA_EXIT_LOWER_COLOR, bgr_1_tolerance=3, bgr_2_tolerance=3, run_length=1, shift_axis='y')
+    locations = _find_adjacent_colors(img, ARENA_EXIT_UPPER_COLOR, ARENA_EXIT_LOWER_COLOR, bgr_1_tolerance=1, bgr_2_tolerance=0, run_length=1, shift_axis='y')
     if not locations:
         return []
     first_location = locations[0]

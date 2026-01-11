@@ -1,6 +1,6 @@
 {
     "General": {
-        "selected_game_mode": "yuumi_sr",
+        "selected_game_mode": "aram",
         "preferred_champion": {},
         "surrender": false,
         "game_resolution": {
@@ -105,11 +105,11 @@
         "evtChampMasteryDisplay": [
             {
                 "type": "key",
-                "key": "5",
+                "key": "6",
                 "modifiers": [
-                    "alt"
+                    "ctrl"
                 ],
-                "raw": "[Alt][5]"
+                "raw": "[Ctrl][6]"
             }
         ],
         "evtChampionOnly": [
@@ -129,22 +129,15 @@
             }
         ],
         "evtDragScrollLock": [],
-        "evtDrawHud": [
-            {
-                "type": "key",
-                "key": "h",
-                "modifiers": [],
-                "raw": "[h]"
-            }
-        ],
+        "evtDrawHud": [],
         "evtEmoteDance": [
             {
                 "type": "key",
                 "key": "3",
                 "modifiers": [
-                    "alt"
+                    "ctrl"
                 ],
-                "raw": "[Alt][3]"
+                "raw": "[Ctrl][3]"
             }
         ],
         "evtEmoteJoke": [
@@ -152,9 +145,9 @@
                 "type": "key",
                 "key": "1",
                 "modifiers": [
-                    "alt"
+                    "ctrl"
                 ],
-                "raw": "[Alt][1]"
+                "raw": "[Ctrl][1]"
             }
         ],
         "evtEmoteLaugh": [
@@ -162,9 +155,9 @@
                 "type": "key",
                 "key": "4",
                 "modifiers": [
-                    "alt"
+                    "ctrl"
                 ],
-                "raw": "[Alt][4]"
+                "raw": "[Ctrl][4]"
             }
         ],
         "evtEmoteTaunt": [
@@ -172,9 +165,9 @@
                 "type": "key",
                 "key": "2",
                 "modifiers": [
-                    "alt"
+                    "ctrl"
                 ],
-                "raw": "[Alt][2]"
+                "raw": "[Ctrl][2]"
             }
         ],
         "evtEmoteToggle": [
@@ -290,7 +283,14 @@
             }
         ],
         "evtPlayerAttackOnlyClick": [],
-        "evtPlayerHoldPosition": [],
+        "evtPlayerHoldPosition": [
+            {
+                "type": "key",
+                "key": "h",
+                "modifiers": [],
+                "raw": "[h]"
+            }
+        ],
         "evtPlayerMoveClick": [
             {
                 "type": "mouse",
@@ -434,10 +434,46 @@
                 "raw": "[Alt][f]"
             }
         ],
-        "evtSelfCastItem1": [],
-        "evtSelfCastItem2": [],
-        "evtSelfCastItem3": [],
-        "evtSelfCastItem4": [],
+        "evtSelfCastItem1": [
+            {
+                "type": "key",
+                "key": "1",
+                "modifiers": [
+                    "alt"
+                ],
+                "raw": "[Alt][1]"
+            }
+        ],
+        "evtSelfCastItem2": [
+            {
+                "type": "key",
+                "key": "2",
+                "modifiers": [
+                    "alt"
+                ],
+                "raw": "[Alt][2]"
+            }
+        ],
+        "evtSelfCastItem3": [
+            {
+                "type": "key",
+                "key": "3",
+                "modifiers": [
+                    "alt"
+                ],
+                "raw": "[Alt][3]"
+            }
+        ],
+        "evtSelfCastItem4": [
+            {
+                "type": "key",
+                "key": "5",
+                "modifiers": [
+                    "alt"
+                ],
+                "raw": "[Alt][5]"
+            }
+        ],
         "evtSelfCastItem5": [
             {
                 "type": "key",
@@ -498,7 +534,16 @@
                 "raw": "[Alt][r]"
             }
         ],
-        "evtSelfCastVisionItem": [],
+        "evtSelfCastVisionItem": [
+            {
+                "type": "key",
+                "key": "4",
+                "modifiers": [
+                    "alt"
+                ],
+                "raw": "[Alt][4]"
+            }
+        ],
         "evtShowCharacterMenu": [
             {
                 "type": "key",

@@ -44,8 +44,6 @@ def run_game_loop(stop_event):
     """
 
     # Initialization
-    _keybinds, _general = load_settings()
-
     game_data_lock = threading.Lock()
     latest_game_data = {}
     live_client_manager = LiveClientManager(stop_event, game_data_lock)
@@ -63,7 +61,9 @@ def run_game_loop(stop_event):
         time.sleep(1)
 
     logging.info("Game loop has started")
-
+    _keybinds, _general = load_settings()
+    attack_range = latest_game_data["activePlayer"]["championStats"]["attackRange"]
+    
     # Main game loop
     while True:
         # Fetch data
@@ -83,7 +83,7 @@ def run_game_loop(stop_event):
         # player_location = find_player_location(screen_manager.get_latest_frame())
         # if player_location:
         #     for enemy_location in enemy_locations:
-        #         attack_enemy(player_location, enemy_location, latest_game_data)
+        #         attack_enemy(player_location, enemy_location, attack_range)
 
         buy_recommended_items(screen_manager)
         time.sleep(1)

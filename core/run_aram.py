@@ -10,7 +10,7 @@ Setup: No special setup required
 import time
 import threading
 import logging
-from core.constants import SCREEN_CENTER
+from core.constants import AFK_TIMEOUT, SCREEN_CENTER
 from core.live_client_manager import LiveClientManager
 from core.screen_manager import ScreenManager
 from utils.config_utils import load_settings
@@ -39,12 +39,7 @@ def run_game_loop(stop_event):
     Main loop called by the connector
     """
 
-    # Initialization
-    _keybinds, _general = load_settings()
-
-    ally_priority_list = [1,2,3,4] # Adaptive order to follow most active allies
-    prev_level = 0
-
+    # Telemetry initialization
     game_data_lock = threading.Lock()
     latest_game_data = {}
     live_client_manager = LiveClientManager(stop_event, game_data_lock)
@@ -61,37 +56,40 @@ def run_game_loop(stop_event):
             break
         time.sleep(1)
 
+    # Game start initialization
     logging.info("Game loop has started")
-
-    # Initialize champion data
-    with game_data_lock:
-        attack_range = latest_game_data["activePlayer"]["championStats"]["attackRange"]
-    if attack_range <= 350:
-        attack_range = attack_range + 300
-
+    _keybinds, _general = load_settings()
+    attack_range = latest_game_data["activePlayer"]["championStats"]["attackRange"]
+    ally_priority_list = [1,2,3,4] # Adaptive order to follow most active allies
+    prev_level = 0
     start_time = time.time()
-    
+    last_afk_check_time = time.time()
+    time.sleep(5)
+
     # Main game loop
     while True:
         # Fetch data
         with game_data_lock:
+            game_ended = is_game_ended(latest_game_data)
             current_level = latest_game_data["activePlayer"]["level"]
             current_hp = latest_game_data["activePlayer"]["championStats"]["currentHealth"]
             max_hp = latest_game_data["activePlayer"]["championStats"]["maxHealth"]
-            game_ended = is_game_ended(latest_game_data)
 
         # Exits loop on game end or shutdown
         if game_ended or stop_event.is_set():
-
             live_client_manager.stop_polling_thread()
             screen_manager.stop_camera()
-
             elapsed = int(time.time() - start_time)
             hrs = elapsed // 3600
             mins = (elapsed % 3600) // 60
             secs = elapsed % 60
             logging.info("Game loop duration: %02d:%02d:%02d", hrs, mins, secs)
             return
+
+        # Check for AFK frequently to prevent following an AFK ally. This timer is also reset when enemies are detected.
+        if time.time() - last_afk_check_time >= 20:
+            ally_priority_list.append(ally_priority_list.pop(0))
+            last_afk_check_time = time.time()
 
         # Check for augment
         augment = find_augment_location(screen_manager.get_latest_frame())
@@ -126,22 +124,24 @@ def run_game_loop(stop_event):
         enemy_locations = find_enemy_locations(screen_manager.get_latest_frame())
 
         if ally_locations and enemy_locations: #TT
+            last_afk_check_time = time.time()
             # move around ally
-            move_random_offset(ally_locations[0][0], ally_locations[0][1], 10)
+            move_random_offset(ally_locations[0], 5)
+            time.sleep(0.2)
             # fight enemy
             send_keybind("evtCameraSnap", _keybinds, press_time=0.2)
             enemy_locations = find_enemy_locations(screen_manager.get_latest_frame())
             player_location = find_player_location(screen_manager.get_latest_frame())
             if player_location:
-                for enemy_location in enemy_locations: 
-                    attack_enemy(player_location, enemy_location, latest_game_data)
-                    break
+                for enemy_location in enemy_locations:
+                    if attack_enemy(player_location, enemy_location, attack_range) == True:
+                        break
             
 
         elif ally_locations and not enemy_locations: #TF
-            # look for a different ally and follow — rotate priorities so next ally becomes head
-            ally_priority_list.append(ally_priority_list.pop(0))
+            # follow the most active ally
             pan_to_ally(ally_priority_list[0], press_time=0.2)
+            move_random_offset(SCREEN_CENTER, 10)
             send_keybind("evtPlayerAttackMoveClick", _keybinds)
 
 

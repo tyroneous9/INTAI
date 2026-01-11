@@ -214,17 +214,19 @@ def get_game_distance(coord1, coord2):
 # Game Control Utilities
 # ===========================
 
-def move_random_offset(x, y, max_offset=15):
+def move_random_offset(coord, max_offset=15):
     """
-    Moves a random distance offset from the given (x, y) location using percent-based relative click.
+    Moves a random distance offset from the given coordinate using percent-based relative click.
+
     Args:
-        x (int): X coordinate of the base location.
-        y (int): Y coordinate of the base location.
+        coord (tuple): (x, y) coordinate of the base location.
         max_offset (int): Maximum percent screen distance in any direction.
     """
+    x, y = int(coord[0]), int(coord[1])
     offset_x = random.randint(-max_offset, max_offset)  # percent offset
     offset_y = random.randint(-max_offset, max_offset)  # percent offset
     click_percent(x, y, offset_x, offset_y, "right")
+    time.sleep(0.1)
 
 
 def level_up_abilities(order=('R', 'Q', 'W', 'E')):
@@ -506,57 +508,61 @@ def tether_offset(player_coords, target_coords, tether_distance):
     return
 
 
-def attack_enemy(player_location, enemy_location, game_data):
+def attack_enemy(player_location, enemy_location, attack_range=550):
     """
-    Attacks the enemy according to the champion's strengths. Does not lock the game data.
+    Attacks the enemy according to the champion's strengths.
     Args:
-        enemy_coords (tuple): (x, y) coordinates of the enemy.
+        player_location (tuple): (x, y) coordinates of the player.
+        enemy_location (tuple): (x, y) coordinates of the enemy.
+        attack_range (int): The champion's attack range in game units.
+    Returns:
+        bool: True if enemy in range was attacked, False otherwise.
     """
-    attack_range = game_data["activePlayer"]["championStats"]["attackRange"]
-    isRanged = False if attack_range <= 350 else True
+    
     distance_to_enemy = get_game_distance(player_location, enemy_location)
 
-    if isRanged:
-        # Maintain safe distance for ranged champions
+    # Ranged champions are considered 350+ range, otherwise melee
+    if attack_range > 350:
         if distance_to_enemy < 200:
             retreat(player_location, enemy_location)
         elif distance_to_enemy > attack_range:
-            move_mouse_percent(enemy_location[0], enemy_location[1])
-            send_keybind("evtPlayerAttackMoveClick", _keybinds)
-            time.sleep(0.2)
-            move_random_offset(enemy_location[0], enemy_location[1], 20)
-            return
+            return False
         else:
             tether_offset(player_location, enemy_location, attack_range)
             move_mouse_percent(enemy_location[0], enemy_location[1])
     else:
-        # Engage if within flash engage range for melee champions
         if distance_to_enemy > attack_range + 400:
+            return False
+        # Flash range engage
+        elif distance_to_enemy <= attack_range + 400 and distance_to_enemy > attack_range + 350:
             move_mouse_percent(enemy_location[0], enemy_location[1])
             send_keybind("evtPlayerAttackMoveClick", _keybinds)
-            time.sleep(0.2)
-            return
-        if distance_to_enemy <= attack_range + 400 and distance_to_enemy > attack_range + 200:
-            move_mouse_percent(enemy_location[0], enemy_location[1])
             send_keybind("evtSelfCastAvatarSpell1", _keybinds)
-            send_keybind("evtSelfCastAvatarSpell2", _keybinds)    
-
+            send_keybind("evtSelfCastAvatarSpell2", _keybinds)
+            send_keybind("evtCastSpell4", _keybinds)
+            send_keybind("evtCastSpell1", _keybinds)
+            send_keybind("evtCastSpell2", _keybinds)
+            send_keybind("evtCastSpell3", _keybinds)
+            time.sleep(0.2)
+            send_keybind("evtCastSpell4", _keybinds)
+            send_keybind("evtCastSpell1", _keybinds)
+            send_keybind("evtCastSpell2", _keybinds)
+            send_keybind("evtCastSpell3", _keybinds)
+            return True
     move_mouse_percent(enemy_location[0], enemy_location[1])
-    send_keybind("evtCastSpell4", _keybinds)
-    send_keybind("evtCastSpell1", _keybinds)
-    send_keybind("evtCastSpell2", _keybinds)
-    send_keybind("evtCastSpell3", _keybinds)
+    spell = random.choice(['evtCastSpell1', 'evtCastSpell2', 'evtCastSpell3', 'evtCastSpell4'])
+    send_keybind(spell, _keybinds)
     send_keybind("evtUseItem1", _keybinds)
     send_keybind("evtUseItem2", _keybinds)
     send_keybind("evtUseItem3", _keybinds)
     send_keybind("evtUseItem4", _keybinds)
     send_keybind("evtUseItem5", _keybinds)
     send_keybind("evtUseItem6", _keybinds)
-    send_keybind("evtPlayerAttackMoveClick", _keybinds)
-    time.sleep(0.2)
+    if distance_to_enemy <= attack_range + 100:
+        send_keybind("evtPlayerAttackMoveClick", _keybinds)
+        time.sleep(0.25)
     
-
-    
+    return True
 
 
 def vote_surrender():

@@ -32,8 +32,8 @@ SUPPORTED_MODES = {
     # For a list of Queue IDs, visit https://static.developer.riotgames.com/docs/lol/queues.json
 }
 
-# AFK timeout (seconds)
-AFK_TIMEOUT = 60
+# AFK timeout (seconds). The true timeout is 60 seconds, but a lower value is used to be safe.
+AFK_TIMEOUT = 50
 
 # ===========================
 # Ingame Color Definitions (BGR)

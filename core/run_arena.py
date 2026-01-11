@@ -40,13 +40,6 @@ def run_game_loop(stop_event):
     """
 
     # Initialization
-    _keybinds, _general = load_settings()
-
-    # The target ally number is always 1, which is the ally number of the duo as of 25.24
-    target_ally_number = 1
-    prev_level = 0
-    prev_gold = 0
-
     game_data_lock = threading.Lock()
     latest_game_data = {}
     live_client_manager = LiveClientManager(stop_event, game_data_lock)
@@ -64,15 +57,19 @@ def run_game_loop(stop_event):
         time.sleep(1)
 
     logging.info("Game loop has started.")
-    time.sleep(4)
+    _keybinds, _general = load_settings()
+    attack_range = latest_game_data["activePlayer"]["championStats"]["attackRange"]
+    target_ally_number = 1
+    prev_level = 0
+    prev_gold = 0
     start_time = time.time()
+    time.sleep(5)
 
     # Main game loop
     while True:
         # Fetch data
         with game_data_lock:
             current_level = latest_game_data["activePlayer"]["level"]
-            current_hp = latest_game_data["activePlayer"]["championStats"]["currentHealth"]
             gold = latest_game_data["activePlayer"]["currentGold"]
             game_ended = is_game_ended(latest_game_data)
 
@@ -126,10 +123,11 @@ def run_game_loop(stop_event):
             player_location = find_player_location(screen_manager.get_latest_frame())
             if player_location:
                 for enemy_location in enemy_locations: 
-                    attack_enemy(player_location, enemy_location, latest_game_data)
+                    if attack_enemy(player_location, enemy_location, attack_range) == True:
+                        break
         else:
             # Move to ally
             pan_to_ally(target_ally_number, press_time=0.2)
-            move_random_offset(SCREEN_CENTER[0], SCREEN_CENTER[1], 15)
+            move_random_offset(SCREEN_CENTER, 15)
             send_keybind("evtPlayerAttackMoveClick", _keybinds)
             time.sleep(0.2)
