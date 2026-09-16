@@ -47,7 +47,7 @@ Each data source runs on its own thread/event loop and hands off state through l
 
 ## Key components
 
-### Color-adjacency vision, no ML
+### Color-adjacency vision
 [`utils/cv_utils.py`](utils/cv_utils.py) locates champions and most UI elements using a niche image analysis technique: color-adjacency. For example, each health bar has a distinct two-color border (e.g. player/ally/enemy ), so detection reduces to finding pixels of color A directly adjacent to pixels of color B, checked in one pass over the full frame using OpenCV for masking and NumPy for vectorization and a cumulative-sum run-length check. The actual output location is offset by a fixed amount to factor the actual dimensions of the element.
 
 [`tools/run_visualizer.py`](tools/run_visualizer.py) is a debug tool that runs each image detector against the live screen capture and draws a marker at every hit, with per-detector toggles, used to help me test detection accuracy during development.
@@ -64,7 +64,7 @@ Each data source runs on its own thread/event loop and hands off state through l
 
 
 
-### Screen-space → game-space distance model
+### Screen-space -> game-space distance model
 
 Why this needs a model at all: the game never exposes world coordinates directly, and pixel distance does not scale linearly with game distance: two champions standing the same true distance apart produce a *different* pixel gap depending on where on screen that happens, because the 3D-to-2D projection is nonlinear (perspective, camera tilt, etc). Raw pixel measurements are useless for game distance calculations until something corrects for that.
 
