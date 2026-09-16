@@ -1,8 +1,8 @@
 # INTAI
 
-An application that drives League of Legends' client and in-game APIs (lobby creation, champion select, and live gameplay) using a real-time computer-vision pipeline to automate gameplay.
+An application that drives League of Legends' client and in-game APIs (lobby creation, champion select, and live gameplay) using a computer-vision pipeline to automate gameplay.
 
-> **Note:** This is a personal research project exploring real-time CV, async event-driven systems, and reverse-engineered client APIs. Running this program in a live game environment to automate gameplay violates the League of Legends Terms of Service.
+> **Note:** This is a personal research project studying real-time CV, async event-driven systems, and reverse-engineered client APIs. Running this program in a live game environment to automate gameplay violates the League of Legends Terms of Service.
 
 ## What it does
 
@@ -66,15 +66,14 @@ Each data source runs on its own thread/event loop and hands off state through l
 
 ### Screen-space -> game-space distance model
 
-Why this needs a model at all: the game never exposes world coordinates directly, and pixel distance does not scale linearly with game distance: two champions standing the same true distance apart produce a *different* pixel gap depending on where on screen that happens, because the 3D-to-2D projection is nonlinear (perspective, camera tilt, etc). Raw pixel measurements are useless for game distance calculations until something corrects for that.
+Why a distance model is needed: the game never exposes world coordinates directly, and pixel distance does not scale linearly with game distance: two champions standing the same true distance apart produce a *different* pixel gap depending on where on screen that happens, because the 3D-to-2D projection is nonlinear (perspective, camera tilt, etc). Raw pixel measurements are useless for game distance calculations until something corrects for that.
 
 [`tools/game_distance_collector.py`](tools/game_distance_collector.py) was used to collect data about on-screen pixel positions while a target sat at one of six known true distances, found from champion attack ranges (125, 250, 550, 594, 647, 700 units). These ranges were tested across many player screen positions and camera angles. [`tools/analyze_game_distances.py`](tools/analyze_game_distances.py) then fit a parametric model against the data (using nonlinear least squares via SciPy):
 
 ```
 units = pixel_distance × unit_scale × pos_multiplier × sep_multiplier
 ```
-
-A hypothesis about League's camera, not a documented fact: Riot doesn't publish the camera's projection math, so this model is merely a reverse-engineered guess about *why* the projection distorts the way it does.
+Why reverse engineer: Riot doesn't publish the camera's projection math, so this model is merely a reverse-engineered guess about *why* the projection distorts the way it does.
 
 - **`pos_multiplier`** assumes a fixed pixel gap represents more world distance near the top of the screen (farther away, more foreshortened) than near the bottom (closer to the camera). It interpolates between a `v_top` and `v_bottom` coefficient based on the player's screen-Y position.
 - **`sep_multiplier`** assumes that same tilt foreshortens vertical screen separation more than horizontal separation, so the estimate grows multiplicatively the more vertical the gap between two points is.
@@ -88,7 +87,7 @@ The fitted coefficients are saved into [`core/constants.py`](core/constants.py) 
 <p align="center"><em>Left: the same true distance produces a wide range of pixel separations depending on where on screen it's measured, the reason a position/angle correction is needed at all. Right: the shipped model's predictions against its own calibration data (n=3,658): solid in the middle of the calibrated range, biased at edges (see <a href="#future-improvements">Future Improvements</a>).</em></p>
 
 ### Event handling
-[`core/lcu_manager.py`](core/lcu_manager.py) utilizes `lcu_driver` as a transport layer to manage the connection to the LCU API. INTAI only needs to register handlers for WebSocket events such as changes in the client and game start/end. A gate (`asyncio.Event`) suspends every handler while closed, and events queue up and fire in order once the gate reopens. This ensures no race conditions between handlers.
+[`core/lcu_manager.py`](core/lcu_manager.py) utilizes `lcu_driver` as a transport layer to manage the connection to the LCU API. INTAI only registers handlers for WebSocket events such as changes in the client and game start/end. A gate (`asyncio.Event`) suspends every handler while closed, and events queue up and fire in order once the gate reopens. This ensures no race conditions between handlers.
 
 ### Threaded polling with shared state
 [`core/live_client_manager.py`](core/live_client_manager.py) runs an isolated polling thread against the Live Client Data endpoint, writing into a `dict` guarded by a `threading.Lock`. Consumers never block the poller and always read/write a consistent snapshot from the dict.
@@ -119,7 +118,7 @@ docs/       Notes for extending the module system
 
 ## Platform support
 
-The codebase runs on both Windows and Linux — screen capture (`mss`), mouse/keyboard input (`pyautogui`, `keyboard`), and window management (`pywinctl`) are all cross-platform, and PyInstaller packages a native executable on either via [`build.bat`](build.bat) (Windows) or [`build.sh`](build.sh) (Linux). Won't help you automate a live match though — League doesn't run on Linux, and Vanguard blocks Wine/Proton anyway.
+The program runs on both Windows and Linux: screen capture (`mss`), mouse/keyboard input (`pyautogui`, `keyboard`), and window management (`pywinctl`) are all cross-platform, and PyInstaller packages a native executable on either via [`build.bat`](build.bat) (Windows) or [`build.sh`](build.sh) (Linux).
 
 ## Building
 
